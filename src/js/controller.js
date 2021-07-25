@@ -1,6 +1,10 @@
 // const { async } = require("q");
 // import icons from '../img/icons.svg'; // Works in parcel 1 
 import icons from 'url:../img/icons.svg'; // Works in parcel 1 
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
+
 console.log(icons);
 
 const recipeContainer = document.querySelector('.recipe');
@@ -15,9 +19,9 @@ const timeout = function (s) {
 
 const renderSpinner = function (parentEl) {
   const markup = `
-    div class="spinner">
+        <div class="spinner">
           <svg>
-            <use href="${icons}#icon-loader"></use>
+            <use href="${icons}#icon-loader"></use> 
           </svg>
         </div>
   `;
