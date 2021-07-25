@@ -1,3 +1,5 @@
+const { async } = require("q");
+
 const recipeContainer = document.querySelector('.recipe');
 
 const timeout = function (s) {
@@ -8,4 +10,44 @@ const timeout = function (s) {
   });
 };
 
+const showRecipe = async function () {
 
+  try {
+    const res = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bcc40');
+    // const res = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886');
+
+    // 
+    // json method is availiable on all the response objects..
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(`${data.message} (${res.status})`)
+    }
+
+    console.log(res, data);
+
+    // let recipe = data.data.recipe;
+    let { recipe } = data.data;
+
+    recipe = {
+      id: recipe.id,
+      title: recipe.title,
+      publisher: recipe.publisher,
+      sourceUrl: recipe.source_url,
+      image: recipe.image_url,
+      servings: recipe.servings,
+      cookingTime: recipe.cooking_time,
+      ingredients: recipe.ingredients
+    }
+
+    console.log(recipe);
+
+
+
+
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+showRecipe();
