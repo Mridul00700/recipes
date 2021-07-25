@@ -4,8 +4,13 @@
   "description": "Recipe Webapp",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "Mridul",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0-beta.3.1",
+    "parcel": "^2.0.0-beta.3.1"
+  }
 }
