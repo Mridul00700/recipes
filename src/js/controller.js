@@ -1,6 +1,6 @@
 // const { async } = require("q");
 // import icons from '../img/icons.svg'; // Works in parcel 1 
-import icons from 'url:../img/icons.svg'; // Works in parcel 1 
+import icons from 'url:../img/icons.svg';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
@@ -156,12 +156,10 @@ const showRecipe = async function () {
     recipeContainer.innerHTML = "";
     recipeContainer.insertAdjacentHTML('afterbegin', markup);
 
-
-
-
   } catch (err) {
     console.log(err);
   }
 }
 
 showRecipe();
+window.addEventListener('hashchange', showRecipe);

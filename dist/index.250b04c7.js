@@ -384,7 +384,7 @@ function hmrAcceptRun(bundle/*: ParcelRequire */ , id/*: string */ ) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 // const { async } = require("q");
 // import icons from '../img/icons.svg'; // Works in parcel 1 
-var _iconsSvg = require("url:../img/icons.svg"); // Works in parcel 1 
+var _iconsSvg = require("url:../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 var _stable = require("core-js/stable");
 var _runtime = require("regenerator-runtime/runtime");
@@ -437,6 +437,7 @@ const showRecipe = async function() {
     }
 };
 showRecipe();
+window.addEventListener('hashchange', showRecipe);
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","url:../img/icons.svg":"3t5dV","core-js/stable":"1PFvP","regenerator-runtime/runtime":"62Qib"}],"367CR":[function(require,module,exports) {
 exports.interopDefault = function(a) {
