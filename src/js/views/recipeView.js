@@ -1,19 +1,37 @@
+// const { async } = require("q");
+// import icons from '../img/icons.svg'; // Works in parcel 1 
+import icons from 'url:../../img/icons.svg';
+import { Fraction } from 'fractional';
+console.log(Fraction);
+
 class RecipeView {
-    #parentElement = document.querySelector('.recipe');
-    #data;
-    render(data) {
-        this.#data = data;
-        const markup = this.#generateMarkup;
-        this.#clear;
-        this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-    }
+  #parentElement = document.querySelector('.recipe');
+  #data;
+  render(data) {
+    this.#data = data;
+    const markup = this.#generateMarkup();
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
 
-    #clear() {
-        this.#parentElement.innerHTML = "";
-    }
+  #clear() {
+    this.#parentElement.innerHTML = "";
+  }
 
-    #generateMarkup() {
-        return `
+  renderSpinner = function () {
+    const markup = `
+        <div class="spinner">
+          <svg>
+            <use href="${icons}#icon-loader"></use> 
+          </svg>
+        </div>
+  `;
+    this.#parentElement.innerHTML = "";
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  #generateMarkup() {
+    return `
         <figure class="recipe__fig">
           <img src="${this.#data.image}" alt="${this.#data.title}" class="recipe__img" />
           <h1 class="recipe__title">
@@ -66,20 +84,7 @@ class RecipeView {
           <h2 class="heading--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
 
-            ${this.#data.ingredients.map(ing => {
-            return `
-            <li class="recipe__ingredient">
-              <svg class="recipe__icon">
-                <use href="${icons}#icon-check"></use>
-              </svg>
-              <div class="recipe__quantity">${ing.quantity}</div>
-              <div class="recipe__description">
-                <span class="recipe__unit">${ing.unit}</span>
-                ${ing.description}
-              </div>
-            </li>
-            `;
-        }).join('')}
+            ${this.#data.ingredients.map(this.#generateMarkupIngredients).join('')}
         </div>
 
         <div class="recipe__directions">
@@ -101,7 +106,24 @@ class RecipeView {
           </a>
         </div>
     `;
-    }
+  }
+
+  #generateMarkupIngredients(ing) {
+
+    return `
+            <li class="recipe__ingredient">
+              <svg class="recipe__icon">
+                <use href="${icons}#icon-check"></use>
+              </svg>
+              <div class="recipe__quantity">${ing.quantity ? new Fraction(ing.quantity).toString() : ''}</div >
+        <div class="recipe__description">
+            <span class="recipe__unit">${ing.unit}</span>
+            ${ing.description}
+        </div>
+            </li >
+            `;
+  }
+
 
 }
 
