@@ -1,4 +1,3 @@
-
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import *  as model from './model';
@@ -33,5 +32,8 @@ const controlRecipe = async function () {
 // Multiple events 
 // window.addEventListener('hashchange', controlRecipe);
 // window.addEventListener('load', controlRecipe);
-const arr = ['hashchange', 'load']
-arr.forEach((event) => window.addEventListener(event, controlRecipe));
+const init = () => {
+  recipeView.addHandlerRender(controlRecipe);
+}
+
+init();

@@ -6,6 +6,12 @@ import { Fraction } from 'fractional';
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
+
+  addHandlerRender(callback) {
+    const arr = ['hashchange', 'load']
+    arr.forEach((event) => window.addEventListener(event, callback));
+  }
+
   render(data) {
     this.#data = data;
     const markup = this.#generateMarkup();
