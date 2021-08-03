@@ -392,11 +392,11 @@ const controlRecipe = async function() {
     try {
         const id = window.location.hash.slice(1);
         if (!id) return;
-        console.log(id);
+        // console.log(id);
         // 1) Loading recipe 
         // const res = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bcc40');
         _recipeViewDefault.default.renderSpinner();
-        await _model.loadRecipe('dwq123123');
+        await _model.loadRecipe(id);
         // 2) Rendering recipe 
         _recipeViewDefault.default.render(_model.state.recipe);
     } catch (err) {
@@ -408,6 +408,7 @@ const controlRecipe = async function() {
 // Multiple events 
 // window.addEventListener('hashchange', controlRecipe);
 // window.addEventListener('load', controlRecipe);
+const controlSearchRes;
 const init = ()=>{
     _recipeViewDefault.default.addHandlerRender(controlRecipe);
 };
@@ -12527,15 +12528,22 @@ parcelHelpers.export(exports, "state", ()=>state
 );
 parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe
 );
+parcelHelpers.export(exports, "loadSearchResults", ()=>loadSearchResults
+);
+var _regeneratorRuntime = require("regenerator-runtime");
 var _config = require("./config");
 var _helpers = require("./helpers");
 const state = {
     recipe: {
+    },
+    search: {
+        query: '',
+        results: []
     }
 };
 const loadRecipe = async function(id) {
     try {
-        const data = await _helpers.getJSON(`${_config.API_URL}/${id}`);
+        const data = await _helpers.getJSON(`${_config.API_URL}${id}`);
         // let recipe = data.data.recipe;
         const { recipe  } = data.data;
         state.recipe = {
@@ -12554,15 +12562,33 @@ const loadRecipe = async function(id) {
         throw err;
     }
 };
+const loadSearchResults = async function(query) {
+    try {
+        state.search.query = query;
+        const data = await _helpers.getJSON(`${_config.API_URL}?search=${query}`);
+        console.log(data);
+        state.search.results.push(data.data.recipes.map((recipe)=>{
+            return {
+                id: recipe.id,
+                title: recipe.title,
+                publisher: recipe.publisher,
+                image: recipe.image_url
+            };
+        }));
+        console.log(state.search.results);
+    } catch (err) {
+        throw err;
+    }
+};
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","./config":"6pr2F","./helpers":"581KF"}],"6pr2F":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","./config":"6pr2F","./helpers":"581KF","regenerator-runtime":"62Qib"}],"6pr2F":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "API_URL", ()=>API_URL
 );
 parcelHelpers.export(exports, "TIMEOUT_SEC", ()=>TIMEOUT_SEC
 );
-const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes';
+const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
 const TIMEOUT_SEC = 10;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}],"581KF":[function(require,module,exports) {
@@ -12608,6 +12634,7 @@ class RecipeView {
     #parentElement = document.querySelector('.recipe');
     #data;
     #errorMessage = 'We could not find a recipe. Please try another one!';
+    #message = '';
     addHandlerRender(callback) {
         const arr = [
             'hashchange',
@@ -12632,6 +12659,11 @@ class RecipeView {
     }
     renderError(message = this.#errorMessage) {
         const markup = `\n    <div class="error">\n            <div>\n              <svg>\n                <use href="${_iconsSvgDefault.default}#icon-alert-triangle"></use>\n              </svg>\n            </div>\n            <p>${message}</p>\n          </div>\n    `;
+        this.#clear();
+        this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+    }
+    renderMessage(message = this.#message) {
+        const markup = `\n    <div class="message">\n            <div>\n              <svg>\n                <use href="${_iconsSvgDefault.default}#icon-smile"></use>\n              </svg>\n            </div>\n            <p>${message}</p>\n          </div>\n    `;
         this.#clear();
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
     }
