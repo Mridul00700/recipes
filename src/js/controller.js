@@ -34,7 +34,16 @@ const controlRecipe = async function () {
 // window.addEventListener('hashchange', controlRecipe);
 // window.addEventListener('load', controlRecipe);
 
-const controlSearchRes
+const controlSearchResult = async function () {
+  try {
+    await model.loadSearchResults('pizza');
+    console.log(model.state.search.results);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+controlSearchResult();
 
 
 const init = () => {
