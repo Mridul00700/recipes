@@ -18,14 +18,15 @@ const controlRecipe = async function () {
     // const res = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bcc40');
     recipeView.renderSpinner();
 
-    await model.loadRecipe(id);
+    await model.loadRecipe('dwq123123');
 
     // 2) Rendering recipe 
     recipeView.render(model.state.recipe);
 
   } catch (err) {
     // recipeContainer.innerHTML = "";
-    console.log(err);
+    // console.log(err);
+    recipeView.renderError()
   }
 }
 
