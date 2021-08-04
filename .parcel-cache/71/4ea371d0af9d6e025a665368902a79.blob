@@ -12585,14 +12585,14 @@ const loadSearchResults = async function(query) {
         state.search.query = query;
         const data = await _helpers.getJSON(`${_config.API_URL}?search=${query}`);
         console.log(data);
-        state.search.results = data.data.recipes.map((recipe)=>{
+        state.search.results.push(data.data.recipes.map((recipe)=>{
             return {
                 id: recipe.id,
                 title: recipe.title,
                 publisher: recipe.publisher,
                 image: recipe.image_url
             };
-        });
+        }));
         console.log(state.search.results);
     } catch (err) {
         throw err;
@@ -12672,7 +12672,7 @@ class RecipeView extends _viewDefault.default {
 exports.default = new RecipeView;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","url:../../img/icons.svg":"3t5dV","fractional":"5jzJt","./View":"48jhP"}],"3t5dV":[function(require,module,exports) {
-module.exports = require('./bundle-url').getBundleURL() + "icons.d4a14980.svg";
+module.exports = require('./bundle-url').getBundleURL() + "icons.HASH_REF_f6727c52d326b6f99dffa0b9d4a14980.svg";
 
 },{"./bundle-url":"3seVR"}],"3seVR":[function(require,module,exports) {
 "use strict";
@@ -13021,9 +13021,11 @@ var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class ResultView extends _viewDefault.default {
     _parentElement = document.querySelector('.results');
     _generateMarkup() {
+        console.log(this._data);
         return this._data.map(this._generateMarkupPreview).join('');
     }
     _generateMarkupPreview(res) {
+        console.log(res.id);
         return `\n        <li class="preview">\n            <a class="preview__link preview__link--active" href="#${res.id}">\n              <figure class="preview__fig">\n                <img src="${res.image}" alt="Test" />\n              </figure>\n              <div class="preview__data">\n                <h4 class="preview__title">${res.title}</h4>\n                <p class="preview__publisher">${res.publisher}</p>\n                <div class="preview__user-generated">\n                  <svg>\n                    <use href="${_iconsSvgDefault.default}#icon-user"></use>\n                  </svg>\n                </div>\n              </div>\n            </a>\n        </li>\n            `;
     }
 }
@@ -13031,4 +13033,4 @@ exports.default = new ResultView;
 
 },{"./View":"48jhP","@parcel/transformer-js/src/esmodule-helpers.js":"367CR","url:../../img/icons.svg":"3t5dV"}]},["1WnDs","3miIZ"], "3miIZ", "parcelRequire3886")
 
-//# sourceMappingURL=index.250b04c7.js.map
+//# sourceMappingURL=index.HASH_REF_6315ebf922a29661e8263da0250b04c7.js.map
