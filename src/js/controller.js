@@ -6,6 +6,9 @@ import searchView from './views/searchView';
 import resultsView from './views/resultsView';
 // const recipeContainer = document.querySelector('.recipe');
 
+if (module.hot) {
+  module.hot.accept();
+}
 
 const controlRecipe = async function () {
 
@@ -42,7 +45,6 @@ const controlSearchResult = async function () {
     if (!query) return;
     // Load search results
     await model.loadSearchResults(query);
-    console.log(model.state.search.results);
     resultsView.render(model.state.search.results);
   } catch (err) {
     console.log(err);
