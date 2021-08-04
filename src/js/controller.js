@@ -36,9 +36,10 @@ const controlRecipe = async function () {
 
 const controlSearchResult = async function () {
   try {
+    // Get search query
     const query = searchView.getQuery();
     if (!query) return;
-
+    // Load search results
     await model.loadSearchResults(query);
     console.log(model.state.search.results);
   } catch (err) {
