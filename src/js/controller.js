@@ -3,8 +3,8 @@ import 'regenerator-runtime/runtime';
 import *  as model from './model';
 import recipeView from './views/recipeView';
 import searchView from './views/searchView';
-
-const recipeContainer = document.querySelector('.recipe');
+import resultsView from './views/resultsView';
+// const recipeContainer = document.querySelector('.recipe');
 
 
 const controlRecipe = async function () {
@@ -36,6 +36,7 @@ const controlRecipe = async function () {
 
 const controlSearchResult = async function () {
   try {
+    resultsView.renderSpinner();
     // Get search query
     const query = searchView.getQuery();
     if (!query) return;

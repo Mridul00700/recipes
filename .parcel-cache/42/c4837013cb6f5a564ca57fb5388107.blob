@@ -389,9 +389,7 @@ var _recipeView = require("./views/recipeView");
 var _recipeViewDefault = parcelHelpers.interopDefault(_recipeView);
 var _searchView = require("./views/searchView");
 var _searchViewDefault = parcelHelpers.interopDefault(_searchView);
-var _resultsView = require("./views/resultsView");
-var _resultsViewDefault = parcelHelpers.interopDefault(_resultsView);
-// const recipeContainer = document.querySelector('.recipe');
+const recipeContainer = document.querySelector('.recipe');
 const controlRecipe = async function() {
     try {
         const id = window.location.hash.slice(1);
@@ -414,7 +412,6 @@ const controlRecipe = async function() {
 // window.addEventListener('load', controlRecipe);
 const controlSearchResult = async function() {
     try {
-        _resultsViewDefault.default.renderSpinner();
         // Get search query
         const query = _searchViewDefault.default.getQuery();
         if (!query) return;
@@ -431,7 +428,7 @@ const init = ()=>{
 };
 init();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","core-js/stable":"1PFvP","regenerator-runtime/runtime":"62Qib","./model":"1hp6y","./views/recipeView":"9e6b9","./views/searchView":"3rYQ6","./views/resultsView":"17PYN"}],"367CR":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","core-js/stable":"1PFvP","regenerator-runtime/runtime":"62Qib","./model":"1hp6y","./views/recipeView":"9e6b9","./views/searchView":"3rYQ6"}],"367CR":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -12671,7 +12668,7 @@ class RecipeView extends _viewDefault.default {
 exports.default = new RecipeView;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","url:../../img/icons.svg":"3t5dV","fractional":"5jzJt","./View":"48jhP"}],"3t5dV":[function(require,module,exports) {
-module.exports = require('./bundle-url').getBundleURL() + "icons.d4a14980.svg";
+module.exports = require('./bundle-url').getBundleURL() + "icons.HASH_REF_f6727c52d326b6f99dffa0b9d4a14980.svg";
 
 },{"./bundle-url":"3seVR"}],"3seVR":[function(require,module,exports) {
 "use strict";
@@ -13010,16 +13007,6 @@ class SearchView {
 }
 exports.default = new SearchView;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}],"17PYN":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _view = require("./View");
-var _viewDefault = parcelHelpers.interopDefault(_view);
-class ResultView extends _viewDefault.default {
-    _parentElement = document.querySelector('.results');
-}
-exports.default = new ResultView;
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}]},["1WnDs","3miIZ"], "3miIZ", "parcelRequire3886")
 
-},{"./View":"48jhP","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}]},["1WnDs","3miIZ"], "3miIZ", "parcelRequire3886")
-
-//# sourceMappingURL=index.250b04c7.js.map
+//# sourceMappingURL=index.HASH_REF_6315ebf922a29661e8263da0250b04c7.js.map
