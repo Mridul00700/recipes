@@ -1,0 +1,60 @@
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _stable = require("core-js/stable");
+var _runtime = require("regenerator-runtime/runtime");
+var _model = require("./model");
+var _recipeView = require("./views/recipeView");
+var _recipeViewDefault = parcelHelpers.interopDefault(_recipeView);
+var _searchView = require("./views/searchView");
+var _searchViewDefault = parcelHelpers.interopDefault(_searchView);
+var _resultsView = require("./views/resultsView");
+var _resultsViewDefault = parcelHelpers.interopDefault(_resultsView);
+var _paginationView = require("./views/paginationView");
+var _paginationViewDefault = parcelHelpers.interopDefault(_paginationView);
+// const recipeContainer = document.querySelector('.recipe');
+// if (module.hot) {
+//   module.hot.accept();
+// }
+const controlRecipe = async function() {
+    try {
+        const id = window.location.hash.slice(1);
+        if (!id) return;
+        // console.log(id);
+        // 1) Loading recipe 
+        // const res = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bcc40');
+        _recipeViewDefault.default.renderSpinner();
+        await _model.loadRecipe(id);
+        // 2) Rendering recipe 
+        _recipeViewDefault.default.render(_model.state.recipe);
+    } catch (err) {
+        // recipeContainer.innerHTML = "";
+        // console.log(err);
+        _recipeViewDefault.default.renderError();
+    }
+};
+// Multiple events 
+// window.addEventListener('hashchange', controlRecipe);
+// window.addEventListener('load', controlRecipe);
+const controlSearchResult = async function() {
+    try {
+        _resultsViewDefault.default.renderSpinner();
+        // Get search query
+        const query = _searchViewDefault.default.getQuery();
+        if (!query) return;
+        // Load search results
+        await _model.loadSearchResults(query);
+        _resultsViewDefault.default.render(_model.getSearchResultByPage(4));
+        // Pagination --
+        _paginationViewDefault.default.render(_model.state.search);
+    } catch (err) {
+        console.log(err);
+    }
+};
+const controlPagination = (goToPage)=>{
+    console.log(goToPage);
+};
+const init = ()=>{
+    _recipeViewDefault.default.addHandlerRender(controlRecipe);
+    _searchViewDefault.default.addHandlerSearch(controlSearchResult);
+    _paginationViewDefault.default.addHandlerClick(controlPagination);
+};
+init();

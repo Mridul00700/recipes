@@ -425,18 +425,15 @@ const controlSearchResult = async function() {
         if (!query) return;
         // Load search results
         await _model.loadSearchResults(query);
-        _resultsViewDefault.default.render(_model.getSearchResultByPage(4));
+        _resultsViewDefault.default.render(_model.getSearchResultByPage(6));
         // Pagination --
         _paginationViewDefault.default.render(_model.state.search);
     } catch (err) {
         console.log(err);
     }
 };
-const controlPagination = (goToPage)=>{
-    // Render new results 
-    _resultsViewDefault.default.render(_model.getSearchResultByPage(goToPage));
-    // Render new pagination buttons
-    _paginationViewDefault.default.render(_model.state.search);
+const controlPagination = ()=>{
+    console.log("page controller");
 };
 const init = ()=>{
     _recipeViewDefault.default.addHandlerRender(controlRecipe);
@@ -12694,7 +12691,7 @@ class RecipeView extends _viewDefault.default {
 exports.default = new RecipeView;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","url:../../img/icons.svg":"3t5dV","fractional":"5jzJt","./View":"48jhP"}],"3t5dV":[function(require,module,exports) {
-module.exports = require('./bundle-url').getBundleURL() + "icons.d4a14980.svg";
+module.exports = require('./bundle-url').getBundleURL() + "icons.HASH_REF_f6727c52d326b6f99dffa0b9d4a14980.svg";
 
 },{"./bundle-url":"3seVR"}],"3seVR":[function(require,module,exports) {
 "use strict";
@@ -13067,10 +13064,10 @@ class PaginationView extends _viewDefault.default {
         this._parentElement.addEventListener('click', function(e) {
             // We need to figure out which button was clicked. 
             const btn = e.target.closest('.btn--inline');
-            if (!btn) return;
-            const goToPage = +btn.dataset.goto;
+            console.log(btn);
+            const goToPage = btn.dataset.goto;
             console.log(goToPage);
-            handler(goToPage);
+            handler();
         });
     }
     _generateMarkup() {
@@ -13091,4 +13088,4 @@ exports.default = new PaginationView;
 
 },{"./View":"48jhP","url:../../img/icons.svg":"3t5dV","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}]},["1WnDs","3miIZ"], "3miIZ", "parcelRequire3886")
 
-//# sourceMappingURL=index.250b04c7.js.map
+//# sourceMappingURL=index.HASH_REF_6315ebf922a29661e8263da0250b04c7.js.map
