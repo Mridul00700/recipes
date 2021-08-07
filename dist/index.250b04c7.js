@@ -391,8 +391,12 @@ var _searchView = require("./views/searchView");
 var _searchViewDefault = parcelHelpers.interopDefault(_searchView);
 var _resultsView = require("./views/resultsView");
 var _resultsViewDefault = parcelHelpers.interopDefault(_resultsView);
+var _paginationView = require("./views/paginationView");
+var _paginationViewDefault = parcelHelpers.interopDefault(_paginationView);
 // const recipeContainer = document.querySelector('.recipe');
-if (module.hot) module.hot.accept();
+// if (module.hot) {
+//   module.hot.accept();
+// }
 const controlRecipe = async function() {
     try {
         const id = window.location.hash.slice(1);
@@ -422,6 +426,8 @@ const controlSearchResult = async function() {
         // Load search results
         await _model.loadSearchResults(query);
         _resultsViewDefault.default.render(_model.getSearchResultByPage(1));
+        // Pagination --
+        _paginationViewDefault.default.render(_model.state.search);
     } catch (err) {
         console.log(err);
     }
@@ -432,7 +438,7 @@ const init = ()=>{
 };
 init();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","core-js/stable":"1PFvP","regenerator-runtime/runtime":"62Qib","./model":"1hp6y","./views/recipeView":"9e6b9","./views/searchView":"3rYQ6","./views/resultsView":"17PYN"}],"367CR":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","core-js/stable":"1PFvP","regenerator-runtime/runtime":"62Qib","./model":"1hp6y","./views/recipeView":"9e6b9","./views/searchView":"3rYQ6","./views/resultsView":"17PYN","./views/paginationView":"5u5Fw"}],"367CR":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -12559,7 +12565,8 @@ const state = {
     search: {
         query: '',
         results: [],
-        resultsPerPage: _config.RES_PER_PAGE
+        resultsPerPage: _config.RES_PER_PAGE,
+        page: 1
     }
 };
 const loadRecipe = async function(id) {
@@ -12599,7 +12606,8 @@ const loadSearchResults = async function(query) {
         throw err;
     }
 };
-const getSearchResultByPage = function(page) {
+const getSearchResultByPage = function(page = state.search.page) {
+    state.search.page = page;
     return state.search.results.slice((page - 1) * state.search.resultsPerPage, page * state.search.resultsPerPage);
 };
 
@@ -13039,6 +13047,31 @@ class ResultView extends _viewDefault.default {
 }
 exports.default = new ResultView;
 
-},{"./View":"48jhP","@parcel/transformer-js/src/esmodule-helpers.js":"367CR","url:../../img/icons.svg":"3t5dV"}]},["1WnDs","3miIZ"], "3miIZ", "parcelRequire3886")
+},{"./View":"48jhP","@parcel/transformer-js/src/esmodule-helpers.js":"367CR","url:../../img/icons.svg":"3t5dV"}],"5u5Fw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _view = require("./View");
+var _viewDefault = parcelHelpers.interopDefault(_view);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class PaginationView extends _viewDefault.default {
+    _parentElement = document.querySelector('.pagination');
+    _generateMarkup() {
+        const currentPage = this._data.page;
+        const numPages = Math.ceil(this._data.results.length / this._data.resultsPerPage);
+        console.log(numPages);
+        //Page 1  and there are other pages 
+        if (currentPage === 1 && numPages > 1) console.log("page1 and other");
+        // We are on last page 
+        if (currentPage === numPages && numPages > 1) return `\n            <button class="btn--inline pagination__btn--prev">\n                <svg class="search__icon">\n                    <use href="src/img/icons.svg#icon-arrow-left"></use>\n                </svg>\n                <span>Page ${currentPage - 1}</span>\n            </button>\n            `;
+        // On random middle page
+        if (tcurrentPage < numPages) console.log("Random page");
+        // Page 1 and there are no other pages
+        console.log("First page");
+    }
+}
+exports.default = new PaginationView;
+
+},{"./View":"48jhP","url:../../img/icons.svg":"3t5dV","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}]},["1WnDs","3miIZ"], "3miIZ", "parcelRequire3886")
 
 //# sourceMappingURL=index.250b04c7.js.map

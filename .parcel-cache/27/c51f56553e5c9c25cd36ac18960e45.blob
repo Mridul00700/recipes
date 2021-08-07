@@ -1,0 +1,22 @@
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _view = require("./View");
+var _viewDefault = parcelHelpers.interopDefault(_view);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class PaginationView extends _viewDefault.default {
+    _parentElement = document.querySelector('.pagination');
+    _generateMarkup() {
+        const numPages = Math.ceil(this._data.results.length / this._data.resultsPerPage);
+        console.log(numPages);
+        //Page 1  and there are other pages 
+        if (this._data.page === 1 && numPages > 1) console.log("page1 and other");
+        // We are on last page 
+        if (this._data.page === numPages && numPages > 1) console.log("last page");
+        // On random middle page
+        if (this._data.page < numPages) console.log("Random page");
+        // Page 1 and there are no other pages
+        console.log("");
+    }
+}
+exports.default = new PaginationView;
