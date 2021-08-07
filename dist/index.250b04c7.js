@@ -425,16 +425,20 @@ const controlSearchResult = async function() {
         if (!query) return;
         // Load search results
         await _model.loadSearchResults(query);
-        _resultsViewDefault.default.render(_model.getSearchResultByPage(1));
+        _resultsViewDefault.default.render(_model.getSearchResultByPage(6));
         // Pagination --
         _paginationViewDefault.default.render(_model.state.search);
     } catch (err) {
         console.log(err);
     }
 };
+const controlPagination = ()=>{
+    console.log("page controller");
+};
 const init = ()=>{
     _recipeViewDefault.default.addHandlerRender(controlRecipe);
     _searchViewDefault.default.addHandlerSearch(controlSearchResult);
+    _paginationViewDefault.default.addHandlerClick(controlPagination);
 };
 init();
 
@@ -13056,18 +13060,26 @@ var _iconsSvg = require("url:../../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class PaginationView extends _viewDefault.default {
     _parentElement = document.querySelector('.pagination');
+    addHandlerClick(handler) {
+        this._parentElement.addEventListener('click', function(e) {
+            // We need to figure out which button was clicked. 
+            const btn = e.target.closest('.btn--inline');
+            console.log(btn);
+            handler();
+        });
+    }
     _generateMarkup() {
         const currentPage = this._data.page;
         const numPages = Math.ceil(this._data.results.length / this._data.resultsPerPage);
         console.log(numPages);
         //Page 1  and there are other pages 
-        if (currentPage === 1 && numPages > 1) console.log("page1 and other");
+        if (currentPage === 1 && numPages > 1) return `\n            <button class="btn--inline pagination__btn--next">\n            <span>Page ${currentPage + 1}</span>\n            <svg class="search__icon">\n              <use href="${_iconsSvgDefault.default}#icon-arrow-right"></use>x\n            </svg>\n            `;
         // We are on last page 
-        if (currentPage === numPages && numPages > 1) return `\n            <button class="btn--inline pagination__btn--prev">\n                <svg class="search__icon">\n                    <use href="src/img/icons.svg#icon-arrow-left"></use>\n                </svg>\n                <span>Page ${currentPage - 1}</span>\n            </button>\n            `;
+        if (currentPage === numPages && numPages > 1) return `\n            <button class="btn--inline pagination__btn--prev">\n                <svg class="search__icon">\n                    <use href="${_iconsSvgDefault.default}#icon-arrow-left"></use>\n                </svg>\n                <span>Page ${currentPage - 1}</span>\n            </button>\n            `;
         // On random middle page
-        if (tcurrentPage < numPages) console.log("Random page");
-        // Page 1 and there are no other pages
-        console.log("First page");
+        if (currentPage < numPages) return `\n            <button class="btn--inline pagination__btn--prev">\n                <svg class="search__icon">\n                    <use href="${_iconsSvgDefault.default}#icon-arrow-left"></use>\n                </svg>\n                <span>Page ${currentPage - 1}</span>\n            </button>\n            <button class="btn--inline pagination__btn--next" >\n            <span>Page ${currentPage + 1}</span>\n            <svg class="search__icon">\n              <use href="${_iconsSvgDefault.default}#icon-arrow-right"></use>\n            </svg>\n            `;
+        // Page 1 and there are no other pages hence no buttons
+        return ``;
     }
 }
 exports.default = new PaginationView;

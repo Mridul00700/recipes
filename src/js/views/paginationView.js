@@ -6,6 +6,17 @@ import icons from 'url:../../img/icons.svg';
 class PaginationView extends View {
     _parentElement = document.querySelector('.pagination');
 
+    addHandlerClick(handler) {
+        this._parentElement.addEventListener('click', function (e) {
+            // We need to figure out which button was clicked. 
+            const btn = e.target.closest('.btn--inline');
+            console.log(btn);
+            handler();
+        });
+    }
+
+
+
 
     _generateMarkup() {
         const currentPage = this._data.page;
@@ -13,7 +24,13 @@ class PaginationView extends View {
         console.log(numPages);
         //Page 1  and there are other pages 
         if (currentPage === 1 && numPages > 1) {
-            console.log("page1 and other");
+            return `
+            <button class="btn--inline pagination__btn--next">
+            <span>Page ${currentPage + 1}</span>
+            <svg class="search__icon">
+              <use href="${icons}#icon-arrow-right"></use>x
+            </svg>
+            `
         }
 
 
@@ -22,7 +39,7 @@ class PaginationView extends View {
             return `
             <button class="btn--inline pagination__btn--prev">
                 <svg class="search__icon">
-                    <use href="src/img/icons.svg#icon-arrow-left"></use>
+                    <use href="${icons}#icon-arrow-left"></use>
                 </svg>
                 <span>Page ${currentPage - 1}</span>
             </button>
@@ -30,12 +47,24 @@ class PaginationView extends View {
         }
 
         // On random middle page
-        if (tcurrentPage < numPages) {
-            console.log("Random page");
+        if (currentPage < numPages) {
+            return `
+            <button class="btn--inline pagination__btn--prev">
+                <svg class="search__icon">
+                    <use href="${icons}#icon-arrow-left"></use>
+                </svg>
+                <span>Page ${currentPage - 1}</span>
+            </button>
+            <button class="btn--inline pagination__btn--next" >
+            <span>Page ${currentPage + 1}</span>
+            <svg class="search__icon">
+              <use href="${icons}#icon-arrow-right"></use>
+            </svg>
+            `;
         }
 
-        // Page 1 and there are no other pages
-        console.log("First page");
+        // Page 1 and there are no other pages hence no buttons
+        return ``;
     }
 
 }
