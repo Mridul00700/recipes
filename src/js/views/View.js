@@ -4,7 +4,7 @@ import icons from 'url:../../img/icons.svg';
 export default class View {
   _data;
   render(data) {
-
+    // console.log(data);
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
     this._data = data;
@@ -12,6 +12,15 @@ export default class View {
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
+
+  update(data) {
+    if (!data || (Array.isArray(data) && data.length === 0))
+      return this.renderError();
+    this._data = data;
+    const newMarkup = this._generateMarkup();
+  }
+
+
 
   _clear() {
     this._parentElement.innerHTML = "";

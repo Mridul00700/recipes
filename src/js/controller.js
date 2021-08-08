@@ -67,8 +67,9 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Update the recipe view 
-  recipeView.render(model.state.recipe);
-
+  // recipeView.render(model.state.recipe);
+  // only update text and changed attributes not whole dom including images
+  recipeView.update(model.state.recipe);
 
 }
 
