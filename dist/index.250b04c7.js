@@ -13021,6 +13021,20 @@ class View {
         if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
         this._data = data;
         const newMarkup = this._generateMarkup();
+        // VIRTUAL DOM --->
+        const newDom = document.createRange().createContextualFragment(newMarkup);
+        const newElement = Array.from(newDom.querySelectorAll('*'));
+        const currentElement = Array.from(this._parentElement.querySelectorAll('*'));
+        newElement.forEach((newEl, i)=>{
+            const curEl = currentElement[i];
+            // console.log(curEl, newEl.isEqualNode(curEl));
+            // Update to text only 
+            if (!newEl.isEqualNode(curEl) && newEl.firstChild.nodeValue.trim() !== '') // console.log(newEl.firstChild?.nodeValue.trim());
+            curEl.textContent = newEl.textContent;
+            // Update changed attributes ->
+            if (!newEl.isEqualNode(curEl)) Array.from(newEl.attributes).forEach((attr)=>curEl.setAttribute(attr.name, attr.value)
+            );
+        });
     }
     _clear() {
         this._parentElement.innerHTML = "";
