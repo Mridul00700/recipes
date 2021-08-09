@@ -31,7 +31,6 @@ export const loadRecipe = async function (id) {
             cookingTime: recipe.cooking_time,
             ingredients: recipe.ingredients
         }
-        console.log(state.recipe);
     } catch (err) {
         // console.error(err)
         throw err;
@@ -50,6 +49,7 @@ export const loadSearchResults = async function (query) {
                 image: recipe.image_url,
             }
         }));
+        state.search.page = 1;
     } catch (err) {
         throw err
     }
