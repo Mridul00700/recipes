@@ -1,0 +1,83 @@
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "state", ()=>state
+);
+parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe
+);
+parcelHelpers.export(exports, "loadSearchResults", ()=>loadSearchResults
+);
+parcelHelpers.export(exports, "getSearchResultByPage", ()=>getSearchResultByPage
+);
+parcelHelpers.export(exports, "updateServings", ()=>updateServings
+);
+parcelHelpers.export(exports, "addBookmark", ()=>addBookmark
+);
+var _regeneratorRuntime = require("regenerator-runtime");
+var _config = require("./config");
+var _helpers = require("./helpers");
+const state = {
+    recipe: {
+    },
+    search: {
+        query: '',
+        results: [],
+        resultsPerPage: _config.RES_PER_PAGE,
+        page: 1
+    },
+    bookmarks: []
+};
+const loadRecipe = async function(id) {
+    try {
+        const data = await _helpers.getJSON(`${_config.API_URL}${id}`);
+        // let recipe = data.data.recipe;
+        const { recipe  } = data.data;
+        state.recipe = {
+            id: recipe.id,
+            title: recipe.title,
+            publisher: recipe.publisher,
+            sourceUrl: recipe.source_url,
+            image: recipe.image_url,
+            servings: recipe.servings,
+            cookingTime: recipe.cooking_time,
+            ingredients: recipe.ingredients
+        };
+        state.bookmarks.some((b)=>b.id === id
+        );
+    } catch (err) {
+        // console.error(err)
+        throw err;
+    }
+};
+const loadSearchResults = async function(query) {
+    try {
+        state.search.query = query;
+        const data = await _helpers.getJSON(`${_config.API_URL}?search=${query}`);
+        state.search.results = data.data.recipes.map((recipe)=>{
+            return {
+                id: recipe.id,
+                title: recipe.title,
+                publisher: recipe.publisher,
+                image: recipe.image_url
+            };
+        });
+        state.search.page = 1;
+    } catch (err) {
+        throw err;
+    }
+};
+const getSearchResultByPage = function(page = state.search.page) {
+    state.search.page = page;
+    return state.search.results.slice((page - 1) * state.search.resultsPerPage, page * state.search.resultsPerPage);
+};
+const updateServings = (newServings)=>{
+    state.recipe.ingredients.forEach((ing)=>{
+        ing.quantity = newServings / state.recipe.servings * ing.quantity;
+    });
+    state.recipe.servings = newServings;
+};
+const addBookmark = (recipe)=>{
+    // Add bookmark 
+    state.bookmarks.push(recipe);
+    // mark current recipe as bookmarked -->
+    if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
+};
