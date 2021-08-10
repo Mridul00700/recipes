@@ -5,6 +5,7 @@ import recipeView from './views/recipeView';
 import searchView from './views/searchView';
 import resultsView from './views/resultsView';
 import paginationView from './views/paginationView';
+import bookmarksView from './views/bookmarksView';
 // const recipeContainer = document.querySelector('.recipe');
 
 // if (module.hot) {
@@ -85,6 +86,9 @@ const controlAddBookmark = function () {
   else model.removeBookmark(model.state.recipe.id);
   // console.log(model.state.recipe);
   recipeView.update(model.state.recipe);
+
+  // Render bookmark View
+  bookmarksView.render(model.state.bookmarks);
 }
 
 
