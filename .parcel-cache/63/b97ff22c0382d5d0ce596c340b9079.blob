@@ -12776,7 +12776,7 @@ class RecipeView extends _viewDefault.default {
 exports.default = new RecipeView;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","url:../../img/icons.svg":"3t5dV","fractional":"5jzJt","./View":"48jhP"}],"3t5dV":[function(require,module,exports) {
-module.exports = require('./bundle-url').getBundleURL() + "icons.d4a14980.svg";
+module.exports = require('./bundle-url').getBundleURL() + "icons.HASH_REF_f6727c52d326b6f99dffa0b9d4a14980.svg";
 
 },{"./bundle-url":"3seVR"}],"3seVR":[function(require,module,exports) {
 "use strict";
@@ -13235,6 +13235,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _view = require("./View");
 var _viewDefault = parcelHelpers.interopDefault(_view);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class AddRecipeView extends _viewDefault.default {
     _parentElement = document.querySelector('.upload');
     _window = document.querySelector('.add-recipe-window');
@@ -13245,18 +13247,17 @@ class AddRecipeView extends _viewDefault.default {
         super();
         this._addHandlerShowWindow();
     }
-    _toggleWindow() {
-        this._overlay.classList.toggle('hidden');
-        this._window.classList.toggle('hidden');
-    }
     _addHandlerShowWindow() {
-        this._btnOpen.addEventListener('click', this._toggleWindow.bind(this));
+        this._btnOpen.addEventListener('.click', function() {
+            this._overlay.classList.toggle('hidden');
+            this._window.classList.toggle('hidden');
+        });
     }
     _generateMarkup() {
     }
 }
-exports.default = new AddRecipeView();
+exports.default = new AddRecipeView;
 
-},{"./View":"48jhP","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}]},["1WnDs","3miIZ"], "3miIZ", "parcelRequire3886")
+},{"./View":"48jhP","url:../../img/icons.svg":"3t5dV","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}]},["1WnDs","3miIZ"], "3miIZ", "parcelRequire3886")
 
-//# sourceMappingURL=index.250b04c7.js.map
+//# sourceMappingURL=index.HASH_REF_6315ebf922a29661e8263da0250b04c7.js.map
