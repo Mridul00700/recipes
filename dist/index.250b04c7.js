@@ -397,6 +397,7 @@ var _bookmarksView = require("./views/bookmarksView");
 var _bookmarksViewDefault = parcelHelpers.interopDefault(_bookmarksView);
 var _addRecipeView = require("./views/addRecipeView");
 var _addRecipeViewDefault = parcelHelpers.interopDefault(_addRecipeView);
+var _regeneratorRuntime = require("regenerator-runtime");
 // const recipeContainer = document.querySelector('.recipe');
 // if (module.hot) {
 //   module.hot.accept();
@@ -464,6 +465,9 @@ const controlAddBookmark = function() {
 const controlBookmarks = function() {
     _bookmarksViewDefault.default.render(_model.state.bookmarks);
 };
+const controlAddRecipe = async (newRecipe)=>{
+    console.log(newRecipe);
+};
 const init = ()=>{
     _bookmarksViewDefault.default.addhandlerBookmark(controlBookmarks);
     _recipeViewDefault.default.addHandlerRender(controlRecipe);
@@ -471,10 +475,11 @@ const init = ()=>{
     _paginationViewDefault.default.addHandlerClick(controlPagination);
     _recipeViewDefault.default.addHandlerUpdateServings(controlServings);
     _recipeViewDefault.default.addHandlerAddBookmark(controlAddBookmark);
+    _addRecipeViewDefault.default.addHandlerSubmit(controlAddRecipe);
 };
 init();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","core-js/stable":"1PFvP","regenerator-runtime/runtime":"62Qib","./model":"1hp6y","./views/recipeView":"9e6b9","./views/searchView":"3rYQ6","./views/resultsView":"17PYN","./views/paginationView":"5u5Fw","./views/bookmarksView":"2EbNZ","./views/addRecipeView":"4ieaQ"}],"367CR":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","core-js/stable":"1PFvP","regenerator-runtime/runtime":"62Qib","./model":"1hp6y","./views/recipeView":"9e6b9","./views/searchView":"3rYQ6","./views/resultsView":"17PYN","./views/paginationView":"5u5Fw","./views/bookmarksView":"2EbNZ","./views/addRecipeView":"4ieaQ","regenerator-runtime":"62Qib"}],"367CR":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -13257,13 +13262,14 @@ class AddRecipeView extends _viewDefault.default {
         this._btnClose.addEventListener('click', this._toggleWindow.bind(this));
         this._overlay.addEventListener('click', this._toggleWindow.bind(this));
     }
-    addHandlerSubmit() {
+    addHandlerSubmit(handler) {
         this._parentElement.addEventListener('submit', function(e) {
             e.preventDefault();
-            const data = [
+            const dataArr = [
                 ...new FormData(this)
             ];
-            console.log(data);
+            const data = Object.fromEntries(dataArr);
+            handler(data);
         });
     }
     _generateMarkup() {
