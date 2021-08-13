@@ -31,20 +31,22 @@ export const getJSON = async function (url) {
 }
 
 
-export const sendJSON = async function (url) {
-
+export const sendJSON = async function (url, uploadData) {
+    console.log(uploadData);
     try {
+        const fetchpro = fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(uploadData)
+        });
 
-        // const res = await fetch(url);
-
-        // 
-        // json method is availiable on all the response objects..
-        const res = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
+        const res = await Promise.race([fetchpro, timeout(TIMEOUT_SEC)]);
         const data = await res.json();
         if (!res.ok) {
             throw new Error(`${data.message} (${res.status})`)
         }
-
         return data;
     } catch (err) {
         throw err;

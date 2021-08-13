@@ -12739,7 +12739,7 @@ parcelHelpers.export(exports, "KEY", ()=>KEY
 const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
 const TIMEOUT_SEC = 10;
 const RES_PER_PAGE = 10;
-const KEY = "e81e6ae0-c55a-4908-bbc0-a359c8d23a8f";
+const KEY = "97b3fb44-ef4b-4f72-89a8-44749535384d";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}],"581KF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -12773,23 +12773,22 @@ const getJSON = async function(url) {
         throw err;
     }
 };
-const sendJSON = async function(url, uploadData) {
-    console.log(uploadData);
+const sendJSON = async function(url, data1) {
     try {
         const fetchpro = fetch(url, {
             method: 'POST',
-            headers: {
+            header: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(uploadData)
+            body: JSON.stringify(data2)
         });
         const res = await Promise.race([
             fetchpro,
             timeout(_config.TIMEOUT_SEC)
         ]);
-        const data = await res.json();
-        if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-        return data;
+        const data2 = await res.json();
+        if (!res.ok) throw new Error(`${data2.message} (${res.status})`);
+        return data2;
     } catch (err) {
         throw err;
     }
@@ -12842,7 +12841,7 @@ class RecipeView extends _viewDefault.default {
 exports.default = new RecipeView;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","url:../../img/icons.svg":"3t5dV","fractional":"5jzJt","./View":"48jhP"}],"3t5dV":[function(require,module,exports) {
-module.exports = require('./bundle-url').getBundleURL() + "icons.d4a14980.svg";
+module.exports = require('./bundle-url').getBundleURL() + "icons.HASH_REF_f6727c52d326b6f99dffa0b9d4a14980.svg";
 
 },{"./bundle-url":"3seVR"}],"3seVR":[function(require,module,exports) {
 "use strict";
@@ -13340,4 +13339,4 @@ exports.default = new AddRecipeView();
 
 },{"./View":"48jhP","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}]},["1WnDs","3miIZ"], "3miIZ", "parcelRequire3886")
 
-//# sourceMappingURL=index.250b04c7.js.map
+//# sourceMappingURL=index.HASH_REF_6315ebf922a29661e8263da0250b04c7.js.map
