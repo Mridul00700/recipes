@@ -465,8 +465,13 @@ const controlAddBookmark = function() {
 const controlBookmarks = function() {
     _bookmarksViewDefault.default.render(_model.state.bookmarks);
 };
-const controlAddRecipe = (newRecipe)=>{
-    _model.uploadRecipe(newRecipe);
+const controlAddRecipe = async (newRecipe)=>{
+    try {
+        await _model.uploadRecipe(newRecipe);
+    } catch (error) {
+        console.log(error);
+        _addRecipeViewDefault.default.renderError(error.message);
+    }
 };
 const init = ()=>{
     _bookmarksViewDefault.default.addhandlerBookmark(controlBookmarks);
@@ -12692,19 +12697,34 @@ const init = ()=>{
 };
 init();
 const uploadRecipe = async (newRecipe)=>{
-    const ingredient = Object.entries(newRecipe).filter((entry)=>entry[0].includes("ingredient") && entry[1] !== ""
-    ).map((ing)=>{
-        const [quantity, unit, description] = ing[1].replaceAll(' ', "").split(',');
-        return {
-            quantity: quantity ? +quantity : null,
-            unit,
-            description
+    try {
+        const ingredients = Object.entries(newRecipe).filter((entry)=>entry[0].includes("ingredient") && entry[1] !== ""
+        ).map((ing)=>{
+            const arr = ing[1].replaceAll(' ', "").split(',');
+            if (arr.length !== 3) throw new Error("Wrong ingredient format, please check the format");
+            const [quantity, unit, description] = arr;
+            return {
+                quantity: quantity ? +quantity : null,
+                unit,
+                description
+            };
+        });
+        const recipe = {
+            title: newRecipe.title,
+            source_url: newRecipe.sourceUrl,
+            image_url: newRecipe.image,
+            publisher: newRecipe.publisher,
+            cooking_time: +newRecipe.cookingTime,
+            servings: +newRecipe.servings,
+            ingredients
         };
-    });
-    console.log(ingredient);
+        console.log(recipe);
+    } catch (err) {
+        throw err;
+    }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","./config":"6pr2F","./helpers":"581KF","regenerator-runtime":"62Qib"}],"6pr2F":[function(require,module,exports) {
+},{"regenerator-runtime":"62Qib","./config":"6pr2F","./helpers":"581KF","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}],"6pr2F":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "API_URL", ()=>API_URL
@@ -12721,6 +12741,8 @@ const RES_PER_PAGE = 10;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getJSON", ()=>getJSON
+);
+parcelHelpers.export(exports, "sendJSON", ()=>sendJSON
 );
 var _regeneratorRuntime = require("regenerator-runtime");
 var _config = require("./config");
@@ -12747,8 +12769,24 @@ const getJSON = async function(url) {
         throw err;
     }
 };
+const sendJSON = async function(url) {
+    try {
+        // const res = await fetch(url);
+        // 
+        // json method is availiable on all the response objects..
+        const res = await Promise.race([
+            fetch(url),
+            timeout(_config.TIMEOUT_SEC)
+        ]);
+        const data = await res.json();
+        if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+        return data;
+    } catch (err) {
+        throw err;
+    }
+};
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","./config":"6pr2F","regenerator-runtime":"62Qib"}],"9e6b9":[function(require,module,exports) {
+},{"regenerator-runtime":"62Qib","./config":"6pr2F","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}],"9e6b9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // const { async } = require("q");

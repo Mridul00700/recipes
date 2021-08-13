@@ -102,11 +102,31 @@ const init = () => {
 init();
 
 export const uploadRecipe = async (newRecipe) => {
+    try {
 
-    const ingredient = Object.entries(newRecipe).filter(entry => entry[0].includes("ingredient") && entry[1] !== "").map(ing => {
-        const [quantity, unit, description] = ing[1].replaceAll(' ', "").split(',')
-        return { quantity: quantity ? +quantity : null, unit, description };
-    });
-    console.log(ingredient);
+        const ingredients = Object.entries(newRecipe).filter(entry => entry[0].includes("ingredient") && entry[1] !== "").map(ing => {
+            const arr = ing[1].replaceAll(' ', "").split(',');
+            if (arr.length !== 3) {
+                throw new Error("Wrong ingredient format, please check the format");
+            }
+            const [quantity, unit, description] = arr;
+            return { quantity: quantity ? +quantity : null, unit, description };
+        });
+        const recipe = {
+            title: newRecipe.title,
+            source_url: newRecipe.sourceUrl,
+            image_url: newRecipe.image,
+            publisher: newRecipe.publisher,
+            cooking_time: +newRecipe.cookingTime,
+            servings: +newRecipe.servings,
+            ingredients,
+        }
+
+        console.log(recipe);
+
+    } catch (err) {
+        throw err;
+    }
+
 
 }
