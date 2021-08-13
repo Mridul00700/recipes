@@ -466,7 +466,7 @@ const controlBookmarks = function() {
     _bookmarksViewDefault.default.render(_model.state.bookmarks);
 };
 const controlAddRecipe = (newRecipe)=>{
-    _model.uploadRecipe(newRecipe);
+    console.log(newRecipe);
 };
 const init = ()=>{
     _bookmarksViewDefault.default.addhandlerBookmark(controlBookmarks);
@@ -12692,9 +12692,6 @@ const init = ()=>{
 };
 init();
 const uploadRecipe = async (newRecipe)=>{
-    const ingredient = Object.entries(newRecipe).filter((entry)=>entry[0].includes("ingredient") && entry[1] !== ""
-    );
-    console.log(ingredient);
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","./config":"6pr2F","./helpers":"581KF","regenerator-runtime":"62Qib"}],"6pr2F":[function(require,module,exports) {
@@ -12788,7 +12785,7 @@ class RecipeView extends _viewDefault.default {
 exports.default = new RecipeView;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","url:../../img/icons.svg":"3t5dV","fractional":"5jzJt","./View":"48jhP"}],"3t5dV":[function(require,module,exports) {
-module.exports = require('./bundle-url').getBundleURL() + "icons.d4a14980.svg";
+module.exports = require('./bundle-url').getBundleURL() + "icons.HASH_REF_f6727c52d326b6f99dffa0b9d4a14980.svg";
 
 },{"./bundle-url":"3seVR"}],"3seVR":[function(require,module,exports) {
 "use strict";
@@ -13286,4 +13283,4 @@ exports.default = new AddRecipeView();
 
 },{"./View":"48jhP","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}]},["1WnDs","3miIZ"], "3miIZ", "parcelRequire3886")
 
-//# sourceMappingURL=index.250b04c7.js.map
+//# sourceMappingURL=index.HASH_REF_6315ebf922a29661e8263da0250b04c7.js.map

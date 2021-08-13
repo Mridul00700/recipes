@@ -100,3 +100,10 @@ const init = () => {
         state.bookmarks = JSON.parse(bookmark);
 }
 init();
+
+export const uploadRecipe = async (newRecipe) => {
+
+    const ingredient = Object.entries(newRecipe).filter(entry => entry[0].includes("ingredient") && entry[1] !== "")
+    console.log(ingredient);
+
+}
