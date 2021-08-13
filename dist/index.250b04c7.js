@@ -398,6 +398,7 @@ var _bookmarksViewDefault = parcelHelpers.interopDefault(_bookmarksView);
 var _addRecipeView = require("./views/addRecipeView");
 var _addRecipeViewDefault = parcelHelpers.interopDefault(_addRecipeView);
 var _regeneratorRuntime = require("regenerator-runtime");
+var _config = require("./config");
 // const recipeContainer = document.querySelector('.recipe');
 // if (module.hot) {
 //   module.hot.accept();
@@ -467,8 +468,15 @@ const controlBookmarks = function() {
 };
 const controlAddRecipe = async (newRecipe)=>{
     try {
+        _addRecipeViewDefault.default.renderSpinner();
         await _model.uploadRecipe(newRecipe);
         console.log(_model.state.recipe);
+        _recipeViewDefault.default.render(_model.state.recipe);
+        _addRecipeViewDefault.default.renderMessage();
+        // Close form -->
+        setTimeout(function() {
+            _addRecipeViewDefault.default._toggleWindow();
+        }, _config.MODAL_CLOSE_SEC);
     } catch (error) {
         console.log(error);
         _addRecipeViewDefault.default.renderError(error.message);
@@ -485,7 +493,7 @@ const init = ()=>{
 };
 init();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","core-js/stable":"1PFvP","regenerator-runtime/runtime":"62Qib","./model":"1hp6y","./views/recipeView":"9e6b9","./views/searchView":"3rYQ6","./views/resultsView":"17PYN","./views/paginationView":"5u5Fw","./views/bookmarksView":"2EbNZ","./views/addRecipeView":"4ieaQ","regenerator-runtime":"62Qib"}],"367CR":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR","core-js/stable":"1PFvP","regenerator-runtime/runtime":"62Qib","./model":"1hp6y","./views/recipeView":"9e6b9","./views/searchView":"3rYQ6","./views/resultsView":"17PYN","./views/paginationView":"5u5Fw","./views/bookmarksView":"2EbNZ","./views/addRecipeView":"4ieaQ","regenerator-runtime":"62Qib","./config":"6pr2F"}],"367CR":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -12744,10 +12752,13 @@ parcelHelpers.export(exports, "RES_PER_PAGE", ()=>RES_PER_PAGE
 );
 parcelHelpers.export(exports, "KEY", ()=>KEY
 );
+parcelHelpers.export(exports, "MODAL_CLOSE_SEC", ()=>MODAL_CLOSE_SEC
+);
 const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
 const TIMEOUT_SEC = 10;
 const RES_PER_PAGE = 10;
 const KEY = "e81e6ae0-c55a-4908-bbc0-a359c8d23a8f";
+const MODAL_CLOSE_SEC = 2500;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}],"581KF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -13314,6 +13325,7 @@ class AddRecipeView extends _viewDefault.default {
     _overlay = document.querySelector('.overlay');
     _btnOpen = document.querySelector('.nav__btn--add-recipe');
     _btnClose = document.querySelector('.btn--close-modal');
+    _message = 'Recipe was successfully uploaded!';
     constructor(){
         super();
         this._addHandlerShowWindow();
