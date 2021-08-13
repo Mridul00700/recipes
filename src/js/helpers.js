@@ -32,7 +32,6 @@ export const getJSON = async function (url) {
 
 
 export const sendJSON = async function (url, uploadData) {
-    console.log(uploadData);
     try {
         const fetchpro = fetch(url, {
             method: 'POST',
