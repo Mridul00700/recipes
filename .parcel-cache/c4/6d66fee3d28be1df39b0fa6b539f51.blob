@@ -1,0 +1,5 @@
+import   "e5eea66e91c4e2e21498f4c660ecdbcb:../internals/is-regexp";
+$e5eea66e91c4e2e21498f4c660ecdbcb$exports = function(it) {
+    if ($e5eea66e91c4e2e21498f4c660ecdbcb$import$662e09ba9e21e14(it)) throw TypeError("The method doesn't accept regular expressions");
+    return it;
+};

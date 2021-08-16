@@ -1,0 +1,26 @@
+'use strict';
+import   "e9072002ac57e6de04ba7a6bd4f49ccd:../internals/export";
+import   "e9072002ac57e6de04ba7a6bd4f49ccd:../internals/fails";
+import   "e9072002ac57e6de04ba7a6bd4f49ccd:../internals/to-object";
+import   "e9072002ac57e6de04ba7a6bd4f49ccd:../internals/to-primitive";
+var $e9072002ac57e6de04ba7a6bd4f49ccd$var$FORCED = $e9072002ac57e6de04ba7a6bd4f49ccd$import$9936d02511e757dc(function() {
+    return new Date(NaN).toJSON() !== null || Date.prototype.toJSON.call({
+        toISOString: function() {
+            return 1;
+        }
+    }) !== 1;
+});
+// `Date.prototype.toJSON` method
+// https://tc39.es/ecma262/#sec-date.prototype.tojson
+$e9072002ac57e6de04ba7a6bd4f49ccd$import$1bb3f1a3ac631152({
+    target: 'Date',
+    proto: true,
+    forced: $e9072002ac57e6de04ba7a6bd4f49ccd$var$FORCED
+}, {
+    // eslint-disable-next-line no-unused-vars -- required for `.length`
+    toJSON: function toJSON(key) {
+        var O = $e9072002ac57e6de04ba7a6bd4f49ccd$import$565dce0892f29b05(this);
+        var pv = $e9072002ac57e6de04ba7a6bd4f49ccd$import$c0dc3853fdc9c45f(O);
+        return typeof pv == 'number' && !isFinite(pv) ? null : O.toISOString();
+    }
+});

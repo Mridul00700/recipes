@@ -1,0 +1,2 @@
+import   "b0ddbde9a2a1421333fe1a44a90cb8bc:../internals/engine-user-agent";
+$b0ddbde9a2a1421333fe1a44a90cb8bc$exports = /(?:iphone|ipod|ipad).*applewebkit/i.test($b0ddbde9a2a1421333fe1a44a90cb8bc$import$f29ee6c65de699c7);

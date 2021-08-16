@@ -1,0 +1,19 @@
+import   "30eb1a8e7e71384e3394936bf4e3927e:../internals/is-object";
+import   "30eb1a8e7e71384e3394936bf4e3927e:../internals/is-array";
+import   "30eb1a8e7e71384e3394936bf4e3927e:../internals/well-known-symbol";
+var $30eb1a8e7e71384e3394936bf4e3927e$var$SPECIES = $30eb1a8e7e71384e3394936bf4e3927e$import$88242bc6a9673a44('species');
+// `ArraySpeciesCreate` abstract operation
+// https://tc39.es/ecma262/#sec-arrayspeciescreate
+$30eb1a8e7e71384e3394936bf4e3927e$exports = function(originalArray, length) {
+    var C;
+    if ($30eb1a8e7e71384e3394936bf4e3927e$import$a3ab90aad49ab6f8(originalArray)) {
+        C = originalArray.constructor;
+        // cross-realm fallback
+        if (typeof C == 'function' && (C === Array || $30eb1a8e7e71384e3394936bf4e3927e$import$a3ab90aad49ab6f8(C.prototype))) C = undefined;
+        else if ($30eb1a8e7e71384e3394936bf4e3927e$import$9294ccec169e68b9(C)) {
+            C = C[$30eb1a8e7e71384e3394936bf4e3927e$var$SPECIES];
+            if (C === null) C = undefined;
+        }
+    }
+    return new (C === undefined ? Array : C)(length === 0 ? 0 : length);
+};

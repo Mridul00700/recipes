@@ -1,0 +1,5 @@
+import   "39682b78ffb2479a8d909c8518212cfb:../internals/global";
+$39682b78ffb2479a8d909c8518212cfb$exports = function(a, b) {
+    var console = $39682b78ffb2479a8d909c8518212cfb$import$da678c04728da253$58044bd03609a162;
+    if (console && console.error) arguments.length === 1 ? console.error(a) : console.error(a, b);
+};

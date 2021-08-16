@@ -1,0 +1,29 @@
+import   "244b58ff0db3ce581c5f97653f035f5f:../internals/global";
+import   "244b58ff0db3ce581c5f97653f035f5f:../internals/dom-iterables";
+import   "244b58ff0db3ce581c5f97653f035f5f:../modules/es.array.iterator";
+import   "244b58ff0db3ce581c5f97653f035f5f:../internals/create-non-enumerable-property";
+import   "244b58ff0db3ce581c5f97653f035f5f:../internals/well-known-symbol";
+var $244b58ff0db3ce581c5f97653f035f5f$var$ITERATOR = $244b58ff0db3ce581c5f97653f035f5f$import$88242bc6a9673a44('iterator');
+var $244b58ff0db3ce581c5f97653f035f5f$var$TO_STRING_TAG = $244b58ff0db3ce581c5f97653f035f5f$import$88242bc6a9673a44('toStringTag');
+var $244b58ff0db3ce581c5f97653f035f5f$var$ArrayValues = $244b58ff0db3ce581c5f97653f035f5f$import$90b07716263c915a.values;
+for(var $244b58ff0db3ce581c5f97653f035f5f$var$COLLECTION_NAME in $244b58ff0db3ce581c5f97653f035f5f$import$bd2ece5a1798933){
+    var $244b58ff0db3ce581c5f97653f035f5f$var$Collection = $244b58ff0db3ce581c5f97653f035f5f$import$da678c04728da253[$244b58ff0db3ce581c5f97653f035f5f$var$COLLECTION_NAME];
+    var $244b58ff0db3ce581c5f97653f035f5f$var$CollectionPrototype = $244b58ff0db3ce581c5f97653f035f5f$var$Collection && $244b58ff0db3ce581c5f97653f035f5f$var$Collection.prototype;
+    if ($244b58ff0db3ce581c5f97653f035f5f$var$CollectionPrototype) {
+        // some Chrome versions have non-configurable methods on DOMTokenList
+        if ($244b58ff0db3ce581c5f97653f035f5f$var$CollectionPrototype[$244b58ff0db3ce581c5f97653f035f5f$var$ITERATOR] !== $244b58ff0db3ce581c5f97653f035f5f$var$ArrayValues) try {
+            $244b58ff0db3ce581c5f97653f035f5f$import$ea4d2ea16a516be3($244b58ff0db3ce581c5f97653f035f5f$var$CollectionPrototype, $244b58ff0db3ce581c5f97653f035f5f$var$ITERATOR, $244b58ff0db3ce581c5f97653f035f5f$var$ArrayValues);
+        } catch (error) {
+            $244b58ff0db3ce581c5f97653f035f5f$var$CollectionPrototype[$244b58ff0db3ce581c5f97653f035f5f$var$ITERATOR] = $244b58ff0db3ce581c5f97653f035f5f$var$ArrayValues;
+        }
+        if (!$244b58ff0db3ce581c5f97653f035f5f$var$CollectionPrototype[$244b58ff0db3ce581c5f97653f035f5f$var$TO_STRING_TAG]) $244b58ff0db3ce581c5f97653f035f5f$import$ea4d2ea16a516be3($244b58ff0db3ce581c5f97653f035f5f$var$CollectionPrototype, $244b58ff0db3ce581c5f97653f035f5f$var$TO_STRING_TAG, $244b58ff0db3ce581c5f97653f035f5f$var$COLLECTION_NAME);
+        if ($244b58ff0db3ce581c5f97653f035f5f$import$bd2ece5a1798933[$244b58ff0db3ce581c5f97653f035f5f$var$COLLECTION_NAME]) for(var $244b58ff0db3ce581c5f97653f035f5f$var$METHOD_NAME in $244b58ff0db3ce581c5f97653f035f5f$import$90b07716263c915a){
+            // some Chrome versions have non-configurable methods on DOMTokenList
+            if ($244b58ff0db3ce581c5f97653f035f5f$var$CollectionPrototype[$244b58ff0db3ce581c5f97653f035f5f$var$METHOD_NAME] !== $244b58ff0db3ce581c5f97653f035f5f$import$90b07716263c915a[$244b58ff0db3ce581c5f97653f035f5f$var$METHOD_NAME]) try {
+                $244b58ff0db3ce581c5f97653f035f5f$import$ea4d2ea16a516be3($244b58ff0db3ce581c5f97653f035f5f$var$CollectionPrototype, $244b58ff0db3ce581c5f97653f035f5f$var$METHOD_NAME, $244b58ff0db3ce581c5f97653f035f5f$import$90b07716263c915a[$244b58ff0db3ce581c5f97653f035f5f$var$METHOD_NAME]);
+            } catch (error) {
+                $244b58ff0db3ce581c5f97653f035f5f$var$CollectionPrototype[$244b58ff0db3ce581c5f97653f035f5f$var$METHOD_NAME] = $244b58ff0db3ce581c5f97653f035f5f$import$90b07716263c915a[$244b58ff0db3ce581c5f97653f035f5f$var$METHOD_NAME];
+            }
+        }
+    }
+}

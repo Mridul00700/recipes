@@ -1,0 +1,9 @@
+'use strict';
+import   "d69d27e144446b4bd5d1229c0f6d2a5b:../internals/to-string-tag-support";
+import   "d69d27e144446b4bd5d1229c0f6d2a5b:../internals/classof";
+// `Object.prototype.toString` method implementation
+// https://tc39.es/ecma262/#sec-object.prototype.tostring
+$d69d27e144446b4bd5d1229c0f6d2a5b$exports = $d69d27e144446b4bd5d1229c0f6d2a5b$import$427a65e42c11670d ? ({
+}).toString : function toString() {
+    return '[object ' + $d69d27e144446b4bd5d1229c0f6d2a5b$import$2c88fa3abfc1c398(this) + ']';
+};

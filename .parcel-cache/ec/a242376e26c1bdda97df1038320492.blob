@@ -1,0 +1,11 @@
+import   "a3a97c4307b7203877a20a5c57790236:../internals/export";
+import   "a3a97c4307b7203877a20a5c57790236:../internals/array-buffer";
+import   "a3a97c4307b7203877a20a5c57790236:../internals/array-buffer-native";
+// `DataView` constructor
+// https://tc39.es/ecma262/#sec-dataview-constructor
+$a3a97c4307b7203877a20a5c57790236$import$1bb3f1a3ac631152({
+    global: true,
+    forced: !$a3a97c4307b7203877a20a5c57790236$import$3d3e687d6914202a
+}, {
+    DataView: $a3a97c4307b7203877a20a5c57790236$import$8b7b52790355660d$7f8f819c19e50de
+});

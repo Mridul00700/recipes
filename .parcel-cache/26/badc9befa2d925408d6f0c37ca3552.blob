@@ -1,0 +1,22 @@
+import   "67abb2c6a86fa42aca83240e6bc0cb32:../internals/export";
+import   "67abb2c6a86fa42aca83240e6bc0cb32:../internals/to-indexed-object";
+import   "67abb2c6a86fa42aca83240e6bc0cb32:../internals/to-length";
+// `String.raw` method
+// https://tc39.es/ecma262/#sec-string.raw
+$67abb2c6a86fa42aca83240e6bc0cb32$import$1bb3f1a3ac631152({
+    target: 'String',
+    stat: true
+}, {
+    raw: function raw(template) {
+        var rawTemplate = $67abb2c6a86fa42aca83240e6bc0cb32$import$73e80bdb170d55b7(template.raw);
+        var literalSegments = $67abb2c6a86fa42aca83240e6bc0cb32$import$4102f61a7d1ec5ae(rawTemplate.length);
+        var argumentsLength = arguments.length;
+        var elements = [];
+        var i = 0;
+        while(literalSegments > i){
+            elements.push(String(rawTemplate[i++]));
+            if (i < argumentsLength) elements.push(String(arguments[i]));
+        }
+        return elements.join('');
+    }
+});

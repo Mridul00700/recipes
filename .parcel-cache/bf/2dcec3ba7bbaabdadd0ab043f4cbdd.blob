@@ -1,0 +1,63 @@
+import   "db8425402ec8737cd0da473cc1d7e301:../internals/export";
+import   "db8425402ec8737cd0da473cc1d7e301:../internals/get-built-in";
+import   "db8425402ec8737cd0da473cc1d7e301:../internals/a-function";
+import   "db8425402ec8737cd0da473cc1d7e301:../internals/an-object";
+import   "db8425402ec8737cd0da473cc1d7e301:../internals/is-object";
+import   "db8425402ec8737cd0da473cc1d7e301:../internals/object-create";
+import   "db8425402ec8737cd0da473cc1d7e301:../internals/function-bind";
+import   "db8425402ec8737cd0da473cc1d7e301:../internals/fails";
+var $db8425402ec8737cd0da473cc1d7e301$var$nativeConstruct = $db8425402ec8737cd0da473cc1d7e301$import$acc15958b3da080('Reflect', 'construct');
+// `Reflect.construct` method
+// https://tc39.es/ecma262/#sec-reflect.construct
+// MS Edge supports only 2 arguments and argumentsList argument is optional
+// FF Nightly sets third argument as `new.target`, but does not create `this` from it
+var $db8425402ec8737cd0da473cc1d7e301$var$NEW_TARGET_BUG = $db8425402ec8737cd0da473cc1d7e301$import$9936d02511e757dc(function() {
+    function F() {
+    }
+    return !($db8425402ec8737cd0da473cc1d7e301$var$nativeConstruct(function() {
+    }, [], F) instanceof F);
+});
+var $db8425402ec8737cd0da473cc1d7e301$var$ARGS_BUG = !$db8425402ec8737cd0da473cc1d7e301$import$9936d02511e757dc(function() {
+    $db8425402ec8737cd0da473cc1d7e301$var$nativeConstruct(function() {
+    });
+});
+var $db8425402ec8737cd0da473cc1d7e301$var$FORCED = $db8425402ec8737cd0da473cc1d7e301$var$NEW_TARGET_BUG || $db8425402ec8737cd0da473cc1d7e301$var$ARGS_BUG;
+$db8425402ec8737cd0da473cc1d7e301$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true,
+    forced: $db8425402ec8737cd0da473cc1d7e301$var$FORCED,
+    sham: $db8425402ec8737cd0da473cc1d7e301$var$FORCED
+}, {
+    construct: function construct(Target, args/* , newTarget */ ) {
+        $db8425402ec8737cd0da473cc1d7e301$import$feed022c18f6196b(Target);
+        $db8425402ec8737cd0da473cc1d7e301$import$cad8ba314ee735d6(args);
+        var newTarget = arguments.length < 3 ? Target : $db8425402ec8737cd0da473cc1d7e301$import$feed022c18f6196b(arguments[2]);
+        if ($db8425402ec8737cd0da473cc1d7e301$var$ARGS_BUG && !$db8425402ec8737cd0da473cc1d7e301$var$NEW_TARGET_BUG) return $db8425402ec8737cd0da473cc1d7e301$var$nativeConstruct(Target, args, newTarget);
+        if (Target == newTarget) {
+            // w/o altered newTarget, optimization for 0-4 arguments
+            switch(args.length){
+                case 0:
+                    return new Target();
+                case 1:
+                    return new Target(args[0]);
+                case 2:
+                    return new Target(args[0], args[1]);
+                case 3:
+                    return new Target(args[0], args[1], args[2]);
+                case 4:
+                    return new Target(args[0], args[1], args[2], args[3]);
+            }
+            // w/o altered newTarget, lot of arguments case
+            var $args = [
+                null
+            ];
+            $args.push.apply($args, args);
+            return new ($db8425402ec8737cd0da473cc1d7e301$import$7011c940c335e44b$6af9bbf310c9e4bf(Target, $args))();
+        }
+        // with altered newTarget, not support built-in constructors
+        var proto = newTarget.prototype;
+        var instance = $db8425402ec8737cd0da473cc1d7e301$import$d8db146559ed3979($db8425402ec8737cd0da473cc1d7e301$import$9294ccec169e68b9(proto) ? proto : Object.prototype);
+        var result = Function.apply.call(Target, instance, args);
+        return $db8425402ec8737cd0da473cc1d7e301$import$9294ccec169e68b9(result) ? result : instance;
+    }
+});

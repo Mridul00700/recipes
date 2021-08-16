@@ -1,0 +1,51 @@
+'use strict';
+import   "4cfa5390b13381c0faebb67c0c806c86:../internals/export";
+import   "4cfa5390b13381c0faebb67c0c806c86:../internals/a-function";
+import   "4cfa5390b13381c0faebb67c0c806c86:../internals/new-promise-capability";
+import   "4cfa5390b13381c0faebb67c0c806c86:../internals/perform";
+import   "4cfa5390b13381c0faebb67c0c806c86:../internals/iterate";
+// `Promise.allSettled` method
+// https://tc39.es/ecma262/#sec-promise.allsettled
+$4cfa5390b13381c0faebb67c0c806c86$import$1bb3f1a3ac631152({
+    target: 'Promise',
+    stat: true
+}, {
+    allSettled: function allSettled(iterable) {
+        var C = this;
+        var capability = $4cfa5390b13381c0faebb67c0c806c86$import$88cdf320d2dc9c28$ffb27d6bd8d1eb33(C);
+        var resolve = capability.resolve;
+        var reject = capability.reject;
+        var result = $4cfa5390b13381c0faebb67c0c806c86$import$e9a6624ae67eae60(function() {
+            var promiseResolve = $4cfa5390b13381c0faebb67c0c806c86$import$feed022c18f6196b(C.resolve);
+            var values = [];
+            var counter = 0;
+            var remaining = 1;
+            $4cfa5390b13381c0faebb67c0c806c86$import$1f57ebca7b213dbf(iterable, function(promise) {
+                var index = counter++;
+                var alreadyCalled = false;
+                values.push(undefined);
+                remaining++;
+                promiseResolve.call(C, promise).then(function(value) {
+                    if (alreadyCalled) return;
+                    alreadyCalled = true;
+                    values[index] = {
+                        status: 'fulfilled',
+                        value: value
+                    };
+                    (--remaining) || resolve(values);
+                }, function(error) {
+                    if (alreadyCalled) return;
+                    alreadyCalled = true;
+                    values[index] = {
+                        status: 'rejected',
+                        reason: error
+                    };
+                    (--remaining) || resolve(values);
+                });
+            });
+            (--remaining) || resolve(values);
+        });
+        if (result.error) reject(result.value);
+        return capability.promise;
+    }
+});

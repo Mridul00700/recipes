@@ -1,0 +1,35 @@
+'use strict';
+import   "501317c906f2f85a2c1e24eec13991a2:../internals/export";
+import   "501317c906f2f85a2c1e24eec13991a2:../internals/object-get-own-property-descriptor";
+var $501317c906f2f85a2c1e24eec13991a2$require$getOwnPropertyDescriptor = $501317c906f2f85a2c1e24eec13991a2$import$671bedbe12b63e7d$ffb27d6bd8d1eb33;
+import   "501317c906f2f85a2c1e24eec13991a2:../internals/to-length";
+import   "501317c906f2f85a2c1e24eec13991a2:../internals/not-a-regexp";
+import   "501317c906f2f85a2c1e24eec13991a2:../internals/require-object-coercible";
+import   "501317c906f2f85a2c1e24eec13991a2:../internals/correct-is-regexp-logic";
+import   "501317c906f2f85a2c1e24eec13991a2:../internals/is-pure";
+// eslint-disable-next-line es/no-string-prototype-endswith -- safe
+var $501317c906f2f85a2c1e24eec13991a2$var$$endsWith = ''.endsWith;
+var $501317c906f2f85a2c1e24eec13991a2$var$min = Math.min;
+var $501317c906f2f85a2c1e24eec13991a2$var$CORRECT_IS_REGEXP_LOGIC = $501317c906f2f85a2c1e24eec13991a2$import$41e114ecea3b171c('endsWith');
+// https://github.com/zloirock/core-js/pull/702
+var $501317c906f2f85a2c1e24eec13991a2$var$MDN_POLYFILL_BUG = !$501317c906f2f85a2c1e24eec13991a2$import$1bdf0350b9a8d46c && !$501317c906f2f85a2c1e24eec13991a2$var$CORRECT_IS_REGEXP_LOGIC && !!function() {
+    var descriptor = $501317c906f2f85a2c1e24eec13991a2$require$getOwnPropertyDescriptor(String.prototype, 'endsWith');
+    return descriptor && !descriptor.writable;
+}();
+// `String.prototype.endsWith` method
+// https://tc39.es/ecma262/#sec-string.prototype.endswith
+$501317c906f2f85a2c1e24eec13991a2$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: !$501317c906f2f85a2c1e24eec13991a2$var$MDN_POLYFILL_BUG && !$501317c906f2f85a2c1e24eec13991a2$var$CORRECT_IS_REGEXP_LOGIC
+}, {
+    endsWith: function endsWith(searchString/* , endPosition = @length */ ) {
+        var that = String($501317c906f2f85a2c1e24eec13991a2$import$cb96119f17424999(this));
+        $501317c906f2f85a2c1e24eec13991a2$import$d0abdc2f61739d3d(searchString);
+        var endPosition = arguments.length > 1 ? arguments[1] : undefined;
+        var len = $501317c906f2f85a2c1e24eec13991a2$import$4102f61a7d1ec5ae(that.length);
+        var end = endPosition === undefined ? len : $501317c906f2f85a2c1e24eec13991a2$var$min($501317c906f2f85a2c1e24eec13991a2$import$4102f61a7d1ec5ae(endPosition), len);
+        var search = String(searchString);
+        return $501317c906f2f85a2c1e24eec13991a2$var$$endsWith ? $501317c906f2f85a2c1e24eec13991a2$var$$endsWith.call(that, search, end) : that.slice(end - search.length, end) === search;
+    }
+});

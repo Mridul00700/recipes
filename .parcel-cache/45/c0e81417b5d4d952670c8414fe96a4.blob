@@ -1,0 +1,11 @@
+'use strict';
+import   "d3806f5f22c3b16dc54f08cef555e4c7:../internals/array-buffer-view-core";
+import   "d3806f5f22c3b16dc54f08cef555e4c7:../internals/array-iteration";
+var $d3806f5f22c3b16dc54f08cef555e4c7$require$$forEach = $d3806f5f22c3b16dc54f08cef555e4c7$import$9cfdd2c29910a22b$40f3d9558cf6e846;
+var $d3806f5f22c3b16dc54f08cef555e4c7$var$aTypedArray = $d3806f5f22c3b16dc54f08cef555e4c7$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $d3806f5f22c3b16dc54f08cef555e4c7$var$exportTypedArrayMethod = $d3806f5f22c3b16dc54f08cef555e4c7$import$646a64c4a95eead$499fcf5cda66e13c;
+// `%TypedArray%.prototype.forEach` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.foreach
+$d3806f5f22c3b16dc54f08cef555e4c7$var$exportTypedArrayMethod('forEach', function forEach(callbackfn/* , thisArg */ ) {
+    $d3806f5f22c3b16dc54f08cef555e4c7$require$$forEach($d3806f5f22c3b16dc54f08cef555e4c7$var$aTypedArray(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+});

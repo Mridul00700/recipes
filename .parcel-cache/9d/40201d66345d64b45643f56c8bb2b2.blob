@@ -1,0 +1,4 @@
+import   "f0c9fe501e1c408d3ad46ea5e9273830:../internals/define-well-known-symbol";
+// `Symbol.species` well-known symbol
+// https://tc39.es/ecma262/#sec-symbol.species
+$f0c9fe501e1c408d3ad46ea5e9273830$import$bb307b9a34058dc8('species');

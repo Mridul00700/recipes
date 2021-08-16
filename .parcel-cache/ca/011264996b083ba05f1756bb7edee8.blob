@@ -1,0 +1,20 @@
+import   "ba064fca60a3e86e19071dfdb615ce9c:../internals/descriptors";
+import   "ba064fca60a3e86e19071dfdb615ce9c:../internals/regexp-sticky-helpers";
+var $ba064fca60a3e86e19071dfdb615ce9c$require$UNSUPPORTED_Y = $ba064fca60a3e86e19071dfdb615ce9c$import$e9ad70eb59d84ab$f1f96ea44d660c47;
+import   "ba064fca60a3e86e19071dfdb615ce9c:../internals/object-define-property";
+var $ba064fca60a3e86e19071dfdb615ce9c$require$defineProperty = $ba064fca60a3e86e19071dfdb615ce9c$import$4276e2046cfaee3b$ffb27d6bd8d1eb33;
+import   "ba064fca60a3e86e19071dfdb615ce9c:../internals/internal-state";
+var $ba064fca60a3e86e19071dfdb615ce9c$require$getInternalState = $ba064fca60a3e86e19071dfdb615ce9c$import$2c03d954288482bc$7eb84799c931fe91;
+var $ba064fca60a3e86e19071dfdb615ce9c$var$RegExpPrototype = RegExp.prototype;
+// `RegExp.prototype.sticky` getter
+// https://tc39.es/ecma262/#sec-get-regexp.prototype.sticky
+if ($ba064fca60a3e86e19071dfdb615ce9c$import$9e95520c426f46b4 && $ba064fca60a3e86e19071dfdb615ce9c$require$UNSUPPORTED_Y) $ba064fca60a3e86e19071dfdb615ce9c$require$defineProperty($ba064fca60a3e86e19071dfdb615ce9c$var$RegExpPrototype, 'sticky', {
+    configurable: true,
+    get: function() {
+        if (this === $ba064fca60a3e86e19071dfdb615ce9c$var$RegExpPrototype) return undefined;
+        // We can't use InternalStateModule.getterFor because
+        // we don't add metadata for regexps created by a literal.
+        if (this instanceof RegExp) return !!$ba064fca60a3e86e19071dfdb615ce9c$require$getInternalState(this).sticky;
+        throw TypeError('Incompatible receiver, RegExp required');
+    }
+});

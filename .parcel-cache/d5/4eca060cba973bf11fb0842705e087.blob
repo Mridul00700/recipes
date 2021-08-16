@@ -1,0 +1,14 @@
+import   "a373cf2c9e9d75c9686fa8119892f97a:../internals/export";
+var $a373cf2c9e9d75c9686fa8119892f97a$var$floor = Math.floor;
+var $a373cf2c9e9d75c9686fa8119892f97a$var$log = Math.log;
+var $a373cf2c9e9d75c9686fa8119892f97a$var$LOG2E = Math.LOG2E;
+// `Math.clz32` method
+// https://tc39.es/ecma262/#sec-math.clz32
+$a373cf2c9e9d75c9686fa8119892f97a$import$1bb3f1a3ac631152({
+    target: 'Math',
+    stat: true
+}, {
+    clz32: function clz32(x) {
+        return x >>>= 0, 32;
+    }
+});

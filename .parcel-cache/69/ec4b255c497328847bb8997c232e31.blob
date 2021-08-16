@@ -1,0 +1,114 @@
+'use strict';
+import   "208387f3d84c39db185b074986661f69:../internals/export";
+import   "208387f3d84c39db185b074986661f69:../internals/create-iterator-constructor";
+import   "208387f3d84c39db185b074986661f69:../internals/require-object-coercible";
+import   "208387f3d84c39db185b074986661f69:../internals/to-length";
+import   "208387f3d84c39db185b074986661f69:../internals/a-function";
+import   "208387f3d84c39db185b074986661f69:../internals/an-object";
+import   "208387f3d84c39db185b074986661f69:../internals/classof-raw";
+import   "208387f3d84c39db185b074986661f69:../internals/is-regexp";
+import   "208387f3d84c39db185b074986661f69:../internals/regexp-flags";
+import   "208387f3d84c39db185b074986661f69:../internals/create-non-enumerable-property";
+import   "208387f3d84c39db185b074986661f69:../internals/fails";
+import   "208387f3d84c39db185b074986661f69:../internals/well-known-symbol";
+import   "208387f3d84c39db185b074986661f69:../internals/species-constructor";
+import   "208387f3d84c39db185b074986661f69:../internals/advance-string-index";
+import   "208387f3d84c39db185b074986661f69:../internals/internal-state";
+import   "208387f3d84c39db185b074986661f69:../internals/is-pure";
+var $208387f3d84c39db185b074986661f69$var$MATCH_ALL = $208387f3d84c39db185b074986661f69$import$88242bc6a9673a44('matchAll');
+var $208387f3d84c39db185b074986661f69$var$REGEXP_STRING = 'RegExp String';
+var $208387f3d84c39db185b074986661f69$var$REGEXP_STRING_ITERATOR = $208387f3d84c39db185b074986661f69$var$REGEXP_STRING + ' Iterator';
+var $208387f3d84c39db185b074986661f69$var$setInternalState = $208387f3d84c39db185b074986661f69$import$2c03d954288482bc$77f8d2fc923b14e3;
+var $208387f3d84c39db185b074986661f69$var$getInternalState = $208387f3d84c39db185b074986661f69$import$2c03d954288482bc$41aa07b58faf19b8($208387f3d84c39db185b074986661f69$var$REGEXP_STRING_ITERATOR);
+var $208387f3d84c39db185b074986661f69$var$RegExpPrototype = RegExp.prototype;
+var $208387f3d84c39db185b074986661f69$var$regExpBuiltinExec = $208387f3d84c39db185b074986661f69$var$RegExpPrototype.exec;
+var $208387f3d84c39db185b074986661f69$var$nativeMatchAll = ''.matchAll;
+var $208387f3d84c39db185b074986661f69$var$WORKS_WITH_NON_GLOBAL_REGEX = !!$208387f3d84c39db185b074986661f69$var$nativeMatchAll && !$208387f3d84c39db185b074986661f69$import$9936d02511e757dc(function() {
+    'a'.matchAll(/./);
+});
+var $208387f3d84c39db185b074986661f69$var$regExpExec = function(R, S) {
+    var exec = R.exec;
+    var result;
+    if (typeof exec == 'function') {
+        result = exec.call(R, S);
+        if (typeof result != 'object') throw TypeError('Incorrect exec result');
+        return result;
+    }
+    return $208387f3d84c39db185b074986661f69$var$regExpBuiltinExec.call(R, S);
+};
+// eslint-disable-next-line max-len -- ignore
+var $208387f3d84c39db185b074986661f69$var$$RegExpStringIterator = $208387f3d84c39db185b074986661f69$import$19da86c835a1644d(function RegExpStringIterator(regexp, string, global, fullUnicode) {
+    $208387f3d84c39db185b074986661f69$var$setInternalState(this, {
+        type: $208387f3d84c39db185b074986661f69$var$REGEXP_STRING_ITERATOR,
+        regexp: regexp,
+        string: string,
+        global: global,
+        unicode: fullUnicode,
+        done: false
+    });
+}, $208387f3d84c39db185b074986661f69$var$REGEXP_STRING, function next() {
+    var state = $208387f3d84c39db185b074986661f69$var$getInternalState(this);
+    if (state.done) return {
+        value: undefined,
+        done: true
+    };
+    var R = state.regexp;
+    var S = state.string;
+    var match = $208387f3d84c39db185b074986661f69$var$regExpExec(R, S);
+    if (match === null) return {
+        value: undefined,
+        done: state.done = true
+    };
+    if (state.global) {
+        if (String(match[0]) == '') R.lastIndex = $208387f3d84c39db185b074986661f69$import$a2c472764a5841(S, $208387f3d84c39db185b074986661f69$import$4102f61a7d1ec5ae(R.lastIndex), state.unicode);
+        return {
+            value: match,
+            done: false
+        };
+    }
+    state.done = true;
+    return {
+        value: match,
+        done: false
+    };
+});
+var $208387f3d84c39db185b074986661f69$var$$matchAll = function(string) {
+    var R = $208387f3d84c39db185b074986661f69$import$cad8ba314ee735d6(this);
+    var S = String(string);
+    var C, flagsValue, flags, matcher, global, fullUnicode;
+    C = $208387f3d84c39db185b074986661f69$import$d2cfec5023aa0b95(R, RegExp);
+    flagsValue = R.flags;
+    if (flagsValue === undefined && R instanceof RegExp && !('flags' in $208387f3d84c39db185b074986661f69$var$RegExpPrototype)) flagsValue = $208387f3d84c39db185b074986661f69$import$55a1ee6edebd1d69$a4b4c796a132eb0a(R);
+    flags = flagsValue === undefined ? '' : String(flagsValue);
+    matcher = new C(C === RegExp ? R.source : R, flags);
+    global = !!~flags.indexOf('g');
+    fullUnicode = !!~flags.indexOf('u');
+    matcher.lastIndex = $208387f3d84c39db185b074986661f69$import$4102f61a7d1ec5ae(R.lastIndex);
+    return new $208387f3d84c39db185b074986661f69$var$$RegExpStringIterator(matcher, S, global, fullUnicode);
+};
+// `String.prototype.matchAll` method
+// https://tc39.es/ecma262/#sec-string.prototype.matchall
+$208387f3d84c39db185b074986661f69$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: $208387f3d84c39db185b074986661f69$var$WORKS_WITH_NON_GLOBAL_REGEX
+}, {
+    matchAll: function matchAll(regexp) {
+        var O = $208387f3d84c39db185b074986661f69$import$cb96119f17424999(this);
+        var flags, S, matcher, rx;
+        if (regexp != null) {
+            if ($208387f3d84c39db185b074986661f69$import$662e09ba9e21e14(regexp)) {
+                flags = String($208387f3d84c39db185b074986661f69$import$cb96119f17424999('flags' in $208387f3d84c39db185b074986661f69$var$RegExpPrototype ? regexp.flags : $208387f3d84c39db185b074986661f69$import$55a1ee6edebd1d69$a4b4c796a132eb0a(regexp)));
+                if (!~flags.indexOf('g')) throw TypeError('`.matchAll` does not allow non-global regexes');
+            }
+            if ($208387f3d84c39db185b074986661f69$var$WORKS_WITH_NON_GLOBAL_REGEX) return $208387f3d84c39db185b074986661f69$var$nativeMatchAll.apply(O, arguments);
+            matcher = regexp[$208387f3d84c39db185b074986661f69$var$MATCH_ALL];
+            if (matcher === undefined && $208387f3d84c39db185b074986661f69$import$1bdf0350b9a8d46c && $208387f3d84c39db185b074986661f69$import$7285d07a808c4129(regexp) == 'RegExp') matcher = $208387f3d84c39db185b074986661f69$var$$matchAll;
+            if (matcher != null) return $208387f3d84c39db185b074986661f69$import$feed022c18f6196b(matcher).call(regexp, O);
+        } else if ($208387f3d84c39db185b074986661f69$var$WORKS_WITH_NON_GLOBAL_REGEX) return $208387f3d84c39db185b074986661f69$var$nativeMatchAll.apply(O, arguments);
+        S = String(O);
+        rx = new RegExp(regexp, 'g');
+        return $208387f3d84c39db185b074986661f69$import$1bdf0350b9a8d46c ? $208387f3d84c39db185b074986661f69$var$$matchAll.call(rx, S) : rx[$208387f3d84c39db185b074986661f69$var$MATCH_ALL](S);
+    }
+});
+$208387f3d84c39db185b074986661f69$import$1bdf0350b9a8d46c || $208387f3d84c39db185b074986661f69$var$MATCH_ALL in $208387f3d84c39db185b074986661f69$var$RegExpPrototype || $208387f3d84c39db185b074986661f69$import$ea4d2ea16a516be3($208387f3d84c39db185b074986661f69$var$RegExpPrototype, $208387f3d84c39db185b074986661f69$var$MATCH_ALL, $208387f3d84c39db185b074986661f69$var$$matchAll);

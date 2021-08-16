@@ -1,0 +1,10 @@
+import   "32141e5500b1dc339311b7e9aad80dfe:../internals/export";
+import   "32141e5500b1dc339311b7e9aad80dfe:../internals/string-repeat";
+// `String.prototype.repeat` method
+// https://tc39.es/ecma262/#sec-string.prototype.repeat
+$32141e5500b1dc339311b7e9aad80dfe$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true
+}, {
+    repeat: $32141e5500b1dc339311b7e9aad80dfe$import$a98cd0b7ed055044
+});

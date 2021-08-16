@@ -1,0 +1,14 @@
+import   "4168ab9e0bcdb15308e20fa21deffbaf:../internals/export";
+import   "4168ab9e0bcdb15308e20fa21deffbaf:../internals/math-sign";
+var $4168ab9e0bcdb15308e20fa21deffbaf$var$abs = Math.abs;
+var $4168ab9e0bcdb15308e20fa21deffbaf$var$pow = Math.pow;
+// `Math.cbrt` method
+// https://tc39.es/ecma262/#sec-math.cbrt
+$4168ab9e0bcdb15308e20fa21deffbaf$import$1bb3f1a3ac631152({
+    target: 'Math',
+    stat: true
+}, {
+    cbrt: function cbrt(x) {
+        return $4168ab9e0bcdb15308e20fa21deffbaf$import$50e9a973e401cb3d(x = +x) * $4168ab9e0bcdb15308e20fa21deffbaf$var$pow($4168ab9e0bcdb15308e20fa21deffbaf$var$abs(x), 1 / 3);
+    }
+});

@@ -1,0 +1,15 @@
+import   "c348c9d80b8edf86c0168bd9aae3a469:../internals/export";
+import   "c348c9d80b8edf86c0168bd9aae3a469:../internals/an-object";
+import   "c348c9d80b8edf86c0168bd9aae3a469:../internals/object-get-prototype-of";
+import   "c348c9d80b8edf86c0168bd9aae3a469:../internals/correct-prototype-getter";
+// `Reflect.getPrototypeOf` method
+// https://tc39.es/ecma262/#sec-reflect.getprototypeof
+$c348c9d80b8edf86c0168bd9aae3a469$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true,
+    sham: !$c348c9d80b8edf86c0168bd9aae3a469$import$78cd54cf6dad3764
+}, {
+    getPrototypeOf: function getPrototypeOf(target) {
+        return $c348c9d80b8edf86c0168bd9aae3a469$import$40d0f453fdf3d35e($c348c9d80b8edf86c0168bd9aae3a469$import$cad8ba314ee735d6(target));
+    }
+});

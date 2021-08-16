@@ -1,0 +1,4 @@
+import   "2031481e659b662fe9e661a54f67e854:../internals/define-well-known-symbol";
+// `Symbol.unscopables` well-known symbol
+// https://tc39.es/ecma262/#sec-symbol.unscopables
+$2031481e659b662fe9e661a54f67e854$import$bb307b9a34058dc8('unscopables');

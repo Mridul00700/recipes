@@ -1,0 +1,25 @@
+'use strict';
+import   "171584b624698a67f38d5c062e746ddd:../internals/export";
+import   "171584b624698a67f38d5c062e746ddd:../internals/descriptors";
+import   "171584b624698a67f38d5c062e746ddd:../internals/object-prototype-accessors-forced";
+import   "171584b624698a67f38d5c062e746ddd:../internals/to-object";
+import   "171584b624698a67f38d5c062e746ddd:../internals/to-primitive";
+import   "171584b624698a67f38d5c062e746ddd:../internals/object-get-prototype-of";
+import   "171584b624698a67f38d5c062e746ddd:../internals/object-get-own-property-descriptor";
+var $171584b624698a67f38d5c062e746ddd$require$getOwnPropertyDescriptor = $171584b624698a67f38d5c062e746ddd$import$671bedbe12b63e7d$ffb27d6bd8d1eb33;
+// `Object.prototype.__lookupSetter__` method
+// https://tc39.es/ecma262/#sec-object.prototype.__lookupSetter__
+if ($171584b624698a67f38d5c062e746ddd$import$9e95520c426f46b4) $171584b624698a67f38d5c062e746ddd$import$1bb3f1a3ac631152({
+    target: 'Object',
+    proto: true,
+    forced: $171584b624698a67f38d5c062e746ddd$import$807b71e3cfa4c4cd
+}, {
+    __lookupSetter__: function __lookupSetter__(P) {
+        var O = $171584b624698a67f38d5c062e746ddd$import$565dce0892f29b05(this);
+        var key = $171584b624698a67f38d5c062e746ddd$import$c0dc3853fdc9c45f(P, true);
+        var desc;
+        do {
+            if (desc = $171584b624698a67f38d5c062e746ddd$require$getOwnPropertyDescriptor(O, key)) return desc.set;
+        }while (O = $171584b624698a67f38d5c062e746ddd$import$40d0f453fdf3d35e(O))
+    }
+});

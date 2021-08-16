@@ -1,0 +1,189 @@
+'use strict';
+import   "68761047f1cab583950024631c832261:../internals/export";
+import   "68761047f1cab583950024631c832261:../internals/global";
+import   "68761047f1cab583950024631c832261:../internals/descriptors";
+import   "68761047f1cab583950024631c832261:../internals/typed-array-constructors-require-wrappers";
+import   "68761047f1cab583950024631c832261:../internals/array-buffer-view-core";
+import   "68761047f1cab583950024631c832261:../internals/array-buffer";
+import   "68761047f1cab583950024631c832261:../internals/an-instance";
+import   "68761047f1cab583950024631c832261:../internals/create-property-descriptor";
+import   "68761047f1cab583950024631c832261:../internals/create-non-enumerable-property";
+import   "68761047f1cab583950024631c832261:../internals/to-length";
+import   "68761047f1cab583950024631c832261:../internals/to-index";
+import   "68761047f1cab583950024631c832261:../internals/to-offset";
+import   "68761047f1cab583950024631c832261:../internals/to-primitive";
+import   "68761047f1cab583950024631c832261:../internals/has";
+import   "68761047f1cab583950024631c832261:../internals/classof";
+import   "68761047f1cab583950024631c832261:../internals/is-object";
+import   "68761047f1cab583950024631c832261:../internals/object-create";
+import   "68761047f1cab583950024631c832261:../internals/object-set-prototype-of";
+import   "68761047f1cab583950024631c832261:../internals/object-get-own-property-names";
+var $68761047f1cab583950024631c832261$require$getOwnPropertyNames = $68761047f1cab583950024631c832261$import$533e989815e07ef4$ffb27d6bd8d1eb33;
+import   "68761047f1cab583950024631c832261:../internals/typed-array-from";
+import   "68761047f1cab583950024631c832261:../internals/array-iteration";
+var $68761047f1cab583950024631c832261$require$forEach = $68761047f1cab583950024631c832261$import$9cfdd2c29910a22b$40f3d9558cf6e846;
+import   "68761047f1cab583950024631c832261:../internals/set-species";
+import   "68761047f1cab583950024631c832261:../internals/object-define-property";
+import   "68761047f1cab583950024631c832261:../internals/object-get-own-property-descriptor";
+import   "68761047f1cab583950024631c832261:../internals/internal-state";
+import   "68761047f1cab583950024631c832261:../internals/inherit-if-required";
+var $68761047f1cab583950024631c832261$var$getInternalState = $68761047f1cab583950024631c832261$import$2c03d954288482bc$7eb84799c931fe91;
+var $68761047f1cab583950024631c832261$var$setInternalState = $68761047f1cab583950024631c832261$import$2c03d954288482bc$77f8d2fc923b14e3;
+var $68761047f1cab583950024631c832261$var$nativeDefineProperty = $68761047f1cab583950024631c832261$import$4276e2046cfaee3b$ffb27d6bd8d1eb33;
+var $68761047f1cab583950024631c832261$var$nativeGetOwnPropertyDescriptor = $68761047f1cab583950024631c832261$import$671bedbe12b63e7d$ffb27d6bd8d1eb33;
+var $68761047f1cab583950024631c832261$var$round = Math.round;
+var $68761047f1cab583950024631c832261$var$RangeError = $68761047f1cab583950024631c832261$import$da678c04728da253.RangeError;
+var $68761047f1cab583950024631c832261$var$ArrayBuffer = $68761047f1cab583950024631c832261$import$8b7b52790355660d$df14e82ed71a9c8b;
+var $68761047f1cab583950024631c832261$var$DataView = $68761047f1cab583950024631c832261$import$8b7b52790355660d$7f8f819c19e50de;
+var $68761047f1cab583950024631c832261$var$NATIVE_ARRAY_BUFFER_VIEWS = $68761047f1cab583950024631c832261$import$646a64c4a95eead$7c62120d99e028f;
+var $68761047f1cab583950024631c832261$var$TYPED_ARRAY_TAG = $68761047f1cab583950024631c832261$import$646a64c4a95eead$d2c17882459cc788;
+var $68761047f1cab583950024631c832261$var$TypedArray = $68761047f1cab583950024631c832261$import$646a64c4a95eead$4709ab5e45957a53;
+var $68761047f1cab583950024631c832261$var$TypedArrayPrototype = $68761047f1cab583950024631c832261$import$646a64c4a95eead$9340e7e18fddb787;
+var $68761047f1cab583950024631c832261$var$aTypedArrayConstructor = $68761047f1cab583950024631c832261$import$646a64c4a95eead$cf8c7afb1bc64521;
+var $68761047f1cab583950024631c832261$var$isTypedArray = $68761047f1cab583950024631c832261$import$646a64c4a95eead$b5f473e5b2bcc7e4;
+var $68761047f1cab583950024631c832261$var$BYTES_PER_ELEMENT = 'BYTES_PER_ELEMENT';
+var $68761047f1cab583950024631c832261$var$WRONG_LENGTH = 'Wrong length';
+var $68761047f1cab583950024631c832261$var$fromList = function(C, list) {
+    var index = 0;
+    var length = list.length;
+    var result = new ($68761047f1cab583950024631c832261$var$aTypedArrayConstructor(C))(length);
+    while(length > index)result[index] = list[index++];
+    return result;
+};
+var $68761047f1cab583950024631c832261$var$addGetter = function(it, key) {
+    $68761047f1cab583950024631c832261$var$nativeDefineProperty(it, key, {
+        get: function() {
+            return $68761047f1cab583950024631c832261$var$getInternalState(this)[key];
+        }
+    });
+};
+var $68761047f1cab583950024631c832261$var$isArrayBuffer = function(it) {
+    var klass;
+    return it instanceof $68761047f1cab583950024631c832261$var$ArrayBuffer || (klass = $68761047f1cab583950024631c832261$import$2c88fa3abfc1c398(it)) == 'ArrayBuffer' || klass == 'SharedArrayBuffer';
+};
+var $68761047f1cab583950024631c832261$var$isTypedArrayIndex = function(target, key) {
+    return $68761047f1cab583950024631c832261$var$isTypedArray(target) && typeof key != 'symbol' && key in target && String(+key) == String(key);
+};
+var $68761047f1cab583950024631c832261$var$wrappedGetOwnPropertyDescriptor = function getOwnPropertyDescriptor(target, key) {
+    return $68761047f1cab583950024631c832261$var$isTypedArrayIndex(target, key = $68761047f1cab583950024631c832261$import$c0dc3853fdc9c45f(key, true)) ? $68761047f1cab583950024631c832261$import$ec93b3e5f64a8991(2, target[key]) : $68761047f1cab583950024631c832261$var$nativeGetOwnPropertyDescriptor(target, key);
+};
+var $68761047f1cab583950024631c832261$var$wrappedDefineProperty = function defineProperty(target, key, descriptor) {
+    if ($68761047f1cab583950024631c832261$var$isTypedArrayIndex(target, key = $68761047f1cab583950024631c832261$import$c0dc3853fdc9c45f(key, true)) && $68761047f1cab583950024631c832261$import$9294ccec169e68b9(descriptor) && $68761047f1cab583950024631c832261$import$7e2f6fc726b1debe(descriptor, 'value') && !$68761047f1cab583950024631c832261$import$7e2f6fc726b1debe(descriptor, 'get') && !$68761047f1cab583950024631c832261$import$7e2f6fc726b1debe(descriptor, 'set') && !descriptor.configurable && (!$68761047f1cab583950024631c832261$import$7e2f6fc726b1debe(descriptor, 'writable') || descriptor.writable) && (!$68761047f1cab583950024631c832261$import$7e2f6fc726b1debe(descriptor, 'enumerable') || descriptor.enumerable)) {
+        target[key] = descriptor.value;
+        return target;
+    }
+    return $68761047f1cab583950024631c832261$var$nativeDefineProperty(target, key, descriptor);
+};
+if ($68761047f1cab583950024631c832261$import$9e95520c426f46b4) {
+    if (!$68761047f1cab583950024631c832261$var$NATIVE_ARRAY_BUFFER_VIEWS) {
+        $68761047f1cab583950024631c832261$import$671bedbe12b63e7d$ffb27d6bd8d1eb33 = $68761047f1cab583950024631c832261$var$wrappedGetOwnPropertyDescriptor;
+        $68761047f1cab583950024631c832261$import$4276e2046cfaee3b$ffb27d6bd8d1eb33 = $68761047f1cab583950024631c832261$var$wrappedDefineProperty;
+        $68761047f1cab583950024631c832261$var$addGetter($68761047f1cab583950024631c832261$var$TypedArrayPrototype, 'buffer');
+        $68761047f1cab583950024631c832261$var$addGetter($68761047f1cab583950024631c832261$var$TypedArrayPrototype, 'byteOffset');
+        $68761047f1cab583950024631c832261$var$addGetter($68761047f1cab583950024631c832261$var$TypedArrayPrototype, 'byteLength');
+        $68761047f1cab583950024631c832261$var$addGetter($68761047f1cab583950024631c832261$var$TypedArrayPrototype, 'length');
+    }
+    $68761047f1cab583950024631c832261$import$1bb3f1a3ac631152({
+        target: 'Object',
+        stat: true,
+        forced: !$68761047f1cab583950024631c832261$var$NATIVE_ARRAY_BUFFER_VIEWS
+    }, {
+        getOwnPropertyDescriptor: $68761047f1cab583950024631c832261$var$wrappedGetOwnPropertyDescriptor,
+        defineProperty: $68761047f1cab583950024631c832261$var$wrappedDefineProperty
+    });
+    $68761047f1cab583950024631c832261$exports = function(TYPE, wrapper, CLAMPED) {
+        var BYTES = TYPE.match(/\d+$/)[0] / 8;
+        var CONSTRUCTOR_NAME = TYPE + (CLAMPED ? 'Clamped' : '') + 'Array';
+        var GETTER = 'get' + TYPE;
+        var SETTER = 'set' + TYPE;
+        var NativeTypedArrayConstructor = $68761047f1cab583950024631c832261$import$da678c04728da253[CONSTRUCTOR_NAME];
+        var TypedArrayConstructor = NativeTypedArrayConstructor;
+        var TypedArrayConstructorPrototype = TypedArrayConstructor && TypedArrayConstructor.prototype;
+        var exported = {
+        };
+        var getter = function(that, index) {
+            var data = $68761047f1cab583950024631c832261$var$getInternalState(that);
+            return data.view[GETTER](index * BYTES + data.byteOffset, true);
+        };
+        var setter = function(that, index, value) {
+            var data = $68761047f1cab583950024631c832261$var$getInternalState(that);
+            if (CLAMPED) value = (value = $68761047f1cab583950024631c832261$var$round(value)) < 0 ? 0 : value > 255 ? 255 : value & 255;
+            data.view[SETTER](index * BYTES + data.byteOffset, value, true);
+        };
+        var addElement = function(that, index) {
+            $68761047f1cab583950024631c832261$var$nativeDefineProperty(that, index, {
+                get: function() {
+                    return getter(this, index);
+                },
+                set: function(value) {
+                    return setter(this, index, value);
+                },
+                enumerable: true
+            });
+        };
+        if (!$68761047f1cab583950024631c832261$var$NATIVE_ARRAY_BUFFER_VIEWS) {
+            TypedArrayConstructor = wrapper(function(that, data, offset, $length) {
+                $68761047f1cab583950024631c832261$import$65a2120eaf0c2a0a(that, TypedArrayConstructor, CONSTRUCTOR_NAME);
+                var index = 0;
+                var byteOffset = 0;
+                var buffer, byteLength, length;
+                if (!$68761047f1cab583950024631c832261$import$9294ccec169e68b9(data)) {
+                    length = $68761047f1cab583950024631c832261$import$396e724aadeb10e(data);
+                    byteLength = length * BYTES;
+                    buffer = new $68761047f1cab583950024631c832261$var$ArrayBuffer(byteLength);
+                } else if ($68761047f1cab583950024631c832261$var$isArrayBuffer(data)) {
+                    buffer = data;
+                    byteOffset = $68761047f1cab583950024631c832261$import$6233a68c43419edd(offset, BYTES);
+                    var $len = data.byteLength;
+                    if ($length === undefined) {
+                        if ($len % BYTES) throw $68761047f1cab583950024631c832261$var$RangeError($68761047f1cab583950024631c832261$var$WRONG_LENGTH);
+                        byteLength = $len - byteOffset;
+                        if (byteLength < 0) throw $68761047f1cab583950024631c832261$var$RangeError($68761047f1cab583950024631c832261$var$WRONG_LENGTH);
+                    } else {
+                        byteLength = $68761047f1cab583950024631c832261$import$4102f61a7d1ec5ae($length) * BYTES;
+                        if (byteLength + byteOffset > $len) throw $68761047f1cab583950024631c832261$var$RangeError($68761047f1cab583950024631c832261$var$WRONG_LENGTH);
+                    }
+                    length = byteLength / BYTES;
+                } else if ($68761047f1cab583950024631c832261$var$isTypedArray(data)) return $68761047f1cab583950024631c832261$var$fromList(TypedArrayConstructor, data);
+                else return $68761047f1cab583950024631c832261$import$72389babc02c80f5$a4b4c796a132eb0a(TypedArrayConstructor, data);
+                $68761047f1cab583950024631c832261$var$setInternalState(that, {
+                    buffer: buffer,
+                    byteOffset: byteOffset,
+                    byteLength: byteLength,
+                    length: length,
+                    view: new $68761047f1cab583950024631c832261$var$DataView(buffer)
+                });
+                while(index < length)addElement(that, index++);
+            });
+            if ($68761047f1cab583950024631c832261$import$74d6517d4e0bb391) $68761047f1cab583950024631c832261$import$74d6517d4e0bb391(TypedArrayConstructor, $68761047f1cab583950024631c832261$var$TypedArray);
+            TypedArrayConstructorPrototype = TypedArrayConstructor.prototype = $68761047f1cab583950024631c832261$import$d8db146559ed3979($68761047f1cab583950024631c832261$var$TypedArrayPrototype);
+        } else if ($68761047f1cab583950024631c832261$import$c23d8d2575431e49) {
+            TypedArrayConstructor = wrapper(function(dummy, data, typedArrayOffset, $length) {
+                $68761047f1cab583950024631c832261$import$65a2120eaf0c2a0a(dummy, TypedArrayConstructor, CONSTRUCTOR_NAME);
+                return $68761047f1cab583950024631c832261$import$4573551afb25194(function() {
+                    if (!$68761047f1cab583950024631c832261$import$9294ccec169e68b9(data)) return new NativeTypedArrayConstructor($68761047f1cab583950024631c832261$import$396e724aadeb10e(data));
+                    if ($68761047f1cab583950024631c832261$var$isArrayBuffer(data)) return $length !== undefined ? new NativeTypedArrayConstructor(data, $68761047f1cab583950024631c832261$import$6233a68c43419edd(typedArrayOffset, BYTES), $length) : typedArrayOffset !== undefined ? new NativeTypedArrayConstructor(data, $68761047f1cab583950024631c832261$import$6233a68c43419edd(typedArrayOffset, BYTES)) : new NativeTypedArrayConstructor(data);
+                    if ($68761047f1cab583950024631c832261$var$isTypedArray(data)) return $68761047f1cab583950024631c832261$var$fromList(TypedArrayConstructor, data);
+                    return $68761047f1cab583950024631c832261$import$72389babc02c80f5$a4b4c796a132eb0a(TypedArrayConstructor, data);
+                }(), dummy, TypedArrayConstructor);
+            });
+            if ($68761047f1cab583950024631c832261$import$74d6517d4e0bb391) $68761047f1cab583950024631c832261$import$74d6517d4e0bb391(TypedArrayConstructor, $68761047f1cab583950024631c832261$var$TypedArray);
+            $68761047f1cab583950024631c832261$require$forEach($68761047f1cab583950024631c832261$require$getOwnPropertyNames(NativeTypedArrayConstructor), function(key) {
+                if (!(key in TypedArrayConstructor)) $68761047f1cab583950024631c832261$import$ea4d2ea16a516be3(TypedArrayConstructor, key, NativeTypedArrayConstructor[key]);
+            });
+            TypedArrayConstructor.prototype = TypedArrayConstructorPrototype;
+        }
+        if (TypedArrayConstructorPrototype.constructor !== TypedArrayConstructor) $68761047f1cab583950024631c832261$import$ea4d2ea16a516be3(TypedArrayConstructorPrototype, 'constructor', TypedArrayConstructor);
+        if ($68761047f1cab583950024631c832261$var$TYPED_ARRAY_TAG) $68761047f1cab583950024631c832261$import$ea4d2ea16a516be3(TypedArrayConstructorPrototype, $68761047f1cab583950024631c832261$var$TYPED_ARRAY_TAG, CONSTRUCTOR_NAME);
+        exported[CONSTRUCTOR_NAME] = TypedArrayConstructor;
+        $68761047f1cab583950024631c832261$import$1bb3f1a3ac631152({
+            global: true,
+            forced: TypedArrayConstructor != NativeTypedArrayConstructor,
+            sham: !$68761047f1cab583950024631c832261$var$NATIVE_ARRAY_BUFFER_VIEWS
+        }, exported);
+        if (!($68761047f1cab583950024631c832261$var$BYTES_PER_ELEMENT in TypedArrayConstructor)) $68761047f1cab583950024631c832261$import$ea4d2ea16a516be3(TypedArrayConstructor, $68761047f1cab583950024631c832261$var$BYTES_PER_ELEMENT, BYTES);
+        if (!($68761047f1cab583950024631c832261$var$BYTES_PER_ELEMENT in TypedArrayConstructorPrototype)) $68761047f1cab583950024631c832261$import$ea4d2ea16a516be3(TypedArrayConstructorPrototype, $68761047f1cab583950024631c832261$var$BYTES_PER_ELEMENT, BYTES);
+        $68761047f1cab583950024631c832261$import$4ab311111214a6d(CONSTRUCTOR_NAME);
+    };
+} else $68761047f1cab583950024631c832261$exports = function() {
+};

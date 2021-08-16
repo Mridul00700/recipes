@@ -1,0 +1,3 @@
+import   "016970ca876ceab68c317614c3d9173d:../internals/classof-raw";
+import   "016970ca876ceab68c317614c3d9173d:../internals/global";
+$016970ca876ceab68c317614c3d9173d$exports = $016970ca876ceab68c317614c3d9173d$import$7285d07a808c4129($016970ca876ceab68c317614c3d9173d$import$da678c04728da253$9242cb9e284019eb) == 'process';

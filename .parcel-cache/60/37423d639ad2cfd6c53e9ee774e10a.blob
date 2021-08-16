@@ -1,0 +1,23 @@
+'use strict';
+import   "a64ae5d1c4a44800e481724c9c46bcf6:../internals/array-buffer-view-core";
+import   "a64ae5d1c4a44800e481724c9c46bcf6:../internals/species-constructor";
+import   "a64ae5d1c4a44800e481724c9c46bcf6:../internals/fails";
+var $a64ae5d1c4a44800e481724c9c46bcf6$var$aTypedArray = $a64ae5d1c4a44800e481724c9c46bcf6$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $a64ae5d1c4a44800e481724c9c46bcf6$var$aTypedArrayConstructor = $a64ae5d1c4a44800e481724c9c46bcf6$import$646a64c4a95eead$cf8c7afb1bc64521;
+var $a64ae5d1c4a44800e481724c9c46bcf6$var$exportTypedArrayMethod = $a64ae5d1c4a44800e481724c9c46bcf6$import$646a64c4a95eead$499fcf5cda66e13c;
+var $a64ae5d1c4a44800e481724c9c46bcf6$var$$slice = [].slice;
+var $a64ae5d1c4a44800e481724c9c46bcf6$var$FORCED = $a64ae5d1c4a44800e481724c9c46bcf6$import$9936d02511e757dc(function() {
+    // eslint-disable-next-line es/no-typed-arrays -- required for testing
+    new Int8Array(1).slice();
+});
+// `%TypedArray%.prototype.slice` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.slice
+$a64ae5d1c4a44800e481724c9c46bcf6$var$exportTypedArrayMethod('slice', function slice(start, end) {
+    var list = $a64ae5d1c4a44800e481724c9c46bcf6$var$$slice.call($a64ae5d1c4a44800e481724c9c46bcf6$var$aTypedArray(this), start, end);
+    var C = $a64ae5d1c4a44800e481724c9c46bcf6$import$d2cfec5023aa0b95(this, this.constructor);
+    var index = 0;
+    var length = list.length;
+    var result = new ($a64ae5d1c4a44800e481724c9c46bcf6$var$aTypedArrayConstructor(C))(length);
+    while(length > index)result[index] = list[index++];
+    return result;
+}, $a64ae5d1c4a44800e481724c9c46bcf6$var$FORCED);

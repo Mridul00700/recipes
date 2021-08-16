@@ -1,0 +1,11 @@
+'use strict';
+import   "62ac57994f7b7a8bc141194432ecb50d:../internals/array-buffer-view-core";
+import   "62ac57994f7b7a8bc141194432ecb50d:../internals/array-iteration";
+var $62ac57994f7b7a8bc141194432ecb50d$require$$findIndex = $62ac57994f7b7a8bc141194432ecb50d$import$9cfdd2c29910a22b$4d0d05f1b8a16b84;
+var $62ac57994f7b7a8bc141194432ecb50d$var$aTypedArray = $62ac57994f7b7a8bc141194432ecb50d$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $62ac57994f7b7a8bc141194432ecb50d$var$exportTypedArrayMethod = $62ac57994f7b7a8bc141194432ecb50d$import$646a64c4a95eead$499fcf5cda66e13c;
+// `%TypedArray%.prototype.findIndex` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.findindex
+$62ac57994f7b7a8bc141194432ecb50d$var$exportTypedArrayMethod('findIndex', function findIndex(predicate/* , thisArg */ ) {
+    return $62ac57994f7b7a8bc141194432ecb50d$require$$findIndex($62ac57994f7b7a8bc141194432ecb50d$var$aTypedArray(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
+});

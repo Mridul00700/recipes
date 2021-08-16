@@ -1,0 +1,10 @@
+import   "61b66c59db1130a6c0024b81a64fa494:../internals/export";
+import   "61b66c59db1130a6c0024b81a64fa494:../internals/is-array";
+// `Array.isArray` method
+// https://tc39.es/ecma262/#sec-array.isarray
+$61b66c59db1130a6c0024b81a64fa494$import$1bb3f1a3ac631152({
+    target: 'Array',
+    stat: true
+}, {
+    isArray: $61b66c59db1130a6c0024b81a64fa494$import$a3ab90aad49ab6f8
+});

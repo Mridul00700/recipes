@@ -1,0 +1,16 @@
+'use strict';
+import   "d34d519b1d67e4819571c6687610db78:../internals/to-object";
+import   "d34d519b1d67e4819571c6687610db78:../internals/to-absolute-index";
+import   "d34d519b1d67e4819571c6687610db78:../internals/to-length";
+// `Array.prototype.fill` method implementation
+// https://tc39.es/ecma262/#sec-array.prototype.fill
+$d34d519b1d67e4819571c6687610db78$exports = function fill(value/* , start = 0, end = @length */ ) {
+    var O = $d34d519b1d67e4819571c6687610db78$import$565dce0892f29b05(this);
+    var length = $d34d519b1d67e4819571c6687610db78$import$4102f61a7d1ec5ae(O.length);
+    var argumentsLength = arguments.length;
+    var index = $d34d519b1d67e4819571c6687610db78$import$bcb4abe55a109f79(argumentsLength > 1 ? arguments[1] : undefined, length);
+    var end = argumentsLength > 2 ? arguments[2] : undefined;
+    var endPos = end === undefined ? length : $d34d519b1d67e4819571c6687610db78$import$bcb4abe55a109f79(end, length);
+    while(endPos > index)O[index++] = value;
+    return O;
+};

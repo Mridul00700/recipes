@@ -1,0 +1,13 @@
+import   "f519e8e9c35c07b51c03038868e56db9:../internals/redefine";
+var $f519e8e9c35c07b51c03038868e56db9$var$DatePrototype = Date.prototype;
+var $f519e8e9c35c07b51c03038868e56db9$var$INVALID_DATE = 'Invalid Date';
+var $f519e8e9c35c07b51c03038868e56db9$var$TO_STRING = 'toString';
+var $f519e8e9c35c07b51c03038868e56db9$var$nativeDateToString = $f519e8e9c35c07b51c03038868e56db9$var$DatePrototype[$f519e8e9c35c07b51c03038868e56db9$var$TO_STRING];
+var $f519e8e9c35c07b51c03038868e56db9$var$getTime = $f519e8e9c35c07b51c03038868e56db9$var$DatePrototype.getTime;
+// `Date.prototype.toString` method
+// https://tc39.es/ecma262/#sec-date.prototype.tostring
+if (new Date(NaN) + '' != $f519e8e9c35c07b51c03038868e56db9$var$INVALID_DATE) $f519e8e9c35c07b51c03038868e56db9$import$715a1a2c44d923e3($f519e8e9c35c07b51c03038868e56db9$var$DatePrototype, $f519e8e9c35c07b51c03038868e56db9$var$TO_STRING, function toString() {
+    var value = $f519e8e9c35c07b51c03038868e56db9$var$getTime.call(this);
+    // eslint-disable-next-line no-self-compare -- NaN check
+    return value === value ? $f519e8e9c35c07b51c03038868e56db9$var$nativeDateToString.call(this) : $f519e8e9c35c07b51c03038868e56db9$var$INVALID_DATE;
+});

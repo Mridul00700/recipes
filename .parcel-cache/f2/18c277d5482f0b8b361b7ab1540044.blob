@@ -1,0 +1,25 @@
+import   "6c098f0fb8dd36c4289e9f859c682aa3:../internals/export";
+import   "6c098f0fb8dd36c4289e9f859c682aa3:../internals/get-built-in";
+import   "6c098f0fb8dd36c4289e9f859c682aa3:../internals/a-function";
+import   "6c098f0fb8dd36c4289e9f859c682aa3:../internals/an-object";
+import   "6c098f0fb8dd36c4289e9f859c682aa3:../internals/fails";
+var $6c098f0fb8dd36c4289e9f859c682aa3$var$nativeApply = $6c098f0fb8dd36c4289e9f859c682aa3$import$acc15958b3da080('Reflect', 'apply');
+var $6c098f0fb8dd36c4289e9f859c682aa3$var$functionApply = Function.apply;
+// MS Edge argumentsList argument is optional
+var $6c098f0fb8dd36c4289e9f859c682aa3$var$OPTIONAL_ARGUMENTS_LIST = !$6c098f0fb8dd36c4289e9f859c682aa3$import$9936d02511e757dc(function() {
+    $6c098f0fb8dd36c4289e9f859c682aa3$var$nativeApply(function() {
+    });
+});
+// `Reflect.apply` method
+// https://tc39.es/ecma262/#sec-reflect.apply
+$6c098f0fb8dd36c4289e9f859c682aa3$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true,
+    forced: $6c098f0fb8dd36c4289e9f859c682aa3$var$OPTIONAL_ARGUMENTS_LIST
+}, {
+    apply: function apply(target, thisArgument, argumentsList) {
+        $6c098f0fb8dd36c4289e9f859c682aa3$import$feed022c18f6196b(target);
+        $6c098f0fb8dd36c4289e9f859c682aa3$import$cad8ba314ee735d6(argumentsList);
+        return $6c098f0fb8dd36c4289e9f859c682aa3$var$nativeApply ? $6c098f0fb8dd36c4289e9f859c682aa3$var$nativeApply(target, thisArgument, argumentsList) : $6c098f0fb8dd36c4289e9f859c682aa3$var$functionApply.call(target, thisArgument, argumentsList);
+    }
+});

@@ -1,0 +1,77 @@
+import   "8a9eeca0a90142588d7ebceecd91688c:../internals/global";
+import   "8a9eeca0a90142588d7ebceecd91688c:../internals/object-get-own-property-descriptor";
+var $8a9eeca0a90142588d7ebceecd91688c$require$getOwnPropertyDescriptor = $8a9eeca0a90142588d7ebceecd91688c$import$671bedbe12b63e7d$ffb27d6bd8d1eb33;
+import   "8a9eeca0a90142588d7ebceecd91688c:../internals/task";
+var $8a9eeca0a90142588d7ebceecd91688c$require$macrotask = $8a9eeca0a90142588d7ebceecd91688c$import$dd7b7067bf215be7$77f8d2fc923b14e3;
+import   "8a9eeca0a90142588d7ebceecd91688c:../internals/engine-is-ios";
+import   "8a9eeca0a90142588d7ebceecd91688c:../internals/engine-is-webos-webkit";
+import   "8a9eeca0a90142588d7ebceecd91688c:../internals/engine-is-node";
+var $8a9eeca0a90142588d7ebceecd91688c$var$MutationObserver = $8a9eeca0a90142588d7ebceecd91688c$import$da678c04728da253.MutationObserver || $8a9eeca0a90142588d7ebceecd91688c$import$da678c04728da253.WebKitMutationObserver;
+var $8a9eeca0a90142588d7ebceecd91688c$var$document = $8a9eeca0a90142588d7ebceecd91688c$import$da678c04728da253.document;
+var $8a9eeca0a90142588d7ebceecd91688c$var$process = $8a9eeca0a90142588d7ebceecd91688c$import$da678c04728da253.process;
+var $8a9eeca0a90142588d7ebceecd91688c$var$Promise = $8a9eeca0a90142588d7ebceecd91688c$import$da678c04728da253.Promise;
+// Node.js 11 shows ExperimentalWarning on getting `queueMicrotask`
+var $8a9eeca0a90142588d7ebceecd91688c$var$queueMicrotaskDescriptor = $8a9eeca0a90142588d7ebceecd91688c$require$getOwnPropertyDescriptor($8a9eeca0a90142588d7ebceecd91688c$import$da678c04728da253, 'queueMicrotask');
+var $8a9eeca0a90142588d7ebceecd91688c$var$queueMicrotask = $8a9eeca0a90142588d7ebceecd91688c$var$queueMicrotaskDescriptor && $8a9eeca0a90142588d7ebceecd91688c$var$queueMicrotaskDescriptor.value;
+var $8a9eeca0a90142588d7ebceecd91688c$var$flush, $8a9eeca0a90142588d7ebceecd91688c$var$head, $8a9eeca0a90142588d7ebceecd91688c$var$last, $8a9eeca0a90142588d7ebceecd91688c$var$notify, $8a9eeca0a90142588d7ebceecd91688c$var$toggle, $8a9eeca0a90142588d7ebceecd91688c$var$node, $8a9eeca0a90142588d7ebceecd91688c$var$promise, $8a9eeca0a90142588d7ebceecd91688c$var$then;
+// modern engines have queueMicrotask method
+if (!$8a9eeca0a90142588d7ebceecd91688c$var$queueMicrotask) {
+    $8a9eeca0a90142588d7ebceecd91688c$var$flush = function() {
+        var parent, fn;
+        if ($8a9eeca0a90142588d7ebceecd91688c$import$417f1fc70487a5af && (parent = $8a9eeca0a90142588d7ebceecd91688c$var$process.domain)) parent.exit();
+        while($8a9eeca0a90142588d7ebceecd91688c$var$head){
+            fn = $8a9eeca0a90142588d7ebceecd91688c$var$head.fn;
+            $8a9eeca0a90142588d7ebceecd91688c$var$head = $8a9eeca0a90142588d7ebceecd91688c$var$head.next;
+            try {
+                fn();
+            } catch (error) {
+                if ($8a9eeca0a90142588d7ebceecd91688c$var$head) $8a9eeca0a90142588d7ebceecd91688c$var$notify();
+                else $8a9eeca0a90142588d7ebceecd91688c$var$last = undefined;
+                throw error;
+            }
+        }
+        $8a9eeca0a90142588d7ebceecd91688c$var$last = undefined;
+        if (parent) parent.enter();
+    };
+    // browsers with MutationObserver, except iOS - https://github.com/zloirock/core-js/issues/339
+    // also except WebOS Webkit https://github.com/zloirock/core-js/issues/898
+    if (!$8a9eeca0a90142588d7ebceecd91688c$import$1d36e4cc55137640 && !$8a9eeca0a90142588d7ebceecd91688c$import$417f1fc70487a5af && !$8a9eeca0a90142588d7ebceecd91688c$import$9fd84bd115855531 && $8a9eeca0a90142588d7ebceecd91688c$var$MutationObserver && $8a9eeca0a90142588d7ebceecd91688c$var$document) {
+        $8a9eeca0a90142588d7ebceecd91688c$var$toggle = true;
+        $8a9eeca0a90142588d7ebceecd91688c$var$node = $8a9eeca0a90142588d7ebceecd91688c$var$document.createTextNode('');
+        new $8a9eeca0a90142588d7ebceecd91688c$var$MutationObserver($8a9eeca0a90142588d7ebceecd91688c$var$flush).observe($8a9eeca0a90142588d7ebceecd91688c$var$node, {
+            characterData: true
+        });
+        $8a9eeca0a90142588d7ebceecd91688c$var$notify = function() {
+            $8a9eeca0a90142588d7ebceecd91688c$var$node.data = $8a9eeca0a90142588d7ebceecd91688c$var$toggle = !$8a9eeca0a90142588d7ebceecd91688c$var$toggle;
+        };
+    // environments with maybe non-completely correct, but existent Promise
+    } else if ($8a9eeca0a90142588d7ebceecd91688c$var$Promise && $8a9eeca0a90142588d7ebceecd91688c$var$Promise.resolve) {
+        // Promise.resolve without an argument throws an error in LG WebOS 2
+        $8a9eeca0a90142588d7ebceecd91688c$var$promise = $8a9eeca0a90142588d7ebceecd91688c$var$Promise.resolve(undefined);
+        // workaround of WebKit ~ iOS Safari 10.1 bug
+        $8a9eeca0a90142588d7ebceecd91688c$var$promise.constructor = $8a9eeca0a90142588d7ebceecd91688c$var$Promise;
+        $8a9eeca0a90142588d7ebceecd91688c$var$then = $8a9eeca0a90142588d7ebceecd91688c$var$promise.then;
+        $8a9eeca0a90142588d7ebceecd91688c$var$notify = function() {
+            $8a9eeca0a90142588d7ebceecd91688c$var$then.call($8a9eeca0a90142588d7ebceecd91688c$var$promise, $8a9eeca0a90142588d7ebceecd91688c$var$flush);
+        };
+    // Node.js without promises
+    } else if ($8a9eeca0a90142588d7ebceecd91688c$import$417f1fc70487a5af) $8a9eeca0a90142588d7ebceecd91688c$var$notify = function() {
+        $8a9eeca0a90142588d7ebceecd91688c$var$process.nextTick($8a9eeca0a90142588d7ebceecd91688c$var$flush);
+    };
+    else $8a9eeca0a90142588d7ebceecd91688c$var$notify = function() {
+        // strange IE + webpack dev server bug - use .call(global)
+        $8a9eeca0a90142588d7ebceecd91688c$require$macrotask.call($8a9eeca0a90142588d7ebceecd91688c$import$da678c04728da253, $8a9eeca0a90142588d7ebceecd91688c$var$flush);
+    };
+}
+$8a9eeca0a90142588d7ebceecd91688c$exports = $8a9eeca0a90142588d7ebceecd91688c$var$queueMicrotask || function(fn) {
+    var task = {
+        fn: fn,
+        next: undefined
+    };
+    if ($8a9eeca0a90142588d7ebceecd91688c$var$last) $8a9eeca0a90142588d7ebceecd91688c$var$last.next = task;
+    if (!$8a9eeca0a90142588d7ebceecd91688c$var$head) {
+        $8a9eeca0a90142588d7ebceecd91688c$var$head = task;
+        $8a9eeca0a90142588d7ebceecd91688c$var$notify();
+    }
+    $8a9eeca0a90142588d7ebceecd91688c$var$last = task;
+};

@@ -1,0 +1,12 @@
+import   "4df75514441ef69ceea04dd6ea693cd0:../internals/export";
+import   "4df75514441ef69ceea04dd6ea693cd0:../internals/descriptors";
+import   "4df75514441ef69ceea04dd6ea693cd0:../internals/object-create";
+// `Object.create` method
+// https://tc39.es/ecma262/#sec-object.create
+$4df75514441ef69ceea04dd6ea693cd0$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true,
+    sham: !$4df75514441ef69ceea04dd6ea693cd0$import$9e95520c426f46b4
+}, {
+    create: $4df75514441ef69ceea04dd6ea693cd0$import$d8db146559ed3979
+});

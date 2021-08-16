@@ -1,0 +1,19 @@
+import   "ee5b90be798df00f50f0366ee1df7678:../internals/descriptors";
+import   "ee5b90be798df00f50f0366ee1df7678:../internals/regexp-unsupported-dot-all";
+import   "ee5b90be798df00f50f0366ee1df7678:../internals/object-define-property";
+var $ee5b90be798df00f50f0366ee1df7678$require$defineProperty = $ee5b90be798df00f50f0366ee1df7678$import$4276e2046cfaee3b$ffb27d6bd8d1eb33;
+import   "ee5b90be798df00f50f0366ee1df7678:../internals/internal-state";
+var $ee5b90be798df00f50f0366ee1df7678$require$getInternalState = $ee5b90be798df00f50f0366ee1df7678$import$2c03d954288482bc$7eb84799c931fe91;
+var $ee5b90be798df00f50f0366ee1df7678$var$RegExpPrototype = RegExp.prototype;
+// `RegExp.prototype.dotAll` getter
+// https://tc39.es/ecma262/#sec-get-regexp.prototype.dotall
+if ($ee5b90be798df00f50f0366ee1df7678$import$9e95520c426f46b4 && $ee5b90be798df00f50f0366ee1df7678$import$9aaabff79228d9d9) $ee5b90be798df00f50f0366ee1df7678$require$defineProperty($ee5b90be798df00f50f0366ee1df7678$var$RegExpPrototype, 'dotAll', {
+    configurable: true,
+    get: function() {
+        if (this === $ee5b90be798df00f50f0366ee1df7678$var$RegExpPrototype) return undefined;
+        // We can't use InternalStateModule.getterFor because
+        // we don't add metadata for regexps created by a literal.
+        if (this instanceof RegExp) return !!$ee5b90be798df00f50f0366ee1df7678$require$getInternalState(this).dotAll;
+        throw TypeError('Incompatible receiver, RegExp required');
+    }
+});

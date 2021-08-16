@@ -1,0 +1,32 @@
+import   "045d2dd139abdad3c18a6db6ed9e3647:../internals/descriptors";
+import   "045d2dd139abdad3c18a6db6ed9e3647:../internals/object-keys";
+import   "045d2dd139abdad3c18a6db6ed9e3647:../internals/to-indexed-object";
+import   "045d2dd139abdad3c18a6db6ed9e3647:../internals/object-property-is-enumerable";
+var $045d2dd139abdad3c18a6db6ed9e3647$require$propertyIsEnumerable = $045d2dd139abdad3c18a6db6ed9e3647$import$6db18f9a4bbb475a$ffb27d6bd8d1eb33;
+// `Object.{ entries, values }` methods implementation
+var $045d2dd139abdad3c18a6db6ed9e3647$var$createMethod = function(TO_ENTRIES) {
+    return function(it) {
+        var O = $045d2dd139abdad3c18a6db6ed9e3647$import$73e80bdb170d55b7(it);
+        var keys = $045d2dd139abdad3c18a6db6ed9e3647$import$ca5d317697a1e62(O);
+        var length = keys.length;
+        var i = 0;
+        var result = [];
+        var key;
+        while(length > i){
+            key = keys[i++];
+            if (!$045d2dd139abdad3c18a6db6ed9e3647$import$9e95520c426f46b4 || $045d2dd139abdad3c18a6db6ed9e3647$require$propertyIsEnumerable.call(O, key)) result.push(TO_ENTRIES ? [
+                key,
+                O[key]
+            ] : O[key]);
+        }
+        return result;
+    };
+};
+$045d2dd139abdad3c18a6db6ed9e3647$exports = {
+    // `Object.entries` method
+    // https://tc39.es/ecma262/#sec-object.entries
+    entries: $045d2dd139abdad3c18a6db6ed9e3647$var$createMethod(true),
+    // `Object.values` method
+    // https://tc39.es/ecma262/#sec-object.values
+    values: $045d2dd139abdad3c18a6db6ed9e3647$var$createMethod(false)
+};

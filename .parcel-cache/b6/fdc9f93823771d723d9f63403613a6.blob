@@ -1,0 +1,13 @@
+import   "68aa47be2d0971a3394f942178aabce9:../internals/global";
+import   "68aa47be2d0971a3394f942178aabce9:../internals/string-trim";
+var $68aa47be2d0971a3394f942178aabce9$require$trim = $68aa47be2d0971a3394f942178aabce9$import$7522b5f71d8f3b2$c7aa272acca91797;
+import   "68aa47be2d0971a3394f942178aabce9:../internals/whitespaces";
+var $68aa47be2d0971a3394f942178aabce9$var$$parseFloat = $68aa47be2d0971a3394f942178aabce9$import$da678c04728da253$83c5129e3b89c02d;
+var $68aa47be2d0971a3394f942178aabce9$var$FORCED = 1 / $68aa47be2d0971a3394f942178aabce9$var$$parseFloat($68aa47be2d0971a3394f942178aabce9$import$5bbdc6f6aac05287 + '-0') !== -Infinity;
+// `parseFloat` method
+// https://tc39.es/ecma262/#sec-parsefloat-string
+$68aa47be2d0971a3394f942178aabce9$exports = $68aa47be2d0971a3394f942178aabce9$var$FORCED ? function parseFloat(string) {
+    var trimmedString = $68aa47be2d0971a3394f942178aabce9$require$trim(String(string));
+    var result = $68aa47be2d0971a3394f942178aabce9$var$$parseFloat(trimmedString);
+    return result === 0 && trimmedString.charAt(0) == '-' ? -0.0 : result;
+} : $68aa47be2d0971a3394f942178aabce9$var$$parseFloat;

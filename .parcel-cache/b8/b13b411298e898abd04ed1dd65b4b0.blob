@@ -1,0 +1,4 @@
+import   "7514aa268354729dbcc8de9df01f285a:../internals/define-well-known-symbol";
+// `Symbol.replace` well-known symbol
+// https://tc39.es/ecma262/#sec-symbol.replace
+$7514aa268354729dbcc8de9df01f285a$import$bb307b9a34058dc8('replace');

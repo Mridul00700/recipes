@@ -1,0 +1,8 @@
+import   "236e182f5b67d59697e1b85236896e56:../internals/create-non-enumerable-property";
+import   "236e182f5b67d59697e1b85236896e56:../internals/date-to-primitive";
+import   "236e182f5b67d59697e1b85236896e56:../internals/well-known-symbol";
+var $236e182f5b67d59697e1b85236896e56$var$TO_PRIMITIVE = $236e182f5b67d59697e1b85236896e56$import$88242bc6a9673a44('toPrimitive');
+var $236e182f5b67d59697e1b85236896e56$var$DatePrototype = Date.prototype;
+// `Date.prototype[@@toPrimitive]` method
+// https://tc39.es/ecma262/#sec-date.prototype-@@toprimitive
+if (!($236e182f5b67d59697e1b85236896e56$var$TO_PRIMITIVE in $236e182f5b67d59697e1b85236896e56$var$DatePrototype)) $236e182f5b67d59697e1b85236896e56$import$ea4d2ea16a516be3($236e182f5b67d59697e1b85236896e56$var$DatePrototype, $236e182f5b67d59697e1b85236896e56$var$TO_PRIMITIVE, $236e182f5b67d59697e1b85236896e56$import$14ed235d905efb3d);

@@ -1,0 +1,29 @@
+import   "2864d7d126b680e2d021c3937561eba6:../internals/export";
+import   "2864d7d126b680e2d021c3937561eba6:../internals/global";
+import   "2864d7d126b680e2d021c3937561eba6:../internals/engine-user-agent";
+var $2864d7d126b680e2d021c3937561eba6$var$slice = [].slice;
+var $2864d7d126b680e2d021c3937561eba6$var$MSIE = /MSIE .\./.test($2864d7d126b680e2d021c3937561eba6$import$f29ee6c65de699c7); // <- dirty ie9- check
+var $2864d7d126b680e2d021c3937561eba6$var$wrap = function(scheduler) {
+    return function(handler, timeout/* , ...arguments */ ) {
+        var boundArgs = arguments.length > 2;
+        var args = boundArgs ? $2864d7d126b680e2d021c3937561eba6$var$slice.call(arguments, 2) : undefined;
+        return scheduler(boundArgs ? function() {
+            // eslint-disable-next-line no-new-func -- spec requirement
+            (typeof handler == 'function' ? handler : Function(handler)).apply(this, args);
+        } : handler, timeout);
+    };
+};
+// ie9- setTimeout & setInterval additional parameters fix
+// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
+$2864d7d126b680e2d021c3937561eba6$import$1bb3f1a3ac631152({
+    global: true,
+    bind: true,
+    forced: $2864d7d126b680e2d021c3937561eba6$var$MSIE
+}, {
+    // `setTimeout` method
+    // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
+    setTimeout: $2864d7d126b680e2d021c3937561eba6$var$wrap($2864d7d126b680e2d021c3937561eba6$import$da678c04728da253$ee0983a91f147bd1),
+    // `setInterval` method
+    // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval
+    setInterval: $2864d7d126b680e2d021c3937561eba6$var$wrap($2864d7d126b680e2d021c3937561eba6$import$da678c04728da253$381e4730a82c577f)
+});

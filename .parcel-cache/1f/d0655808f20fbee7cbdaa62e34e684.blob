@@ -1,0 +1,13 @@
+import   "39a0f6d8397d7cad99dddc70ab6dd4e4:../internals/export";
+import   "39a0f6d8397d7cad99dddc70ab6dd4e4:../internals/descriptors";
+import   "39a0f6d8397d7cad99dddc70ab6dd4e4:../internals/object-define-properties";
+// `Object.defineProperties` method
+// https://tc39.es/ecma262/#sec-object.defineproperties
+$39a0f6d8397d7cad99dddc70ab6dd4e4$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true,
+    forced: !$39a0f6d8397d7cad99dddc70ab6dd4e4$import$9e95520c426f46b4,
+    sham: !$39a0f6d8397d7cad99dddc70ab6dd4e4$import$9e95520c426f46b4
+}, {
+    defineProperties: $39a0f6d8397d7cad99dddc70ab6dd4e4$import$e2e41dc05e8a9d6d
+});

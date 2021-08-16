@@ -1,0 +1,48 @@
+import   "ab69fd1b20c9c194cfa2ba9b54996b75:../internals/export";
+import   "ab69fd1b20c9c194cfa2ba9b54996b75:../internals/an-object";
+import   "ab69fd1b20c9c194cfa2ba9b54996b75:../internals/is-object";
+import   "ab69fd1b20c9c194cfa2ba9b54996b75:../internals/has";
+import   "ab69fd1b20c9c194cfa2ba9b54996b75:../internals/fails";
+import   "ab69fd1b20c9c194cfa2ba9b54996b75:../internals/object-define-property";
+import   "ab69fd1b20c9c194cfa2ba9b54996b75:../internals/object-get-own-property-descriptor";
+import   "ab69fd1b20c9c194cfa2ba9b54996b75:../internals/object-get-prototype-of";
+import   "ab69fd1b20c9c194cfa2ba9b54996b75:../internals/create-property-descriptor";
+// `Reflect.set` method
+// https://tc39.es/ecma262/#sec-reflect.set
+function $ab69fd1b20c9c194cfa2ba9b54996b75$var$set(target, propertyKey, V/* , receiver */ ) {
+    var receiver = arguments.length < 4 ? target : arguments[3];
+    var ownDescriptor = $ab69fd1b20c9c194cfa2ba9b54996b75$import$671bedbe12b63e7d$ffb27d6bd8d1eb33($ab69fd1b20c9c194cfa2ba9b54996b75$import$cad8ba314ee735d6(target), propertyKey);
+    var existingDescriptor, prototype;
+    if (!ownDescriptor) {
+        if ($ab69fd1b20c9c194cfa2ba9b54996b75$import$9294ccec169e68b9(prototype = $ab69fd1b20c9c194cfa2ba9b54996b75$import$40d0f453fdf3d35e(target))) return $ab69fd1b20c9c194cfa2ba9b54996b75$var$set(prototype, propertyKey, V, receiver);
+        ownDescriptor = $ab69fd1b20c9c194cfa2ba9b54996b75$import$ec93b3e5f64a8991(0);
+    }
+    if ($ab69fd1b20c9c194cfa2ba9b54996b75$import$7e2f6fc726b1debe(ownDescriptor, 'value')) {
+        if (ownDescriptor.writable === false || !$ab69fd1b20c9c194cfa2ba9b54996b75$import$9294ccec169e68b9(receiver)) return false;
+        if (existingDescriptor = $ab69fd1b20c9c194cfa2ba9b54996b75$import$671bedbe12b63e7d$ffb27d6bd8d1eb33(receiver, propertyKey)) {
+            if (existingDescriptor.get || existingDescriptor.set || existingDescriptor.writable === false) return false;
+            existingDescriptor.value = V;
+            $ab69fd1b20c9c194cfa2ba9b54996b75$import$4276e2046cfaee3b$ffb27d6bd8d1eb33(receiver, propertyKey, existingDescriptor);
+        } else $ab69fd1b20c9c194cfa2ba9b54996b75$import$4276e2046cfaee3b$ffb27d6bd8d1eb33(receiver, propertyKey, $ab69fd1b20c9c194cfa2ba9b54996b75$import$ec93b3e5f64a8991(0, V));
+        return true;
+    }
+    return ownDescriptor.set === undefined ? false : (ownDescriptor.set.call(receiver, V), true);
+}
+// MS Edge 17-18 Reflect.set allows setting the property to object
+// with non-writable property on the prototype
+var $ab69fd1b20c9c194cfa2ba9b54996b75$var$MS_EDGE_BUG = $ab69fd1b20c9c194cfa2ba9b54996b75$import$9936d02511e757dc(function() {
+    var Constructor = function() {
+    };
+    var object = $ab69fd1b20c9c194cfa2ba9b54996b75$import$4276e2046cfaee3b$ffb27d6bd8d1eb33(new Constructor(), 'a', {
+        configurable: true
+    });
+    // eslint-disable-next-line es/no-reflect -- required for testing
+    return Reflect.set(Constructor.prototype, 'a', 1, object) !== false;
+});
+$ab69fd1b20c9c194cfa2ba9b54996b75$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true,
+    forced: $ab69fd1b20c9c194cfa2ba9b54996b75$var$MS_EDGE_BUG
+}, {
+    set: $ab69fd1b20c9c194cfa2ba9b54996b75$var$set
+});

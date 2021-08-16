@@ -1,0 +1,17 @@
+import   "857355a42bca2048b8cd32cd66491ca8:../internals/export";
+import   "857355a42bca2048b8cd32cd66491ca8:../internals/global";
+import   "857355a42bca2048b8cd32cd66491ca8:../internals/microtask";
+import   "857355a42bca2048b8cd32cd66491ca8:../internals/engine-is-node";
+var $857355a42bca2048b8cd32cd66491ca8$var$process = $857355a42bca2048b8cd32cd66491ca8$import$da678c04728da253$9242cb9e284019eb;
+// `queueMicrotask` method
+// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-queuemicrotask
+$857355a42bca2048b8cd32cd66491ca8$import$1bb3f1a3ac631152({
+    global: true,
+    enumerable: true,
+    noTargetGet: true
+}, {
+    queueMicrotask: function queueMicrotask(fn) {
+        var domain = $857355a42bca2048b8cd32cd66491ca8$import$417f1fc70487a5af && $857355a42bca2048b8cd32cd66491ca8$var$process.domain;
+        $857355a42bca2048b8cd32cd66491ca8$import$c917179506a7c1c9(domain ? domain.bind(fn) : fn);
+    }
+});

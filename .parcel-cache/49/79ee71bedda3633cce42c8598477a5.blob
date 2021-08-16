@@ -1,0 +1,2 @@
+import   "2f44c0060bd8c3dc2942ccf5db838961:../internals/engine-user-agent";
+$2f44c0060bd8c3dc2942ccf5db838961$exports = /MSIE|Trident/.test($2f44c0060bd8c3dc2942ccf5db838961$import$f29ee6c65de699c7);

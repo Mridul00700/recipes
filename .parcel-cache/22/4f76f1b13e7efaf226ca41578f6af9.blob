@@ -1,0 +1,10 @@
+import   "fe3d9fa7805aaeb649e76a19dc51be33:../internals/export";
+import   "fe3d9fa7805aaeb649e76a19dc51be33:../internals/number-parse-int";
+// `parseInt` method
+// https://tc39.es/ecma262/#sec-parseint-string-radix
+$fe3d9fa7805aaeb649e76a19dc51be33$import$1bb3f1a3ac631152({
+    global: true,
+    forced: parseInt != $fe3d9fa7805aaeb649e76a19dc51be33$import$cd781d3c4f31eed8
+}, {
+    parseInt: $fe3d9fa7805aaeb649e76a19dc51be33$import$cd781d3c4f31eed8
+});

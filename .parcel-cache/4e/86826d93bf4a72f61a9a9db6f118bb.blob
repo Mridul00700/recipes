@@ -1,0 +1,9 @@
+import   "db537ac83137f71d52ab4f89537ec101:../internals/export";
+// `Date.prototype.toGMTString` method
+// https://tc39.es/ecma262/#sec-date.prototype.togmtstring
+$db537ac83137f71d52ab4f89537ec101$import$1bb3f1a3ac631152({
+    target: 'Date',
+    proto: true
+}, {
+    toGMTString: Date.prototype.toUTCString
+});

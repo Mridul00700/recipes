@@ -1,0 +1,22 @@
+import   "3ea065e52fa76c22cf36f86fe4ca3744:../internals/export";
+import   "3ea065e52fa76c22cf36f86fe4ca3744:../internals/fails";
+import   "3ea065e52fa76c22cf36f86fe4ca3744:../internals/to-indexed-object";
+import   "3ea065e52fa76c22cf36f86fe4ca3744:../internals/object-get-own-property-descriptor";
+var $3ea065e52fa76c22cf36f86fe4ca3744$require$nativeGetOwnPropertyDescriptor = $3ea065e52fa76c22cf36f86fe4ca3744$import$671bedbe12b63e7d$ffb27d6bd8d1eb33;
+import   "3ea065e52fa76c22cf36f86fe4ca3744:../internals/descriptors";
+var $3ea065e52fa76c22cf36f86fe4ca3744$var$FAILS_ON_PRIMITIVES = $3ea065e52fa76c22cf36f86fe4ca3744$import$9936d02511e757dc(function() {
+    $3ea065e52fa76c22cf36f86fe4ca3744$require$nativeGetOwnPropertyDescriptor(1);
+});
+var $3ea065e52fa76c22cf36f86fe4ca3744$var$FORCED = !$3ea065e52fa76c22cf36f86fe4ca3744$import$9e95520c426f46b4 || $3ea065e52fa76c22cf36f86fe4ca3744$var$FAILS_ON_PRIMITIVES;
+// `Object.getOwnPropertyDescriptor` method
+// https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
+$3ea065e52fa76c22cf36f86fe4ca3744$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true,
+    forced: $3ea065e52fa76c22cf36f86fe4ca3744$var$FORCED,
+    sham: !$3ea065e52fa76c22cf36f86fe4ca3744$import$9e95520c426f46b4
+}, {
+    getOwnPropertyDescriptor: function getOwnPropertyDescriptor(it, key) {
+        return $3ea065e52fa76c22cf36f86fe4ca3744$require$nativeGetOwnPropertyDescriptor($3ea065e52fa76c22cf36f86fe4ca3744$import$73e80bdb170d55b7(it), key);
+    }
+});

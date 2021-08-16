@@ -1,0 +1,3 @@
+import   "c724150855268cc4586f51913df36fad:../internals/add-to-unscopables";
+// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+$c724150855268cc4586f51913df36fad$import$5d18bfe1c15e4f32('flat');

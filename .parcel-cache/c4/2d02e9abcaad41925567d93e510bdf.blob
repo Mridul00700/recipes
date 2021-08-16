@@ -1,0 +1,11 @@
+import   "e50d1b3c0c5ca7676b9cf2930a9e258c:../internals/export";
+// `Reflect.has` method
+// https://tc39.es/ecma262/#sec-reflect.has
+$e50d1b3c0c5ca7676b9cf2930a9e258c$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true
+}, {
+    has: function has(target, propertyKey) {
+        return propertyKey in target;
+    }
+});

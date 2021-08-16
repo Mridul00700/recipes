@@ -1,0 +1,15 @@
+'use strict';
+import   "266adfaf16450d618ca59ca42c4783e0:../internals/export";
+import   "266adfaf16450d618ca59ca42c4783e0:../internals/create-html";
+import   "266adfaf16450d618ca59ca42c4783e0:../internals/string-html-forced";
+// `String.prototype.fontcolor` method
+// https://tc39.es/ecma262/#sec-string.prototype.fontcolor
+$266adfaf16450d618ca59ca42c4783e0$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: $266adfaf16450d618ca59ca42c4783e0$import$fe56c9129589f6f('fontcolor')
+}, {
+    fontcolor: function fontcolor(color) {
+        return $266adfaf16450d618ca59ca42c4783e0$import$754c0a633ad84ebd(this, 'font', 'color', color);
+    }
+});

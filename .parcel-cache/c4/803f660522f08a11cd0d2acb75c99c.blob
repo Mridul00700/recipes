@@ -1,0 +1,27 @@
+'use strict';
+import   "9ab51a4d1824bb9d06ccf363aa6b8bd3:../internals/redefine";
+import   "9ab51a4d1824bb9d06ccf363aa6b8bd3:../internals/an-object";
+import   "9ab51a4d1824bb9d06ccf363aa6b8bd3:../internals/fails";
+import   "9ab51a4d1824bb9d06ccf363aa6b8bd3:../internals/regexp-flags";
+var $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$TO_STRING = 'toString';
+var $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$RegExpPrototype = RegExp.prototype;
+var $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$nativeToString = $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$RegExpPrototype[$9ab51a4d1824bb9d06ccf363aa6b8bd3$var$TO_STRING];
+var $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$NOT_GENERIC = $9ab51a4d1824bb9d06ccf363aa6b8bd3$import$9936d02511e757dc(function() {
+    return $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$nativeToString.call({
+        source: 'a',
+        flags: 'b'
+    }) != '/a/b';
+});
+// FF44- RegExp#toString has a wrong name
+var $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$INCORRECT_NAME = $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$nativeToString.name != $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$TO_STRING;
+// `RegExp.prototype.toString` method
+// https://tc39.es/ecma262/#sec-regexp.prototype.tostring
+if ($9ab51a4d1824bb9d06ccf363aa6b8bd3$var$NOT_GENERIC || $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$INCORRECT_NAME) $9ab51a4d1824bb9d06ccf363aa6b8bd3$import$715a1a2c44d923e3(RegExp.prototype, $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$TO_STRING, function toString() {
+    var R = $9ab51a4d1824bb9d06ccf363aa6b8bd3$import$cad8ba314ee735d6(this);
+    var p = String(R.source);
+    var rf = R.flags;
+    var f = String(rf === undefined && R instanceof RegExp && !('flags' in $9ab51a4d1824bb9d06ccf363aa6b8bd3$var$RegExpPrototype) ? $9ab51a4d1824bb9d06ccf363aa6b8bd3$import$55a1ee6edebd1d69$a4b4c796a132eb0a(R) : rf);
+    return '/' + p + '/' + f;
+}, {
+    unsafe: true
+});

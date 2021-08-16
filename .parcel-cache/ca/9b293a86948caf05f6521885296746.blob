@@ -1,0 +1,2 @@
+import   "0d74b859a2a4323f78da5dcef86d60d5:../internals/engine-user-agent";
+$0d74b859a2a4323f78da5dcef86d60d5$exports = /web0s(?!.*chrome)/i.test($0d74b859a2a4323f78da5dcef86d60d5$import$f29ee6c65de699c7);

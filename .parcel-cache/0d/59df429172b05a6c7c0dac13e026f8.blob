@@ -1,0 +1,7 @@
+import   "4c14b53186ce03eb453b97eac620a255:../internals/classof-raw";
+// `thisNumberValue` abstract operation
+// https://tc39.es/ecma262/#sec-thisnumbervalue
+$4c14b53186ce03eb453b97eac620a255$exports = function(value) {
+    if (typeof value != 'number' && $4c14b53186ce03eb453b97eac620a255$import$7285d07a808c4129(value) != 'Number') throw TypeError('Incorrect invocation');
+    return +value;
+};

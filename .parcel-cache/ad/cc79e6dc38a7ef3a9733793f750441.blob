@@ -1,0 +1,15 @@
+import   "ee86e79fc06f31cc2dd9bd8e478ce424:../internals/export";
+import   "ee86e79fc06f31cc2dd9bd8e478ce424:../internals/descriptors";
+import   "ee86e79fc06f31cc2dd9bd8e478ce424:../internals/an-object";
+import   "ee86e79fc06f31cc2dd9bd8e478ce424:../internals/object-get-own-property-descriptor";
+// `Reflect.getOwnPropertyDescriptor` method
+// https://tc39.es/ecma262/#sec-reflect.getownpropertydescriptor
+$ee86e79fc06f31cc2dd9bd8e478ce424$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true,
+    sham: !$ee86e79fc06f31cc2dd9bd8e478ce424$import$9e95520c426f46b4
+}, {
+    getOwnPropertyDescriptor: function getOwnPropertyDescriptor(target, propertyKey) {
+        return $ee86e79fc06f31cc2dd9bd8e478ce424$import$671bedbe12b63e7d$ffb27d6bd8d1eb33($ee86e79fc06f31cc2dd9bd8e478ce424$import$cad8ba314ee735d6(target), propertyKey);
+    }
+});

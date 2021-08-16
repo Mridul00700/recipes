@@ -1,0 +1,18 @@
+var $364a13ee9c4720c478df81a13110f970$export$de93202062c2216d;
+var $364a13ee9c4720c478df81a13110f970$export$f1f96ea44d660c47;
+import   "364a13ee9c4720c478df81a13110f970:../internals/fails";
+// babel-minify transpiles RegExp('a', 'y') -> /a/y and it causes SyntaxError,
+var $364a13ee9c4720c478df81a13110f970$var$RE = function(s, f) {
+    return RegExp(s, f);
+};
+$364a13ee9c4720c478df81a13110f970$export$f1f96ea44d660c47 = $364a13ee9c4720c478df81a13110f970$import$9936d02511e757dc(function() {
+    var re = $364a13ee9c4720c478df81a13110f970$var$RE('a', 'y');
+    re.lastIndex = 2;
+    return re.exec('abcd') != null;
+});
+$364a13ee9c4720c478df81a13110f970$export$de93202062c2216d = $364a13ee9c4720c478df81a13110f970$import$9936d02511e757dc(function() {
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=773687
+    var re = $364a13ee9c4720c478df81a13110f970$var$RE('^r', 'gy');
+    re.lastIndex = 2;
+    return re.exec('str') != null;
+});

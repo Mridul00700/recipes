@@ -1,0 +1,12 @@
+import   "87466145a4c3f52ef1ed977d33073058:../internals/export";
+import   "87466145a4c3f52ef1ed977d33073058:../internals/number-parse-int";
+// `Number.parseInt` method
+// https://tc39.es/ecma262/#sec-number.parseint
+// eslint-disable-next-line es/no-number-parseint -- required for testing
+$87466145a4c3f52ef1ed977d33073058$import$1bb3f1a3ac631152({
+    target: 'Number',
+    stat: true,
+    forced: Number.parseInt != $87466145a4c3f52ef1ed977d33073058$import$cd781d3c4f31eed8
+}, {
+    parseInt: $87466145a4c3f52ef1ed977d33073058$import$cd781d3c4f31eed8
+});

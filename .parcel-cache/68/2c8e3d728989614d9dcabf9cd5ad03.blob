@@ -1,0 +1,79 @@
+'use strict';
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/descriptors";
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/global";
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/is-forced";
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/redefine";
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/has";
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/classof-raw";
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/inherit-if-required";
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/to-primitive";
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/fails";
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/object-create";
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/object-get-own-property-names";
+var $8ca241c8546f2d0ed18db2fa5a7af28d$require$getOwnPropertyNames = $8ca241c8546f2d0ed18db2fa5a7af28d$import$533e989815e07ef4$ffb27d6bd8d1eb33;
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/object-get-own-property-descriptor";
+var $8ca241c8546f2d0ed18db2fa5a7af28d$require$getOwnPropertyDescriptor = $8ca241c8546f2d0ed18db2fa5a7af28d$import$671bedbe12b63e7d$ffb27d6bd8d1eb33;
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/object-define-property";
+var $8ca241c8546f2d0ed18db2fa5a7af28d$require$defineProperty = $8ca241c8546f2d0ed18db2fa5a7af28d$import$4276e2046cfaee3b$ffb27d6bd8d1eb33;
+import   "8ca241c8546f2d0ed18db2fa5a7af28d:../internals/string-trim";
+var $8ca241c8546f2d0ed18db2fa5a7af28d$require$trim = $8ca241c8546f2d0ed18db2fa5a7af28d$import$7522b5f71d8f3b2$c7aa272acca91797;
+var $8ca241c8546f2d0ed18db2fa5a7af28d$var$NUMBER = 'Number';
+var $8ca241c8546f2d0ed18db2fa5a7af28d$var$NativeNumber = $8ca241c8546f2d0ed18db2fa5a7af28d$import$da678c04728da253[$8ca241c8546f2d0ed18db2fa5a7af28d$var$NUMBER];
+var $8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberPrototype = $8ca241c8546f2d0ed18db2fa5a7af28d$var$NativeNumber.prototype;
+// Opera ~12 has broken Object#toString
+var $8ca241c8546f2d0ed18db2fa5a7af28d$var$BROKEN_CLASSOF = $8ca241c8546f2d0ed18db2fa5a7af28d$import$7285d07a808c4129($8ca241c8546f2d0ed18db2fa5a7af28d$import$d8db146559ed3979($8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberPrototype)) == $8ca241c8546f2d0ed18db2fa5a7af28d$var$NUMBER;
+// `ToNumber` abstract operation
+// https://tc39.es/ecma262/#sec-tonumber
+var $8ca241c8546f2d0ed18db2fa5a7af28d$var$toNumber = function(argument) {
+    var it = $8ca241c8546f2d0ed18db2fa5a7af28d$import$c0dc3853fdc9c45f(argument, false);
+    var first, third, radix, maxCode, digits, length, index, code;
+    if (typeof it == 'string' && it.length > 2) {
+        it = $8ca241c8546f2d0ed18db2fa5a7af28d$require$trim(it);
+        first = it.charCodeAt(0);
+        if (first === 43 || first === 45) {
+            third = it.charCodeAt(2);
+            if (third === 88 || third === 120) return NaN; // Number('+0x1') should be NaN, old V8 fix
+        } else if (first === 48) {
+            switch(it.charCodeAt(1)){
+                case 66:
+                case 98:
+                    radix = 2;
+                    maxCode = 49;
+                    break; // fast equal of /^0b[01]+$/i
+                case 79:
+                case 111:
+                    radix = 8;
+                    maxCode = 55;
+                    break; // fast equal of /^0o[0-7]+$/i
+                default:
+                    return +it;
+            }
+            digits = it.slice(2);
+            length = digits.length;
+            for(index = 0; index < length; index++){
+                code = digits.charCodeAt(index);
+                // parseInt parses a string to a first unavailable symbol
+                // but ToNumber should return NaN if a string contains unavailable symbols
+                if (code < 48 || code > maxCode) return NaN;
+            }
+            return parseInt(digits, radix);
+        }
+    }
+    return +it;
+};
+// `Number` constructor
+// https://tc39.es/ecma262/#sec-number-constructor
+if ($8ca241c8546f2d0ed18db2fa5a7af28d$import$6d4a6b2681f6fa01($8ca241c8546f2d0ed18db2fa5a7af28d$var$NUMBER, !$8ca241c8546f2d0ed18db2fa5a7af28d$var$NativeNumber(' 0o1') || !$8ca241c8546f2d0ed18db2fa5a7af28d$var$NativeNumber('0b1') || $8ca241c8546f2d0ed18db2fa5a7af28d$var$NativeNumber('+0x1'))) {
+    var $8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberWrapper = function Number1(value) {
+        var it = arguments.length < 1 ? 0 : value;
+        var dummy = this;
+        return dummy instanceof $8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberWrapper && ($8ca241c8546f2d0ed18db2fa5a7af28d$var$BROKEN_CLASSOF ? $8ca241c8546f2d0ed18db2fa5a7af28d$import$9936d02511e757dc(function() {
+            $8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberPrototype.valueOf.call(dummy);
+        }) : $8ca241c8546f2d0ed18db2fa5a7af28d$import$7285d07a808c4129(dummy) != $8ca241c8546f2d0ed18db2fa5a7af28d$var$NUMBER) ? $8ca241c8546f2d0ed18db2fa5a7af28d$import$4573551afb25194(new $8ca241c8546f2d0ed18db2fa5a7af28d$var$NativeNumber($8ca241c8546f2d0ed18db2fa5a7af28d$var$toNumber(it)), dummy, $8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberWrapper) : $8ca241c8546f2d0ed18db2fa5a7af28d$var$toNumber(it);
+    };
+    for(var $8ca241c8546f2d0ed18db2fa5a7af28d$var$keys = $8ca241c8546f2d0ed18db2fa5a7af28d$import$9e95520c426f46b4 ? $8ca241c8546f2d0ed18db2fa5a7af28d$require$getOwnPropertyNames($8ca241c8546f2d0ed18db2fa5a7af28d$var$NativeNumber) : // ES3:
+    "MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,EPSILON,isFinite,isInteger,isNaN,isSafeInteger,MAX_SAFE_INTEGER,MIN_SAFE_INTEGER,parseFloat,parseInt,isInteger,fromString,range".split(','), $8ca241c8546f2d0ed18db2fa5a7af28d$var$j = 0, $8ca241c8546f2d0ed18db2fa5a7af28d$var$key; $8ca241c8546f2d0ed18db2fa5a7af28d$var$keys.length > $8ca241c8546f2d0ed18db2fa5a7af28d$var$j; $8ca241c8546f2d0ed18db2fa5a7af28d$var$j++)if ($8ca241c8546f2d0ed18db2fa5a7af28d$import$7e2f6fc726b1debe($8ca241c8546f2d0ed18db2fa5a7af28d$var$NativeNumber, $8ca241c8546f2d0ed18db2fa5a7af28d$var$key = $8ca241c8546f2d0ed18db2fa5a7af28d$var$keys[$8ca241c8546f2d0ed18db2fa5a7af28d$var$j]) && !$8ca241c8546f2d0ed18db2fa5a7af28d$import$7e2f6fc726b1debe($8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberWrapper, $8ca241c8546f2d0ed18db2fa5a7af28d$var$key)) $8ca241c8546f2d0ed18db2fa5a7af28d$require$defineProperty($8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberWrapper, $8ca241c8546f2d0ed18db2fa5a7af28d$var$key, $8ca241c8546f2d0ed18db2fa5a7af28d$require$getOwnPropertyDescriptor($8ca241c8546f2d0ed18db2fa5a7af28d$var$NativeNumber, $8ca241c8546f2d0ed18db2fa5a7af28d$var$key));
+    $8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberWrapper.prototype = $8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberPrototype;
+    $8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberPrototype.constructor = $8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberWrapper;
+    $8ca241c8546f2d0ed18db2fa5a7af28d$import$715a1a2c44d923e3($8ca241c8546f2d0ed18db2fa5a7af28d$import$da678c04728da253, $8ca241c8546f2d0ed18db2fa5a7af28d$var$NUMBER, $8ca241c8546f2d0ed18db2fa5a7af28d$var$NumberWrapper);
+}

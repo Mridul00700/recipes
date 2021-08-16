@@ -1,0 +1,26 @@
+'use strict';
+import   "1c55cbb3a82497788e3dd54083e37714:../internals/a-function";
+import   "1c55cbb3a82497788e3dd54083e37714:../internals/is-object";
+var $1c55cbb3a82497788e3dd54083e37714$var$slice = [].slice;
+var $1c55cbb3a82497788e3dd54083e37714$var$factories = {
+};
+var $1c55cbb3a82497788e3dd54083e37714$var$construct = function(C, argsLength, args) {
+    if (!(argsLength in $1c55cbb3a82497788e3dd54083e37714$var$factories)) {
+        for(var list = [], i = 0; i < argsLength; i++)list[i] = 'a[' + i + ']';
+        // eslint-disable-next-line no-new-func -- we have no proper alternatives, IE8- only
+        $1c55cbb3a82497788e3dd54083e37714$var$factories[argsLength] = Function('C,a', 'return new C(' + list.join(',') + ')');
+    }
+    return $1c55cbb3a82497788e3dd54083e37714$var$factories[argsLength](C, args);
+};
+// `Function.prototype.bind` method implementation
+// https://tc39.es/ecma262/#sec-function.prototype.bind
+$1c55cbb3a82497788e3dd54083e37714$exports = Function.bind || function bind(that/* , ...args */ ) {
+    var fn = $1c55cbb3a82497788e3dd54083e37714$import$feed022c18f6196b(this);
+    var partArgs = $1c55cbb3a82497788e3dd54083e37714$var$slice.call(arguments, 1);
+    var boundFunction = function bound() {
+        var args = partArgs.concat($1c55cbb3a82497788e3dd54083e37714$var$slice.call(arguments));
+        return this instanceof boundFunction ? $1c55cbb3a82497788e3dd54083e37714$var$construct(fn, args.length, args) : fn.apply(that, args);
+    };
+    if ($1c55cbb3a82497788e3dd54083e37714$import$9294ccec169e68b9(fn.prototype)) boundFunction.prototype = fn.prototype;
+    return boundFunction;
+};

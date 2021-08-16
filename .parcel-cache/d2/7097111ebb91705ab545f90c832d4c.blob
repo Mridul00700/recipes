@@ -1,0 +1,20 @@
+'use strict';
+import   "f4d3a4ea71c4ee7c7e235b16efad921c:../internals/array-buffer-view-core";
+var $f4d3a4ea71c4ee7c7e235b16efad921c$var$aTypedArray = $f4d3a4ea71c4ee7c7e235b16efad921c$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $f4d3a4ea71c4ee7c7e235b16efad921c$var$exportTypedArrayMethod = $f4d3a4ea71c4ee7c7e235b16efad921c$import$646a64c4a95eead$499fcf5cda66e13c;
+var $f4d3a4ea71c4ee7c7e235b16efad921c$var$floor = Math.floor;
+// `%TypedArray%.prototype.reverse` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.reverse
+$f4d3a4ea71c4ee7c7e235b16efad921c$var$exportTypedArrayMethod('reverse', function reverse() {
+    var that = this;
+    var length = $f4d3a4ea71c4ee7c7e235b16efad921c$var$aTypedArray(that).length;
+    var middle = $f4d3a4ea71c4ee7c7e235b16efad921c$var$floor(length / 2);
+    var index = 0;
+    var value;
+    while(index < middle){
+        value = that[index];
+        that[index++] = that[--length];
+        that[length] = value;
+    }
+    return that;
+});

@@ -1,0 +1,10 @@
+'use strict';
+import   "9932df88623c28e717050f04e65bd91b:../internals/collection";
+import   "9932df88623c28e717050f04e65bd91b:../internals/collection-strong";
+// `Set` constructor
+// https://tc39.es/ecma262/#sec-set-objects
+$9932df88623c28e717050f04e65bd91b$exports = $9932df88623c28e717050f04e65bd91b$import$c761240822dff030('Set', function(init) {
+    return function Set1() {
+        return init(this, arguments.length ? arguments[0] : undefined);
+    };
+}, $9932df88623c28e717050f04e65bd91b$import$35c00ff66ea9a031);

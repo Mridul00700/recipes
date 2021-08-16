@@ -1,0 +1,8 @@
+import   "ac682efd3664d9b55f52bb0af8626206:../internals/global";
+var $ac682efd3664d9b55f52bb0af8626206$var$globalIsFinite = $ac682efd3664d9b55f52bb0af8626206$import$da678c04728da253$1799c1035f1d6ae5;
+// `Number.isFinite` method
+// https://tc39.es/ecma262/#sec-number.isfinite
+// eslint-disable-next-line es/no-number-isfinite -- safe
+$ac682efd3664d9b55f52bb0af8626206$exports = Number.isFinite || function isFinite(it) {
+    return typeof it == 'number' && $ac682efd3664d9b55f52bb0af8626206$var$globalIsFinite(it);
+};

@@ -1,0 +1,10 @@
+'use strict';
+import   "3ee11b6f29110e808539c29d924f6455:../internals/collection";
+import   "3ee11b6f29110e808539c29d924f6455:../internals/collection-weak";
+// `WeakSet` constructor
+// https://tc39.es/ecma262/#sec-weakset-constructor
+$3ee11b6f29110e808539c29d924f6455$import$c761240822dff030('WeakSet', function(init) {
+    return function WeakSet1() {
+        return init(this, arguments.length ? arguments[0] : undefined);
+    };
+}, $3ee11b6f29110e808539c29d924f6455$import$5b47345479f268d1);

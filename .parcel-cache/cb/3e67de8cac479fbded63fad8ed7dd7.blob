@@ -1,0 +1,9 @@
+import   "8fe3e127f6b6119e7608a8184592cbe1:../internals/fails";
+// check the existence of a method, lowercase
+// of a tag and escaping quotes in arguments
+$8fe3e127f6b6119e7608a8184592cbe1$exports = function(METHOD_NAME) {
+    return $8fe3e127f6b6119e7608a8184592cbe1$import$9936d02511e757dc(function() {
+        var test = ''[METHOD_NAME]('"');
+        return test !== test.toLowerCase() || test.split('"').length > 3;
+    });
+};

@@ -1,0 +1,27 @@
+'use strict';
+import   "0d827be411dd6828f20b5e911e3cecc6:../internals/export";
+import   "0d827be411dd6828f20b5e911e3cecc6:../internals/fails";
+import   "0d827be411dd6828f20b5e911e3cecc6:../internals/create-property";
+var $0d827be411dd6828f20b5e911e3cecc6$var$ISNT_GENERIC = $0d827be411dd6828f20b5e911e3cecc6$import$9936d02511e757dc(function() {
+    function F() {
+    }
+    // eslint-disable-next-line es/no-array-of -- required for testing
+    return !(Array.of.call(F) instanceof F);
+});
+// `Array.of` method
+// https://tc39.es/ecma262/#sec-array.of
+// WebKit Array.of isn't generic
+$0d827be411dd6828f20b5e911e3cecc6$import$1bb3f1a3ac631152({
+    target: 'Array',
+    stat: true,
+    forced: $0d827be411dd6828f20b5e911e3cecc6$var$ISNT_GENERIC
+}, {
+    of: function of() {
+        var index = 0;
+        var argumentsLength = arguments.length;
+        var result = new (typeof this == 'function' ? this : Array)(argumentsLength);
+        while(argumentsLength > index)$0d827be411dd6828f20b5e911e3cecc6$import$22a67bab19fa66bf(result, index, arguments[index++]);
+        result.length = argumentsLength;
+        return result;
+    }
+});

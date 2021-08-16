@@ -1,0 +1,47 @@
+'use strict';
+import   "a66b63e261fe1b51028680e7d5c79ab4:../internals/export";
+import   "a66b63e261fe1b51028680e7d5c79ab4:../internals/a-function";
+import   "a66b63e261fe1b51028680e7d5c79ab4:../internals/get-built-in";
+import   "a66b63e261fe1b51028680e7d5c79ab4:../internals/new-promise-capability";
+import   "a66b63e261fe1b51028680e7d5c79ab4:../internals/perform";
+import   "a66b63e261fe1b51028680e7d5c79ab4:../internals/iterate";
+var $a66b63e261fe1b51028680e7d5c79ab4$var$PROMISE_ANY_ERROR = 'No one promise resolved';
+// `Promise.any` method
+// https://tc39.es/ecma262/#sec-promise.any
+$a66b63e261fe1b51028680e7d5c79ab4$import$1bb3f1a3ac631152({
+    target: 'Promise',
+    stat: true
+}, {
+    any: function any(iterable) {
+        var C = this;
+        var capability = $a66b63e261fe1b51028680e7d5c79ab4$import$88cdf320d2dc9c28$ffb27d6bd8d1eb33(C);
+        var resolve = capability.resolve;
+        var reject = capability.reject;
+        var result = $a66b63e261fe1b51028680e7d5c79ab4$import$e9a6624ae67eae60(function() {
+            var promiseResolve = $a66b63e261fe1b51028680e7d5c79ab4$import$feed022c18f6196b(C.resolve);
+            var errors = [];
+            var counter = 0;
+            var remaining = 1;
+            var alreadyResolved = false;
+            $a66b63e261fe1b51028680e7d5c79ab4$import$1f57ebca7b213dbf(iterable, function(promise) {
+                var index = counter++;
+                var alreadyRejected = false;
+                errors.push(undefined);
+                remaining++;
+                promiseResolve.call(C, promise).then(function(value) {
+                    if (alreadyRejected || alreadyResolved) return;
+                    alreadyResolved = true;
+                    resolve(value);
+                }, function(error) {
+                    if (alreadyRejected || alreadyResolved) return;
+                    alreadyRejected = true;
+                    errors[index] = error;
+                    (--remaining) || reject(new ($a66b63e261fe1b51028680e7d5c79ab4$import$acc15958b3da080('AggregateError'))(errors, $a66b63e261fe1b51028680e7d5c79ab4$var$PROMISE_ANY_ERROR));
+                });
+            });
+            (--remaining) || reject(new ($a66b63e261fe1b51028680e7d5c79ab4$import$acc15958b3da080('AggregateError'))(errors, $a66b63e261fe1b51028680e7d5c79ab4$var$PROMISE_ANY_ERROR));
+        });
+        if (result.error) reject(result.value);
+        return capability.promise;
+    }
+});

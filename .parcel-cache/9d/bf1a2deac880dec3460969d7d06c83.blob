@@ -1,0 +1,4 @@
+import   "f786ea6952bd4c8d00da1768b5a37714:../internals/define-well-known-symbol";
+// `Symbol.match` well-known symbol
+// https://tc39.es/ecma262/#sec-symbol.match
+$f786ea6952bd4c8d00da1768b5a37714$import$bb307b9a34058dc8('match');

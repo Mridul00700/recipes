@@ -1,0 +1,38 @@
+import   "4cabb22d3686aced1b334e40e87f46d6:./View";
+class $4cabb22d3686aced1b334e40e87f46d6$var$AddRecipeView extends $4cabb22d3686aced1b334e40e87f46d6$import$49e877b42f6d2181$9099ad97b570f7c {
+    _parentElement = document.querySelector('.upload');
+    _window = document.querySelector('.add-recipe-window');
+    _overlay = document.querySelector('.overlay');
+    _btnOpen = document.querySelector('.nav__btn--add-recipe');
+    _btnClose = document.querySelector('.btn--close-modal');
+    _message = 'Recipe was successfully uploaded!';
+    constructor(){
+        super();
+        this._addHandlerShowWindow();
+        this._addHandlerCloseWindow();
+    }
+    _toggleWindow() {
+        this._overlay.classList.toggle('hidden');
+        this._window.classList.toggle('hidden');
+    }
+    _addHandlerShowWindow() {
+        this._btnOpen.addEventListener('click', this._toggleWindow.bind(this));
+    }
+    _addHandlerCloseWindow() {
+        this._btnClose.addEventListener('click', this._toggleWindow.bind(this));
+        this._overlay.addEventListener('click', this._toggleWindow.bind(this));
+    }
+    addHandlerSubmit(handler) {
+        this._parentElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const dataArr = [
+                ...new FormData(this)
+            ];
+            const data = Object.fromEntries(dataArr);
+            handler(data);
+        });
+    }
+    _generateMarkup() {
+    }
+}
+var $4cabb22d3686aced1b334e40e87f46d6$export$9099ad97b570f7c = new $4cabb22d3686aced1b334e40e87f46d6$var$AddRecipeView();

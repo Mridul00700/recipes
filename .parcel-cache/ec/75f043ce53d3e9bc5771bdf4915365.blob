@@ -1,0 +1,10 @@
+import   "0ba460c3a162a9215d62e85cfe10e3aa:../internals/is-object";
+import   "0ba460c3a162a9215d62e85cfe10e3aa:../internals/object-set-prototype-of";
+// makes subclassing work correct for wrapped built-ins
+$0ba460c3a162a9215d62e85cfe10e3aa$exports = function($this, dummy, Wrapper) {
+    var NewTarget, NewTargetPrototype;
+    if (// it can work only with native `setPrototypeOf`
+    $0ba460c3a162a9215d62e85cfe10e3aa$import$74d6517d4e0bb391 && // we haven't completely correct pre-ES6 way for getting `new.target`, so use this
+    typeof (NewTarget = dummy.constructor) == 'function' && NewTarget !== Wrapper && $0ba460c3a162a9215d62e85cfe10e3aa$import$9294ccec169e68b9(NewTargetPrototype = NewTarget.prototype) && NewTargetPrototype !== Wrapper.prototype) $0ba460c3a162a9215d62e85cfe10e3aa$import$74d6517d4e0bb391($this, NewTargetPrototype);
+    return $this;
+};

@@ -1,0 +1,4 @@
+import   "8e0002ddc12c0af9b53fa8e3db16a981:../internals/define-well-known-symbol";
+// `Symbol.isConcatSpreadable` well-known symbol
+// https://tc39.es/ecma262/#sec-symbol.isconcatspreadable
+$8e0002ddc12c0af9b53fa8e3db16a981$import$bb307b9a34058dc8('isConcatSpreadable');

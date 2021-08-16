@@ -1,0 +1,18 @@
+/* eslint-disable es/no-object-getownpropertynames -- safe */ var $df29170d3ad8710512b04a0647c85ed3$export$ffb27d6bd8d1eb33;
+import   "df29170d3ad8710512b04a0647c85ed3:../internals/to-indexed-object";
+import   "df29170d3ad8710512b04a0647c85ed3:../internals/object-get-own-property-names";
+var $df29170d3ad8710512b04a0647c85ed3$require$$getOwnPropertyNames = $df29170d3ad8710512b04a0647c85ed3$import$533e989815e07ef4$ffb27d6bd8d1eb33;
+var $df29170d3ad8710512b04a0647c85ed3$var$toString = {
+}.toString;
+var $df29170d3ad8710512b04a0647c85ed3$var$windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames ? Object.getOwnPropertyNames(window) : [];
+var $df29170d3ad8710512b04a0647c85ed3$var$getWindowNames = function(it) {
+    try {
+        return $df29170d3ad8710512b04a0647c85ed3$require$$getOwnPropertyNames(it);
+    } catch (error) {
+        return $df29170d3ad8710512b04a0647c85ed3$var$windowNames.slice();
+    }
+};
+// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
+$df29170d3ad8710512b04a0647c85ed3$export$ffb27d6bd8d1eb33 = function getOwnPropertyNames(it) {
+    return $df29170d3ad8710512b04a0647c85ed3$var$windowNames && $df29170d3ad8710512b04a0647c85ed3$var$toString.call(it) == '[object Window]' ? $df29170d3ad8710512b04a0647c85ed3$var$getWindowNames(it) : $df29170d3ad8710512b04a0647c85ed3$require$$getOwnPropertyNames($df29170d3ad8710512b04a0647c85ed3$import$73e80bdb170d55b7(it));
+};

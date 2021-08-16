@@ -1,0 +1,20 @@
+import   "4e771f0a88564f974f9987872729897c:../internals/fails";
+import   "4e771f0a88564f974f9987872729897c:../internals/well-known-symbol";
+import   "4e771f0a88564f974f9987872729897c:../internals/engine-v8-version";
+var $4e771f0a88564f974f9987872729897c$var$SPECIES = $4e771f0a88564f974f9987872729897c$import$88242bc6a9673a44('species');
+$4e771f0a88564f974f9987872729897c$exports = function(METHOD_NAME) {
+    // We can't use this feature detection in V8 since it causes
+    // deoptimization and serious performance degradation
+    // https://github.com/zloirock/core-js/issues/677
+    return $4e771f0a88564f974f9987872729897c$import$aa08777f3c690dd7 >= 51 || !$4e771f0a88564f974f9987872729897c$import$9936d02511e757dc(function() {
+        var array = [];
+        var constructor = array.constructor = {
+        };
+        constructor[$4e771f0a88564f974f9987872729897c$var$SPECIES] = function() {
+            return {
+                foo: 1
+            };
+        };
+        return array[METHOD_NAME](Boolean).foo !== 1;
+    });
+};

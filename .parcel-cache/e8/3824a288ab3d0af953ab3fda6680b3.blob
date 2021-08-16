@@ -1,0 +1,13 @@
+'use strict';
+import   "7ed94f16ab04735c62cb18f64b49c53d:../internals/to-integer";
+import   "7ed94f16ab04735c62cb18f64b49c53d:../internals/require-object-coercible";
+// `String.prototype.repeat` method implementation
+// https://tc39.es/ecma262/#sec-string.prototype.repeat
+$7ed94f16ab04735c62cb18f64b49c53d$exports = function repeat(count) {
+    var str = String($7ed94f16ab04735c62cb18f64b49c53d$import$cb96119f17424999(this));
+    var result = '';
+    var n = $7ed94f16ab04735c62cb18f64b49c53d$import$3760fb9e29f29d49(count);
+    if (n < 0 || n == Infinity) throw RangeError('Wrong number of repetitions');
+    for(; n > 0; n >>>= 1, str += str)if (n & 1) result += str;
+    return result;
+};

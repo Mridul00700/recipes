@@ -1,0 +1,13 @@
+'use strict';
+import   "9b31a48a5f1227b9044383d344cc69ce:../internals/array-buffer-view-core";
+import   "9b31a48a5f1227b9044383d344cc69ce:../internals/array-iteration";
+var $9b31a48a5f1227b9044383d344cc69ce$require$$filter = $9b31a48a5f1227b9044383d344cc69ce$import$9cfdd2c29910a22b$c40dadbd69639a45;
+import   "9b31a48a5f1227b9044383d344cc69ce:../internals/typed-array-from-species-and-list";
+var $9b31a48a5f1227b9044383d344cc69ce$var$aTypedArray = $9b31a48a5f1227b9044383d344cc69ce$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $9b31a48a5f1227b9044383d344cc69ce$var$exportTypedArrayMethod = $9b31a48a5f1227b9044383d344cc69ce$import$646a64c4a95eead$499fcf5cda66e13c;
+// `%TypedArray%.prototype.filter` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.filter
+$9b31a48a5f1227b9044383d344cc69ce$var$exportTypedArrayMethod('filter', function filter(callbackfn/* , thisArg */ ) {
+    var list = $9b31a48a5f1227b9044383d344cc69ce$require$$filter($9b31a48a5f1227b9044383d344cc69ce$var$aTypedArray(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    return $9b31a48a5f1227b9044383d344cc69ce$import$345bbf8a7ab20262(this, list);
+});

@@ -1,0 +1,12 @@
+import   "84637d38051459e89f447d9c3e4e1724:../internals/export";
+import   "84637d38051459e89f447d9c3e4e1724:../internals/date-to-iso-string";
+// `Date.prototype.toISOString` method
+// https://tc39.es/ecma262/#sec-date.prototype.toisostring
+// PhantomJS / old WebKit has a broken implementations
+$84637d38051459e89f447d9c3e4e1724$import$1bb3f1a3ac631152({
+    target: 'Date',
+    proto: true,
+    forced: Date.prototype.toISOString !== $84637d38051459e89f447d9c3e4e1724$import$2c0968b94959cd84
+}, {
+    toISOString: $84637d38051459e89f447d9c3e4e1724$import$2c0968b94959cd84
+});

@@ -1,0 +1,13 @@
+import   "21d7f6b926ec974741682381b1953978:../internals/export";
+import   "21d7f6b926ec974741682381b1953978:../internals/is-integer";
+var $21d7f6b926ec974741682381b1953978$var$abs = Math.abs;
+// `Number.isSafeInteger` method
+// https://tc39.es/ecma262/#sec-number.issafeinteger
+$21d7f6b926ec974741682381b1953978$import$1bb3f1a3ac631152({
+    target: 'Number',
+    stat: true
+}, {
+    isSafeInteger: function isSafeInteger(number) {
+        return $21d7f6b926ec974741682381b1953978$import$ebacc5cc18859147(number) && $21d7f6b926ec974741682381b1953978$var$abs(number) <= 9007199254740991;
+    }
+});

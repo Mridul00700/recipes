@@ -1,0 +1,11 @@
+import   "b040bc5d8399e190410976744c2a61c4:../internals/array-buffer-view-core";
+var $b040bc5d8399e190410976744c2a61c4$require$aTypedArrayConstructor = $b040bc5d8399e190410976744c2a61c4$import$646a64c4a95eead$cf8c7afb1bc64521;
+import   "b040bc5d8399e190410976744c2a61c4:../internals/species-constructor";
+$b040bc5d8399e190410976744c2a61c4$exports = function(instance, list) {
+    var C = $b040bc5d8399e190410976744c2a61c4$import$d2cfec5023aa0b95(instance, instance.constructor);
+    var index = 0;
+    var length = list.length;
+    var result = new ($b040bc5d8399e190410976744c2a61c4$require$aTypedArrayConstructor(C))(length);
+    while(length > index)result[index] = list[index++];
+    return result;
+};

@@ -1,0 +1,17 @@
+import   "fcbfb6ce72c651771c5acf7ac727da0b:../internals/descriptors";
+import   "fcbfb6ce72c651771c5acf7ac727da0b:../internals/object-define-property";
+import   "fcbfb6ce72c651771c5acf7ac727da0b:../internals/regexp-flags";
+import   "fcbfb6ce72c651771c5acf7ac727da0b:../internals/fails";
+var $fcbfb6ce72c651771c5acf7ac727da0b$var$FORCED = $fcbfb6ce72c651771c5acf7ac727da0b$import$9e95520c426f46b4 && $fcbfb6ce72c651771c5acf7ac727da0b$import$9936d02511e757dc(function() {
+    // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+    return Object.getOwnPropertyDescriptor(RegExp.prototype, 'flags').get.call({
+        dotAll: true,
+        sticky: true
+    }) !== 'sy';
+});
+// `RegExp.prototype.flags` getter
+// https://tc39.es/ecma262/#sec-get-regexp.prototype.flags
+if ($fcbfb6ce72c651771c5acf7ac727da0b$var$FORCED) $fcbfb6ce72c651771c5acf7ac727da0b$import$4276e2046cfaee3b$ffb27d6bd8d1eb33(RegExp.prototype, 'flags', {
+    configurable: true,
+    get: $fcbfb6ce72c651771c5acf7ac727da0b$import$55a1ee6edebd1d69
+});

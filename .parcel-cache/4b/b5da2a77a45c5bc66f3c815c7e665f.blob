@@ -1,0 +1,13 @@
+import   "23243a86c633a7f7758a9392dc99b03a:../internals/export";
+import   "23243a86c633a7f7758a9392dc99b03a:../internals/array-copy-within";
+import   "23243a86c633a7f7758a9392dc99b03a:../internals/add-to-unscopables";
+// `Array.prototype.copyWithin` method
+// https://tc39.es/ecma262/#sec-array.prototype.copywithin
+$23243a86c633a7f7758a9392dc99b03a$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true
+}, {
+    copyWithin: $23243a86c633a7f7758a9392dc99b03a$import$ab811c79d7896fd9
+});
+// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+$23243a86c633a7f7758a9392dc99b03a$import$5d18bfe1c15e4f32('copyWithin');

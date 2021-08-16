@@ -1,0 +1,4 @@
+import   "750eb4f72a6c32a08489b5246347ca6d:../internals/define-well-known-symbol";
+// `Symbol.split` well-known symbol
+// https://tc39.es/ecma262/#sec-symbol.split
+$750eb4f72a6c32a08489b5246347ca6d$import$bb307b9a34058dc8('split');

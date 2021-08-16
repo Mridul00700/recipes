@@ -1,0 +1,4 @@
+import   "47f0666355562f2279c6a1f77a8bc6d8:../internals/set-species";
+// `Array[@@species]` getter
+// https://tc39.es/ecma262/#sec-get-array-@@species
+$47f0666355562f2279c6a1f77a8bc6d8$import$4ab311111214a6d('Array');

@@ -1,0 +1,16 @@
+'use strict';
+import   "edb6eea4b11a58e9488b9dba31bd6352:../internals/export";
+import   "edb6eea4b11a58e9488b9dba31bd6352:../internals/string-trim";
+var $edb6eea4b11a58e9488b9dba31bd6352$require$$trim = $edb6eea4b11a58e9488b9dba31bd6352$import$7522b5f71d8f3b2$c7aa272acca91797;
+import   "edb6eea4b11a58e9488b9dba31bd6352:../internals/string-trim-forced";
+// `String.prototype.trim` method
+// https://tc39.es/ecma262/#sec-string.prototype.trim
+$edb6eea4b11a58e9488b9dba31bd6352$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: $edb6eea4b11a58e9488b9dba31bd6352$import$e83ba1493fc2dce4('trim')
+}, {
+    trim: function trim() {
+        return $edb6eea4b11a58e9488b9dba31bd6352$require$$trim(this);
+    }
+});

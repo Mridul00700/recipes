@@ -1,0 +1,22 @@
+'use strict';
+import   "bb8c7f298aec3cabae41514d3c64aa27:../internals/export";
+import   "bb8c7f298aec3cabae41514d3c64aa27:../internals/descriptors";
+import   "bb8c7f298aec3cabae41514d3c64aa27:../internals/object-prototype-accessors-forced";
+import   "bb8c7f298aec3cabae41514d3c64aa27:../internals/to-object";
+import   "bb8c7f298aec3cabae41514d3c64aa27:../internals/a-function";
+import   "bb8c7f298aec3cabae41514d3c64aa27:../internals/object-define-property";
+// `Object.prototype.__defineGetter__` method
+// https://tc39.es/ecma262/#sec-object.prototype.__defineGetter__
+if ($bb8c7f298aec3cabae41514d3c64aa27$import$9e95520c426f46b4) $bb8c7f298aec3cabae41514d3c64aa27$import$1bb3f1a3ac631152({
+    target: 'Object',
+    proto: true,
+    forced: $bb8c7f298aec3cabae41514d3c64aa27$import$807b71e3cfa4c4cd
+}, {
+    __defineGetter__: function __defineGetter__(P, getter) {
+        $bb8c7f298aec3cabae41514d3c64aa27$import$4276e2046cfaee3b$ffb27d6bd8d1eb33($bb8c7f298aec3cabae41514d3c64aa27$import$565dce0892f29b05(this), P, {
+            get: $bb8c7f298aec3cabae41514d3c64aa27$import$feed022c18f6196b(getter),
+            enumerable: true,
+            configurable: true
+        });
+    }
+});

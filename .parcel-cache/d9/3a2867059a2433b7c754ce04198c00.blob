@@ -1,0 +1,46 @@
+'use strict';
+import   "53d47f128d012b0e168f2e8035c3f84a:../internals/export";
+import   "53d47f128d012b0e168f2e8035c3f84a:../internals/is-pure";
+import   "53d47f128d012b0e168f2e8035c3f84a:../internals/native-promise-constructor";
+import   "53d47f128d012b0e168f2e8035c3f84a:../internals/fails";
+import   "53d47f128d012b0e168f2e8035c3f84a:../internals/get-built-in";
+import   "53d47f128d012b0e168f2e8035c3f84a:../internals/species-constructor";
+import   "53d47f128d012b0e168f2e8035c3f84a:../internals/promise-resolve";
+import   "53d47f128d012b0e168f2e8035c3f84a:../internals/redefine";
+// Safari bug https://bugs.webkit.org/show_bug.cgi?id=200829
+var $53d47f128d012b0e168f2e8035c3f84a$var$NON_GENERIC = !!$53d47f128d012b0e168f2e8035c3f84a$import$e8e222866d5a7839 && $53d47f128d012b0e168f2e8035c3f84a$import$9936d02511e757dc(function() {
+    $53d47f128d012b0e168f2e8035c3f84a$import$e8e222866d5a7839.prototype['finally'].call({
+        then: function() {
+        }
+    }, function() {
+    });
+});
+// `Promise.prototype.finally` method
+// https://tc39.es/ecma262/#sec-promise.prototype.finally
+$53d47f128d012b0e168f2e8035c3f84a$import$1bb3f1a3ac631152({
+    target: 'Promise',
+    proto: true,
+    real: true,
+    forced: $53d47f128d012b0e168f2e8035c3f84a$var$NON_GENERIC
+}, {
+    'finally': function(onFinally) {
+        var C = $53d47f128d012b0e168f2e8035c3f84a$import$d2cfec5023aa0b95(this, $53d47f128d012b0e168f2e8035c3f84a$import$acc15958b3da080('Promise'));
+        var isFunction = typeof onFinally == 'function';
+        return this.then(isFunction ? function(x) {
+            return $53d47f128d012b0e168f2e8035c3f84a$import$95a2c248f38ad163(C, onFinally()).then(function() {
+                return x;
+            });
+        } : onFinally, isFunction ? function(e) {
+            return $53d47f128d012b0e168f2e8035c3f84a$import$95a2c248f38ad163(C, onFinally()).then(function() {
+                throw e;
+            });
+        } : onFinally);
+    }
+});
+// makes sure that native promise-based APIs `Promise#finally` properly works with patched `Promise#then`
+if (!$53d47f128d012b0e168f2e8035c3f84a$import$1bdf0350b9a8d46c && typeof $53d47f128d012b0e168f2e8035c3f84a$import$e8e222866d5a7839 == 'function') {
+    var $53d47f128d012b0e168f2e8035c3f84a$var$method = $53d47f128d012b0e168f2e8035c3f84a$import$acc15958b3da080('Promise').prototype['finally'];
+    if ($53d47f128d012b0e168f2e8035c3f84a$import$e8e222866d5a7839.prototype['finally'] !== $53d47f128d012b0e168f2e8035c3f84a$var$method) $53d47f128d012b0e168f2e8035c3f84a$import$715a1a2c44d923e3($53d47f128d012b0e168f2e8035c3f84a$import$e8e222866d5a7839.prototype, 'finally', $53d47f128d012b0e168f2e8035c3f84a$var$method, {
+        unsafe: true
+    });
+}

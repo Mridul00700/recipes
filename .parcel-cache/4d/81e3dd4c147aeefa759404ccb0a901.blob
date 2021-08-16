@@ -1,0 +1,19 @@
+import   "a6ee7c02f899c733f39f2bc3fd95e889:../internals/export";
+import   "a6ee7c02f899c733f39f2bc3fd95e889:../internals/fails";
+import   "a6ee7c02f899c733f39f2bc3fd95e889:../internals/is-object";
+// eslint-disable-next-line es/no-object-isextensible -- safe
+var $a6ee7c02f899c733f39f2bc3fd95e889$var$$isExtensible = Object.isExtensible;
+var $a6ee7c02f899c733f39f2bc3fd95e889$var$FAILS_ON_PRIMITIVES = $a6ee7c02f899c733f39f2bc3fd95e889$import$9936d02511e757dc(function() {
+    $a6ee7c02f899c733f39f2bc3fd95e889$var$$isExtensible(1);
+});
+// `Object.isExtensible` method
+// https://tc39.es/ecma262/#sec-object.isextensible
+$a6ee7c02f899c733f39f2bc3fd95e889$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true,
+    forced: $a6ee7c02f899c733f39f2bc3fd95e889$var$FAILS_ON_PRIMITIVES
+}, {
+    isExtensible: function isExtensible(it) {
+        return $a6ee7c02f899c733f39f2bc3fd95e889$import$9294ccec169e68b9(it) ? $a6ee7c02f899c733f39f2bc3fd95e889$var$$isExtensible ? $a6ee7c02f899c733f39f2bc3fd95e889$var$$isExtensible(it) : true : false;
+    }
+});

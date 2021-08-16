@@ -1,0 +1,15 @@
+'use strict';
+import   "2cb506b79f0248c5a494832de5ddd3fb:../internals/export";
+import   "2cb506b79f0248c5a494832de5ddd3fb:../internals/create-html";
+import   "2cb506b79f0248c5a494832de5ddd3fb:../internals/string-html-forced";
+// `String.prototype.italics` method
+// https://tc39.es/ecma262/#sec-string.prototype.italics
+$2cb506b79f0248c5a494832de5ddd3fb$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: $2cb506b79f0248c5a494832de5ddd3fb$import$fe56c9129589f6f('italics')
+}, {
+    italics: function italics() {
+        return $2cb506b79f0248c5a494832de5ddd3fb$import$754c0a633ad84ebd(this, 'i', '', '');
+    }
+});

@@ -1,0 +1,4 @@
+import   "60fe04cf0e2f27b9eb1d0f9b6fe201d0:../internals/define-well-known-symbol";
+// `Symbol.iterator` well-known symbol
+// https://tc39.es/ecma262/#sec-symbol.iterator
+$60fe04cf0e2f27b9eb1d0f9b6fe201d0$import$bb307b9a34058dc8('iterator');

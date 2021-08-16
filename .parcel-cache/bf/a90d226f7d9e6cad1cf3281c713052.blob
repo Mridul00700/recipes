@@ -1,0 +1,12 @@
+import   "0d0b1d2bda86e18e181005c1f31e3b51:../internals/path";
+import   "0d0b1d2bda86e18e181005c1f31e3b51:../internals/has";
+import   "0d0b1d2bda86e18e181005c1f31e3b51:../internals/well-known-symbol-wrapped";
+import   "0d0b1d2bda86e18e181005c1f31e3b51:../internals/object-define-property";
+var $0d0b1d2bda86e18e181005c1f31e3b51$require$defineProperty = $0d0b1d2bda86e18e181005c1f31e3b51$import$4276e2046cfaee3b$ffb27d6bd8d1eb33;
+$0d0b1d2bda86e18e181005c1f31e3b51$exports = function(NAME) {
+    var Symbol1 = $0d0b1d2bda86e18e181005c1f31e3b51$import$e5cc12b6eadfe20b$9e87a1b4d774f74 || ($0d0b1d2bda86e18e181005c1f31e3b51$import$e5cc12b6eadfe20b$9e87a1b4d774f74 = {
+    });
+    if (!$0d0b1d2bda86e18e181005c1f31e3b51$import$7e2f6fc726b1debe(Symbol1, NAME)) $0d0b1d2bda86e18e181005c1f31e3b51$require$defineProperty(Symbol1, NAME, {
+        value: $0d0b1d2bda86e18e181005c1f31e3b51$import$509ff83ed769da41$ffb27d6bd8d1eb33(NAME)
+    });
+};

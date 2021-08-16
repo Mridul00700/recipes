@@ -1,0 +1,68 @@
+'use strict';
+import   "5440d630d45b93cc70c70bb53f65fcf0:../internals/global";
+import   "5440d630d45b93cc70c70bb53f65fcf0:../internals/redefine-all";
+import   "5440d630d45b93cc70c70bb53f65fcf0:../internals/internal-metadata";
+import   "5440d630d45b93cc70c70bb53f65fcf0:../internals/collection";
+import   "5440d630d45b93cc70c70bb53f65fcf0:../internals/collection-weak";
+import   "5440d630d45b93cc70c70bb53f65fcf0:../internals/is-object";
+import   "5440d630d45b93cc70c70bb53f65fcf0:../internals/internal-state";
+var $5440d630d45b93cc70c70bb53f65fcf0$require$enforceIternalState = $5440d630d45b93cc70c70bb53f65fcf0$import$2c03d954288482bc$f2c0d7c4fb49feef;
+import   "5440d630d45b93cc70c70bb53f65fcf0:../internals/native-weak-map";
+var $5440d630d45b93cc70c70bb53f65fcf0$var$IS_IE11 = !$5440d630d45b93cc70c70bb53f65fcf0$import$da678c04728da253.ActiveXObject && 'ActiveXObject' in $5440d630d45b93cc70c70bb53f65fcf0$import$da678c04728da253;
+// eslint-disable-next-line es/no-object-isextensible -- safe
+var $5440d630d45b93cc70c70bb53f65fcf0$var$isExtensible = Object.isExtensible;
+var $5440d630d45b93cc70c70bb53f65fcf0$var$InternalWeakMap;
+var $5440d630d45b93cc70c70bb53f65fcf0$var$wrapper = function(init) {
+    return function WeakMap1() {
+        return init(this, arguments.length ? arguments[0] : undefined);
+    };
+};
+// `WeakMap` constructor
+// https://tc39.es/ecma262/#sec-weakmap-constructor
+var $5440d630d45b93cc70c70bb53f65fcf0$var$$WeakMap = $5440d630d45b93cc70c70bb53f65fcf0$exports = $5440d630d45b93cc70c70bb53f65fcf0$import$c761240822dff030('WeakMap', $5440d630d45b93cc70c70bb53f65fcf0$var$wrapper, $5440d630d45b93cc70c70bb53f65fcf0$import$5b47345479f268d1);
+// IE11 WeakMap frozen keys fix
+// We can't use feature detection because it crash some old IE builds
+// https://github.com/zloirock/core-js/issues/485
+if ($5440d630d45b93cc70c70bb53f65fcf0$import$146e560c20f365e6 && $5440d630d45b93cc70c70bb53f65fcf0$var$IS_IE11) {
+    $5440d630d45b93cc70c70bb53f65fcf0$var$InternalWeakMap = $5440d630d45b93cc70c70bb53f65fcf0$import$5b47345479f268d1.getConstructor($5440d630d45b93cc70c70bb53f65fcf0$var$wrapper, 'WeakMap', true);
+    $5440d630d45b93cc70c70bb53f65fcf0$import$30f182e50aaa5627$36f6a482f465fe82 = true;
+    var $5440d630d45b93cc70c70bb53f65fcf0$var$WeakMapPrototype = $5440d630d45b93cc70c70bb53f65fcf0$var$$WeakMap.prototype;
+    var $5440d630d45b93cc70c70bb53f65fcf0$var$nativeDelete = $5440d630d45b93cc70c70bb53f65fcf0$var$WeakMapPrototype['delete'];
+    var $5440d630d45b93cc70c70bb53f65fcf0$var$nativeHas = $5440d630d45b93cc70c70bb53f65fcf0$var$WeakMapPrototype.has;
+    var $5440d630d45b93cc70c70bb53f65fcf0$var$nativeGet = $5440d630d45b93cc70c70bb53f65fcf0$var$WeakMapPrototype.get;
+    var $5440d630d45b93cc70c70bb53f65fcf0$var$nativeSet = $5440d630d45b93cc70c70bb53f65fcf0$var$WeakMapPrototype.set;
+    $5440d630d45b93cc70c70bb53f65fcf0$import$ce46ad3e687b31c4($5440d630d45b93cc70c70bb53f65fcf0$var$WeakMapPrototype, {
+        'delete': function(key) {
+            if ($5440d630d45b93cc70c70bb53f65fcf0$import$9294ccec169e68b9(key) && !$5440d630d45b93cc70c70bb53f65fcf0$var$isExtensible(key)) {
+                var state = $5440d630d45b93cc70c70bb53f65fcf0$require$enforceIternalState(this);
+                if (!state.frozen) state.frozen = new $5440d630d45b93cc70c70bb53f65fcf0$var$InternalWeakMap();
+                return $5440d630d45b93cc70c70bb53f65fcf0$var$nativeDelete.call(this, key) || state.frozen['delete'](key);
+            }
+            return $5440d630d45b93cc70c70bb53f65fcf0$var$nativeDelete.call(this, key);
+        },
+        has: function has(key) {
+            if ($5440d630d45b93cc70c70bb53f65fcf0$import$9294ccec169e68b9(key) && !$5440d630d45b93cc70c70bb53f65fcf0$var$isExtensible(key)) {
+                var state = $5440d630d45b93cc70c70bb53f65fcf0$require$enforceIternalState(this);
+                if (!state.frozen) state.frozen = new $5440d630d45b93cc70c70bb53f65fcf0$var$InternalWeakMap();
+                return $5440d630d45b93cc70c70bb53f65fcf0$var$nativeHas.call(this, key) || state.frozen.has(key);
+            }
+            return $5440d630d45b93cc70c70bb53f65fcf0$var$nativeHas.call(this, key);
+        },
+        get: function get(key) {
+            if ($5440d630d45b93cc70c70bb53f65fcf0$import$9294ccec169e68b9(key) && !$5440d630d45b93cc70c70bb53f65fcf0$var$isExtensible(key)) {
+                var state = $5440d630d45b93cc70c70bb53f65fcf0$require$enforceIternalState(this);
+                if (!state.frozen) state.frozen = new $5440d630d45b93cc70c70bb53f65fcf0$var$InternalWeakMap();
+                return $5440d630d45b93cc70c70bb53f65fcf0$var$nativeHas.call(this, key) ? $5440d630d45b93cc70c70bb53f65fcf0$var$nativeGet.call(this, key) : state.frozen.get(key);
+            }
+            return $5440d630d45b93cc70c70bb53f65fcf0$var$nativeGet.call(this, key);
+        },
+        set: function set(key, value) {
+            if ($5440d630d45b93cc70c70bb53f65fcf0$import$9294ccec169e68b9(key) && !$5440d630d45b93cc70c70bb53f65fcf0$var$isExtensible(key)) {
+                var state = $5440d630d45b93cc70c70bb53f65fcf0$require$enforceIternalState(this);
+                if (!state.frozen) state.frozen = new $5440d630d45b93cc70c70bb53f65fcf0$var$InternalWeakMap();
+                $5440d630d45b93cc70c70bb53f65fcf0$var$nativeHas.call(this, key) ? $5440d630d45b93cc70c70bb53f65fcf0$var$nativeSet.call(this, key, value) : state.frozen.set(key, value);
+            } else $5440d630d45b93cc70c70bb53f65fcf0$var$nativeSet.call(this, key, value);
+            return this;
+        }
+    });
+}

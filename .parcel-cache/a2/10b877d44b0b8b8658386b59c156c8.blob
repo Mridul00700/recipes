@@ -1,0 +1,9 @@
+import   "cf612a6e1d4b4e1ae5100a0f756f3125:../internals/export";
+// `Number.EPSILON` constant
+// https://tc39.es/ecma262/#sec-number.epsilon
+$cf612a6e1d4b4e1ae5100a0f756f3125$import$1bb3f1a3ac631152({
+    target: 'Number',
+    stat: true
+}, {
+    EPSILON: Math.pow(2, -52)
+});

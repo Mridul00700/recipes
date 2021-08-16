@@ -1,0 +1,10 @@
+import   "73b9aef2cd69488b907f83bb5fda863f:./View";
+import   "73b9aef2cd69488b907f83bb5fda863f:url:../../img/icons.svg";
+class $73b9aef2cd69488b907f83bb5fda863f$var$PreviewView extends $73b9aef2cd69488b907f83bb5fda863f$import$49e877b42f6d2181$9099ad97b570f7c {
+    _parentElement = '';
+    _generateMarkup() {
+        const id = window.location.hash.slice(1);
+        return `\n      <li class="preview">\n        <a class="preview__link ${this._data.id === id ? 'preview__link--active' : ""}" href="#${this._data.id}">\n          <figure class="preview__fig">\n            <img src="${this._data.image}" alt="${this._data.title}"/>\n          </figure>\n          <div class="preview__data">\n            <h4 class="preview__title">${this._data.title}</h4>\n            <p class="preview__publisher">${this._data.publisher}</p>\n            <div class="preview__user-generated ${this._data.key ? '' : 'hidden'}">\n              <svg>\n                <use href="${$73b9aef2cd69488b907f83bb5fda863f$import$5e363e6f755f0684$9099ad97b570f7c}#icon-user"></use>\n              </svg>\n            </div>\n          </div>\n        </a>\n      </li>\n  `;
+    }
+}
+var $73b9aef2cd69488b907f83bb5fda863f$export$9099ad97b570f7c = new $73b9aef2cd69488b907f83bb5fda863f$var$PreviewView;

@@ -1,0 +1,40 @@
+'use strict';
+import   "aa4eb5b80418cb8d777f2ed6f8ad249c:../internals/fix-regexp-well-known-symbol-logic";
+import   "aa4eb5b80418cb8d777f2ed6f8ad249c:../internals/an-object";
+import   "aa4eb5b80418cb8d777f2ed6f8ad249c:../internals/to-length";
+import   "aa4eb5b80418cb8d777f2ed6f8ad249c:../internals/require-object-coercible";
+import   "aa4eb5b80418cb8d777f2ed6f8ad249c:../internals/advance-string-index";
+import   "aa4eb5b80418cb8d777f2ed6f8ad249c:../internals/regexp-exec-abstract";
+// @@match logic
+$aa4eb5b80418cb8d777f2ed6f8ad249c$import$729254973b5be1b6('match', function(MATCH, nativeMatch, maybeCallNative) {
+    return [
+        // `String.prototype.match` method
+        // https://tc39.es/ecma262/#sec-string.prototype.match
+        function match(regexp) {
+            var O = $aa4eb5b80418cb8d777f2ed6f8ad249c$import$cb96119f17424999(this);
+            var matcher = regexp == undefined ? undefined : regexp[MATCH];
+            return matcher !== undefined ? matcher.call(regexp, O) : new RegExp(regexp)[MATCH](String(O));
+        },
+        // `RegExp.prototype[@@match]` method
+        // https://tc39.es/ecma262/#sec-regexp.prototype-@@match
+        function(string) {
+            var res = maybeCallNative(nativeMatch, this, string);
+            if (res.done) return res.value;
+            var rx = $aa4eb5b80418cb8d777f2ed6f8ad249c$import$cad8ba314ee735d6(this);
+            var S = String(string);
+            if (!rx.global) return $aa4eb5b80418cb8d777f2ed6f8ad249c$import$e555634ae08e49a3(rx, S);
+            var fullUnicode = rx.unicode;
+            rx.lastIndex = 0;
+            var A = [];
+            var n = 0;
+            var result;
+            while((result = $aa4eb5b80418cb8d777f2ed6f8ad249c$import$e555634ae08e49a3(rx, S)) !== null){
+                var matchStr = String(result[0]);
+                A[n] = matchStr;
+                if (matchStr === '') rx.lastIndex = $aa4eb5b80418cb8d777f2ed6f8ad249c$import$a2c472764a5841(S, $aa4eb5b80418cb8d777f2ed6f8ad249c$import$4102f61a7d1ec5ae(rx.lastIndex), fullUnicode);
+                n++;
+            }
+            return n === 0 ? null : A;
+        }
+    ];
+});

@@ -1,0 +1,16 @@
+'use strict';
+import   "aad0c5349fc1354f9c46f57e44da14f3:../internals/export";
+import   "aad0c5349fc1354f9c46f57e44da14f3:../internals/string-pad";
+var $aad0c5349fc1354f9c46f57e44da14f3$require$$padEnd = $aad0c5349fc1354f9c46f57e44da14f3$import$f1355ceab65529ac$5efb45aedabbf4f3;
+import   "aad0c5349fc1354f9c46f57e44da14f3:../internals/string-pad-webkit-bug";
+// `String.prototype.padEnd` method
+// https://tc39.es/ecma262/#sec-string.prototype.padend
+$aad0c5349fc1354f9c46f57e44da14f3$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: $aad0c5349fc1354f9c46f57e44da14f3$import$d99d008edfb81936
+}, {
+    padEnd: function padEnd(maxLength/* , fillString = ' ' */ ) {
+        return $aad0c5349fc1354f9c46f57e44da14f3$require$$padEnd(this, maxLength, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});

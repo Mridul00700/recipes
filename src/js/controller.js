@@ -128,6 +128,10 @@ const controlAddRecipe = async (newRecipe) => {
   }
 }
 
+const newFeature = function () {
+  console.log("New Feature");
+}
+
 const init = () => {
   bookmarksView.addhandlerBookmark(controlBookmarks);
   recipeView.addHandlerRender(controlRecipe);

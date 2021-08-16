@@ -1,0 +1,36 @@
+import   "0c495d1ae053a2712602a9cdb0b41d6a:../internals/export";
+import   "0c495d1ae053a2712602a9cdb0b41d6a:../internals/descriptors";
+import   "0c495d1ae053a2712602a9cdb0b41d6a:../internals/an-object";
+import   "0c495d1ae053a2712602a9cdb0b41d6a:../internals/to-primitive";
+import   "0c495d1ae053a2712602a9cdb0b41d6a:../internals/object-define-property";
+import   "0c495d1ae053a2712602a9cdb0b41d6a:../internals/fails";
+// MS Edge has broken Reflect.defineProperty - throwing instead of returning false
+var $0c495d1ae053a2712602a9cdb0b41d6a$var$ERROR_INSTEAD_OF_FALSE = $0c495d1ae053a2712602a9cdb0b41d6a$import$9936d02511e757dc(function() {
+    // eslint-disable-next-line es/no-reflect -- required for testing
+    Reflect.defineProperty($0c495d1ae053a2712602a9cdb0b41d6a$import$4276e2046cfaee3b$ffb27d6bd8d1eb33({
+    }, 1, {
+        value: 1
+    }), 1, {
+        value: 2
+    });
+});
+// `Reflect.defineProperty` method
+// https://tc39.es/ecma262/#sec-reflect.defineproperty
+$0c495d1ae053a2712602a9cdb0b41d6a$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true,
+    forced: $0c495d1ae053a2712602a9cdb0b41d6a$var$ERROR_INSTEAD_OF_FALSE,
+    sham: !$0c495d1ae053a2712602a9cdb0b41d6a$import$9e95520c426f46b4
+}, {
+    defineProperty: function defineProperty(target, propertyKey, attributes) {
+        $0c495d1ae053a2712602a9cdb0b41d6a$import$cad8ba314ee735d6(target);
+        var key = $0c495d1ae053a2712602a9cdb0b41d6a$import$c0dc3853fdc9c45f(propertyKey, true);
+        $0c495d1ae053a2712602a9cdb0b41d6a$import$cad8ba314ee735d6(attributes);
+        try {
+            $0c495d1ae053a2712602a9cdb0b41d6a$import$4276e2046cfaee3b$ffb27d6bd8d1eb33(target, key, attributes);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+});

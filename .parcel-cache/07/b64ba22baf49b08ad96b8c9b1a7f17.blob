@@ -1,0 +1,17 @@
+'use strict';
+import   "f8cd89b1f0f5dc14e83cc626e312120b:../internals/is-pure";
+import   "f8cd89b1f0f5dc14e83cc626e312120b:../internals/global";
+import   "f8cd89b1f0f5dc14e83cc626e312120b:../internals/fails";
+import   "f8cd89b1f0f5dc14e83cc626e312120b:../internals/engine-webkit-version";
+// Forced replacement object prototype accessors methods
+$f8cd89b1f0f5dc14e83cc626e312120b$exports = $f8cd89b1f0f5dc14e83cc626e312120b$import$1bdf0350b9a8d46c || !$f8cd89b1f0f5dc14e83cc626e312120b$import$9936d02511e757dc(function() {
+    // This feature detection crashes old WebKit
+    // https://github.com/zloirock/core-js/issues/232
+    if ($f8cd89b1f0f5dc14e83cc626e312120b$import$b04d4b6e501858a8 && $f8cd89b1f0f5dc14e83cc626e312120b$import$b04d4b6e501858a8 < 535) return;
+    var key = Math.random();
+    // In FF throws only define methods
+    // eslint-disable-next-line no-undef, no-useless-call -- required for testing
+    __defineSetter__.call(null, key, function() {
+    });
+    delete $f8cd89b1f0f5dc14e83cc626e312120b$import$da678c04728da253[key];
+});

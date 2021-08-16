@@ -1,0 +1,4 @@
+import   "b0a9e27a79ba9b0b5890feacb8bdf042:../internals/define-well-known-symbol";
+// `Symbol.asyncIterator` well-known symbol
+// https://tc39.es/ecma262/#sec-symbol.asynciterator
+$b0a9e27a79ba9b0b5890feacb8bdf042$import$bb307b9a34058dc8('asyncIterator');

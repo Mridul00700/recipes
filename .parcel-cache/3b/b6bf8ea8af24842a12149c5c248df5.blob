@@ -1,0 +1,22 @@
+'use strict';
+import   "cec954f044be443da67b097c88e96b48:../internals/export";
+import   "cec954f044be443da67b097c88e96b48:../internals/flatten-into-array";
+import   "cec954f044be443da67b097c88e96b48:../internals/to-object";
+import   "cec954f044be443da67b097c88e96b48:../internals/to-length";
+import   "cec954f044be443da67b097c88e96b48:../internals/to-integer";
+import   "cec954f044be443da67b097c88e96b48:../internals/array-species-create";
+// `Array.prototype.flat` method
+// https://tc39.es/ecma262/#sec-array.prototype.flat
+$cec954f044be443da67b097c88e96b48$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true
+}, {
+    flat: function flat() {
+        var depthArg = arguments.length ? arguments[0] : undefined;
+        var O = $cec954f044be443da67b097c88e96b48$import$565dce0892f29b05(this);
+        var sourceLen = $cec954f044be443da67b097c88e96b48$import$4102f61a7d1ec5ae(O.length);
+        var A = $cec954f044be443da67b097c88e96b48$import$270ce3808f347882(O, 0);
+        A.length = $cec954f044be443da67b097c88e96b48$import$ff7c31eb11c14a73(A, O, O, sourceLen, 0, depthArg === undefined ? 1 : $cec954f044be443da67b097c88e96b48$import$3760fb9e29f29d49(depthArg));
+        return A;
+    }
+});

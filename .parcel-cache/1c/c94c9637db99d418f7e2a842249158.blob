@@ -1,0 +1,9 @@
+import   "699848d6b4e77e8fd7b0c0bdd0fe4bb4:../internals/export";
+import   "699848d6b4e77e8fd7b0c0bdd0fe4bb4:../internals/global";
+// `globalThis` object
+// https://tc39.es/ecma262/#sec-globalthis
+$699848d6b4e77e8fd7b0c0bdd0fe4bb4$import$1bb3f1a3ac631152({
+    global: true
+}, {
+    globalThis: $699848d6b4e77e8fd7b0c0bdd0fe4bb4$import$da678c04728da253
+});

@@ -1,0 +1,14 @@
+import   "8c0614e3c7439cca3082640f8224bb92:../internals/global";
+import   "8c0614e3c7439cca3082640f8224bb92:../internals/dom-iterables";
+import   "8c0614e3c7439cca3082640f8224bb92:../internals/array-for-each";
+import   "8c0614e3c7439cca3082640f8224bb92:../internals/create-non-enumerable-property";
+for(var $8c0614e3c7439cca3082640f8224bb92$var$COLLECTION_NAME in $8c0614e3c7439cca3082640f8224bb92$import$bd2ece5a1798933){
+    var $8c0614e3c7439cca3082640f8224bb92$var$Collection = $8c0614e3c7439cca3082640f8224bb92$import$da678c04728da253[$8c0614e3c7439cca3082640f8224bb92$var$COLLECTION_NAME];
+    var $8c0614e3c7439cca3082640f8224bb92$var$CollectionPrototype = $8c0614e3c7439cca3082640f8224bb92$var$Collection && $8c0614e3c7439cca3082640f8224bb92$var$Collection.prototype;
+    // some Chrome versions have non-configurable methods on DOMTokenList
+    if ($8c0614e3c7439cca3082640f8224bb92$var$CollectionPrototype && $8c0614e3c7439cca3082640f8224bb92$var$CollectionPrototype.forEach !== $8c0614e3c7439cca3082640f8224bb92$import$c88ff3a47228cc2d) try {
+        $8c0614e3c7439cca3082640f8224bb92$import$ea4d2ea16a516be3($8c0614e3c7439cca3082640f8224bb92$var$CollectionPrototype, 'forEach', $8c0614e3c7439cca3082640f8224bb92$import$c88ff3a47228cc2d);
+    } catch (error) {
+        $8c0614e3c7439cca3082640f8224bb92$var$CollectionPrototype.forEach = $8c0614e3c7439cca3082640f8224bb92$import$c88ff3a47228cc2d;
+    }
+}

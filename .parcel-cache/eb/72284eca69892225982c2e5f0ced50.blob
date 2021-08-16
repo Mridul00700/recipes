@@ -1,0 +1,17 @@
+'use strict';
+import   "d216d36321beead9a0659676ed63dfe9:../internals/export";
+import   "d216d36321beead9a0659676ed63dfe9:../internals/global";
+import   "d216d36321beead9a0659676ed63dfe9:../internals/array-buffer";
+import   "d216d36321beead9a0659676ed63dfe9:../internals/set-species";
+var $d216d36321beead9a0659676ed63dfe9$var$ARRAY_BUFFER = 'ArrayBuffer';
+var $d216d36321beead9a0659676ed63dfe9$var$ArrayBuffer = $d216d36321beead9a0659676ed63dfe9$import$8b7b52790355660d[$d216d36321beead9a0659676ed63dfe9$var$ARRAY_BUFFER];
+var $d216d36321beead9a0659676ed63dfe9$var$NativeArrayBuffer = $d216d36321beead9a0659676ed63dfe9$import$da678c04728da253[$d216d36321beead9a0659676ed63dfe9$var$ARRAY_BUFFER];
+// `ArrayBuffer` constructor
+// https://tc39.es/ecma262/#sec-arraybuffer-constructor
+$d216d36321beead9a0659676ed63dfe9$import$1bb3f1a3ac631152({
+    global: true,
+    forced: $d216d36321beead9a0659676ed63dfe9$var$NativeArrayBuffer !== $d216d36321beead9a0659676ed63dfe9$var$ArrayBuffer
+}, {
+    ArrayBuffer: $d216d36321beead9a0659676ed63dfe9$var$ArrayBuffer
+});
+$d216d36321beead9a0659676ed63dfe9$import$4ab311111214a6d($d216d36321beead9a0659676ed63dfe9$var$ARRAY_BUFFER);

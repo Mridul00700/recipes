@@ -1,0 +1,8 @@
+import   "b83168ddc1c8c0ecf3671d076def7196:../internals/typed-array-constructor";
+// `Int16Array` constructor
+// https://tc39.es/ecma262/#sec-typedarray-objects
+$b83168ddc1c8c0ecf3671d076def7196$import$ded6ac75bba33aa8('Int16', function(init) {
+    return function Int16Array1(data, byteOffset, length) {
+        return init(this, data, byteOffset, length);
+    };
+});

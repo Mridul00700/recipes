@@ -1,0 +1,9 @@
+import   "4f91e0512f38e93b188b89f9ef7f8163:../internals/export";
+// `Number.MIN_SAFE_INTEGER` constant
+// https://tc39.es/ecma262/#sec-number.min_safe_integer
+$4f91e0512f38e93b188b89f9ef7f8163$import$1bb3f1a3ac631152({
+    target: 'Number',
+    stat: true
+}, {
+    MIN_SAFE_INTEGER: -9007199254740991
+});

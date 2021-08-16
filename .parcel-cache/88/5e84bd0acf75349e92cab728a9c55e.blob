@@ -1,0 +1,25 @@
+'use strict';
+import   "e8ef95300cbce5dc30a1ca61154b2985:../internals/to-indexed-object";
+import   "e8ef95300cbce5dc30a1ca61154b2985:../internals/to-integer";
+import   "e8ef95300cbce5dc30a1ca61154b2985:../internals/to-length";
+import   "e8ef95300cbce5dc30a1ca61154b2985:../internals/array-method-is-strict";
+var $e8ef95300cbce5dc30a1ca61154b2985$var$min = Math.min;
+var $e8ef95300cbce5dc30a1ca61154b2985$var$$lastIndexOf = [].lastIndexOf;
+var $e8ef95300cbce5dc30a1ca61154b2985$var$NEGATIVE_ZERO = !!$e8ef95300cbce5dc30a1ca61154b2985$var$$lastIndexOf && 1 / [
+    1
+].lastIndexOf(1, -0.0) < 0;
+var $e8ef95300cbce5dc30a1ca61154b2985$var$STRICT_METHOD = $e8ef95300cbce5dc30a1ca61154b2985$import$f597927de08feb79('lastIndexOf');
+var $e8ef95300cbce5dc30a1ca61154b2985$var$FORCED = $e8ef95300cbce5dc30a1ca61154b2985$var$NEGATIVE_ZERO || !$e8ef95300cbce5dc30a1ca61154b2985$var$STRICT_METHOD;
+// `Array.prototype.lastIndexOf` method implementation
+// https://tc39.es/ecma262/#sec-array.prototype.lastindexof
+$e8ef95300cbce5dc30a1ca61154b2985$exports = $e8ef95300cbce5dc30a1ca61154b2985$var$FORCED ? function lastIndexOf(searchElement/* , fromIndex = @[*-1] */ ) {
+    // convert -0 to +0
+    if ($e8ef95300cbce5dc30a1ca61154b2985$var$NEGATIVE_ZERO) return $e8ef95300cbce5dc30a1ca61154b2985$var$$lastIndexOf.apply(this, arguments) || 0;
+    var O = $e8ef95300cbce5dc30a1ca61154b2985$import$73e80bdb170d55b7(this);
+    var length = $e8ef95300cbce5dc30a1ca61154b2985$import$4102f61a7d1ec5ae(O.length);
+    var index = length - 1;
+    if (arguments.length > 1) index = $e8ef95300cbce5dc30a1ca61154b2985$var$min(index, $e8ef95300cbce5dc30a1ca61154b2985$import$3760fb9e29f29d49(arguments[1]));
+    if (index < 0) index = length + index;
+    for(; index >= 0; index--)if (index in O && O[index] === searchElement) return index || 0;
+    return -1;
+} : $e8ef95300cbce5dc30a1ca61154b2985$var$$lastIndexOf;

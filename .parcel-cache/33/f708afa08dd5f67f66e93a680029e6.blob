@@ -1,0 +1,13 @@
+import   "8e1e251971216e7200e946102d693f0e:../internals/export";
+import   "8e1e251971216e7200e946102d693f0e:../internals/object-to-array";
+var $8e1e251971216e7200e946102d693f0e$require$$values = $8e1e251971216e7200e946102d693f0e$import$565014a0eb25ff03$a3919495473daaee;
+// `Object.values` method
+// https://tc39.es/ecma262/#sec-object.values
+$8e1e251971216e7200e946102d693f0e$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true
+}, {
+    values: function values(O) {
+        return $8e1e251971216e7200e946102d693f0e$require$$values(O);
+    }
+});

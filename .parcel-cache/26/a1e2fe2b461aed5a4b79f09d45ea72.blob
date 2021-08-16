@@ -1,0 +1,4 @@
+import   "e36a85ccfb42e58bced8fd4825938bdb:../internals/set-to-string-tag";
+// Math[@@toStringTag] property
+// https://tc39.es/ecma262/#sec-math-@@tostringtag
+$e36a85ccfb42e58bced8fd4825938bdb$import$c84072deb0264877(Math, 'Math', true);

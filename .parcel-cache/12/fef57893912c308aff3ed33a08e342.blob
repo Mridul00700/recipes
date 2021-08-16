@@ -1,0 +1,12 @@
+import   "42052988071264956b8020820abf2f16:../internals/export";
+import   "42052988071264956b8020820abf2f16:../internals/number-parse-float";
+// `Number.parseFloat` method
+// https://tc39.es/ecma262/#sec-number.parseFloat
+// eslint-disable-next-line es/no-number-parsefloat -- required for testing
+$42052988071264956b8020820abf2f16$import$1bb3f1a3ac631152({
+    target: 'Number',
+    stat: true,
+    forced: Number.parseFloat != $42052988071264956b8020820abf2f16$import$ea6a9a41552c1edc
+}, {
+    parseFloat: $42052988071264956b8020820abf2f16$import$ea6a9a41552c1edc
+});

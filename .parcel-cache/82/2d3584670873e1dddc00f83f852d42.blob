@@ -1,0 +1,16 @@
+'use strict';
+import   "6a9ddab19515d8089df91c03be63f498:../internals/export";
+import   "6a9ddab19515d8089df91c03be63f498:../internals/string-pad";
+var $6a9ddab19515d8089df91c03be63f498$require$$padStart = $6a9ddab19515d8089df91c03be63f498$import$f1355ceab65529ac$42328a91b0e9c643;
+import   "6a9ddab19515d8089df91c03be63f498:../internals/string-pad-webkit-bug";
+// `String.prototype.padStart` method
+// https://tc39.es/ecma262/#sec-string.prototype.padstart
+$6a9ddab19515d8089df91c03be63f498$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: $6a9ddab19515d8089df91c03be63f498$import$d99d008edfb81936
+}, {
+    padStart: function padStart(maxLength/* , fillString = ' ' */ ) {
+        return $6a9ddab19515d8089df91c03be63f498$require$$padStart(this, maxLength, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});

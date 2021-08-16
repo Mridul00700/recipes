@@ -1,0 +1,34 @@
+import   "1a84a7711162104d9ec94e68de4af5ab:../internals/a-function";
+import   "1a84a7711162104d9ec94e68de4af5ab:../internals/to-object";
+import   "1a84a7711162104d9ec94e68de4af5ab:../internals/indexed-object";
+import   "1a84a7711162104d9ec94e68de4af5ab:../internals/to-length";
+// `Array.prototype.{ reduce, reduceRight }` methods implementation
+var $1a84a7711162104d9ec94e68de4af5ab$var$createMethod = function(IS_RIGHT) {
+    return function(that, callbackfn, argumentsLength, memo) {
+        $1a84a7711162104d9ec94e68de4af5ab$import$feed022c18f6196b(callbackfn);
+        var O = $1a84a7711162104d9ec94e68de4af5ab$import$565dce0892f29b05(that);
+        var self = $1a84a7711162104d9ec94e68de4af5ab$import$b563c836d980da8e(O);
+        var length = $1a84a7711162104d9ec94e68de4af5ab$import$4102f61a7d1ec5ae(O.length);
+        var index = IS_RIGHT ? length - 1 : 0;
+        var i = IS_RIGHT ? -1 : 1;
+        if (argumentsLength < 2) while(true){
+            if (index in self) {
+                memo = self[index];
+                index += i;
+                break;
+            }
+            index += i;
+            if (IS_RIGHT ? index < 0 : length <= index) throw TypeError('Reduce of empty array with no initial value');
+        }
+        for(; IS_RIGHT ? index >= 0 : length > index; index += i)if (index in self) memo = callbackfn(memo, self[index], index, O);
+        return memo;
+    };
+};
+$1a84a7711162104d9ec94e68de4af5ab$exports = {
+    // `Array.prototype.reduce` method
+    // https://tc39.es/ecma262/#sec-array.prototype.reduce
+    left: $1a84a7711162104d9ec94e68de4af5ab$var$createMethod(false),
+    // `Array.prototype.reduceRight` method
+    // https://tc39.es/ecma262/#sec-array.prototype.reduceright
+    right: $1a84a7711162104d9ec94e68de4af5ab$var$createMethod(true)
+};

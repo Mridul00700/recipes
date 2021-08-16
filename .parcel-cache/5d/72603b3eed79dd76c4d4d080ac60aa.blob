@@ -1,0 +1,23 @@
+import   "5c032e4b7399eb7095123250c8b0ce73:../internals/export";
+import   "5c032e4b7399eb7095123250c8b0ce73:../internals/freezing";
+import   "5c032e4b7399eb7095123250c8b0ce73:../internals/fails";
+import   "5c032e4b7399eb7095123250c8b0ce73:../internals/is-object";
+import   "5c032e4b7399eb7095123250c8b0ce73:../internals/internal-metadata";
+var $5c032e4b7399eb7095123250c8b0ce73$require$onFreeze = $5c032e4b7399eb7095123250c8b0ce73$import$30f182e50aaa5627$41e29b8fbb35d207;
+// eslint-disable-next-line es/no-object-freeze -- safe
+var $5c032e4b7399eb7095123250c8b0ce73$var$$freeze = Object.freeze;
+var $5c032e4b7399eb7095123250c8b0ce73$var$FAILS_ON_PRIMITIVES = $5c032e4b7399eb7095123250c8b0ce73$import$9936d02511e757dc(function() {
+    $5c032e4b7399eb7095123250c8b0ce73$var$$freeze(1);
+});
+// `Object.freeze` method
+// https://tc39.es/ecma262/#sec-object.freeze
+$5c032e4b7399eb7095123250c8b0ce73$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true,
+    forced: $5c032e4b7399eb7095123250c8b0ce73$var$FAILS_ON_PRIMITIVES,
+    sham: !$5c032e4b7399eb7095123250c8b0ce73$import$9378031501892524
+}, {
+    freeze: function freeze(it) {
+        return $5c032e4b7399eb7095123250c8b0ce73$var$$freeze && $5c032e4b7399eb7095123250c8b0ce73$import$9294ccec169e68b9(it) ? $5c032e4b7399eb7095123250c8b0ce73$var$$freeze($5c032e4b7399eb7095123250c8b0ce73$require$onFreeze(it)) : it;
+    }
+});

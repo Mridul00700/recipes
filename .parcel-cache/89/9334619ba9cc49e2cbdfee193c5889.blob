@@ -1,0 +1,9 @@
+'use strict';
+import   "5851cf6fb3e4c51c70893fd7c6e261d4:../internals/an-object";
+import   "5851cf6fb3e4c51c70893fd7c6e261d4:../internals/to-primitive";
+// `Date.prototype[@@toPrimitive](hint)` method implementation
+// https://tc39.es/ecma262/#sec-date.prototype-@@toprimitive
+$5851cf6fb3e4c51c70893fd7c6e261d4$exports = function(hint) {
+    if (hint !== 'string' && hint !== 'number' && hint !== 'default') throw TypeError('Incorrect hint');
+    return $5851cf6fb3e4c51c70893fd7c6e261d4$import$c0dc3853fdc9c45f($5851cf6fb3e4c51c70893fd7c6e261d4$import$cad8ba314ee735d6(this), hint !== 'number');
+};

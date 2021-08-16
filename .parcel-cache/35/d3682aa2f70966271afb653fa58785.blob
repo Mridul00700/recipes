@@ -1,0 +1,15 @@
+'use strict';
+import   "f730bb992ab390b092a568b245bdd30f:../internals/array-buffer-view-core";
+import   "f730bb992ab390b092a568b245bdd30f:../internals/to-length";
+import   "f730bb992ab390b092a568b245bdd30f:../internals/to-absolute-index";
+import   "f730bb992ab390b092a568b245bdd30f:../internals/species-constructor";
+var $f730bb992ab390b092a568b245bdd30f$var$aTypedArray = $f730bb992ab390b092a568b245bdd30f$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $f730bb992ab390b092a568b245bdd30f$var$exportTypedArrayMethod = $f730bb992ab390b092a568b245bdd30f$import$646a64c4a95eead$499fcf5cda66e13c;
+// `%TypedArray%.prototype.subarray` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.subarray
+$f730bb992ab390b092a568b245bdd30f$var$exportTypedArrayMethod('subarray', function subarray(begin, end) {
+    var O = $f730bb992ab390b092a568b245bdd30f$var$aTypedArray(this);
+    var length = O.length;
+    var beginIndex = $f730bb992ab390b092a568b245bdd30f$import$bcb4abe55a109f79(begin, length);
+    return new ($f730bb992ab390b092a568b245bdd30f$import$d2cfec5023aa0b95(O, O.constructor))(O.buffer, O.byteOffset + beginIndex * O.BYTES_PER_ELEMENT, $f730bb992ab390b092a568b245bdd30f$import$4102f61a7d1ec5ae((end === undefined ? length : $f730bb992ab390b092a568b245bdd30f$import$bcb4abe55a109f79(end, length)) - beginIndex));
+});

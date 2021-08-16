@@ -1,0 +1,122 @@
+'use strict';
+import   "7825a8edcf68979fc16a239c6181dde2:../internals/redefine-all";
+import   "7825a8edcf68979fc16a239c6181dde2:../internals/internal-metadata";
+var $7825a8edcf68979fc16a239c6181dde2$require$getWeakData = $7825a8edcf68979fc16a239c6181dde2$import$30f182e50aaa5627$aaca9d20df3f9b74;
+import   "7825a8edcf68979fc16a239c6181dde2:../internals/an-object";
+import   "7825a8edcf68979fc16a239c6181dde2:../internals/is-object";
+import   "7825a8edcf68979fc16a239c6181dde2:../internals/an-instance";
+import   "7825a8edcf68979fc16a239c6181dde2:../internals/iterate";
+import   "7825a8edcf68979fc16a239c6181dde2:../internals/array-iteration";
+import   "7825a8edcf68979fc16a239c6181dde2:../internals/has";
+import   "7825a8edcf68979fc16a239c6181dde2:../internals/internal-state";
+var $7825a8edcf68979fc16a239c6181dde2$var$setInternalState = $7825a8edcf68979fc16a239c6181dde2$import$2c03d954288482bc$77f8d2fc923b14e3;
+var $7825a8edcf68979fc16a239c6181dde2$var$internalStateGetterFor = $7825a8edcf68979fc16a239c6181dde2$import$2c03d954288482bc$41aa07b58faf19b8;
+var $7825a8edcf68979fc16a239c6181dde2$var$find = $7825a8edcf68979fc16a239c6181dde2$import$9cfdd2c29910a22b$7ad150f61db3b289;
+var $7825a8edcf68979fc16a239c6181dde2$var$findIndex = $7825a8edcf68979fc16a239c6181dde2$import$9cfdd2c29910a22b$4d0d05f1b8a16b84;
+var $7825a8edcf68979fc16a239c6181dde2$var$id = 0;
+// fallback for uncaught frozen keys
+var $7825a8edcf68979fc16a239c6181dde2$var$uncaughtFrozenStore = function(store) {
+    return store.frozen || (store.frozen = new $7825a8edcf68979fc16a239c6181dde2$var$UncaughtFrozenStore());
+};
+var $7825a8edcf68979fc16a239c6181dde2$var$UncaughtFrozenStore = function() {
+    this.entries = [];
+};
+var $7825a8edcf68979fc16a239c6181dde2$var$findUncaughtFrozen = function(store, key) {
+    return $7825a8edcf68979fc16a239c6181dde2$var$find(store.entries, function(it) {
+        return it[0] === key;
+    });
+};
+$7825a8edcf68979fc16a239c6181dde2$var$UncaughtFrozenStore.prototype = {
+    get: function(key) {
+        var entry = $7825a8edcf68979fc16a239c6181dde2$var$findUncaughtFrozen(this, key);
+        if (entry) return entry[1];
+    },
+    has: function(key) {
+        return !!$7825a8edcf68979fc16a239c6181dde2$var$findUncaughtFrozen(this, key);
+    },
+    set: function(key, value) {
+        var entry = $7825a8edcf68979fc16a239c6181dde2$var$findUncaughtFrozen(this, key);
+        if (entry) entry[1] = value;
+        else this.entries.push([
+            key,
+            value
+        ]);
+    },
+    'delete': function(key) {
+        var index = $7825a8edcf68979fc16a239c6181dde2$var$findIndex(this.entries, function(it) {
+            return it[0] === key;
+        });
+        if (~index) this.entries.splice(index, 1);
+        return !!~index;
+    }
+};
+$7825a8edcf68979fc16a239c6181dde2$exports = {
+    getConstructor: function(wrapper, CONSTRUCTOR_NAME, IS_MAP, ADDER) {
+        var C = wrapper(function(that, iterable) {
+            $7825a8edcf68979fc16a239c6181dde2$import$65a2120eaf0c2a0a(that, C, CONSTRUCTOR_NAME);
+            $7825a8edcf68979fc16a239c6181dde2$var$setInternalState(that, {
+                type: CONSTRUCTOR_NAME,
+                id: $7825a8edcf68979fc16a239c6181dde2$var$id++,
+                frozen: undefined
+            });
+            if (iterable != undefined) $7825a8edcf68979fc16a239c6181dde2$import$1f57ebca7b213dbf(iterable, that[ADDER], {
+                that: that,
+                AS_ENTRIES: IS_MAP
+            });
+        });
+        var getInternalState = $7825a8edcf68979fc16a239c6181dde2$var$internalStateGetterFor(CONSTRUCTOR_NAME);
+        var define = function(that, key, value) {
+            var state = getInternalState(that);
+            var data = $7825a8edcf68979fc16a239c6181dde2$require$getWeakData($7825a8edcf68979fc16a239c6181dde2$import$cad8ba314ee735d6(key), true);
+            if (data === true) $7825a8edcf68979fc16a239c6181dde2$var$uncaughtFrozenStore(state).set(key, value);
+            else data[state.id] = value;
+            return that;
+        };
+        $7825a8edcf68979fc16a239c6181dde2$import$ce46ad3e687b31c4(C.prototype, {
+            // `{ WeakMap, WeakSet }.prototype.delete(key)` methods
+            // https://tc39.es/ecma262/#sec-weakmap.prototype.delete
+            // https://tc39.es/ecma262/#sec-weakset.prototype.delete
+            'delete': function(key) {
+                var state = getInternalState(this);
+                if (!$7825a8edcf68979fc16a239c6181dde2$import$9294ccec169e68b9(key)) return false;
+                var data = $7825a8edcf68979fc16a239c6181dde2$require$getWeakData(key);
+                if (data === true) return $7825a8edcf68979fc16a239c6181dde2$var$uncaughtFrozenStore(state)['delete'](key);
+                return data && $7825a8edcf68979fc16a239c6181dde2$import$7e2f6fc726b1debe(data, state.id) && delete data[state.id];
+            },
+            // `{ WeakMap, WeakSet }.prototype.has(key)` methods
+            // https://tc39.es/ecma262/#sec-weakmap.prototype.has
+            // https://tc39.es/ecma262/#sec-weakset.prototype.has
+            has: function has(key) {
+                var state = getInternalState(this);
+                if (!$7825a8edcf68979fc16a239c6181dde2$import$9294ccec169e68b9(key)) return false;
+                var data = $7825a8edcf68979fc16a239c6181dde2$require$getWeakData(key);
+                if (data === true) return $7825a8edcf68979fc16a239c6181dde2$var$uncaughtFrozenStore(state).has(key);
+                return data && $7825a8edcf68979fc16a239c6181dde2$import$7e2f6fc726b1debe(data, state.id);
+            }
+        });
+        $7825a8edcf68979fc16a239c6181dde2$import$ce46ad3e687b31c4(C.prototype, IS_MAP ? {
+            // `WeakMap.prototype.get(key)` method
+            // https://tc39.es/ecma262/#sec-weakmap.prototype.get
+            get: function get(key) {
+                var state = getInternalState(this);
+                if ($7825a8edcf68979fc16a239c6181dde2$import$9294ccec169e68b9(key)) {
+                    var data = $7825a8edcf68979fc16a239c6181dde2$require$getWeakData(key);
+                    if (data === true) return $7825a8edcf68979fc16a239c6181dde2$var$uncaughtFrozenStore(state).get(key);
+                    return data ? data[state.id] : undefined;
+                }
+            },
+            // `WeakMap.prototype.set(key, value)` method
+            // https://tc39.es/ecma262/#sec-weakmap.prototype.set
+            set: function set(key, value) {
+                return define(this, key, value);
+            }
+        } : {
+            // `WeakSet.prototype.add(value)` method
+            // https://tc39.es/ecma262/#sec-weakset.prototype.add
+            add: function add(value) {
+                return define(this, value, true);
+            }
+        });
+        return C;
+    }
+};

@@ -1,0 +1,6 @@
+import   "6b39920313a1963d1df0f68e47655346:./fails";
+$6b39920313a1963d1df0f68e47655346$exports = $6b39920313a1963d1df0f68e47655346$import$2d1b261b33f6ee26(function() {
+    // babel-minify transpiles RegExp('.', 's') -> /./s and it causes SyntaxError
+    var re = RegExp('.', "string".charAt(0));
+    return !(re.dotAll && re.exec('\n') && re.flags === 's');
+});

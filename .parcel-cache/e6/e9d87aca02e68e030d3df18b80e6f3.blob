@@ -1,0 +1,10 @@
+import   "fafe2ff1a2470b5b77c126cd3500b211:../internals/export";
+import   "fafe2ff1a2470b5b77c126cd3500b211:../internals/number-parse-float";
+// `parseFloat` method
+// https://tc39.es/ecma262/#sec-parsefloat-string
+$fafe2ff1a2470b5b77c126cd3500b211$import$1bb3f1a3ac631152({
+    global: true,
+    forced: parseFloat != $fafe2ff1a2470b5b77c126cd3500b211$import$ea6a9a41552c1edc
+}, {
+    parseFloat: $fafe2ff1a2470b5b77c126cd3500b211$import$ea6a9a41552c1edc
+});

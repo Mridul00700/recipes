@@ -1,0 +1,137 @@
+'use strict';
+import   "d08b46557751c8e39373fdc2926c6847:../internals/array-buffer-native";
+import   "d08b46557751c8e39373fdc2926c6847:../internals/descriptors";
+import   "d08b46557751c8e39373fdc2926c6847:../internals/global";
+import   "d08b46557751c8e39373fdc2926c6847:../internals/is-object";
+import   "d08b46557751c8e39373fdc2926c6847:../internals/has";
+import   "d08b46557751c8e39373fdc2926c6847:../internals/classof";
+import   "d08b46557751c8e39373fdc2926c6847:../internals/create-non-enumerable-property";
+import   "d08b46557751c8e39373fdc2926c6847:../internals/redefine";
+import   "d08b46557751c8e39373fdc2926c6847:../internals/object-define-property";
+var $d08b46557751c8e39373fdc2926c6847$require$defineProperty = $d08b46557751c8e39373fdc2926c6847$import$4276e2046cfaee3b$ffb27d6bd8d1eb33;
+import   "d08b46557751c8e39373fdc2926c6847:../internals/object-get-prototype-of";
+import   "d08b46557751c8e39373fdc2926c6847:../internals/object-set-prototype-of";
+import   "d08b46557751c8e39373fdc2926c6847:../internals/well-known-symbol";
+import   "d08b46557751c8e39373fdc2926c6847:../internals/uid";
+var $d08b46557751c8e39373fdc2926c6847$var$Int8Array = $d08b46557751c8e39373fdc2926c6847$import$da678c04728da253.Int8Array;
+var $d08b46557751c8e39373fdc2926c6847$var$Int8ArrayPrototype = $d08b46557751c8e39373fdc2926c6847$var$Int8Array && $d08b46557751c8e39373fdc2926c6847$var$Int8Array.prototype;
+var $d08b46557751c8e39373fdc2926c6847$var$Uint8ClampedArray = $d08b46557751c8e39373fdc2926c6847$import$da678c04728da253.Uint8ClampedArray;
+var $d08b46557751c8e39373fdc2926c6847$var$Uint8ClampedArrayPrototype = $d08b46557751c8e39373fdc2926c6847$var$Uint8ClampedArray && $d08b46557751c8e39373fdc2926c6847$var$Uint8ClampedArray.prototype;
+var $d08b46557751c8e39373fdc2926c6847$var$TypedArray = $d08b46557751c8e39373fdc2926c6847$var$Int8Array && $d08b46557751c8e39373fdc2926c6847$import$40d0f453fdf3d35e($d08b46557751c8e39373fdc2926c6847$var$Int8Array);
+var $d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype = $d08b46557751c8e39373fdc2926c6847$var$Int8ArrayPrototype && $d08b46557751c8e39373fdc2926c6847$import$40d0f453fdf3d35e($d08b46557751c8e39373fdc2926c6847$var$Int8ArrayPrototype);
+var $d08b46557751c8e39373fdc2926c6847$var$ObjectPrototype = Object.prototype;
+var $d08b46557751c8e39373fdc2926c6847$var$isPrototypeOf = $d08b46557751c8e39373fdc2926c6847$var$ObjectPrototype.isPrototypeOf;
+var $d08b46557751c8e39373fdc2926c6847$var$TO_STRING_TAG = $d08b46557751c8e39373fdc2926c6847$import$88242bc6a9673a44('toStringTag');
+var $d08b46557751c8e39373fdc2926c6847$var$TYPED_ARRAY_TAG = $d08b46557751c8e39373fdc2926c6847$import$865304611243ad06('TYPED_ARRAY_TAG');
+// Fixing native typed arrays in Opera Presto crashes the browser, see #595
+var $d08b46557751c8e39373fdc2926c6847$var$NATIVE_ARRAY_BUFFER_VIEWS = $d08b46557751c8e39373fdc2926c6847$import$3d3e687d6914202a && !!$d08b46557751c8e39373fdc2926c6847$import$74d6517d4e0bb391 && $d08b46557751c8e39373fdc2926c6847$import$2c88fa3abfc1c398($d08b46557751c8e39373fdc2926c6847$import$da678c04728da253.opera) !== 'Opera';
+var $d08b46557751c8e39373fdc2926c6847$var$TYPED_ARRAY_TAG_REQIRED = false;
+var $d08b46557751c8e39373fdc2926c6847$var$NAME;
+var $d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList = {
+    Int8Array: 1,
+    Uint8Array: 1,
+    Uint8ClampedArray: 1,
+    Int16Array: 2,
+    Uint16Array: 2,
+    Int32Array: 4,
+    Uint32Array: 4,
+    Float32Array: 4,
+    Float64Array: 8
+};
+var $d08b46557751c8e39373fdc2926c6847$var$BigIntArrayConstructorsList = {
+    BigInt64Array: 8,
+    BigUint64Array: 8
+};
+var $d08b46557751c8e39373fdc2926c6847$var$isView = function isView(it) {
+    if (!$d08b46557751c8e39373fdc2926c6847$import$9294ccec169e68b9(it)) return false;
+    var klass = $d08b46557751c8e39373fdc2926c6847$import$2c88fa3abfc1c398(it);
+    return klass === 'DataView' || $d08b46557751c8e39373fdc2926c6847$import$7e2f6fc726b1debe($d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList, klass) || $d08b46557751c8e39373fdc2926c6847$import$7e2f6fc726b1debe($d08b46557751c8e39373fdc2926c6847$var$BigIntArrayConstructorsList, klass);
+};
+var $d08b46557751c8e39373fdc2926c6847$var$isTypedArray = function(it) {
+    if (!$d08b46557751c8e39373fdc2926c6847$import$9294ccec169e68b9(it)) return false;
+    var klass = $d08b46557751c8e39373fdc2926c6847$import$2c88fa3abfc1c398(it);
+    return $d08b46557751c8e39373fdc2926c6847$import$7e2f6fc726b1debe($d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList, klass) || $d08b46557751c8e39373fdc2926c6847$import$7e2f6fc726b1debe($d08b46557751c8e39373fdc2926c6847$var$BigIntArrayConstructorsList, klass);
+};
+var $d08b46557751c8e39373fdc2926c6847$var$aTypedArray = function(it) {
+    if ($d08b46557751c8e39373fdc2926c6847$var$isTypedArray(it)) return it;
+    throw TypeError('Target is not a typed array');
+};
+var $d08b46557751c8e39373fdc2926c6847$var$aTypedArrayConstructor = function(C) {
+    if ($d08b46557751c8e39373fdc2926c6847$import$74d6517d4e0bb391) {
+        if ($d08b46557751c8e39373fdc2926c6847$var$isPrototypeOf.call($d08b46557751c8e39373fdc2926c6847$var$TypedArray, C)) return C;
+    } else for(var ARRAY in $d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList)if ($d08b46557751c8e39373fdc2926c6847$import$7e2f6fc726b1debe($d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList, $d08b46557751c8e39373fdc2926c6847$var$NAME)) {
+        var TypedArrayConstructor = $d08b46557751c8e39373fdc2926c6847$import$da678c04728da253[ARRAY];
+        if (TypedArrayConstructor && (C === TypedArrayConstructor || $d08b46557751c8e39373fdc2926c6847$var$isPrototypeOf.call(TypedArrayConstructor, C))) return C;
+    }
+    throw TypeError('Target is not a typed array constructor');
+};
+var $d08b46557751c8e39373fdc2926c6847$var$exportTypedArrayMethod = function(KEY, property, forced) {
+    if (!$d08b46557751c8e39373fdc2926c6847$import$9e95520c426f46b4) return;
+    if (forced) for(var ARRAY in $d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList){
+        var TypedArrayConstructor = $d08b46557751c8e39373fdc2926c6847$import$da678c04728da253[ARRAY];
+        if (TypedArrayConstructor && $d08b46557751c8e39373fdc2926c6847$import$7e2f6fc726b1debe(TypedArrayConstructor.prototype, KEY)) try {
+            delete TypedArrayConstructor.prototype[KEY];
+        } catch (error) {
+        }
+    }
+    if (!$d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype[KEY] || forced) $d08b46557751c8e39373fdc2926c6847$import$715a1a2c44d923e3($d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype, KEY, forced ? property : $d08b46557751c8e39373fdc2926c6847$var$NATIVE_ARRAY_BUFFER_VIEWS && $d08b46557751c8e39373fdc2926c6847$var$Int8ArrayPrototype[KEY] || property);
+};
+var $d08b46557751c8e39373fdc2926c6847$var$exportTypedArrayStaticMethod = function(KEY, property, forced) {
+    var ARRAY, TypedArrayConstructor;
+    if (!$d08b46557751c8e39373fdc2926c6847$import$9e95520c426f46b4) return;
+    if ($d08b46557751c8e39373fdc2926c6847$import$74d6517d4e0bb391) {
+        if (forced) for(ARRAY in $d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList){
+            TypedArrayConstructor = $d08b46557751c8e39373fdc2926c6847$import$da678c04728da253[ARRAY];
+            if (TypedArrayConstructor && $d08b46557751c8e39373fdc2926c6847$import$7e2f6fc726b1debe(TypedArrayConstructor, KEY)) try {
+                delete TypedArrayConstructor[KEY];
+            } catch (error) {
+            }
+        }
+        if (!$d08b46557751c8e39373fdc2926c6847$var$TypedArray[KEY] || forced) // V8 ~ Chrome 49-50 `%TypedArray%` methods are non-writable non-configurable
+        try {
+            return $d08b46557751c8e39373fdc2926c6847$import$715a1a2c44d923e3($d08b46557751c8e39373fdc2926c6847$var$TypedArray, KEY, forced ? property : $d08b46557751c8e39373fdc2926c6847$var$NATIVE_ARRAY_BUFFER_VIEWS && $d08b46557751c8e39373fdc2926c6847$var$TypedArray[KEY] || property);
+        } catch (error) {
+        }
+        else return;
+    }
+    for(ARRAY in $d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList){
+        TypedArrayConstructor = $d08b46557751c8e39373fdc2926c6847$import$da678c04728da253[ARRAY];
+        if (TypedArrayConstructor && (!TypedArrayConstructor[KEY] || forced)) $d08b46557751c8e39373fdc2926c6847$import$715a1a2c44d923e3(TypedArrayConstructor, KEY, property);
+    }
+};
+for($d08b46557751c8e39373fdc2926c6847$var$NAME in $d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList)if (!$d08b46557751c8e39373fdc2926c6847$import$da678c04728da253[$d08b46557751c8e39373fdc2926c6847$var$NAME]) $d08b46557751c8e39373fdc2926c6847$var$NATIVE_ARRAY_BUFFER_VIEWS = false;
+// WebKit bug - typed arrays constructors prototype is Object.prototype
+if (!$d08b46557751c8e39373fdc2926c6847$var$NATIVE_ARRAY_BUFFER_VIEWS || typeof $d08b46557751c8e39373fdc2926c6847$var$TypedArray != 'function' || $d08b46557751c8e39373fdc2926c6847$var$TypedArray === Function.prototype) {
+    // eslint-disable-next-line no-shadow -- safe
+    $d08b46557751c8e39373fdc2926c6847$var$TypedArray = function TypedArray() {
+        throw TypeError('Incorrect invocation');
+    };
+    if ($d08b46557751c8e39373fdc2926c6847$var$NATIVE_ARRAY_BUFFER_VIEWS) for($d08b46557751c8e39373fdc2926c6847$var$NAME in $d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList)if ($d08b46557751c8e39373fdc2926c6847$import$da678c04728da253[$d08b46557751c8e39373fdc2926c6847$var$NAME]) $d08b46557751c8e39373fdc2926c6847$import$74d6517d4e0bb391($d08b46557751c8e39373fdc2926c6847$import$da678c04728da253[$d08b46557751c8e39373fdc2926c6847$var$NAME], $d08b46557751c8e39373fdc2926c6847$var$TypedArray);
+}
+if (!$d08b46557751c8e39373fdc2926c6847$var$NATIVE_ARRAY_BUFFER_VIEWS || !$d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype || $d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype === $d08b46557751c8e39373fdc2926c6847$var$ObjectPrototype) {
+    $d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype = $d08b46557751c8e39373fdc2926c6847$var$TypedArray.prototype;
+    if ($d08b46557751c8e39373fdc2926c6847$var$NATIVE_ARRAY_BUFFER_VIEWS) for($d08b46557751c8e39373fdc2926c6847$var$NAME in $d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList)if ($d08b46557751c8e39373fdc2926c6847$import$da678c04728da253[$d08b46557751c8e39373fdc2926c6847$var$NAME]) $d08b46557751c8e39373fdc2926c6847$import$74d6517d4e0bb391($d08b46557751c8e39373fdc2926c6847$import$da678c04728da253[$d08b46557751c8e39373fdc2926c6847$var$NAME].prototype, $d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype);
+}
+// WebKit bug - one more object in Uint8ClampedArray prototype chain
+if ($d08b46557751c8e39373fdc2926c6847$var$NATIVE_ARRAY_BUFFER_VIEWS && $d08b46557751c8e39373fdc2926c6847$import$40d0f453fdf3d35e($d08b46557751c8e39373fdc2926c6847$var$Uint8ClampedArrayPrototype) !== $d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype) $d08b46557751c8e39373fdc2926c6847$import$74d6517d4e0bb391($d08b46557751c8e39373fdc2926c6847$var$Uint8ClampedArrayPrototype, $d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype);
+if ($d08b46557751c8e39373fdc2926c6847$import$9e95520c426f46b4 && !$d08b46557751c8e39373fdc2926c6847$import$7e2f6fc726b1debe($d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype, $d08b46557751c8e39373fdc2926c6847$var$TO_STRING_TAG)) {
+    $d08b46557751c8e39373fdc2926c6847$var$TYPED_ARRAY_TAG_REQIRED = true;
+    $d08b46557751c8e39373fdc2926c6847$require$defineProperty($d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype, $d08b46557751c8e39373fdc2926c6847$var$TO_STRING_TAG, {
+        get: function() {
+            return $d08b46557751c8e39373fdc2926c6847$import$9294ccec169e68b9(this) ? this[$d08b46557751c8e39373fdc2926c6847$var$TYPED_ARRAY_TAG] : undefined;
+        }
+    });
+    for($d08b46557751c8e39373fdc2926c6847$var$NAME in $d08b46557751c8e39373fdc2926c6847$var$TypedArrayConstructorsList)if ($d08b46557751c8e39373fdc2926c6847$import$da678c04728da253[$d08b46557751c8e39373fdc2926c6847$var$NAME]) $d08b46557751c8e39373fdc2926c6847$import$ea4d2ea16a516be3($d08b46557751c8e39373fdc2926c6847$import$da678c04728da253[$d08b46557751c8e39373fdc2926c6847$var$NAME], $d08b46557751c8e39373fdc2926c6847$var$TYPED_ARRAY_TAG, $d08b46557751c8e39373fdc2926c6847$var$NAME);
+}
+$d08b46557751c8e39373fdc2926c6847$exports = {
+    NATIVE_ARRAY_BUFFER_VIEWS: $d08b46557751c8e39373fdc2926c6847$var$NATIVE_ARRAY_BUFFER_VIEWS,
+    TYPED_ARRAY_TAG: $d08b46557751c8e39373fdc2926c6847$var$TYPED_ARRAY_TAG_REQIRED && $d08b46557751c8e39373fdc2926c6847$var$TYPED_ARRAY_TAG,
+    aTypedArray: $d08b46557751c8e39373fdc2926c6847$var$aTypedArray,
+    aTypedArrayConstructor: $d08b46557751c8e39373fdc2926c6847$var$aTypedArrayConstructor,
+    exportTypedArrayMethod: $d08b46557751c8e39373fdc2926c6847$var$exportTypedArrayMethod,
+    exportTypedArrayStaticMethod: $d08b46557751c8e39373fdc2926c6847$var$exportTypedArrayStaticMethod,
+    isView: $d08b46557751c8e39373fdc2926c6847$var$isView,
+    isTypedArray: $d08b46557751c8e39373fdc2926c6847$var$isTypedArray,
+    TypedArray: $d08b46557751c8e39373fdc2926c6847$var$TypedArray,
+    TypedArrayPrototype: $d08b46557751c8e39373fdc2926c6847$var$TypedArrayPrototype
+};

@@ -1,0 +1,19 @@
+'use strict';
+import   "181f8d542d67ae61131a498d2e74984b:../internals/export";
+import   "181f8d542d67ae61131a498d2e74984b:../internals/to-integer";
+var $181f8d542d67ae61131a498d2e74984b$var$getTime = Date.prototype.getTime;
+var $181f8d542d67ae61131a498d2e74984b$var$setFullYear = Date.prototype.setFullYear;
+// `Date.prototype.setYear` method
+// https://tc39.es/ecma262/#sec-date.prototype.setyear
+$181f8d542d67ae61131a498d2e74984b$import$1bb3f1a3ac631152({
+    target: 'Date',
+    proto: true
+}, {
+    setYear: function setYear(year) {
+        // validate
+        $181f8d542d67ae61131a498d2e74984b$var$getTime.call(this);
+        var yi = $181f8d542d67ae61131a498d2e74984b$import$3760fb9e29f29d49(year);
+        var yyyy = 0 <= yi && yi <= 99 ? yi + 1900 : yi;
+        return $181f8d542d67ae61131a498d2e74984b$var$setFullYear.call(this, yyyy);
+    }
+});

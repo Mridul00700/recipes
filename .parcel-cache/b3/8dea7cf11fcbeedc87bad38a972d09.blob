@@ -1,0 +1,5 @@
+import   "ea4dc3a0df4a3449dc64b17545c727dc:../internals/global";
+import   "ea4dc3a0df4a3449dc64b17545c727dc:../internals/set-to-string-tag";
+// JSON[@@toStringTag] property
+// https://tc39.es/ecma262/#sec-json-@@tostringtag
+$ea4dc3a0df4a3449dc64b17545c727dc$import$c84072deb0264877($ea4dc3a0df4a3449dc64b17545c727dc$import$da678c04728da253$a0fbbb51ee1fce57, 'JSON', true);

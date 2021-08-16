@@ -1,0 +1,15 @@
+'use strict';
+import   "f7212f65ce65e263096840c9d0cf493a:../internals/array-buffer-view-core";
+import   "f7212f65ce65e263096840c9d0cf493a:../internals/array-iteration";
+var $f7212f65ce65e263096840c9d0cf493a$require$$map = $f7212f65ce65e263096840c9d0cf493a$import$9cfdd2c29910a22b$1b4d6c18dd597827;
+import   "f7212f65ce65e263096840c9d0cf493a:../internals/species-constructor";
+var $f7212f65ce65e263096840c9d0cf493a$var$aTypedArray = $f7212f65ce65e263096840c9d0cf493a$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $f7212f65ce65e263096840c9d0cf493a$var$aTypedArrayConstructor = $f7212f65ce65e263096840c9d0cf493a$import$646a64c4a95eead$cf8c7afb1bc64521;
+var $f7212f65ce65e263096840c9d0cf493a$var$exportTypedArrayMethod = $f7212f65ce65e263096840c9d0cf493a$import$646a64c4a95eead$499fcf5cda66e13c;
+// `%TypedArray%.prototype.map` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.map
+$f7212f65ce65e263096840c9d0cf493a$var$exportTypedArrayMethod('map', function map(mapfn/* , thisArg */ ) {
+    return $f7212f65ce65e263096840c9d0cf493a$require$$map($f7212f65ce65e263096840c9d0cf493a$var$aTypedArray(this), mapfn, arguments.length > 1 ? arguments[1] : undefined, function(O, length) {
+        return new ($f7212f65ce65e263096840c9d0cf493a$var$aTypedArrayConstructor($f7212f65ce65e263096840c9d0cf493a$import$d2cfec5023aa0b95(O, O.constructor)))(length);
+    });
+});

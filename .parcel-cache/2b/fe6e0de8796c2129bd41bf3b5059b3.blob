@@ -1,0 +1,32 @@
+'use strict';
+import   "9932e924842bc635779cadc6d130d937:../internals/global";
+import   "9932e924842bc635779cadc6d130d937:../internals/array-buffer-view-core";
+import   "9932e924842bc635779cadc6d130d937:../internals/fails";
+var $9932e924842bc635779cadc6d130d937$var$Int8Array = $9932e924842bc635779cadc6d130d937$import$da678c04728da253$420c8d8886b1b02d;
+var $9932e924842bc635779cadc6d130d937$var$aTypedArray = $9932e924842bc635779cadc6d130d937$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $9932e924842bc635779cadc6d130d937$var$exportTypedArrayMethod = $9932e924842bc635779cadc6d130d937$import$646a64c4a95eead$499fcf5cda66e13c;
+var $9932e924842bc635779cadc6d130d937$var$$toLocaleString = [].toLocaleString;
+var $9932e924842bc635779cadc6d130d937$var$$slice = [].slice;
+// iOS Safari 6.x fails here
+var $9932e924842bc635779cadc6d130d937$var$TO_LOCALE_STRING_BUG = !!$9932e924842bc635779cadc6d130d937$var$Int8Array && $9932e924842bc635779cadc6d130d937$import$9936d02511e757dc(function() {
+    $9932e924842bc635779cadc6d130d937$var$$toLocaleString.call(new $9932e924842bc635779cadc6d130d937$var$Int8Array(1));
+});
+var $9932e924842bc635779cadc6d130d937$var$FORCED = $9932e924842bc635779cadc6d130d937$import$9936d02511e757dc(function() {
+    return [
+        1,
+        2
+    ].toLocaleString() != new $9932e924842bc635779cadc6d130d937$var$Int8Array([
+        1,
+        2
+    ]).toLocaleString();
+}) || !$9932e924842bc635779cadc6d130d937$import$9936d02511e757dc(function() {
+    $9932e924842bc635779cadc6d130d937$var$Int8Array.prototype.toLocaleString.call([
+        1,
+        2
+    ]);
+});
+// `%TypedArray%.prototype.toLocaleString` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.tolocalestring
+$9932e924842bc635779cadc6d130d937$var$exportTypedArrayMethod('toLocaleString', function toLocaleString() {
+    return $9932e924842bc635779cadc6d130d937$var$$toLocaleString.apply($9932e924842bc635779cadc6d130d937$var$TO_LOCALE_STRING_BUG ? $9932e924842bc635779cadc6d130d937$var$$slice.call($9932e924842bc635779cadc6d130d937$var$aTypedArray(this)) : $9932e924842bc635779cadc6d130d937$var$aTypedArray(this), arguments);
+}, $9932e924842bc635779cadc6d130d937$var$FORCED);

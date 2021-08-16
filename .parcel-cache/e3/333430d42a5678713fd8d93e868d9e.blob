@@ -1,0 +1,10 @@
+'use strict';
+import   "a854a7cffa2ec028ed8d25856fa889d4:../internals/array-buffer-view-core";
+import   "a854a7cffa2ec028ed8d25856fa889d4:../internals/array-copy-within";
+var $a854a7cffa2ec028ed8d25856fa889d4$var$aTypedArray = $a854a7cffa2ec028ed8d25856fa889d4$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $a854a7cffa2ec028ed8d25856fa889d4$var$exportTypedArrayMethod = $a854a7cffa2ec028ed8d25856fa889d4$import$646a64c4a95eead$499fcf5cda66e13c;
+// `%TypedArray%.prototype.copyWithin` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.copywithin
+$a854a7cffa2ec028ed8d25856fa889d4$var$exportTypedArrayMethod('copyWithin', function copyWithin(target, start/* , end */ ) {
+    return $a854a7cffa2ec028ed8d25856fa889d4$import$ab811c79d7896fd9$a4b4c796a132eb0a($a854a7cffa2ec028ed8d25856fa889d4$var$aTypedArray(this), target, start, arguments.length > 2 ? arguments[2] : undefined);
+});

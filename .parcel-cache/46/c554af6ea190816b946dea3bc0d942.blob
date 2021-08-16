@@ -1,0 +1,10 @@
+import   "208ca7cd92a524419be93456200c24ed:../internals/export";
+import   "208ca7cd92a524419be93456200c24ed:../internals/own-keys";
+// `Reflect.ownKeys` method
+// https://tc39.es/ecma262/#sec-reflect.ownkeys
+$208ca7cd92a524419be93456200c24ed$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true
+}, {
+    ownKeys: $208ca7cd92a524419be93456200c24ed$import$43813691b184ffcd
+});

@@ -1,0 +1,35 @@
+'use strict';
+import   "e129b2c9e2742b107cbe5cf7af9a9e79:../internals/export";
+import   "e129b2c9e2742b107cbe5cf7af9a9e79:../internals/fails";
+import   "e129b2c9e2742b107cbe5cf7af9a9e79:../internals/array-buffer";
+import   "e129b2c9e2742b107cbe5cf7af9a9e79:../internals/an-object";
+import   "e129b2c9e2742b107cbe5cf7af9a9e79:../internals/to-absolute-index";
+import   "e129b2c9e2742b107cbe5cf7af9a9e79:../internals/to-length";
+import   "e129b2c9e2742b107cbe5cf7af9a9e79:../internals/species-constructor";
+var $e129b2c9e2742b107cbe5cf7af9a9e79$var$ArrayBuffer = $e129b2c9e2742b107cbe5cf7af9a9e79$import$8b7b52790355660d$df14e82ed71a9c8b;
+var $e129b2c9e2742b107cbe5cf7af9a9e79$var$DataView = $e129b2c9e2742b107cbe5cf7af9a9e79$import$8b7b52790355660d$7f8f819c19e50de;
+var $e129b2c9e2742b107cbe5cf7af9a9e79$var$nativeArrayBufferSlice = $e129b2c9e2742b107cbe5cf7af9a9e79$var$ArrayBuffer.prototype.slice;
+var $e129b2c9e2742b107cbe5cf7af9a9e79$var$INCORRECT_SLICE = $e129b2c9e2742b107cbe5cf7af9a9e79$import$9936d02511e757dc(function() {
+    return !new $e129b2c9e2742b107cbe5cf7af9a9e79$var$ArrayBuffer(2).slice(1, undefined).byteLength;
+});
+// `ArrayBuffer.prototype.slice` method
+// https://tc39.es/ecma262/#sec-arraybuffer.prototype.slice
+$e129b2c9e2742b107cbe5cf7af9a9e79$import$1bb3f1a3ac631152({
+    target: 'ArrayBuffer',
+    proto: true,
+    unsafe: true,
+    forced: $e129b2c9e2742b107cbe5cf7af9a9e79$var$INCORRECT_SLICE
+}, {
+    slice: function slice(start, end) {
+        if ($e129b2c9e2742b107cbe5cf7af9a9e79$var$nativeArrayBufferSlice !== undefined && end === undefined) return $e129b2c9e2742b107cbe5cf7af9a9e79$var$nativeArrayBufferSlice.call($e129b2c9e2742b107cbe5cf7af9a9e79$import$cad8ba314ee735d6(this), start); // FF fix
+        var length = $e129b2c9e2742b107cbe5cf7af9a9e79$import$cad8ba314ee735d6(this).byteLength;
+        var first = $e129b2c9e2742b107cbe5cf7af9a9e79$import$bcb4abe55a109f79(start, length);
+        var fin = $e129b2c9e2742b107cbe5cf7af9a9e79$import$bcb4abe55a109f79(end === undefined ? length : end, length);
+        var result = new ($e129b2c9e2742b107cbe5cf7af9a9e79$import$d2cfec5023aa0b95(this, $e129b2c9e2742b107cbe5cf7af9a9e79$var$ArrayBuffer))($e129b2c9e2742b107cbe5cf7af9a9e79$import$4102f61a7d1ec5ae(fin - first));
+        var viewSource = new $e129b2c9e2742b107cbe5cf7af9a9e79$var$DataView(this);
+        var viewTarget = new $e129b2c9e2742b107cbe5cf7af9a9e79$var$DataView(result);
+        var index = 0;
+        while(first < fin)viewTarget.setUint8(index++, viewSource.getUint8(first++));
+        return result;
+    }
+});

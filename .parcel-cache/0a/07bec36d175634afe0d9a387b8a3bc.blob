@@ -1,0 +1,46 @@
+// `Symbol.prototype.description` getter
+// https://tc39.es/ecma262/#sec-symbol.prototype.description
+'use strict';
+import   "f6fe88143f08a88db48fd81ff43740bd:../internals/export";
+import   "f6fe88143f08a88db48fd81ff43740bd:../internals/descriptors";
+import   "f6fe88143f08a88db48fd81ff43740bd:../internals/global";
+import   "f6fe88143f08a88db48fd81ff43740bd:../internals/has";
+import   "f6fe88143f08a88db48fd81ff43740bd:../internals/is-object";
+import   "f6fe88143f08a88db48fd81ff43740bd:../internals/object-define-property";
+var $f6fe88143f08a88db48fd81ff43740bd$require$defineProperty = $f6fe88143f08a88db48fd81ff43740bd$import$4276e2046cfaee3b$ffb27d6bd8d1eb33;
+import   "f6fe88143f08a88db48fd81ff43740bd:../internals/copy-constructor-properties";
+var $f6fe88143f08a88db48fd81ff43740bd$var$NativeSymbol = $f6fe88143f08a88db48fd81ff43740bd$import$da678c04728da253$9e87a1b4d774f74;
+if ($f6fe88143f08a88db48fd81ff43740bd$import$9e95520c426f46b4 && typeof $f6fe88143f08a88db48fd81ff43740bd$var$NativeSymbol == 'function' && (!('description' in $f6fe88143f08a88db48fd81ff43740bd$var$NativeSymbol.prototype) || // Safari 12 bug
+$f6fe88143f08a88db48fd81ff43740bd$var$NativeSymbol().description !== undefined)) {
+    var $f6fe88143f08a88db48fd81ff43740bd$var$EmptyStringDescriptionStore = {
+    };
+    // wrap Symbol constructor for correct work with undefined description
+    var $f6fe88143f08a88db48fd81ff43740bd$var$SymbolWrapper = function Symbol1() {
+        var description = arguments.length < 1 || arguments[0] === undefined ? undefined : String(arguments[0]);
+        var result = this instanceof $f6fe88143f08a88db48fd81ff43740bd$var$SymbolWrapper ? new $f6fe88143f08a88db48fd81ff43740bd$var$NativeSymbol(description) : description === undefined ? $f6fe88143f08a88db48fd81ff43740bd$var$NativeSymbol() : $f6fe88143f08a88db48fd81ff43740bd$var$NativeSymbol(description);
+        if (description === '') $f6fe88143f08a88db48fd81ff43740bd$var$EmptyStringDescriptionStore[result] = true;
+        return result;
+    };
+    $f6fe88143f08a88db48fd81ff43740bd$import$fc173994050a329b($f6fe88143f08a88db48fd81ff43740bd$var$SymbolWrapper, $f6fe88143f08a88db48fd81ff43740bd$var$NativeSymbol);
+    var $f6fe88143f08a88db48fd81ff43740bd$var$symbolPrototype = $f6fe88143f08a88db48fd81ff43740bd$var$SymbolWrapper.prototype = $f6fe88143f08a88db48fd81ff43740bd$var$NativeSymbol.prototype;
+    $f6fe88143f08a88db48fd81ff43740bd$var$symbolPrototype.constructor = $f6fe88143f08a88db48fd81ff43740bd$var$SymbolWrapper;
+    var $f6fe88143f08a88db48fd81ff43740bd$var$symbolToString = $f6fe88143f08a88db48fd81ff43740bd$var$symbolPrototype.toString;
+    var $f6fe88143f08a88db48fd81ff43740bd$var$native = String($f6fe88143f08a88db48fd81ff43740bd$var$NativeSymbol('test')) == 'Symbol(test)';
+    var $f6fe88143f08a88db48fd81ff43740bd$var$regexp = /^Symbol\((.*)\)[^)]+$/;
+    $f6fe88143f08a88db48fd81ff43740bd$require$defineProperty($f6fe88143f08a88db48fd81ff43740bd$var$symbolPrototype, 'description', {
+        configurable: true,
+        get: function description() {
+            var symbol = $f6fe88143f08a88db48fd81ff43740bd$import$9294ccec169e68b9(this) ? this.valueOf() : this;
+            var string = $f6fe88143f08a88db48fd81ff43740bd$var$symbolToString.call(symbol);
+            if ($f6fe88143f08a88db48fd81ff43740bd$import$7e2f6fc726b1debe($f6fe88143f08a88db48fd81ff43740bd$var$EmptyStringDescriptionStore, symbol)) return '';
+            var desc = $f6fe88143f08a88db48fd81ff43740bd$var$native ? string.slice(7, -1) : string.replace($f6fe88143f08a88db48fd81ff43740bd$var$regexp, '$1');
+            return desc === '' ? undefined : desc;
+        }
+    });
+    $f6fe88143f08a88db48fd81ff43740bd$import$1bb3f1a3ac631152({
+        global: true,
+        forced: true
+    }, {
+        Symbol: $f6fe88143f08a88db48fd81ff43740bd$var$SymbolWrapper
+    });
+}

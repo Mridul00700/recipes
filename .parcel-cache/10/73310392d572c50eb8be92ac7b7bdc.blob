@@ -1,0 +1,22 @@
+import   "d1ba1d84f84353d791e12051ba3f47c1:../internals/export";
+import   "d1ba1d84f84353d791e12051ba3f47c1:../internals/fails";
+import   "d1ba1d84f84353d791e12051ba3f47c1:../internals/math-expm1";
+var $d1ba1d84f84353d791e12051ba3f47c1$var$abs = Math.abs;
+var $d1ba1d84f84353d791e12051ba3f47c1$var$exp = Math.exp;
+var $d1ba1d84f84353d791e12051ba3f47c1$var$E = Math.E;
+var $d1ba1d84f84353d791e12051ba3f47c1$var$FORCED = $d1ba1d84f84353d791e12051ba3f47c1$import$9936d02511e757dc(function() {
+    // eslint-disable-next-line es/no-math-sinh -- required for testing
+    return Math.sinh(-0.00000000000000002) != -0.00000000000000002;
+});
+// `Math.sinh` method
+// https://tc39.es/ecma262/#sec-math.sinh
+// V8 near Chromium 38 has a problem with very small numbers
+$d1ba1d84f84353d791e12051ba3f47c1$import$1bb3f1a3ac631152({
+    target: 'Math',
+    stat: true,
+    forced: $d1ba1d84f84353d791e12051ba3f47c1$var$FORCED
+}, {
+    sinh: function sinh(x) {
+        return $d1ba1d84f84353d791e12051ba3f47c1$var$abs(x = +x) < 1 ? ($d1ba1d84f84353d791e12051ba3f47c1$import$292c0938223fb3b3(x) - $d1ba1d84f84353d791e12051ba3f47c1$import$292c0938223fb3b3(-x)) / 2 : ($d1ba1d84f84353d791e12051ba3f47c1$var$exp(x - 1) - $d1ba1d84f84353d791e12051ba3f47c1$var$exp(-x - 1)) * ($d1ba1d84f84353d791e12051ba3f47c1$var$E / 2);
+    }
+});

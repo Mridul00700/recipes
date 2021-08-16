@@ -1,0 +1,6 @@
+import   "bd97c1b42e0cc3e6fc401002184141f6:./fails";
+$bd97c1b42e0cc3e6fc401002184141f6$exports = $bd97c1b42e0cc3e6fc401002184141f6$import$2d1b261b33f6ee26(function() {
+    // babel-minify transpiles RegExp('.', 'g') -> /./g and it causes SyntaxError
+    var re = RegExp('(?<a>b)', "string".charAt(5));
+    return re.exec('b').groups.a !== 'b' || 'b'.replace(re, '$<a>c') !== 'bc';
+});

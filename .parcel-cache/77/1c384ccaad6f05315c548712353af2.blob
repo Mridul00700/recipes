@@ -1,0 +1,19 @@
+import   "d73b60a9142e281bb39e2664ef32dc52:../internals/export";
+import   "d73b60a9142e281bb39e2664ef32dc52:../internals/math-log1p";
+// eslint-disable-next-line es/no-math-acosh -- required for testing
+var $d73b60a9142e281bb39e2664ef32dc52$var$$acosh = Math.acosh;
+var $d73b60a9142e281bb39e2664ef32dc52$var$log = Math.log;
+var $d73b60a9142e281bb39e2664ef32dc52$var$sqrt = Math.sqrt;
+var $d73b60a9142e281bb39e2664ef32dc52$var$LN2 = Math.LN2;
+var $d73b60a9142e281bb39e2664ef32dc52$var$FORCED = !$d73b60a9142e281bb39e2664ef32dc52$var$$acosh || Math.floor($d73b60a9142e281bb39e2664ef32dc52$var$$acosh(Number.MAX_VALUE)) != 710 || $d73b60a9142e281bb39e2664ef32dc52$var$$acosh(Infinity) != Infinity;
+// `Math.acosh` method
+// https://tc39.es/ecma262/#sec-math.acosh
+$d73b60a9142e281bb39e2664ef32dc52$import$1bb3f1a3ac631152({
+    target: 'Math',
+    stat: true,
+    forced: $d73b60a9142e281bb39e2664ef32dc52$var$FORCED
+}, {
+    acosh: function acosh(x) {
+        return (x = +x) < 1 ? NaN : x > 94906265.62425156 ? $d73b60a9142e281bb39e2664ef32dc52$var$log(x) + $d73b60a9142e281bb39e2664ef32dc52$var$LN2 : $d73b60a9142e281bb39e2664ef32dc52$import$4d4bde56f0e7d2f5(x - 1 + $d73b60a9142e281bb39e2664ef32dc52$var$sqrt(x - 1) * $d73b60a9142e281bb39e2664ef32dc52$var$sqrt(x + 1));
+    }
+});

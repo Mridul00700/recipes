@@ -1,0 +1,2 @@
+// eslint-disable-next-line es/no-typed-arrays -- safe
+$9a36b776d9095dd224d18abf26c20937$exports = typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'undefined';

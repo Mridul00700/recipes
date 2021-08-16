@@ -1,0 +1,11 @@
+'use strict';
+import   "5c608ab3ad30a48dd25283e70ed52010:../internals/array-buffer-view-core";
+var $5c608ab3ad30a48dd25283e70ed52010$var$aTypedArray = $5c608ab3ad30a48dd25283e70ed52010$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $5c608ab3ad30a48dd25283e70ed52010$var$exportTypedArrayMethod = $5c608ab3ad30a48dd25283e70ed52010$import$646a64c4a95eead$499fcf5cda66e13c;
+var $5c608ab3ad30a48dd25283e70ed52010$var$$join = [].join;
+// `%TypedArray%.prototype.join` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.join
+// eslint-disable-next-line no-unused-vars -- required for `.length`
+$5c608ab3ad30a48dd25283e70ed52010$var$exportTypedArrayMethod('join', function join(separator) {
+    return $5c608ab3ad30a48dd25283e70ed52010$var$$join.apply($5c608ab3ad30a48dd25283e70ed52010$var$aTypedArray(this), arguments);
+});

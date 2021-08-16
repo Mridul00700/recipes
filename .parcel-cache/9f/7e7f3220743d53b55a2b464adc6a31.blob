@@ -1,0 +1,21 @@
+'use strict';
+import   "5dd43bd3b28d442faa58c9cac4ed7ae5:../internals/export";
+import   "5dd43bd3b28d442faa58c9cac4ed7ae5:../internals/string-trim";
+var $5dd43bd3b28d442faa58c9cac4ed7ae5$require$$trimStart = $5dd43bd3b28d442faa58c9cac4ed7ae5$import$7522b5f71d8f3b2$42328a91b0e9c643;
+import   "5dd43bd3b28d442faa58c9cac4ed7ae5:../internals/string-trim-forced";
+var $5dd43bd3b28d442faa58c9cac4ed7ae5$var$FORCED = $5dd43bd3b28d442faa58c9cac4ed7ae5$import$e83ba1493fc2dce4('trimStart');
+var $5dd43bd3b28d442faa58c9cac4ed7ae5$var$trimStart = $5dd43bd3b28d442faa58c9cac4ed7ae5$var$FORCED ? function trimStart() {
+    return $5dd43bd3b28d442faa58c9cac4ed7ae5$require$$trimStart(this);
+// eslint-disable-next-line es/no-string-prototype-trimstart-trimend -- safe
+} : ''.trimStart;
+// `String.prototype.{ trimStart, trimLeft }` methods
+// https://tc39.es/ecma262/#sec-string.prototype.trimstart
+// https://tc39.es/ecma262/#String.prototype.trimleft
+$5dd43bd3b28d442faa58c9cac4ed7ae5$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: $5dd43bd3b28d442faa58c9cac4ed7ae5$var$FORCED
+}, {
+    trimStart: $5dd43bd3b28d442faa58c9cac4ed7ae5$var$trimStart,
+    trimLeft: $5dd43bd3b28d442faa58c9cac4ed7ae5$var$trimStart
+});

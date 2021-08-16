@@ -1,0 +1,11 @@
+'use strict';
+import   "36818a402b1b58ee79f340408f178d21:../internals/array-buffer-view-core";
+import   "36818a402b1b58ee79f340408f178d21:../internals/array-fill";
+var $36818a402b1b58ee79f340408f178d21$var$aTypedArray = $36818a402b1b58ee79f340408f178d21$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $36818a402b1b58ee79f340408f178d21$var$exportTypedArrayMethod = $36818a402b1b58ee79f340408f178d21$import$646a64c4a95eead$499fcf5cda66e13c;
+// `%TypedArray%.prototype.fill` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.fill
+// eslint-disable-next-line no-unused-vars -- required for `.length`
+$36818a402b1b58ee79f340408f178d21$var$exportTypedArrayMethod('fill', function fill(value/* , start, end */ ) {
+    return $36818a402b1b58ee79f340408f178d21$import$52d65119968d09a0$6af9bbf310c9e4bf($36818a402b1b58ee79f340408f178d21$var$aTypedArray(this), arguments);
+});

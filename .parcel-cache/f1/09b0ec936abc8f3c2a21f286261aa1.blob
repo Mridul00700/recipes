@@ -1,0 +1,8 @@
+import   "4f047e7fa81fe80f597d92e6f71e1c74:../internals/typed-array-constructor";
+// `Uint32Array` constructor
+// https://tc39.es/ecma262/#sec-typedarray-objects
+$4f047e7fa81fe80f597d92e6f71e1c74$import$ded6ac75bba33aa8('Uint32', function(init) {
+    return function Uint32Array1(data, byteOffset, length) {
+        return init(this, data, byteOffset, length);
+    };
+});

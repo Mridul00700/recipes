@@ -1,0 +1,9 @@
+import   "641cc94af9b32a27619e5a98e005b7c1:../internals/export";
+// `Number.MAX_SAFE_INTEGER` constant
+// https://tc39.es/ecma262/#sec-number.max_safe_integer
+$641cc94af9b32a27619e5a98e005b7c1$import$1bb3f1a3ac631152({
+    target: 'Number',
+    stat: true
+}, {
+    MAX_SAFE_INTEGER: 9007199254740991
+});

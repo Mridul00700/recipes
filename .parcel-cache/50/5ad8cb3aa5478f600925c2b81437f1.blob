@@ -1,0 +1,86 @@
+import   "20b8d2ae305c26f77a1d3b26a9811cfa:../internals/global";
+import   "20b8d2ae305c26f77a1d3b26a9811cfa:../internals/fails";
+import   "20b8d2ae305c26f77a1d3b26a9811cfa:../internals/function-bind-context";
+import   "20b8d2ae305c26f77a1d3b26a9811cfa:../internals/html";
+import   "20b8d2ae305c26f77a1d3b26a9811cfa:../internals/document-create-element";
+import   "20b8d2ae305c26f77a1d3b26a9811cfa:../internals/engine-is-ios";
+import   "20b8d2ae305c26f77a1d3b26a9811cfa:../internals/engine-is-node";
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$location = $20b8d2ae305c26f77a1d3b26a9811cfa$import$da678c04728da253$5b86fc1719ab0d45;
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$set = $20b8d2ae305c26f77a1d3b26a9811cfa$import$da678c04728da253$4cc54d8e06a4a661;
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$clear = $20b8d2ae305c26f77a1d3b26a9811cfa$import$da678c04728da253$b68b14f7e946c86e;
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$process = $20b8d2ae305c26f77a1d3b26a9811cfa$import$da678c04728da253$9242cb9e284019eb;
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$MessageChannel = $20b8d2ae305c26f77a1d3b26a9811cfa$import$da678c04728da253$ea6bb126f976fde8;
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$Dispatch = $20b8d2ae305c26f77a1d3b26a9811cfa$import$da678c04728da253$cbc9db0669a67f9;
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$counter = 0;
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$queue = {
+};
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$ONREADYSTATECHANGE = 'onreadystatechange';
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$defer, $20b8d2ae305c26f77a1d3b26a9811cfa$var$channel, $20b8d2ae305c26f77a1d3b26a9811cfa$var$port;
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$run = function(id) {
+    // eslint-disable-next-line no-prototype-builtins -- safe
+    if ($20b8d2ae305c26f77a1d3b26a9811cfa$var$queue.hasOwnProperty(id)) {
+        var fn = $20b8d2ae305c26f77a1d3b26a9811cfa$var$queue[id];
+        delete $20b8d2ae305c26f77a1d3b26a9811cfa$var$queue[id];
+        fn();
+    }
+};
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$runner = function(id) {
+    return function() {
+        $20b8d2ae305c26f77a1d3b26a9811cfa$var$run(id);
+    };
+};
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$listener = function(event) {
+    $20b8d2ae305c26f77a1d3b26a9811cfa$var$run(event.data);
+};
+var $20b8d2ae305c26f77a1d3b26a9811cfa$var$post = function(id) {
+    // old engines have not location.origin
+    $20b8d2ae305c26f77a1d3b26a9811cfa$import$da678c04728da253$557e2addd91482de(id + '', $20b8d2ae305c26f77a1d3b26a9811cfa$var$location.protocol + '//' + $20b8d2ae305c26f77a1d3b26a9811cfa$var$location.host);
+};
+// Node.js 0.9+ & IE10+ has setImmediate, otherwise:
+if (!$20b8d2ae305c26f77a1d3b26a9811cfa$var$set || !$20b8d2ae305c26f77a1d3b26a9811cfa$var$clear) {
+    $20b8d2ae305c26f77a1d3b26a9811cfa$var$set = function setImmediate(fn) {
+        var args = [];
+        var i = 1;
+        while(arguments.length > i)args.push(arguments[i++]);
+        $20b8d2ae305c26f77a1d3b26a9811cfa$var$queue[++$20b8d2ae305c26f77a1d3b26a9811cfa$var$counter] = function() {
+            // eslint-disable-next-line no-new-func -- spec requirement
+            (typeof fn == 'function' ? fn : Function(fn)).apply(undefined, args);
+        };
+        $20b8d2ae305c26f77a1d3b26a9811cfa$var$defer($20b8d2ae305c26f77a1d3b26a9811cfa$var$counter);
+        return $20b8d2ae305c26f77a1d3b26a9811cfa$var$counter;
+    };
+    $20b8d2ae305c26f77a1d3b26a9811cfa$var$clear = function clearImmediate(id) {
+        delete $20b8d2ae305c26f77a1d3b26a9811cfa$var$queue[id];
+    };
+    // Node.js 0.8-
+    if ($20b8d2ae305c26f77a1d3b26a9811cfa$import$417f1fc70487a5af) $20b8d2ae305c26f77a1d3b26a9811cfa$var$defer = function(id) {
+        $20b8d2ae305c26f77a1d3b26a9811cfa$var$process.nextTick($20b8d2ae305c26f77a1d3b26a9811cfa$var$runner(id));
+    };
+    else if ($20b8d2ae305c26f77a1d3b26a9811cfa$var$Dispatch && $20b8d2ae305c26f77a1d3b26a9811cfa$var$Dispatch.now) $20b8d2ae305c26f77a1d3b26a9811cfa$var$defer = function(id) {
+        $20b8d2ae305c26f77a1d3b26a9811cfa$var$Dispatch.now($20b8d2ae305c26f77a1d3b26a9811cfa$var$runner(id));
+    };
+    else if ($20b8d2ae305c26f77a1d3b26a9811cfa$var$MessageChannel && !$20b8d2ae305c26f77a1d3b26a9811cfa$import$1d36e4cc55137640) {
+        $20b8d2ae305c26f77a1d3b26a9811cfa$var$channel = new $20b8d2ae305c26f77a1d3b26a9811cfa$var$MessageChannel();
+        $20b8d2ae305c26f77a1d3b26a9811cfa$var$port = $20b8d2ae305c26f77a1d3b26a9811cfa$var$channel.port2;
+        $20b8d2ae305c26f77a1d3b26a9811cfa$var$channel.port1.onmessage = $20b8d2ae305c26f77a1d3b26a9811cfa$var$listener;
+        $20b8d2ae305c26f77a1d3b26a9811cfa$var$defer = $20b8d2ae305c26f77a1d3b26a9811cfa$import$66177e0ceb63850c($20b8d2ae305c26f77a1d3b26a9811cfa$var$port.postMessage, $20b8d2ae305c26f77a1d3b26a9811cfa$var$port, 1);
+    // Browsers with postMessage, skip WebWorkers
+    // IE8 has postMessage, but it's sync & typeof its postMessage is 'object'
+    } else if ($20b8d2ae305c26f77a1d3b26a9811cfa$import$da678c04728da253$147b053ed05e69e8 && typeof postMessage == 'function' && !$20b8d2ae305c26f77a1d3b26a9811cfa$import$da678c04728da253$7a0721cd9507f91 && $20b8d2ae305c26f77a1d3b26a9811cfa$var$location && $20b8d2ae305c26f77a1d3b26a9811cfa$var$location.protocol !== 'file:' && !$20b8d2ae305c26f77a1d3b26a9811cfa$import$9936d02511e757dc($20b8d2ae305c26f77a1d3b26a9811cfa$var$post)) {
+        $20b8d2ae305c26f77a1d3b26a9811cfa$var$defer = $20b8d2ae305c26f77a1d3b26a9811cfa$var$post;
+        $20b8d2ae305c26f77a1d3b26a9811cfa$import$da678c04728da253$147b053ed05e69e8('message', $20b8d2ae305c26f77a1d3b26a9811cfa$var$listener, false);
+    // IE8-
+    } else if ($20b8d2ae305c26f77a1d3b26a9811cfa$var$ONREADYSTATECHANGE in $20b8d2ae305c26f77a1d3b26a9811cfa$import$62968a6197bf3a('script')) $20b8d2ae305c26f77a1d3b26a9811cfa$var$defer = function(id) {
+        $20b8d2ae305c26f77a1d3b26a9811cfa$import$c02563b3428064ed$858777a3a7e2f5e9($20b8d2ae305c26f77a1d3b26a9811cfa$import$62968a6197bf3a('script'))[$20b8d2ae305c26f77a1d3b26a9811cfa$var$ONREADYSTATECHANGE] = function() {
+            $20b8d2ae305c26f77a1d3b26a9811cfa$import$c02563b3428064ed$e242d73d33ba394b(this);
+            $20b8d2ae305c26f77a1d3b26a9811cfa$var$run(id);
+        };
+    };
+    else $20b8d2ae305c26f77a1d3b26a9811cfa$var$defer = function(id) {
+        setTimeout($20b8d2ae305c26f77a1d3b26a9811cfa$var$runner(id), 0);
+    };
+}
+$20b8d2ae305c26f77a1d3b26a9811cfa$exports = {
+    set: $20b8d2ae305c26f77a1d3b26a9811cfa$var$set,
+    clear: $20b8d2ae305c26f77a1d3b26a9811cfa$var$clear
+};

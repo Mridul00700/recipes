@@ -1,0 +1,25 @@
+'use strict';
+import   "436af9396f4eba139dc96cc2a630bc2b:../internals/array-buffer-view-core";
+import   "436af9396f4eba139dc96cc2a630bc2b:../internals/to-length";
+import   "436af9396f4eba139dc96cc2a630bc2b:../internals/to-offset";
+import   "436af9396f4eba139dc96cc2a630bc2b:../internals/to-object";
+import   "436af9396f4eba139dc96cc2a630bc2b:../internals/fails";
+var $436af9396f4eba139dc96cc2a630bc2b$var$aTypedArray = $436af9396f4eba139dc96cc2a630bc2b$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $436af9396f4eba139dc96cc2a630bc2b$var$exportTypedArrayMethod = $436af9396f4eba139dc96cc2a630bc2b$import$646a64c4a95eead$499fcf5cda66e13c;
+var $436af9396f4eba139dc96cc2a630bc2b$var$FORCED = $436af9396f4eba139dc96cc2a630bc2b$import$9936d02511e757dc(function() {
+    // eslint-disable-next-line es/no-typed-arrays -- required for testing
+    new Int8Array(1).set({
+    });
+});
+// `%TypedArray%.prototype.set` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.set
+$436af9396f4eba139dc96cc2a630bc2b$var$exportTypedArrayMethod('set', function set(arrayLike/* , offset */ ) {
+    $436af9396f4eba139dc96cc2a630bc2b$var$aTypedArray(this);
+    var offset = $436af9396f4eba139dc96cc2a630bc2b$import$6233a68c43419edd(arguments.length > 1 ? arguments[1] : undefined, 1);
+    var length = this.length;
+    var src = $436af9396f4eba139dc96cc2a630bc2b$import$565dce0892f29b05(arrayLike);
+    var len = $436af9396f4eba139dc96cc2a630bc2b$import$4102f61a7d1ec5ae(src.length);
+    var index = 0;
+    if (len + offset > length) throw RangeError('Wrong length');
+    while(index < len)this[offset + index] = src[index++];
+}, $436af9396f4eba139dc96cc2a630bc2b$var$FORCED);

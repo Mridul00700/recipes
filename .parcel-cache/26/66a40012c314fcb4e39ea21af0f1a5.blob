@@ -1,0 +1,105 @@
+'use strict';
+import   "a7799d1ccce6907895f131526895023c:../internals/fix-regexp-well-known-symbol-logic";
+import   "a7799d1ccce6907895f131526895023c:../internals/fails";
+import   "a7799d1ccce6907895f131526895023c:../internals/an-object";
+import   "a7799d1ccce6907895f131526895023c:../internals/to-length";
+import   "a7799d1ccce6907895f131526895023c:../internals/to-integer";
+import   "a7799d1ccce6907895f131526895023c:../internals/require-object-coercible";
+import   "a7799d1ccce6907895f131526895023c:../internals/advance-string-index";
+import   "a7799d1ccce6907895f131526895023c:../internals/get-substitution";
+import   "a7799d1ccce6907895f131526895023c:../internals/regexp-exec-abstract";
+import   "a7799d1ccce6907895f131526895023c:../internals/well-known-symbol";
+var $a7799d1ccce6907895f131526895023c$var$REPLACE = $a7799d1ccce6907895f131526895023c$import$88242bc6a9673a44('replace');
+var $a7799d1ccce6907895f131526895023c$var$max = Math.max;
+var $a7799d1ccce6907895f131526895023c$var$min = Math.min;
+var $a7799d1ccce6907895f131526895023c$var$maybeToString = function(it) {
+    return it === undefined ? it : String(it);
+};
+// IE <= 11 replaces $0 with the whole match, as if it was $&
+// https://stackoverflow.com/questions/6024666/getting-ie-to-replace-a-regex-with-the-literal-string-0
+var $a7799d1ccce6907895f131526895023c$var$REPLACE_KEEPS_$0 = function() {
+    // eslint-disable-next-line regexp/prefer-escape-replacement-dollar-char -- required for testing
+    return 'a'.replace(/./, '$0') === '$0';
+}();
+// Safari <= 13.0.3(?) substitutes nth capture where n>m with an empty string
+var $a7799d1ccce6907895f131526895023c$var$REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE = function() {
+    if (/./[$a7799d1ccce6907895f131526895023c$var$REPLACE]) return /./[$a7799d1ccce6907895f131526895023c$var$REPLACE]('a', '$0') === '';
+    return false;
+}();
+var $a7799d1ccce6907895f131526895023c$var$REPLACE_SUPPORTS_NAMED_GROUPS = !$a7799d1ccce6907895f131526895023c$import$9936d02511e757dc(function() {
+    var re = /./;
+    re.exec = function() {
+        var result = [];
+        result.groups = {
+            a: '7'
+        };
+        return result;
+    };
+    return ''.replace(re, '$<a>') !== '7';
+});
+// @@replace logic
+$a7799d1ccce6907895f131526895023c$import$729254973b5be1b6('replace', function(_, nativeReplace, maybeCallNative) {
+    var UNSAFE_SUBSTITUTE = $a7799d1ccce6907895f131526895023c$var$REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE ? '$' : '$0';
+    return [
+        // `String.prototype.replace` method
+        // https://tc39.es/ecma262/#sec-string.prototype.replace
+        function replace(searchValue, replaceValue) {
+            var O = $a7799d1ccce6907895f131526895023c$import$cb96119f17424999(this);
+            var replacer = searchValue == undefined ? undefined : searchValue[$a7799d1ccce6907895f131526895023c$var$REPLACE];
+            return replacer !== undefined ? replacer.call(searchValue, O, replaceValue) : nativeReplace.call(String(O), searchValue, replaceValue);
+        },
+        // `RegExp.prototype[@@replace]` method
+        // https://tc39.es/ecma262/#sec-regexp.prototype-@@replace
+        function(string, replaceValue) {
+            if (typeof replaceValue === 'string' && replaceValue.indexOf(UNSAFE_SUBSTITUTE) === -1 && replaceValue.indexOf('$<') === -1) {
+                var res = maybeCallNative(nativeReplace, this, string, replaceValue);
+                if (res.done) return res.value;
+            }
+            var rx = $a7799d1ccce6907895f131526895023c$import$cad8ba314ee735d6(this);
+            var S = String(string);
+            var functionalReplace = typeof replaceValue === 'function';
+            if (!functionalReplace) replaceValue = String(replaceValue);
+            var global = rx.global;
+            if (global) {
+                var fullUnicode = rx.unicode;
+                rx.lastIndex = 0;
+            }
+            var results = [];
+            while(true){
+                var result = $a7799d1ccce6907895f131526895023c$import$e555634ae08e49a3(rx, S);
+                if (result === null) break;
+                results.push(result);
+                if (!global) break;
+                var matchStr = String(result[0]);
+                if (matchStr === '') rx.lastIndex = $a7799d1ccce6907895f131526895023c$import$a2c472764a5841(S, $a7799d1ccce6907895f131526895023c$import$4102f61a7d1ec5ae(rx.lastIndex), fullUnicode);
+            }
+            var accumulatedResult = '';
+            var nextSourcePosition = 0;
+            for(var i = 0; i < results.length; i++){
+                result = results[i];
+                var matched = String(result[0]);
+                var position = $a7799d1ccce6907895f131526895023c$var$max($a7799d1ccce6907895f131526895023c$var$min($a7799d1ccce6907895f131526895023c$import$3760fb9e29f29d49(result.index), S.length), 0);
+                var captures = [];
+                // NOTE: This is equivalent to
+                //   captures = result.slice(1).map(maybeToString)
+                // but for some reason `nativeSlice.call(result, 1, result.length)` (called in
+                // the slice polyfill when slicing native arrays) "doesn't work" in safari 9 and
+                // causes a crash (https://pastebin.com/N21QzeQA) when trying to debug it.
+                for(var j = 1; j < result.length; j++)captures.push($a7799d1ccce6907895f131526895023c$var$maybeToString(result[j]));
+                var namedCaptures = result.groups;
+                if (functionalReplace) {
+                    var replacerArgs = [
+                        matched
+                    ].concat(captures, position, S);
+                    if (namedCaptures !== undefined) replacerArgs.push(namedCaptures);
+                    var replacement = String(replaceValue.apply(undefined, replacerArgs));
+                } else replacement = $a7799d1ccce6907895f131526895023c$import$d847893436cfb036(matched, S, position, captures, namedCaptures, replaceValue);
+                if (position >= nextSourcePosition) {
+                    accumulatedResult += S.slice(nextSourcePosition, position) + replacement;
+                    nextSourcePosition = position + matched.length;
+                }
+            }
+            return accumulatedResult + S.slice(nextSourcePosition);
+        }
+    ];
+}, !$a7799d1ccce6907895f131526895023c$var$REPLACE_SUPPORTS_NAMED_GROUPS || !$a7799d1ccce6907895f131526895023c$var$REPLACE_KEEPS_$0 || $a7799d1ccce6907895f131526895023c$var$REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE);

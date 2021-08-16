@@ -1,0 +1,10 @@
+import   "dd7f8be36f5ee658447f5043b6c89222:../internals/export";
+import   "dd7f8be36f5ee658447f5043b6c89222:../internals/function-bind";
+// `Function.prototype.bind` method
+// https://tc39.es/ecma262/#sec-function.prototype.bind
+$dd7f8be36f5ee658447f5043b6c89222$import$1bb3f1a3ac631152({
+    target: 'Function',
+    proto: true
+}, {
+    bind: $dd7f8be36f5ee658447f5043b6c89222$import$7011c940c335e44b
+});

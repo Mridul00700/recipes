@@ -1,0 +1,3 @@
+import   "afd715fa7f9ae58b3083ddbf4ab1c773:../internals/engine-user-agent";
+var $afd715fa7f9ae58b3083ddbf4ab1c773$var$firefox = $afd715fa7f9ae58b3083ddbf4ab1c773$import$f29ee6c65de699c7$8eef6bb14c07a30e(/firefox\/(\d+)/i);
+$afd715fa7f9ae58b3083ddbf4ab1c773$exports = !!$afd715fa7f9ae58b3083ddbf4ab1c773$var$firefox && +$afd715fa7f9ae58b3083ddbf4ab1c773$var$firefox[1];

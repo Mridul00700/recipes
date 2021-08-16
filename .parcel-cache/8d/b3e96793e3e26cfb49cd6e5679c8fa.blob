@@ -1,0 +1,20 @@
+'use strict';
+import   "130e984bdaf293d2984ede1d10c11876:../internals/array-buffer-view-core";
+var $130e984bdaf293d2984ede1d10c11876$require$exportTypedArrayMethod = $130e984bdaf293d2984ede1d10c11876$import$646a64c4a95eead$499fcf5cda66e13c;
+import   "130e984bdaf293d2984ede1d10c11876:../internals/fails";
+import   "130e984bdaf293d2984ede1d10c11876:../internals/global";
+var $130e984bdaf293d2984ede1d10c11876$var$Uint8Array = $130e984bdaf293d2984ede1d10c11876$import$da678c04728da253$4f4097e901e38bf7;
+var $130e984bdaf293d2984ede1d10c11876$var$Uint8ArrayPrototype = $130e984bdaf293d2984ede1d10c11876$var$Uint8Array && $130e984bdaf293d2984ede1d10c11876$var$Uint8Array.prototype || {
+};
+var $130e984bdaf293d2984ede1d10c11876$var$arrayToString = [].toString;
+var $130e984bdaf293d2984ede1d10c11876$var$arrayJoin = [].join;
+if ($130e984bdaf293d2984ede1d10c11876$import$9936d02511e757dc(function() {
+    $130e984bdaf293d2984ede1d10c11876$var$arrayToString.call({
+    });
+})) $130e984bdaf293d2984ede1d10c11876$var$arrayToString = function toString() {
+    return $130e984bdaf293d2984ede1d10c11876$var$arrayJoin.call(this);
+};
+var $130e984bdaf293d2984ede1d10c11876$var$IS_NOT_ARRAY_METHOD = $130e984bdaf293d2984ede1d10c11876$var$Uint8ArrayPrototype.toString != $130e984bdaf293d2984ede1d10c11876$var$arrayToString;
+// `%TypedArray%.prototype.toString` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.tostring
+$130e984bdaf293d2984ede1d10c11876$require$exportTypedArrayMethod('toString', $130e984bdaf293d2984ede1d10c11876$var$arrayToString, $130e984bdaf293d2984ede1d10c11876$var$IS_NOT_ARRAY_METHOD);

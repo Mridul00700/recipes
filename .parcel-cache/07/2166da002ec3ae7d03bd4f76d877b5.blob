@@ -1,0 +1,20 @@
+import   "35f9ddab7f2db7805fdf7d1e7c7cd52b:../internals/global";
+import   "35f9ddab7f2db7805fdf7d1e7c7cd52b:../internals/fails";
+import   "35f9ddab7f2db7805fdf7d1e7c7cd52b:../internals/check-correctness-of-iteration";
+import   "35f9ddab7f2db7805fdf7d1e7c7cd52b:../internals/array-buffer-view-core";
+var $35f9ddab7f2db7805fdf7d1e7c7cd52b$require$NATIVE_ARRAY_BUFFER_VIEWS = $35f9ddab7f2db7805fdf7d1e7c7cd52b$import$646a64c4a95eead$7c62120d99e028f;
+var $35f9ddab7f2db7805fdf7d1e7c7cd52b$var$ArrayBuffer = $35f9ddab7f2db7805fdf7d1e7c7cd52b$import$da678c04728da253$df14e82ed71a9c8b;
+var $35f9ddab7f2db7805fdf7d1e7c7cd52b$var$Int8Array = $35f9ddab7f2db7805fdf7d1e7c7cd52b$import$da678c04728da253$420c8d8886b1b02d;
+$35f9ddab7f2db7805fdf7d1e7c7cd52b$exports = !$35f9ddab7f2db7805fdf7d1e7c7cd52b$require$NATIVE_ARRAY_BUFFER_VIEWS || !$35f9ddab7f2db7805fdf7d1e7c7cd52b$import$9936d02511e757dc(function() {
+    $35f9ddab7f2db7805fdf7d1e7c7cd52b$var$Int8Array(1);
+}) || !$35f9ddab7f2db7805fdf7d1e7c7cd52b$import$9936d02511e757dc(function() {
+    new $35f9ddab7f2db7805fdf7d1e7c7cd52b$var$Int8Array(-1);
+}) || !$35f9ddab7f2db7805fdf7d1e7c7cd52b$import$1d6ae00f2363e8ff(function(iterable) {
+    new $35f9ddab7f2db7805fdf7d1e7c7cd52b$var$Int8Array();
+    new $35f9ddab7f2db7805fdf7d1e7c7cd52b$var$Int8Array(null);
+    new $35f9ddab7f2db7805fdf7d1e7c7cd52b$var$Int8Array(1.5);
+    new $35f9ddab7f2db7805fdf7d1e7c7cd52b$var$Int8Array(iterable);
+}, true) || $35f9ddab7f2db7805fdf7d1e7c7cd52b$import$9936d02511e757dc(function() {
+    // Safari (11+) bug - a reason why even Safari 13 should load a typed array polyfill
+    return new $35f9ddab7f2db7805fdf7d1e7c7cd52b$var$Int8Array(new $35f9ddab7f2db7805fdf7d1e7c7cd52b$var$ArrayBuffer(2), 1, undefined).length !== 1;
+});

@@ -1,0 +1,33 @@
+'use strict';
+import   "5e751244c7183103c1425c9f46d8f9a3:../internals/global";
+import   "5e751244c7183103c1425c9f46d8f9a3:../internals/array-buffer-view-core";
+import   "5e751244c7183103c1425c9f46d8f9a3:../modules/es.array.iterator";
+import   "5e751244c7183103c1425c9f46d8f9a3:../internals/well-known-symbol";
+var $5e751244c7183103c1425c9f46d8f9a3$var$ITERATOR = $5e751244c7183103c1425c9f46d8f9a3$import$88242bc6a9673a44('iterator');
+var $5e751244c7183103c1425c9f46d8f9a3$var$Uint8Array = $5e751244c7183103c1425c9f46d8f9a3$import$da678c04728da253$4f4097e901e38bf7;
+var $5e751244c7183103c1425c9f46d8f9a3$var$arrayValues = $5e751244c7183103c1425c9f46d8f9a3$import$90b07716263c915a$a3919495473daaee;
+var $5e751244c7183103c1425c9f46d8f9a3$var$arrayKeys = $5e751244c7183103c1425c9f46d8f9a3$import$90b07716263c915a$c2cdcb18fde9adc3;
+var $5e751244c7183103c1425c9f46d8f9a3$var$arrayEntries = $5e751244c7183103c1425c9f46d8f9a3$import$90b07716263c915a$81a1504436b4693c;
+var $5e751244c7183103c1425c9f46d8f9a3$var$aTypedArray = $5e751244c7183103c1425c9f46d8f9a3$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $5e751244c7183103c1425c9f46d8f9a3$var$exportTypedArrayMethod = $5e751244c7183103c1425c9f46d8f9a3$import$646a64c4a95eead$499fcf5cda66e13c;
+var $5e751244c7183103c1425c9f46d8f9a3$var$nativeTypedArrayIterator = $5e751244c7183103c1425c9f46d8f9a3$var$Uint8Array && $5e751244c7183103c1425c9f46d8f9a3$var$Uint8Array.prototype[$5e751244c7183103c1425c9f46d8f9a3$var$ITERATOR];
+var $5e751244c7183103c1425c9f46d8f9a3$var$CORRECT_ITER_NAME = !!$5e751244c7183103c1425c9f46d8f9a3$var$nativeTypedArrayIterator && ($5e751244c7183103c1425c9f46d8f9a3$var$nativeTypedArrayIterator.name == 'values' || $5e751244c7183103c1425c9f46d8f9a3$var$nativeTypedArrayIterator.name == undefined);
+var $5e751244c7183103c1425c9f46d8f9a3$var$typedArrayValues = function values() {
+    return $5e751244c7183103c1425c9f46d8f9a3$var$arrayValues.call($5e751244c7183103c1425c9f46d8f9a3$var$aTypedArray(this));
+};
+// `%TypedArray%.prototype.entries` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.entries
+$5e751244c7183103c1425c9f46d8f9a3$var$exportTypedArrayMethod('entries', function entries() {
+    return $5e751244c7183103c1425c9f46d8f9a3$var$arrayEntries.call($5e751244c7183103c1425c9f46d8f9a3$var$aTypedArray(this));
+});
+// `%TypedArray%.prototype.keys` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.keys
+$5e751244c7183103c1425c9f46d8f9a3$var$exportTypedArrayMethod('keys', function keys() {
+    return $5e751244c7183103c1425c9f46d8f9a3$var$arrayKeys.call($5e751244c7183103c1425c9f46d8f9a3$var$aTypedArray(this));
+});
+// `%TypedArray%.prototype.values` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.values
+$5e751244c7183103c1425c9f46d8f9a3$var$exportTypedArrayMethod('values', $5e751244c7183103c1425c9f46d8f9a3$var$typedArrayValues, !$5e751244c7183103c1425c9f46d8f9a3$var$CORRECT_ITER_NAME);
+// `%TypedArray%.prototype[@@iterator]` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype-@@iterator
+$5e751244c7183103c1425c9f46d8f9a3$var$exportTypedArrayMethod($5e751244c7183103c1425c9f46d8f9a3$var$ITERATOR, $5e751244c7183103c1425c9f46d8f9a3$var$typedArrayValues, !$5e751244c7183103c1425c9f46d8f9a3$var$CORRECT_ITER_NAME);

@@ -1,0 +1,8 @@
+import   "98db4e463a70690145a2a54c7a2fd069:../internals/typed-array-constructor";
+// `Int8Array` constructor
+// https://tc39.es/ecma262/#sec-typedarray-objects
+$98db4e463a70690145a2a54c7a2fd069$import$ded6ac75bba33aa8('Int8', function(init) {
+    return function Int8Array1(data, byteOffset, length) {
+        return init(this, data, byteOffset, length);
+    };
+});

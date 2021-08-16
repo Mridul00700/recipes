@@ -1,0 +1,33 @@
+'use strict';
+import   "1396be478c352f6913db1ab4d454b292:../internals/export";
+import   "1396be478c352f6913db1ab4d454b292:../internals/object-get-own-property-descriptor";
+var $1396be478c352f6913db1ab4d454b292$require$getOwnPropertyDescriptor = $1396be478c352f6913db1ab4d454b292$import$671bedbe12b63e7d$ffb27d6bd8d1eb33;
+import   "1396be478c352f6913db1ab4d454b292:../internals/to-length";
+import   "1396be478c352f6913db1ab4d454b292:../internals/not-a-regexp";
+import   "1396be478c352f6913db1ab4d454b292:../internals/require-object-coercible";
+import   "1396be478c352f6913db1ab4d454b292:../internals/correct-is-regexp-logic";
+import   "1396be478c352f6913db1ab4d454b292:../internals/is-pure";
+// eslint-disable-next-line es/no-string-prototype-startswith -- safe
+var $1396be478c352f6913db1ab4d454b292$var$$startsWith = ''.startsWith;
+var $1396be478c352f6913db1ab4d454b292$var$min = Math.min;
+var $1396be478c352f6913db1ab4d454b292$var$CORRECT_IS_REGEXP_LOGIC = $1396be478c352f6913db1ab4d454b292$import$41e114ecea3b171c('startsWith');
+// https://github.com/zloirock/core-js/pull/702
+var $1396be478c352f6913db1ab4d454b292$var$MDN_POLYFILL_BUG = !$1396be478c352f6913db1ab4d454b292$import$1bdf0350b9a8d46c && !$1396be478c352f6913db1ab4d454b292$var$CORRECT_IS_REGEXP_LOGIC && !!function() {
+    var descriptor = $1396be478c352f6913db1ab4d454b292$require$getOwnPropertyDescriptor(String.prototype, 'startsWith');
+    return descriptor && !descriptor.writable;
+}();
+// `String.prototype.startsWith` method
+// https://tc39.es/ecma262/#sec-string.prototype.startswith
+$1396be478c352f6913db1ab4d454b292$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: !$1396be478c352f6913db1ab4d454b292$var$MDN_POLYFILL_BUG && !$1396be478c352f6913db1ab4d454b292$var$CORRECT_IS_REGEXP_LOGIC
+}, {
+    startsWith: function startsWith(searchString/* , position = 0 */ ) {
+        var that = String($1396be478c352f6913db1ab4d454b292$import$cb96119f17424999(this));
+        $1396be478c352f6913db1ab4d454b292$import$d0abdc2f61739d3d(searchString);
+        var index = $1396be478c352f6913db1ab4d454b292$import$4102f61a7d1ec5ae($1396be478c352f6913db1ab4d454b292$var$min(arguments.length > 1 ? arguments[1] : undefined, that.length));
+        var search = String(searchString);
+        return $1396be478c352f6913db1ab4d454b292$var$$startsWith ? $1396be478c352f6913db1ab4d454b292$var$$startsWith.call(that, search, index) : that.slice(index, index + search.length) === search;
+    }
+});

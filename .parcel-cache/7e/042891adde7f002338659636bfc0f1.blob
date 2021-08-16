@@ -1,0 +1,59 @@
+'use strict';
+import   "dc9169930073b3e0c56e9d4573a2db61:../internals/export";
+import   "dc9169930073b3e0c56e9d4573a2db61:../internals/fails";
+import   "dc9169930073b3e0c56e9d4573a2db61:../internals/is-array";
+import   "dc9169930073b3e0c56e9d4573a2db61:../internals/is-object";
+import   "dc9169930073b3e0c56e9d4573a2db61:../internals/to-object";
+import   "dc9169930073b3e0c56e9d4573a2db61:../internals/to-length";
+import   "dc9169930073b3e0c56e9d4573a2db61:../internals/create-property";
+import   "dc9169930073b3e0c56e9d4573a2db61:../internals/array-species-create";
+import   "dc9169930073b3e0c56e9d4573a2db61:../internals/array-method-has-species-support";
+import   "dc9169930073b3e0c56e9d4573a2db61:../internals/well-known-symbol";
+import   "dc9169930073b3e0c56e9d4573a2db61:../internals/engine-v8-version";
+var $dc9169930073b3e0c56e9d4573a2db61$var$IS_CONCAT_SPREADABLE = $dc9169930073b3e0c56e9d4573a2db61$import$88242bc6a9673a44('isConcatSpreadable');
+var $dc9169930073b3e0c56e9d4573a2db61$var$MAX_SAFE_INTEGER = 9007199254740991;
+var $dc9169930073b3e0c56e9d4573a2db61$var$MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
+// We can't use this feature detection in V8 since it causes
+// deoptimization and serious performance degradation
+// https://github.com/zloirock/core-js/issues/679
+var $dc9169930073b3e0c56e9d4573a2db61$var$IS_CONCAT_SPREADABLE_SUPPORT = $dc9169930073b3e0c56e9d4573a2db61$import$aa08777f3c690dd7 >= 51 || !$dc9169930073b3e0c56e9d4573a2db61$import$9936d02511e757dc(function() {
+    var array = [];
+    array[$dc9169930073b3e0c56e9d4573a2db61$var$IS_CONCAT_SPREADABLE] = false;
+    return array.concat()[0] !== array;
+});
+var $dc9169930073b3e0c56e9d4573a2db61$var$SPECIES_SUPPORT = $dc9169930073b3e0c56e9d4573a2db61$import$d71858cb7e8d3414('concat');
+var $dc9169930073b3e0c56e9d4573a2db61$var$isConcatSpreadable = function(O) {
+    if (!$dc9169930073b3e0c56e9d4573a2db61$import$9294ccec169e68b9(O)) return false;
+    var spreadable = O[$dc9169930073b3e0c56e9d4573a2db61$var$IS_CONCAT_SPREADABLE];
+    return spreadable !== undefined ? !!spreadable : $dc9169930073b3e0c56e9d4573a2db61$import$a3ab90aad49ab6f8(O);
+};
+var $dc9169930073b3e0c56e9d4573a2db61$var$FORCED = !$dc9169930073b3e0c56e9d4573a2db61$var$IS_CONCAT_SPREADABLE_SUPPORT || !$dc9169930073b3e0c56e9d4573a2db61$var$SPECIES_SUPPORT;
+// `Array.prototype.concat` method
+// https://tc39.es/ecma262/#sec-array.prototype.concat
+// with adding support of @@isConcatSpreadable and @@species
+$dc9169930073b3e0c56e9d4573a2db61$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true,
+    forced: $dc9169930073b3e0c56e9d4573a2db61$var$FORCED
+}, {
+    // eslint-disable-next-line no-unused-vars -- required for `.length`
+    concat: function concat(arg) {
+        var O = $dc9169930073b3e0c56e9d4573a2db61$import$565dce0892f29b05(this);
+        var A = $dc9169930073b3e0c56e9d4573a2db61$import$270ce3808f347882(O, 0);
+        var n = 0;
+        var i, k, length, len, E;
+        for(i = -1, length = arguments.length; i < length; i++){
+            E = i === -1 ? O : arguments[i];
+            if ($dc9169930073b3e0c56e9d4573a2db61$var$isConcatSpreadable(E)) {
+                len = $dc9169930073b3e0c56e9d4573a2db61$import$4102f61a7d1ec5ae(E.length);
+                if (n + len > $dc9169930073b3e0c56e9d4573a2db61$var$MAX_SAFE_INTEGER) throw TypeError($dc9169930073b3e0c56e9d4573a2db61$var$MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+                for(k = 0; k < len; k++, n++)if (k in E) $dc9169930073b3e0c56e9d4573a2db61$import$22a67bab19fa66bf(A, n, E[k]);
+            } else {
+                if (n >= $dc9169930073b3e0c56e9d4573a2db61$var$MAX_SAFE_INTEGER) throw TypeError($dc9169930073b3e0c56e9d4573a2db61$var$MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+                $dc9169930073b3e0c56e9d4573a2db61$import$22a67bab19fa66bf(A, n++, E);
+            }
+        }
+        A.length = n;
+        return A;
+    }
+});

@@ -1,0 +1,30 @@
+import   "3cf8c365cead91d7db5b405eb2964777:../internals/export";
+import   "3cf8c365cead91d7db5b405eb2964777:../internals/get-built-in";
+import   "3cf8c365cead91d7db5b405eb2964777:../internals/fails";
+var $3cf8c365cead91d7db5b405eb2964777$var$$stringify = $3cf8c365cead91d7db5b405eb2964777$import$acc15958b3da080('JSON', 'stringify');
+var $3cf8c365cead91d7db5b405eb2964777$var$re = /[\uD800-\uDFFF]/g;
+var $3cf8c365cead91d7db5b405eb2964777$var$low = /^[\uD800-\uDBFF]$/;
+var $3cf8c365cead91d7db5b405eb2964777$var$hi = /^[\uDC00-\uDFFF]$/;
+var $3cf8c365cead91d7db5b405eb2964777$var$fix = function(match, offset, string) {
+    var prev = string.charAt(offset - 1);
+    var next = string.charAt(offset + 1);
+    if ($3cf8c365cead91d7db5b405eb2964777$var$low.test(match) && !$3cf8c365cead91d7db5b405eb2964777$var$hi.test(next) || $3cf8c365cead91d7db5b405eb2964777$var$hi.test(match) && !$3cf8c365cead91d7db5b405eb2964777$var$low.test(prev)) return '\\u' + match.charCodeAt(0).toString(16);
+    return match;
+};
+var $3cf8c365cead91d7db5b405eb2964777$var$FORCED = $3cf8c365cead91d7db5b405eb2964777$import$9936d02511e757dc(function() {
+    return $3cf8c365cead91d7db5b405eb2964777$var$$stringify('\uDF06\uD834') !== '"\\udf06\\ud834"' || $3cf8c365cead91d7db5b405eb2964777$var$$stringify('\uDEAD') !== '"\\udead"';
+});
+if ($3cf8c365cead91d7db5b405eb2964777$var$$stringify) // `JSON.stringify` method
+// https://tc39.es/ecma262/#sec-json.stringify
+// https://github.com/tc39/proposal-well-formed-stringify
+$3cf8c365cead91d7db5b405eb2964777$import$1bb3f1a3ac631152({
+    target: 'JSON',
+    stat: true,
+    forced: $3cf8c365cead91d7db5b405eb2964777$var$FORCED
+}, {
+    // eslint-disable-next-line no-unused-vars -- required for `.length`
+    stringify: function stringify(it, replacer, space) {
+        var result = $3cf8c365cead91d7db5b405eb2964777$var$$stringify.apply(null, arguments);
+        return typeof result == 'string' ? result.replace($3cf8c365cead91d7db5b405eb2964777$var$re, $3cf8c365cead91d7db5b405eb2964777$var$fix) : result;
+    }
+});

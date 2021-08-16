@@ -1,0 +1,10 @@
+import   "d8f519ee48002e7fe1dec199576fec19:../internals/export";
+import   "d8f519ee48002e7fe1dec199576fec19:../internals/same-value";
+// `Object.is` method
+// https://tc39.es/ecma262/#sec-object.is
+$d8f519ee48002e7fe1dec199576fec19$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true
+}, {
+    is: $d8f519ee48002e7fe1dec199576fec19$import$ac932182e2d01d7b
+});

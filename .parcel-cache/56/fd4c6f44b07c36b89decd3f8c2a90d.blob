@@ -1,0 +1,30 @@
+// TODO: use something more complex like timsort?
+var $8882fda0667be7a93b10a5f97e49f72f$var$floor = Math.floor;
+var $8882fda0667be7a93b10a5f97e49f72f$var$mergeSort = function(array, comparefn) {
+    var length = array.length;
+    var middle = $8882fda0667be7a93b10a5f97e49f72f$var$floor(length / 2);
+    return length < 8 ? $8882fda0667be7a93b10a5f97e49f72f$var$insertionSort(array, comparefn) : $8882fda0667be7a93b10a5f97e49f72f$var$merge($8882fda0667be7a93b10a5f97e49f72f$var$mergeSort(array.slice(0, middle), comparefn), $8882fda0667be7a93b10a5f97e49f72f$var$mergeSort(array.slice(middle), comparefn), comparefn);
+};
+var $8882fda0667be7a93b10a5f97e49f72f$var$insertionSort = function(array, comparefn) {
+    var length = array.length;
+    var i = 1;
+    var element, j;
+    while(i < length){
+        j = i;
+        element = array[i];
+        while(j && comparefn(array[j - 1], element) > 0)array[j] = array[--j];
+        if (j !== i++) array[j] = element;
+    }
+    return array;
+};
+var $8882fda0667be7a93b10a5f97e49f72f$var$merge = function(left, right, comparefn) {
+    var llength = left.length;
+    var rlength = right.length;
+    var lindex = 0;
+    var rindex = 0;
+    var result = [];
+    while(lindex < llength || rindex < rlength)if (lindex < llength && rindex < rlength) result.push(comparefn(left[lindex], right[rindex]) <= 0 ? left[lindex++] : right[rindex++]);
+    else result.push(lindex < llength ? left[lindex++] : right[rindex++]);
+    return result;
+};
+$8882fda0667be7a93b10a5f97e49f72f$exports = $8882fda0667be7a93b10a5f97e49f72f$var$mergeSort;

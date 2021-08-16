@@ -1,0 +1,8 @@
+// eslint-disable-next-line es/no-math-expm1 -- safe
+var $83fe9a87e992bce35d88c4c8cd72aeb6$var$$expm1 = Math.expm1;
+var $83fe9a87e992bce35d88c4c8cd72aeb6$var$exp = Math.exp;
+// `Math.expm1` method implementation
+// https://tc39.es/ecma262/#sec-math.expm1
+$83fe9a87e992bce35d88c4c8cd72aeb6$exports = !$83fe9a87e992bce35d88c4c8cd72aeb6$var$$expm1 || $83fe9a87e992bce35d88c4c8cd72aeb6$var$$expm1(10) > 22025.465794806718 || $83fe9a87e992bce35d88c4c8cd72aeb6$var$$expm1(10) < 22025.465794806718 || $83fe9a87e992bce35d88c4c8cd72aeb6$var$$expm1(-0.00000000000000002) != -0.00000000000000002 ? function expm1(x) {
+    return (x = +x) == 0 ? x : x > -0.000001 && x < 0.000001 ? x + x * x / 2 : $83fe9a87e992bce35d88c4c8cd72aeb6$var$exp(x) - 1;
+} : $83fe9a87e992bce35d88c4c8cd72aeb6$var$$expm1;

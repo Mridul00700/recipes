@@ -1,0 +1,13 @@
+'use strict';
+import   "3e154d68e89c96a13a0d3f640a1f7cde:../internals/export";
+import   "3e154d68e89c96a13a0d3f640a1f7cde:../internals/array-for-each";
+// `Array.prototype.forEach` method
+// https://tc39.es/ecma262/#sec-array.prototype.foreach
+// eslint-disable-next-line es/no-array-prototype-foreach -- safe
+$3e154d68e89c96a13a0d3f640a1f7cde$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true,
+    forced: [].forEach != $3e154d68e89c96a13a0d3f640a1f7cde$import$c88ff3a47228cc2d
+}, {
+    forEach: $3e154d68e89c96a13a0d3f640a1f7cde$import$c88ff3a47228cc2d
+});

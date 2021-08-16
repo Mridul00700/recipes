@@ -1,0 +1,15 @@
+import   "5ff2619f395cfb5f315fb13c732e97e0:../internals/well-known-symbol";
+var $5ff2619f395cfb5f315fb13c732e97e0$var$MATCH = $5ff2619f395cfb5f315fb13c732e97e0$import$88242bc6a9673a44('match');
+$5ff2619f395cfb5f315fb13c732e97e0$exports = function(METHOD_NAME) {
+    var regexp = /./;
+    try {
+        '/./'[METHOD_NAME](regexp);
+    } catch (error1) {
+        try {
+            regexp[$5ff2619f395cfb5f315fb13c732e97e0$var$MATCH] = false;
+            return '/./'[METHOD_NAME](regexp);
+        } catch (error2) {
+        }
+    }
+    return false;
+};

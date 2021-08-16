@@ -1,0 +1,14 @@
+'use strict';
+import   "f00586bf47e67dff1a91e529e3a8babb:../internals/array-buffer-view-core";
+import   "f00586bf47e67dff1a91e529e3a8babb:../internals/typed-array-constructors-require-wrappers";
+var $f00586bf47e67dff1a91e529e3a8babb$var$aTypedArrayConstructor = $f00586bf47e67dff1a91e529e3a8babb$import$646a64c4a95eead$cf8c7afb1bc64521;
+var $f00586bf47e67dff1a91e529e3a8babb$var$exportTypedArrayStaticMethod = $f00586bf47e67dff1a91e529e3a8babb$import$646a64c4a95eead$29269abe6bb681dc;
+// `%TypedArray%.of` method
+// https://tc39.es/ecma262/#sec-%typedarray%.of
+$f00586bf47e67dff1a91e529e3a8babb$var$exportTypedArrayStaticMethod('of', function of() {
+    var index = 0;
+    var length = arguments.length;
+    var result = new ($f00586bf47e67dff1a91e529e3a8babb$var$aTypedArrayConstructor(this))(length);
+    while(length > index)result[index] = arguments[index++];
+    return result;
+}, $f00586bf47e67dff1a91e529e3a8babb$import$c23d8d2575431e49);

@@ -1,0 +1,171 @@
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/descriptors";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/global";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/is-forced";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/inherit-if-required";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/create-non-enumerable-property";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/object-define-property";
+var $5c873903f72e71492f1d7cc8cefdbad7$require$defineProperty = $5c873903f72e71492f1d7cc8cefdbad7$import$4276e2046cfaee3b$ffb27d6bd8d1eb33;
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/object-get-own-property-names";
+var $5c873903f72e71492f1d7cc8cefdbad7$require$getOwnPropertyNames = $5c873903f72e71492f1d7cc8cefdbad7$import$533e989815e07ef4$ffb27d6bd8d1eb33;
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/is-regexp";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/regexp-flags";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/regexp-sticky-helpers";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/redefine";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/fails";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/has";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/internal-state";
+var $5c873903f72e71492f1d7cc8cefdbad7$require$enforceInternalState = $5c873903f72e71492f1d7cc8cefdbad7$import$2c03d954288482bc$f2c0d7c4fb49feef;
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/set-species";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/well-known-symbol";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/regexp-unsupported-dot-all";
+import   "5c873903f72e71492f1d7cc8cefdbad7:../internals/regexp-unsupported-ncg";
+var $5c873903f72e71492f1d7cc8cefdbad7$var$MATCH = $5c873903f72e71492f1d7cc8cefdbad7$import$88242bc6a9673a44('match');
+var $5c873903f72e71492f1d7cc8cefdbad7$var$NativeRegExp = $5c873903f72e71492f1d7cc8cefdbad7$import$da678c04728da253.RegExp;
+var $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpPrototype = $5c873903f72e71492f1d7cc8cefdbad7$var$NativeRegExp.prototype;
+// TODO: Use only propper RegExpIdentifierName
+var $5c873903f72e71492f1d7cc8cefdbad7$var$IS_NCG = /^\?<[^\s\d!#%&*+<=>@^][^\s!#%&*+<=>@^]*>/;
+var $5c873903f72e71492f1d7cc8cefdbad7$var$re1 = /a/g;
+var $5c873903f72e71492f1d7cc8cefdbad7$var$re2 = /a/g;
+// "new" should create a new object, old webkit bug
+var $5c873903f72e71492f1d7cc8cefdbad7$var$CORRECT_NEW = new $5c873903f72e71492f1d7cc8cefdbad7$var$NativeRegExp($5c873903f72e71492f1d7cc8cefdbad7$var$re1) !== $5c873903f72e71492f1d7cc8cefdbad7$var$re1;
+var $5c873903f72e71492f1d7cc8cefdbad7$var$UNSUPPORTED_Y = $5c873903f72e71492f1d7cc8cefdbad7$import$e9ad70eb59d84ab$f1f96ea44d660c47;
+var $5c873903f72e71492f1d7cc8cefdbad7$var$BASE_FORCED = $5c873903f72e71492f1d7cc8cefdbad7$import$9e95520c426f46b4 && (!$5c873903f72e71492f1d7cc8cefdbad7$var$CORRECT_NEW || $5c873903f72e71492f1d7cc8cefdbad7$var$UNSUPPORTED_Y || $5c873903f72e71492f1d7cc8cefdbad7$import$9aaabff79228d9d9 || $5c873903f72e71492f1d7cc8cefdbad7$import$a9f7382be1b35279 || $5c873903f72e71492f1d7cc8cefdbad7$import$9936d02511e757dc(function() {
+    $5c873903f72e71492f1d7cc8cefdbad7$var$re2[$5c873903f72e71492f1d7cc8cefdbad7$var$MATCH] = false;
+    // RegExp constructor can alter flags and IsRegExp works correct with @@match
+    return $5c873903f72e71492f1d7cc8cefdbad7$var$NativeRegExp($5c873903f72e71492f1d7cc8cefdbad7$var$re1) != $5c873903f72e71492f1d7cc8cefdbad7$var$re1 || $5c873903f72e71492f1d7cc8cefdbad7$var$NativeRegExp($5c873903f72e71492f1d7cc8cefdbad7$var$re2) == $5c873903f72e71492f1d7cc8cefdbad7$var$re2 || $5c873903f72e71492f1d7cc8cefdbad7$var$NativeRegExp($5c873903f72e71492f1d7cc8cefdbad7$var$re1, 'i') != '/a/i';
+}));
+var $5c873903f72e71492f1d7cc8cefdbad7$var$handleDotAll = function(string) {
+    var length = string.length;
+    var index = 0;
+    var result = '';
+    var brackets = false;
+    var chr;
+    for(; index <= length; index++){
+        chr = string.charAt(index);
+        if (chr === '\\') {
+            result += chr + string.charAt(++index);
+            continue;
+        }
+        if (!brackets && chr === '.') result += '[\\s\\S]';
+        else {
+            if (chr === '[') brackets = true;
+            else if (chr === ']') brackets = false;
+            result += chr;
+        }
+    }
+    return result;
+};
+var $5c873903f72e71492f1d7cc8cefdbad7$var$handleNCG = function(string) {
+    var length = string.length;
+    var index = 0;
+    var result = '';
+    var named = [];
+    var names = {
+    };
+    var brackets = false;
+    var ncg = false;
+    var groupid = 0;
+    var groupname = '';
+    var chr;
+    for(; index <= length; index++){
+        chr = string.charAt(index);
+        if (chr === '\\') chr = chr + string.charAt(++index);
+        else if (chr === ']') brackets = false;
+        else if (!brackets) switch(true){
+            case chr === '[':
+                brackets = true;
+                break;
+            case chr === '(':
+                if ($5c873903f72e71492f1d7cc8cefdbad7$var$IS_NCG.test(string.slice(index + 1))) {
+                    index += 2;
+                    ncg = true;
+                }
+                result += chr;
+                groupid++;
+                continue;
+            case chr === '>' && ncg:
+                if (groupname === '' || $5c873903f72e71492f1d7cc8cefdbad7$import$7e2f6fc726b1debe(names, groupname)) throw new SyntaxError('Invalid capture group name');
+                names[groupname] = true;
+                named.push([
+                    groupname,
+                    groupid
+                ]);
+                ncg = false;
+                groupname = '';
+                continue;
+        }
+        if (ncg) groupname += chr;
+        else result += chr;
+    }
+    return [
+        result,
+        named
+    ];
+};
+// `RegExp` constructor
+// https://tc39.es/ecma262/#sec-regexp-constructor
+if ($5c873903f72e71492f1d7cc8cefdbad7$import$6d4a6b2681f6fa01('RegExp', $5c873903f72e71492f1d7cc8cefdbad7$var$BASE_FORCED)) {
+    var $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpWrapper = function RegExp1(pattern, flags) {
+        var thisIsRegExp = this instanceof $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpWrapper;
+        var patternIsRegExp = $5c873903f72e71492f1d7cc8cefdbad7$import$662e09ba9e21e14(pattern);
+        var flagsAreUndefined = flags === undefined;
+        var groups = [];
+        var rawPattern = pattern;
+        var rawFlags, dotAll, sticky, handled, result, state;
+        if (!thisIsRegExp && patternIsRegExp && flagsAreUndefined && pattern.constructor === $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpWrapper) return pattern;
+        if (patternIsRegExp || pattern instanceof $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpWrapper) {
+            pattern = pattern.source;
+            if (flagsAreUndefined) flags = 'flags' in rawPattern ? rawPattern.flags : $5c873903f72e71492f1d7cc8cefdbad7$import$55a1ee6edebd1d69$a4b4c796a132eb0a(rawPattern);
+        }
+        pattern = pattern === undefined ? '' : String(pattern);
+        flags = flags === undefined ? '' : String(flags);
+        rawPattern = pattern;
+        if ($5c873903f72e71492f1d7cc8cefdbad7$import$9aaabff79228d9d9 && 'dotAll' in $5c873903f72e71492f1d7cc8cefdbad7$var$re1) {
+            dotAll = !!flags && flags.indexOf('s') > -1;
+            if (dotAll) flags = flags.replace(/s/g, '');
+        }
+        rawFlags = flags;
+        if ($5c873903f72e71492f1d7cc8cefdbad7$var$UNSUPPORTED_Y && 'sticky' in $5c873903f72e71492f1d7cc8cefdbad7$var$re1) {
+            sticky = !!flags && flags.indexOf('y') > -1;
+            if (sticky) flags = flags.replace(/y/g, '');
+        }
+        if ($5c873903f72e71492f1d7cc8cefdbad7$import$a9f7382be1b35279) {
+            handled = $5c873903f72e71492f1d7cc8cefdbad7$var$handleNCG(pattern);
+            pattern = handled[0];
+            groups = handled[1];
+        }
+        result = $5c873903f72e71492f1d7cc8cefdbad7$import$4573551afb25194($5c873903f72e71492f1d7cc8cefdbad7$var$NativeRegExp(pattern, flags), thisIsRegExp ? this : $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpPrototype, $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpWrapper);
+        if (dotAll || sticky || groups.length) {
+            state = $5c873903f72e71492f1d7cc8cefdbad7$require$enforceInternalState(result);
+            if (dotAll) {
+                state.dotAll = true;
+                state.raw = $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpWrapper($5c873903f72e71492f1d7cc8cefdbad7$var$handleDotAll(pattern), rawFlags);
+            }
+            if (sticky) state.sticky = true;
+            if (groups.length) state.groups = groups;
+        }
+        if (pattern !== rawPattern) try {
+            // fails in old engines, but we have no alternatives for unsupported regex syntax
+            $5c873903f72e71492f1d7cc8cefdbad7$import$ea4d2ea16a516be3(result, 'source', rawPattern === '' ? '(?:)' : rawPattern);
+        } catch (error) {
+        }
+        return result;
+    };
+    var $5c873903f72e71492f1d7cc8cefdbad7$var$proxy = function(key) {
+        key in $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpWrapper || $5c873903f72e71492f1d7cc8cefdbad7$require$defineProperty($5c873903f72e71492f1d7cc8cefdbad7$var$RegExpWrapper, key, {
+            configurable: true,
+            get: function() {
+                return $5c873903f72e71492f1d7cc8cefdbad7$var$NativeRegExp[key];
+            },
+            set: function(it) {
+                $5c873903f72e71492f1d7cc8cefdbad7$var$NativeRegExp[key] = it;
+            }
+        });
+    };
+    for(var $5c873903f72e71492f1d7cc8cefdbad7$var$keys = $5c873903f72e71492f1d7cc8cefdbad7$require$getOwnPropertyNames($5c873903f72e71492f1d7cc8cefdbad7$var$NativeRegExp), $5c873903f72e71492f1d7cc8cefdbad7$var$index = 0; $5c873903f72e71492f1d7cc8cefdbad7$var$keys.length > $5c873903f72e71492f1d7cc8cefdbad7$var$index;)$5c873903f72e71492f1d7cc8cefdbad7$var$proxy($5c873903f72e71492f1d7cc8cefdbad7$var$keys[$5c873903f72e71492f1d7cc8cefdbad7$var$index++]);
+    $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpPrototype.constructor = $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpWrapper;
+    $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpWrapper.prototype = $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpPrototype;
+    $5c873903f72e71492f1d7cc8cefdbad7$import$715a1a2c44d923e3($5c873903f72e71492f1d7cc8cefdbad7$import$da678c04728da253, 'RegExp', $5c873903f72e71492f1d7cc8cefdbad7$var$RegExpWrapper);
+}
+// https://tc39.es/ecma262/#sec-get-regexp-@@species
+$5c873903f72e71492f1d7cc8cefdbad7$import$4ab311111214a6d('RegExp');

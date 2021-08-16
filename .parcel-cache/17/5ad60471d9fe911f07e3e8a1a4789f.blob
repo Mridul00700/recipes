@@ -1,0 +1,14 @@
+import   "e32e82259debbf7d6b4c7906675f5a73:./classof-raw";
+import   "e32e82259debbf7d6b4c7906675f5a73:./regexp-exec";
+// `RegExpExec` abstract operation
+// https://tc39.es/ecma262/#sec-regexpexec
+$e32e82259debbf7d6b4c7906675f5a73$exports = function(R, S) {
+    var exec = R.exec;
+    if (typeof exec === 'function') {
+        var result = exec.call(R, S);
+        if (typeof result !== 'object') throw TypeError('RegExp exec method returned something other than an Object or null');
+        return result;
+    }
+    if ($e32e82259debbf7d6b4c7906675f5a73$import$f0f22f637b5a5a6(R) !== 'RegExp') throw TypeError('RegExp#exec called on incompatible receiver');
+    return $e32e82259debbf7d6b4c7906675f5a73$import$74363c982070d216$a4b4c796a132eb0a(R, S);
+};

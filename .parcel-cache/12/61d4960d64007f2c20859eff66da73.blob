@@ -1,0 +1,15 @@
+import   "cc421b65933fe03c5a59f7bc60059a7b:../internals/export";
+import   "cc421b65933fe03c5a59f7bc60059a7b:../internals/an-object";
+import   "cc421b65933fe03c5a59f7bc60059a7b:../internals/object-get-own-property-descriptor";
+var $cc421b65933fe03c5a59f7bc60059a7b$require$getOwnPropertyDescriptor = $cc421b65933fe03c5a59f7bc60059a7b$import$671bedbe12b63e7d$ffb27d6bd8d1eb33;
+// `Reflect.deleteProperty` method
+// https://tc39.es/ecma262/#sec-reflect.deleteproperty
+$cc421b65933fe03c5a59f7bc60059a7b$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true
+}, {
+    deleteProperty: function deleteProperty(target, propertyKey) {
+        var descriptor = $cc421b65933fe03c5a59f7bc60059a7b$require$getOwnPropertyDescriptor($cc421b65933fe03c5a59f7bc60059a7b$import$cad8ba314ee735d6(target), propertyKey);
+        return descriptor && !descriptor.configurable ? false : delete target[propertyKey];
+    }
+});

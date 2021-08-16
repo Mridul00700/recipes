@@ -1,0 +1,44 @@
+import   "45b80adbf734d28d1971252038245329:../internals/well-known-symbol";
+var $45b80adbf734d28d1971252038245329$var$ITERATOR = $45b80adbf734d28d1971252038245329$import$88242bc6a9673a44('iterator');
+var $45b80adbf734d28d1971252038245329$var$SAFE_CLOSING = false;
+try {
+    var $45b80adbf734d28d1971252038245329$var$called = 0;
+    var $45b80adbf734d28d1971252038245329$var$iteratorWithReturn = {
+        next: function() {
+            return {
+                done: !!$45b80adbf734d28d1971252038245329$var$called++
+            };
+        },
+        'return': function() {
+            $45b80adbf734d28d1971252038245329$var$SAFE_CLOSING = true;
+        }
+    };
+    $45b80adbf734d28d1971252038245329$var$iteratorWithReturn[$45b80adbf734d28d1971252038245329$var$ITERATOR] = function() {
+        return this;
+    };
+    // eslint-disable-next-line es/no-array-from, no-throw-literal -- required for testing
+    Array.from($45b80adbf734d28d1971252038245329$var$iteratorWithReturn, function() {
+        throw 2;
+    });
+} catch (error) {
+}
+$45b80adbf734d28d1971252038245329$exports = function(exec, SKIP_CLOSING) {
+    if (!SKIP_CLOSING && !$45b80adbf734d28d1971252038245329$var$SAFE_CLOSING) return false;
+    var ITERATION_SUPPORT = false;
+    try {
+        var object = {
+        };
+        object[$45b80adbf734d28d1971252038245329$var$ITERATOR] = function() {
+            return {
+                next: function() {
+                    return {
+                        done: ITERATION_SUPPORT = true
+                    };
+                }
+            };
+        };
+        exec(object);
+    } catch (error) {
+    }
+    return ITERATION_SUPPORT;
+};

@@ -1,0 +1,10 @@
+import   "1c758ed8cc0b27c0173357c0a822063a:../internals/require-object-coercible";
+var $1c758ed8cc0b27c0173357c0a822063a$var$quot = /"/g;
+// `CreateHTML` abstract operation
+// https://tc39.es/ecma262/#sec-createhtml
+$1c758ed8cc0b27c0173357c0a822063a$exports = function(string, tag, attribute, value) {
+    var S = String($1c758ed8cc0b27c0173357c0a822063a$import$cb96119f17424999(string));
+    var p1 = '<' + tag;
+    if (attribute !== '') p1 += ' ' + attribute + '="' + String(value).replace($1c758ed8cc0b27c0173357c0a822063a$var$quot, '&quot;') + '"';
+    return p1 + '>' + S + '</' + tag + '>';
+};

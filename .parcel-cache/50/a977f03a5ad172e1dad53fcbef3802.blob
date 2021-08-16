@@ -1,0 +1,15 @@
+import   "4b8e608dadc6eea2c2c04afe59119f42:../internals/export";
+import   "4b8e608dadc6eea2c2c04afe59119f42:../internals/math-expm1";
+var $4b8e608dadc6eea2c2c04afe59119f42$var$exp = Math.exp;
+// `Math.tanh` method
+// https://tc39.es/ecma262/#sec-math.tanh
+$4b8e608dadc6eea2c2c04afe59119f42$import$1bb3f1a3ac631152({
+    target: 'Math',
+    stat: true
+}, {
+    tanh: function tanh(x) {
+        var a = $4b8e608dadc6eea2c2c04afe59119f42$import$292c0938223fb3b3(x = +x);
+        var b = $4b8e608dadc6eea2c2c04afe59119f42$import$292c0938223fb3b3(-x);
+        return a == Infinity ? 1 : b == Infinity ? -1 : (a - b) / ($4b8e608dadc6eea2c2c04afe59119f42$var$exp(x) + $4b8e608dadc6eea2c2c04afe59119f42$var$exp(-x));
+    }
+});

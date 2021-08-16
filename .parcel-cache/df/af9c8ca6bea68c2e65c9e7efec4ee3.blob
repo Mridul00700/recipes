@@ -1,0 +1,11 @@
+'use strict';
+import   "5b458328112584cc2214aa63759bc86c:../internals/fails";
+$5b458328112584cc2214aa63759bc86c$exports = function(METHOD_NAME, argument) {
+    var method = [][METHOD_NAME];
+    return !!method && $5b458328112584cc2214aa63759bc86c$import$9936d02511e757dc(function() {
+        // eslint-disable-next-line no-useless-call,no-throw-literal -- required for testing
+        method.call(null, argument || function() {
+            throw 1;
+        }, 1);
+    });
+};

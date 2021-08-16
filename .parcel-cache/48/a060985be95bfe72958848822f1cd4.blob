@@ -1,0 +1,15 @@
+'use strict';
+import   "20342a5d9d30f721b1479444299a3d1a:../internals/export";
+import   "20342a5d9d30f721b1479444299a3d1a:../internals/create-html";
+import   "20342a5d9d30f721b1479444299a3d1a:../internals/string-html-forced";
+// `String.prototype.fontsize` method
+// https://tc39.es/ecma262/#sec-string.prototype.fontsize
+$20342a5d9d30f721b1479444299a3d1a$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: $20342a5d9d30f721b1479444299a3d1a$import$fe56c9129589f6f('fontsize')
+}, {
+    fontsize: function fontsize(size) {
+        return $20342a5d9d30f721b1479444299a3d1a$import$754c0a633ad84ebd(this, 'font', 'size', size);
+    }
+});

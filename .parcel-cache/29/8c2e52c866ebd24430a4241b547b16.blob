@@ -1,0 +1,22 @@
+'use strict';
+import   "3f9a98b626c937230f94ea82ccfb09a0:../internals/export";
+import   "3f9a98b626c937230f94ea82ccfb09a0:../internals/array-reduce";
+var $3f9a98b626c937230f94ea82ccfb09a0$require$$reduceRight = $3f9a98b626c937230f94ea82ccfb09a0$import$b9de931dec1275b0$2ea344c6f4e18f30;
+import   "3f9a98b626c937230f94ea82ccfb09a0:../internals/array-method-is-strict";
+import   "3f9a98b626c937230f94ea82ccfb09a0:../internals/engine-v8-version";
+import   "3f9a98b626c937230f94ea82ccfb09a0:../internals/engine-is-node";
+var $3f9a98b626c937230f94ea82ccfb09a0$var$STRICT_METHOD = $3f9a98b626c937230f94ea82ccfb09a0$import$f597927de08feb79('reduceRight');
+// Chrome 80-82 has a critical bug
+// https://bugs.chromium.org/p/chromium/issues/detail?id=1049982
+var $3f9a98b626c937230f94ea82ccfb09a0$var$CHROME_BUG = !$3f9a98b626c937230f94ea82ccfb09a0$import$417f1fc70487a5af && $3f9a98b626c937230f94ea82ccfb09a0$import$aa08777f3c690dd7 > 79 && $3f9a98b626c937230f94ea82ccfb09a0$import$aa08777f3c690dd7 < 83;
+// `Array.prototype.reduceRight` method
+// https://tc39.es/ecma262/#sec-array.prototype.reduceright
+$3f9a98b626c937230f94ea82ccfb09a0$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true,
+    forced: !$3f9a98b626c937230f94ea82ccfb09a0$var$STRICT_METHOD || $3f9a98b626c937230f94ea82ccfb09a0$var$CHROME_BUG
+}, {
+    reduceRight: function reduceRight(callbackfn/* , initialValue */ ) {
+        return $3f9a98b626c937230f94ea82ccfb09a0$require$$reduceRight(this, callbackfn, arguments.length, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});

@@ -1,0 +1,17 @@
+'use strict';
+import   "2491a87478226edf38abfb11bcacea70:../internals/export";
+import   "2491a87478226edf38abfb11bcacea70:../internals/array-includes";
+var $2491a87478226edf38abfb11bcacea70$require$$includes = $2491a87478226edf38abfb11bcacea70$import$d824de73f032fddf$627ad4a8fadf1912;
+import   "2491a87478226edf38abfb11bcacea70:../internals/add-to-unscopables";
+// `Array.prototype.includes` method
+// https://tc39.es/ecma262/#sec-array.prototype.includes
+$2491a87478226edf38abfb11bcacea70$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true
+}, {
+    includes: function includes(el/* , fromIndex = 0 */ ) {
+        return $2491a87478226edf38abfb11bcacea70$require$$includes(this, el, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});
+// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+$2491a87478226edf38abfb11bcacea70$import$5d18bfe1c15e4f32('includes');

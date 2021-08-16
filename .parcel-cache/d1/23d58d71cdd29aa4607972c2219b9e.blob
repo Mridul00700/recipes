@@ -1,0 +1,19 @@
+'use strict';
+import   "b0c7459c7e828363a96ac37c7227264a:../internals/export";
+import   "b0c7459c7e828363a96ac37c7227264a:../internals/indexed-object";
+import   "b0c7459c7e828363a96ac37c7227264a:../internals/to-indexed-object";
+import   "b0c7459c7e828363a96ac37c7227264a:../internals/array-method-is-strict";
+var $b0c7459c7e828363a96ac37c7227264a$var$nativeJoin = [].join;
+var $b0c7459c7e828363a96ac37c7227264a$var$ES3_STRINGS = $b0c7459c7e828363a96ac37c7227264a$import$b563c836d980da8e != Object;
+var $b0c7459c7e828363a96ac37c7227264a$var$STRICT_METHOD = $b0c7459c7e828363a96ac37c7227264a$import$f597927de08feb79('join', ',');
+// `Array.prototype.join` method
+// https://tc39.es/ecma262/#sec-array.prototype.join
+$b0c7459c7e828363a96ac37c7227264a$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true,
+    forced: $b0c7459c7e828363a96ac37c7227264a$var$ES3_STRINGS || !$b0c7459c7e828363a96ac37c7227264a$var$STRICT_METHOD
+}, {
+    join: function join(separator) {
+        return $b0c7459c7e828363a96ac37c7227264a$var$nativeJoin.call($b0c7459c7e828363a96ac37c7227264a$import$73e80bdb170d55b7(this), separator === undefined ? ',' : separator);
+    }
+});

@@ -1,0 +1,13 @@
+'use strict';
+import   "d8058e00868da51b5f2dee7861495c94:../internals/export";
+var $d8058e00868da51b5f2dee7861495c94$var$getFullYear = Date.prototype.getFullYear;
+// `Date.prototype.getYear` method
+// https://tc39.es/ecma262/#sec-date.prototype.getyear
+$d8058e00868da51b5f2dee7861495c94$import$1bb3f1a3ac631152({
+    target: 'Date',
+    proto: true
+}, {
+    getYear: function getYear() {
+        return $d8058e00868da51b5f2dee7861495c94$var$getFullYear.call(this) - 1900;
+    }
+});

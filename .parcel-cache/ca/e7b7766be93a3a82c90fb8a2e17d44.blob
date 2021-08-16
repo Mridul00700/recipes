@@ -1,0 +1,60 @@
+import   "e0cd2f09b1ba7341c2c71f1042f5618f:../internals/hidden-keys";
+import   "e0cd2f09b1ba7341c2c71f1042f5618f:../internals/is-object";
+import   "e0cd2f09b1ba7341c2c71f1042f5618f:../internals/has";
+import   "e0cd2f09b1ba7341c2c71f1042f5618f:../internals/object-define-property";
+var $e0cd2f09b1ba7341c2c71f1042f5618f$require$defineProperty = $e0cd2f09b1ba7341c2c71f1042f5618f$import$4276e2046cfaee3b$ffb27d6bd8d1eb33;
+import   "e0cd2f09b1ba7341c2c71f1042f5618f:../internals/uid";
+import   "e0cd2f09b1ba7341c2c71f1042f5618f:../internals/freezing";
+var $e0cd2f09b1ba7341c2c71f1042f5618f$var$METADATA = $e0cd2f09b1ba7341c2c71f1042f5618f$import$865304611243ad06('meta');
+var $e0cd2f09b1ba7341c2c71f1042f5618f$var$id = 0;
+// eslint-disable-next-line es/no-object-isextensible -- safe
+var $e0cd2f09b1ba7341c2c71f1042f5618f$var$isExtensible = Object.isExtensible || function() {
+    return true;
+};
+var $e0cd2f09b1ba7341c2c71f1042f5618f$var$setMetadata = function(it) {
+    $e0cd2f09b1ba7341c2c71f1042f5618f$require$defineProperty(it, $e0cd2f09b1ba7341c2c71f1042f5618f$var$METADATA, {
+        value: {
+            objectID: 'O' + $e0cd2f09b1ba7341c2c71f1042f5618f$var$id++,
+            weakData: {
+            }
+        }
+    });
+};
+var $e0cd2f09b1ba7341c2c71f1042f5618f$var$fastKey = function(it, create) {
+    // return a primitive with prefix
+    if (!$e0cd2f09b1ba7341c2c71f1042f5618f$import$9294ccec169e68b9(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+    if (!$e0cd2f09b1ba7341c2c71f1042f5618f$import$7e2f6fc726b1debe(it, $e0cd2f09b1ba7341c2c71f1042f5618f$var$METADATA)) {
+        // can't set metadata to uncaught frozen object
+        if (!$e0cd2f09b1ba7341c2c71f1042f5618f$var$isExtensible(it)) return 'F';
+        // not necessary to add metadata
+        if (!create) return 'E';
+        // add missing metadata
+        $e0cd2f09b1ba7341c2c71f1042f5618f$var$setMetadata(it);
+    // return object ID
+    }
+    return it[$e0cd2f09b1ba7341c2c71f1042f5618f$var$METADATA].objectID;
+};
+var $e0cd2f09b1ba7341c2c71f1042f5618f$var$getWeakData = function(it, create) {
+    if (!$e0cd2f09b1ba7341c2c71f1042f5618f$import$7e2f6fc726b1debe(it, $e0cd2f09b1ba7341c2c71f1042f5618f$var$METADATA)) {
+        // can't set metadata to uncaught frozen object
+        if (!$e0cd2f09b1ba7341c2c71f1042f5618f$var$isExtensible(it)) return true;
+        // not necessary to add metadata
+        if (!create) return false;
+        // add missing metadata
+        $e0cd2f09b1ba7341c2c71f1042f5618f$var$setMetadata(it);
+    // return the store of weak collections IDs
+    }
+    return it[$e0cd2f09b1ba7341c2c71f1042f5618f$var$METADATA].weakData;
+};
+// add metadata on freeze-family methods calling
+var $e0cd2f09b1ba7341c2c71f1042f5618f$var$onFreeze = function(it) {
+    if ($e0cd2f09b1ba7341c2c71f1042f5618f$import$9378031501892524 && $e0cd2f09b1ba7341c2c71f1042f5618f$var$meta.REQUIRED && $e0cd2f09b1ba7341c2c71f1042f5618f$var$isExtensible(it) && !$e0cd2f09b1ba7341c2c71f1042f5618f$import$7e2f6fc726b1debe(it, $e0cd2f09b1ba7341c2c71f1042f5618f$var$METADATA)) $e0cd2f09b1ba7341c2c71f1042f5618f$var$setMetadata(it);
+    return it;
+};
+var $e0cd2f09b1ba7341c2c71f1042f5618f$var$meta = $e0cd2f09b1ba7341c2c71f1042f5618f$exports = {
+    REQUIRED: false,
+    fastKey: $e0cd2f09b1ba7341c2c71f1042f5618f$var$fastKey,
+    getWeakData: $e0cd2f09b1ba7341c2c71f1042f5618f$var$getWeakData,
+    onFreeze: $e0cd2f09b1ba7341c2c71f1042f5618f$var$onFreeze
+};
+$e0cd2f09b1ba7341c2c71f1042f5618f$import$d45197a06d41f191[$e0cd2f09b1ba7341c2c71f1042f5618f$var$METADATA] = true;

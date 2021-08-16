@@ -1,0 +1,25 @@
+import   "31294414a0ff2cb2407dbfb1357b4125:../internals/require-object-coercible";
+import   "31294414a0ff2cb2407dbfb1357b4125:../internals/whitespaces";
+var $31294414a0ff2cb2407dbfb1357b4125$var$whitespace = '[' + $31294414a0ff2cb2407dbfb1357b4125$import$5bbdc6f6aac05287 + ']';
+var $31294414a0ff2cb2407dbfb1357b4125$var$ltrim = RegExp('^' + $31294414a0ff2cb2407dbfb1357b4125$var$whitespace + $31294414a0ff2cb2407dbfb1357b4125$var$whitespace + '*');
+var $31294414a0ff2cb2407dbfb1357b4125$var$rtrim = RegExp($31294414a0ff2cb2407dbfb1357b4125$var$whitespace + $31294414a0ff2cb2407dbfb1357b4125$var$whitespace + '*$');
+// `String.prototype.{ trim, trimStart, trimEnd, trimLeft, trimRight }` methods implementation
+var $31294414a0ff2cb2407dbfb1357b4125$var$createMethod = function(TYPE) {
+    return function($this) {
+        var string = String($31294414a0ff2cb2407dbfb1357b4125$import$cb96119f17424999($this));
+        if (TYPE & 1) string = string.replace($31294414a0ff2cb2407dbfb1357b4125$var$ltrim, '');
+        if (TYPE & 2) string = string.replace($31294414a0ff2cb2407dbfb1357b4125$var$rtrim, '');
+        return string;
+    };
+};
+$31294414a0ff2cb2407dbfb1357b4125$exports = {
+    // `String.prototype.{ trimLeft, trimStart }` methods
+    // https://tc39.es/ecma262/#sec-string.prototype.trimstart
+    start: $31294414a0ff2cb2407dbfb1357b4125$var$createMethod(1),
+    // `String.prototype.{ trimRight, trimEnd }` methods
+    // https://tc39.es/ecma262/#sec-string.prototype.trimend
+    end: $31294414a0ff2cb2407dbfb1357b4125$var$createMethod(2),
+    // `String.prototype.trim` method
+    // https://tc39.es/ecma262/#sec-string.prototype.trim
+    trim: $31294414a0ff2cb2407dbfb1357b4125$var$createMethod(3)
+};

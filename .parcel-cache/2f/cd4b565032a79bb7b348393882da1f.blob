@@ -1,0 +1,3 @@
+import   "b02a2b2e99518ed4305a24690ed13f6d:../internals/engine-user-agent";
+var $b02a2b2e99518ed4305a24690ed13f6d$var$webkit = $b02a2b2e99518ed4305a24690ed13f6d$import$f29ee6c65de699c7$8eef6bb14c07a30e(/AppleWebKit\/(\d+)\./);
+$b02a2b2e99518ed4305a24690ed13f6d$exports = !!$b02a2b2e99518ed4305a24690ed13f6d$var$webkit && +$b02a2b2e99518ed4305a24690ed13f6d$var$webkit[1];

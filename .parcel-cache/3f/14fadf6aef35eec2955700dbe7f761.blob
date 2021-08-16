@@ -1,0 +1,16 @@
+'use strict';
+import   "6e4c5db9dfbd03b38319c336e80f0e96:../internals/export";
+import   "6e4c5db9dfbd03b38319c336e80f0e96:../internals/not-a-regexp";
+import   "6e4c5db9dfbd03b38319c336e80f0e96:../internals/require-object-coercible";
+import   "6e4c5db9dfbd03b38319c336e80f0e96:../internals/correct-is-regexp-logic";
+// `String.prototype.includes` method
+// https://tc39.es/ecma262/#sec-string.prototype.includes
+$6e4c5db9dfbd03b38319c336e80f0e96$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: !$6e4c5db9dfbd03b38319c336e80f0e96$import$41e114ecea3b171c('includes')
+}, {
+    includes: function includes(searchString/* , position = 0 */ ) {
+        return !!~String($6e4c5db9dfbd03b38319c336e80f0e96$import$cb96119f17424999(this)).indexOf($6e4c5db9dfbd03b38319c336e80f0e96$import$d0abdc2f61739d3d(searchString), arguments.length > 1 ? arguments[1] : undefined);
+    }
+});

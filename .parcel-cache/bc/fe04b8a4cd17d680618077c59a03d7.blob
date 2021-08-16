@@ -1,0 +1,13 @@
+import   "a641aeec1aa34f5f8b72e5f7d92da188:./View";
+import   "a641aeec1aa34f5f8b72e5f7d92da188:url:../../img/icons.svg";
+import   "a641aeec1aa34f5f8b72e5f7d92da188:./previewView";
+class $a641aeec1aa34f5f8b72e5f7d92da188$var$ResultView extends $a641aeec1aa34f5f8b72e5f7d92da188$import$49e877b42f6d2181$9099ad97b570f7c {
+    _parentElement = document.querySelector('.results');
+    _errorMessage = 'We could not find a recipe for your query. Please try another one ;)';
+    _message = '';
+    _generateMarkup() {
+        return this._data.map((result)=>$a641aeec1aa34f5f8b72e5f7d92da188$import$222c883c5f8d8531$9099ad97b570f7c.render(result, false)
+        ).join('');
+    }
+}
+var $a641aeec1aa34f5f8b72e5f7d92da188$export$9099ad97b570f7c = new $a641aeec1aa34f5f8b72e5f7d92da188$var$ResultView;

@@ -1,0 +1,26 @@
+'use strict';
+import   "f7a33d57c5fbd45b686582c5a71eafc3:../internals/is-array";
+import   "f7a33d57c5fbd45b686582c5a71eafc3:../internals/to-length";
+import   "f7a33d57c5fbd45b686582c5a71eafc3:../internals/function-bind-context";
+// `FlattenIntoArray` abstract operation
+// https://tc39.github.io/proposal-flatMap/#sec-FlattenIntoArray
+var $f7a33d57c5fbd45b686582c5a71eafc3$var$flattenIntoArray = function(target, original, source, sourceLen, start, depth, mapper, thisArg) {
+    var targetIndex = start;
+    var sourceIndex = 0;
+    var mapFn = mapper ? $f7a33d57c5fbd45b686582c5a71eafc3$import$66177e0ceb63850c(mapper, thisArg, 3) : false;
+    var element;
+    while(sourceIndex < sourceLen){
+        if (sourceIndex in source) {
+            element = mapFn ? mapFn(source[sourceIndex], sourceIndex, original) : source[sourceIndex];
+            if (depth > 0 && $f7a33d57c5fbd45b686582c5a71eafc3$import$a3ab90aad49ab6f8(element)) targetIndex = $f7a33d57c5fbd45b686582c5a71eafc3$var$flattenIntoArray(target, original, element, $f7a33d57c5fbd45b686582c5a71eafc3$import$4102f61a7d1ec5ae(element.length), targetIndex, depth - 1) - 1;
+            else {
+                if (targetIndex >= 9007199254740991) throw TypeError('Exceed the acceptable array length');
+                target[targetIndex] = element;
+            }
+            targetIndex++;
+        }
+        sourceIndex++;
+    }
+    return targetIndex;
+};
+$f7a33d57c5fbd45b686582c5a71eafc3$exports = $f7a33d57c5fbd45b686582c5a71eafc3$var$flattenIntoArray;

@@ -1,0 +1,24 @@
+import   "42b1b6b7aad49f2923b308743da17248:../internals/math-sign";
+var $42b1b6b7aad49f2923b308743da17248$var$abs = Math.abs;
+var $42b1b6b7aad49f2923b308743da17248$var$pow = Math.pow;
+var $42b1b6b7aad49f2923b308743da17248$var$EPSILON = $42b1b6b7aad49f2923b308743da17248$var$pow(2, -52);
+var $42b1b6b7aad49f2923b308743da17248$var$EPSILON32 = $42b1b6b7aad49f2923b308743da17248$var$pow(2, -23);
+var $42b1b6b7aad49f2923b308743da17248$var$MAX32 = $42b1b6b7aad49f2923b308743da17248$var$pow(2, 127) * (2 - $42b1b6b7aad49f2923b308743da17248$var$EPSILON32);
+var $42b1b6b7aad49f2923b308743da17248$var$MIN32 = $42b1b6b7aad49f2923b308743da17248$var$pow(2, -126);
+var $42b1b6b7aad49f2923b308743da17248$var$roundTiesToEven = function(n) {
+    return n + 1 / $42b1b6b7aad49f2923b308743da17248$var$EPSILON - 1 / $42b1b6b7aad49f2923b308743da17248$var$EPSILON;
+};
+// `Math.fround` method implementation
+// https://tc39.es/ecma262/#sec-math.fround
+// eslint-disable-next-line es/no-math-fround -- safe
+$42b1b6b7aad49f2923b308743da17248$exports = Math.fround || function fround(x) {
+    var $abs = $42b1b6b7aad49f2923b308743da17248$var$abs(x);
+    var $sign = $42b1b6b7aad49f2923b308743da17248$import$50e9a973e401cb3d(x);
+    var a, result;
+    if ($abs < $42b1b6b7aad49f2923b308743da17248$var$MIN32) return $sign * $42b1b6b7aad49f2923b308743da17248$var$roundTiesToEven($abs / $42b1b6b7aad49f2923b308743da17248$var$MIN32 / $42b1b6b7aad49f2923b308743da17248$var$EPSILON32) * $42b1b6b7aad49f2923b308743da17248$var$MIN32 * $42b1b6b7aad49f2923b308743da17248$var$EPSILON32;
+    a = (1 + $42b1b6b7aad49f2923b308743da17248$var$EPSILON32 / $42b1b6b7aad49f2923b308743da17248$var$EPSILON) * $abs;
+    result = a - (a - $abs);
+    // eslint-disable-next-line no-self-compare -- NaN check
+    if (result > $42b1b6b7aad49f2923b308743da17248$var$MAX32 || result != result) return $sign * Infinity;
+    return $sign * result;
+};

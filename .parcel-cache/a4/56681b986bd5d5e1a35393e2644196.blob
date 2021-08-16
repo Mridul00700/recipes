@@ -1,0 +1,12 @@
+'use strict';
+import   "b86c30051342b44d13d469efb13ec795:../internals/export";
+import   "b86c30051342b44d13d469efb13ec795:../internals/regexp-exec";
+// `RegExp.prototype.exec` method
+// https://tc39.es/ecma262/#sec-regexp.prototype.exec
+$b86c30051342b44d13d469efb13ec795$import$1bb3f1a3ac631152({
+    target: 'RegExp',
+    proto: true,
+    forced: /./.exec !== $b86c30051342b44d13d469efb13ec795$import$4db0b3069deec4fe
+}, {
+    exec: $b86c30051342b44d13d469efb13ec795$import$4db0b3069deec4fe
+});

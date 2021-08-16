@@ -1,0 +1,12 @@
+import   "1750e1bc42fdbb6035e5281fa353cbb8:../internals/export";
+import   "1750e1bc42fdbb6035e5281fa353cbb8:../internals/object-assign";
+// `Object.assign` method
+// https://tc39.es/ecma262/#sec-object.assign
+// eslint-disable-next-line es/no-object-assign -- required for testing
+$1750e1bc42fdbb6035e5281fa353cbb8$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true,
+    forced: Object.assign !== $1750e1bc42fdbb6035e5281fa353cbb8$import$c5b2e802ed758358
+}, {
+    assign: $1750e1bc42fdbb6035e5281fa353cbb8$import$c5b2e802ed758358
+});

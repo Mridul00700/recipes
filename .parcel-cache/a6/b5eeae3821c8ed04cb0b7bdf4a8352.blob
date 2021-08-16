@@ -1,0 +1,18 @@
+var $cc041ba996129796f0fd9af85657655d$export$ffb27d6bd8d1eb33;
+'use strict';
+import   "cc041ba996129796f0fd9af85657655d:../internals/a-function";
+var $cc041ba996129796f0fd9af85657655d$var$PromiseCapability = function(C) {
+    var resolve, reject;
+    this.promise = new C(function($$resolve, $$reject) {
+        if (resolve !== undefined || reject !== undefined) throw TypeError('Bad Promise constructor');
+        resolve = $$resolve;
+        reject = $$reject;
+    });
+    this.resolve = $cc041ba996129796f0fd9af85657655d$import$feed022c18f6196b(resolve);
+    this.reject = $cc041ba996129796f0fd9af85657655d$import$feed022c18f6196b(reject);
+};
+// `NewPromiseCapability` abstract operation
+// https://tc39.es/ecma262/#sec-newpromisecapability
+$cc041ba996129796f0fd9af85657655d$export$ffb27d6bd8d1eb33 = function(C) {
+    return new $cc041ba996129796f0fd9af85657655d$var$PromiseCapability(C);
+};

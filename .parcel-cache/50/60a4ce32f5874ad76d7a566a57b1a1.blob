@@ -1,0 +1,11 @@
+'use strict';
+import   "fcd8ca4e45d5068e8eb315dfa9df2c95:../internals/array-buffer-view-core";
+import   "fcd8ca4e45d5068e8eb315dfa9df2c95:../internals/array-last-index-of";
+var $fcd8ca4e45d5068e8eb315dfa9df2c95$var$aTypedArray = $fcd8ca4e45d5068e8eb315dfa9df2c95$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $fcd8ca4e45d5068e8eb315dfa9df2c95$var$exportTypedArrayMethod = $fcd8ca4e45d5068e8eb315dfa9df2c95$import$646a64c4a95eead$499fcf5cda66e13c;
+// `%TypedArray%.prototype.lastIndexOf` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.lastindexof
+// eslint-disable-next-line no-unused-vars -- required for `.length`
+$fcd8ca4e45d5068e8eb315dfa9df2c95$var$exportTypedArrayMethod('lastIndexOf', function lastIndexOf(searchElement/* , fromIndex */ ) {
+    return $fcd8ca4e45d5068e8eb315dfa9df2c95$import$9e117dab0662af72$6af9bbf310c9e4bf($fcd8ca4e45d5068e8eb315dfa9df2c95$var$aTypedArray(this), arguments);
+});

@@ -1,0 +1,6 @@
+import   "d3e224709a08be69ab4f97032af2d3fa:../internals/to-positive-integer";
+$d3e224709a08be69ab4f97032af2d3fa$exports = function(it, BYTES) {
+    var offset = $d3e224709a08be69ab4f97032af2d3fa$import$4414ba2faaa8ab5(it);
+    if (offset % BYTES) throw RangeError('Wrong offset');
+    return offset;
+};

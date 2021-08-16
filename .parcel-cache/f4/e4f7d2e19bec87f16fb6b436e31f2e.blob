@@ -1,0 +1,13 @@
+import   "5c60181e0b410d824e23a65a36268591:../internals/global";
+import   "5c60181e0b410d824e23a65a36268591:../internals/string-trim";
+var $5c60181e0b410d824e23a65a36268591$require$trim = $5c60181e0b410d824e23a65a36268591$import$7522b5f71d8f3b2$c7aa272acca91797;
+import   "5c60181e0b410d824e23a65a36268591:../internals/whitespaces";
+var $5c60181e0b410d824e23a65a36268591$var$$parseInt = $5c60181e0b410d824e23a65a36268591$import$da678c04728da253$7a048717e70f211b;
+var $5c60181e0b410d824e23a65a36268591$var$hex = /^[+-]?0[Xx]/;
+var $5c60181e0b410d824e23a65a36268591$var$FORCED = $5c60181e0b410d824e23a65a36268591$var$$parseInt($5c60181e0b410d824e23a65a36268591$import$5bbdc6f6aac05287 + '08') !== 8 || $5c60181e0b410d824e23a65a36268591$var$$parseInt($5c60181e0b410d824e23a65a36268591$import$5bbdc6f6aac05287 + '0x16') !== 22;
+// `parseInt` method
+// https://tc39.es/ecma262/#sec-parseint-string-radix
+$5c60181e0b410d824e23a65a36268591$exports = $5c60181e0b410d824e23a65a36268591$var$FORCED ? function parseInt(string, radix) {
+    var S = $5c60181e0b410d824e23a65a36268591$require$trim(String(string));
+    return $5c60181e0b410d824e23a65a36268591$var$$parseInt(S, radix >>> 0 || ($5c60181e0b410d824e23a65a36268591$var$hex.test(S) ? 16 : 10));
+} : $5c60181e0b410d824e23a65a36268591$var$$parseInt;

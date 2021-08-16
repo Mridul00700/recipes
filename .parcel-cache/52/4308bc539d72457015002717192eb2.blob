@@ -1,0 +1,98 @@
+'use strict';
+import   "46322821db13f90b3cd65c09163dbead:../internals/export";
+import   "46322821db13f90b3cd65c09163dbead:../internals/global";
+import   "46322821db13f90b3cd65c09163dbead:../internals/is-forced";
+import   "46322821db13f90b3cd65c09163dbead:../internals/redefine";
+import   "46322821db13f90b3cd65c09163dbead:../internals/internal-metadata";
+import   "46322821db13f90b3cd65c09163dbead:../internals/iterate";
+import   "46322821db13f90b3cd65c09163dbead:../internals/an-instance";
+import   "46322821db13f90b3cd65c09163dbead:../internals/is-object";
+import   "46322821db13f90b3cd65c09163dbead:../internals/fails";
+import   "46322821db13f90b3cd65c09163dbead:../internals/check-correctness-of-iteration";
+import   "46322821db13f90b3cd65c09163dbead:../internals/set-to-string-tag";
+import   "46322821db13f90b3cd65c09163dbead:../internals/inherit-if-required";
+$46322821db13f90b3cd65c09163dbead$exports = function(CONSTRUCTOR_NAME, wrapper, common) {
+    var IS_MAP = CONSTRUCTOR_NAME.indexOf('Map') !== -1;
+    var IS_WEAK = CONSTRUCTOR_NAME.indexOf('Weak') !== -1;
+    var ADDER = IS_MAP ? 'set' : 'add';
+    var NativeConstructor = $46322821db13f90b3cd65c09163dbead$import$da678c04728da253[CONSTRUCTOR_NAME];
+    var NativePrototype = NativeConstructor && NativeConstructor.prototype;
+    var Constructor = NativeConstructor;
+    var exported = {
+    };
+    var fixMethod = function(KEY) {
+        var nativeMethod = NativePrototype[KEY];
+        $46322821db13f90b3cd65c09163dbead$import$715a1a2c44d923e3(NativePrototype, KEY, KEY == 'add' ? function add(value) {
+            nativeMethod.call(this, value === 0 ? 0 : value);
+            return this;
+        } : KEY == 'delete' ? function(key) {
+            return IS_WEAK && !$46322821db13f90b3cd65c09163dbead$import$9294ccec169e68b9(key) ? false : nativeMethod.call(this, key === 0 ? 0 : key);
+        } : KEY == 'get' ? function get(key) {
+            return IS_WEAK && !$46322821db13f90b3cd65c09163dbead$import$9294ccec169e68b9(key) ? undefined : nativeMethod.call(this, key === 0 ? 0 : key);
+        } : KEY == 'has' ? function has(key) {
+            return IS_WEAK && !$46322821db13f90b3cd65c09163dbead$import$9294ccec169e68b9(key) ? false : nativeMethod.call(this, key === 0 ? 0 : key);
+        } : function set(key, value) {
+            nativeMethod.call(this, key === 0 ? 0 : key, value);
+            return this;
+        });
+    };
+    var REPLACE = $46322821db13f90b3cd65c09163dbead$import$6d4a6b2681f6fa01(CONSTRUCTOR_NAME, typeof NativeConstructor != 'function' || !(IS_WEAK || NativePrototype.forEach && !$46322821db13f90b3cd65c09163dbead$import$9936d02511e757dc(function() {
+        new NativeConstructor().entries().next();
+    })));
+    if (REPLACE) {
+        // create collection constructor
+        Constructor = common.getConstructor(wrapper, CONSTRUCTOR_NAME, IS_MAP, ADDER);
+        $46322821db13f90b3cd65c09163dbead$import$30f182e50aaa5627$36f6a482f465fe82 = true;
+    } else if ($46322821db13f90b3cd65c09163dbead$import$6d4a6b2681f6fa01(CONSTRUCTOR_NAME, true)) {
+        var instance = new Constructor();
+        // early implementations not supports chaining
+        var HASNT_CHAINING = instance[ADDER](IS_WEAK ? {
+        } : -0.0, 1) != instance;
+        // V8 ~ Chromium 40- weak-collections throws on primitives, but should return false
+        var THROWS_ON_PRIMITIVES = $46322821db13f90b3cd65c09163dbead$import$9936d02511e757dc(function() {
+            instance.has(1);
+        });
+        // most early implementations doesn't supports iterables, most modern - not close it correctly
+        // eslint-disable-next-line no-new -- required for testing
+        var ACCEPT_ITERABLES = $46322821db13f90b3cd65c09163dbead$import$1d6ae00f2363e8ff(function(iterable) {
+            new NativeConstructor(iterable);
+        });
+        // for early implementations -0 and +0 not the same
+        var BUGGY_ZERO = !IS_WEAK && $46322821db13f90b3cd65c09163dbead$import$9936d02511e757dc(function() {
+            // V8 ~ Chromium 42- fails only with 5+ elements
+            var $instance = new NativeConstructor();
+            var index = 5;
+            while(index--)$instance[ADDER](index, index);
+            return !$instance.has(-0.0);
+        });
+        if (!ACCEPT_ITERABLES) {
+            Constructor = wrapper(function(dummy, iterable) {
+                $46322821db13f90b3cd65c09163dbead$import$65a2120eaf0c2a0a(dummy, Constructor, CONSTRUCTOR_NAME);
+                var that = $46322821db13f90b3cd65c09163dbead$import$4573551afb25194(new NativeConstructor(), dummy, Constructor);
+                if (iterable != undefined) $46322821db13f90b3cd65c09163dbead$import$1f57ebca7b213dbf(iterable, that[ADDER], {
+                    that: that,
+                    AS_ENTRIES: IS_MAP
+                });
+                return that;
+            });
+            Constructor.prototype = NativePrototype;
+            NativePrototype.constructor = Constructor;
+        }
+        if (THROWS_ON_PRIMITIVES || BUGGY_ZERO) {
+            fixMethod('delete');
+            fixMethod('has');
+            IS_MAP && fixMethod('get');
+        }
+        if (BUGGY_ZERO || HASNT_CHAINING) fixMethod(ADDER);
+        // weak collections should not contains .clear method
+        if (IS_WEAK && NativePrototype.clear) delete NativePrototype.clear;
+    }
+    exported[CONSTRUCTOR_NAME] = Constructor;
+    $46322821db13f90b3cd65c09163dbead$import$1bb3f1a3ac631152({
+        global: true,
+        forced: Constructor != NativeConstructor
+    }, exported);
+    $46322821db13f90b3cd65c09163dbead$import$c84072deb0264877(Constructor, CONSTRUCTOR_NAME);
+    if (!IS_WEAK) common.setStrong(Constructor, CONSTRUCTOR_NAME, IS_MAP);
+    return Constructor;
+};

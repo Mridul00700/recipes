@@ -1,0 +1,10 @@
+import   "6a946afb38f5622d43dec75e8217a297:../internals/export";
+import   "6a946afb38f5622d43dec75e8217a297:../internals/object-set-prototype-of";
+// `Object.setPrototypeOf` method
+// https://tc39.es/ecma262/#sec-object.setprototypeof
+$6a946afb38f5622d43dec75e8217a297$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true
+}, {
+    setPrototypeOf: $6a946afb38f5622d43dec75e8217a297$import$74d6517d4e0bb391
+});

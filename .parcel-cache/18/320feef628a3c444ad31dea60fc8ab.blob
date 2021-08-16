@@ -1,0 +1,125 @@
+import   "432807eba433c837fb46bd3330e112be:regenerator-runtime";
+import   "432807eba433c837fb46bd3330e112be:./config";
+import   "432807eba433c837fb46bd3330e112be:./helpers";
+const $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3 = {
+    recipe: {
+    },
+    search: {
+        query: '',
+        results: [],
+        resultsPerPage: $432807eba433c837fb46bd3330e112be$import$c2e114f4bd386737$6ca7b35c65413bfb,
+        page: 1
+    },
+    bookmarks: []
+};
+const $432807eba433c837fb46bd3330e112be$var$createRecipeObject = (data)=>{
+    const { recipe: recipe  } = data.data;
+    return {
+        id: recipe.id,
+        title: recipe.title,
+        publisher: recipe.publisher,
+        sourceUrl: recipe.source_url,
+        image: recipe.image_url,
+        servings: recipe.servings,
+        cookingTime: recipe.cooking_time,
+        ingredients: recipe.ingredients,
+        ...recipe.key && {
+            key: recipe.key
+        }
+    };
+};
+const $432807eba433c837fb46bd3330e112be$export$e9bb34c12ee45abf = async function(id) {
+    try {
+        const data = await $432807eba433c837fb46bd3330e112be$import$88bf7369319fac6b$440419e74e66489a(`${$432807eba433c837fb46bd3330e112be$import$c2e114f4bd386737$121552fae10d4c49}${id}?key=${$432807eba433c837fb46bd3330e112be$import$c2e114f4bd386737$eda49881ec2b841}`);
+        // let recipe = data.data.recipe;
+        $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe = $432807eba433c837fb46bd3330e112be$var$createRecipeObject(data);
+        if ($432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.bookmarks.some((bookmark)=>bookmark.id === id
+        )) $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe.bookmarked = true;
+        else $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe.bookmarked = false;
+    } catch (err) {
+        // console.error(err)
+        throw err;
+    }
+};
+const $432807eba433c837fb46bd3330e112be$export$3ebf3dcac05c94a4 = async function(query) {
+    try {
+        $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.search.query = query;
+        const data = await $432807eba433c837fb46bd3330e112be$import$88bf7369319fac6b$440419e74e66489a(`${$432807eba433c837fb46bd3330e112be$import$c2e114f4bd386737$121552fae10d4c49}?search=${query}&key=${$432807eba433c837fb46bd3330e112be$import$c2e114f4bd386737$eda49881ec2b841}`);
+        $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.search.results = data.data.recipes.map((recipe)=>{
+            return {
+                id: recipe.id,
+                title: recipe.title,
+                publisher: recipe.publisher,
+                image: recipe.image_url,
+                ...recipe.key && {
+                    key: recipe.key
+                }
+            };
+        });
+        $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.search.page = 1;
+    } catch (err) {
+        throw err;
+    }
+};
+const $432807eba433c837fb46bd3330e112be$export$dee14866319e39ec = function(page = $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.search.page) {
+    $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.search.page = page;
+    return $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.search.results.slice((page - 1) * $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.search.resultsPerPage, page * $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.search.resultsPerPage);
+};
+const $432807eba433c837fb46bd3330e112be$export$d0c24e46f61d4295 = (newServings)=>{
+    $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe.ingredients.forEach((ing)=>{
+        ing.quantity = newServings / $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe.servings * ing.quantity;
+    });
+    $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe.servings = newServings;
+};
+const $432807eba433c837fb46bd3330e112be$var$persistBookmark = ()=>{
+    localStorage.setItem('bookmarks', JSON.stringify($432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.bookmarks));
+};
+const $432807eba433c837fb46bd3330e112be$export$5ceec956fc53d8ba = (recipe)=>{
+    // Add bookmark 
+    $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.bookmarks.push(recipe);
+    // mark current recipe as bookmarked -->
+    if (recipe.id === $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe.id) $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe.bookmarked = true;
+    $432807eba433c837fb46bd3330e112be$var$persistBookmark();
+};
+const $432807eba433c837fb46bd3330e112be$export$8ed090d1af87cdb7 = (id)=>{
+    const index = $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.bookmarks.findIndex((el)=>el.id === id
+    );
+    $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.bookmarks.splice(index, 1);
+    if (id === $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe.id) $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe.bookmarked = false;
+    $432807eba433c837fb46bd3330e112be$var$persistBookmark();
+};
+const $432807eba433c837fb46bd3330e112be$var$init = ()=>{
+    const bookmark = localStorage.getItem('bookmarks');
+    if (bookmark) $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.bookmarks = JSON.parse(bookmark);
+};
+$432807eba433c837fb46bd3330e112be$var$init();
+const $432807eba433c837fb46bd3330e112be$export$56a8c91f2354a446 = async (newRecipe)=>{
+    try {
+        const ingredients = Object.entries(newRecipe).filter((entry)=>entry[0].includes("ingredient") && entry[1] !== ""
+        ).map((ing)=>{
+            const arr = ing[1].split(',').map((el)=>el.trim()
+            );
+            if (arr.length !== 3) throw new Error("Wrong ingredient format, please check the format");
+            const [quantity, unit, description] = arr;
+            return {
+                quantity: quantity ? +quantity : null,
+                unit: unit,
+                description: description
+            };
+        });
+        const recipe = {
+            title: newRecipe.title,
+            source_url: newRecipe.sourceUrl,
+            image_url: newRecipe.image,
+            publisher: newRecipe.publisher,
+            cooking_time: +newRecipe.cookingTime,
+            servings: +newRecipe.servings,
+            ingredients: ingredients
+        };
+        const data = await $432807eba433c837fb46bd3330e112be$import$88bf7369319fac6b$440419e74e66489a(`${$432807eba433c837fb46bd3330e112be$import$c2e114f4bd386737$121552fae10d4c49}?key=${$432807eba433c837fb46bd3330e112be$import$c2e114f4bd386737$eda49881ec2b841}`, recipe);
+        $432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe = $432807eba433c837fb46bd3330e112be$var$createRecipeObject(data);
+        $432807eba433c837fb46bd3330e112be$export$5ceec956fc53d8ba($432807eba433c837fb46bd3330e112be$export$c837a8b98c265ae3.recipe);
+    } catch (err) {
+        throw err;
+    }
+};

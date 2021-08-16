@@ -1,0 +1,10 @@
+import   "f19eb9d7533e892558a82d7f55c8ceae:../internals/export";
+import   "f19eb9d7533e892558a82d7f55c8ceae:../internals/math-log1p";
+// `Math.log1p` method
+// https://tc39.es/ecma262/#sec-math.log1p
+$f19eb9d7533e892558a82d7f55c8ceae$import$1bb3f1a3ac631152({
+    target: 'Math',
+    stat: true
+}, {
+    log1p: $f19eb9d7533e892558a82d7f55c8ceae$import$4d4bde56f0e7d2f5
+});

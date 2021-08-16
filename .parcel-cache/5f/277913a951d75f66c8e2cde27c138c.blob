@@ -1,0 +1,27 @@
+import   "a957d118776cd45100756e481e969741:../internals/to-length";
+import   "a957d118776cd45100756e481e969741:../internals/string-repeat";
+import   "a957d118776cd45100756e481e969741:../internals/require-object-coercible";
+var $a957d118776cd45100756e481e969741$var$ceil = Math.ceil;
+// `String.prototype.{ padStart, padEnd }` methods implementation
+var $a957d118776cd45100756e481e969741$var$createMethod = function(IS_END) {
+    return function($this, maxLength, fillString) {
+        var S = String($a957d118776cd45100756e481e969741$import$cb96119f17424999($this));
+        var stringLength = S.length;
+        var fillStr = fillString === undefined ? ' ' : String(fillString);
+        var intMaxLength = $a957d118776cd45100756e481e969741$import$4102f61a7d1ec5ae(maxLength);
+        var fillLen, stringFiller;
+        if (intMaxLength <= stringLength || fillStr == '') return S;
+        fillLen = intMaxLength - stringLength;
+        stringFiller = $a957d118776cd45100756e481e969741$import$a98cd0b7ed055044$a4b4c796a132eb0a(fillStr, $a957d118776cd45100756e481e969741$var$ceil(fillLen / fillStr.length));
+        if (stringFiller.length > fillLen) stringFiller = stringFiller.slice(0, fillLen);
+        return IS_END ? S + stringFiller : stringFiller + S;
+    };
+};
+$a957d118776cd45100756e481e969741$exports = {
+    // `String.prototype.padStart` method
+    // https://tc39.es/ecma262/#sec-string.prototype.padstart
+    start: $a957d118776cd45100756e481e969741$var$createMethod(false),
+    // `String.prototype.padEnd` method
+    // https://tc39.es/ecma262/#sec-string.prototype.padend
+    end: $a957d118776cd45100756e481e969741$var$createMethod(true)
+};

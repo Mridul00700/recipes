@@ -1,0 +1,16 @@
+import   "1c8319fa7de5e618943513abc4c18d6f:../internals/export";
+// eslint-disable-next-line es/no-math-atanh -- required for testing
+var $1c8319fa7de5e618943513abc4c18d6f$var$$atanh = Math.atanh;
+var $1c8319fa7de5e618943513abc4c18d6f$var$log = Math.log;
+// `Math.atanh` method
+// https://tc39.es/ecma262/#sec-math.atanh
+// Tor Browser bug: Math.atanh(-0) -> 0
+$1c8319fa7de5e618943513abc4c18d6f$import$1bb3f1a3ac631152({
+    target: 'Math',
+    stat: true,
+    forced: !($1c8319fa7de5e618943513abc4c18d6f$var$$atanh && 1 / $1c8319fa7de5e618943513abc4c18d6f$var$$atanh(-0.0) < 0)
+}, {
+    atanh: function atanh(x) {
+        return (x = +x) == 0 ? x : $1c8319fa7de5e618943513abc4c18d6f$var$log((1 + x) / (1 - x)) / 2;
+    }
+});

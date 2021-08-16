@@ -1,0 +1,31 @@
+'use strict';
+import   "fa1bab09da83242a17311cc93e0bf4d3:../internals/export";
+var $fa1bab09da83242a17311cc93e0bf4d3$var$raw = /[\w*+\-./@]/;
+var $fa1bab09da83242a17311cc93e0bf4d3$var$hex = function(code, length) {
+    var result = code.toString(16);
+    while(result.length < length)result = '0' + result;
+    return result;
+};
+// `escape` method
+// https://tc39.es/ecma262/#sec-escape-string
+$fa1bab09da83242a17311cc93e0bf4d3$import$1bb3f1a3ac631152({
+    global: true
+}, {
+    escape: function escape(string) {
+        var str = String(string);
+        var result = '';
+        var length = str.length;
+        var index = 0;
+        var chr, code;
+        while(index < length){
+            chr = str.charAt(index++);
+            if ($fa1bab09da83242a17311cc93e0bf4d3$var$raw.test(chr)) result += chr;
+            else {
+                code = chr.charCodeAt(0);
+                if (code < 256) result += '%' + $fa1bab09da83242a17311cc93e0bf4d3$var$hex(code, 2);
+                else result += '%u' + $fa1bab09da83242a17311cc93e0bf4d3$var$hex(code, 4).toUpperCase();
+            }
+        }
+        return result;
+    }
+});

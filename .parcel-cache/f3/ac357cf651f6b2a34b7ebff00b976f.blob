@@ -1,0 +1,31 @@
+'use strict';
+import   "b3768e3cc0294028336a7cfa0385366c:../internals/fix-regexp-well-known-symbol-logic";
+import   "b3768e3cc0294028336a7cfa0385366c:../internals/an-object";
+import   "b3768e3cc0294028336a7cfa0385366c:../internals/require-object-coercible";
+import   "b3768e3cc0294028336a7cfa0385366c:../internals/same-value";
+import   "b3768e3cc0294028336a7cfa0385366c:../internals/regexp-exec-abstract";
+// @@search logic
+$b3768e3cc0294028336a7cfa0385366c$import$729254973b5be1b6('search', function(SEARCH, nativeSearch, maybeCallNative) {
+    return [
+        // `String.prototype.search` method
+        // https://tc39.es/ecma262/#sec-string.prototype.search
+        function search(regexp) {
+            var O = $b3768e3cc0294028336a7cfa0385366c$import$cb96119f17424999(this);
+            var searcher = regexp == undefined ? undefined : regexp[SEARCH];
+            return searcher !== undefined ? searcher.call(regexp, O) : new RegExp(regexp)[SEARCH](String(O));
+        },
+        // `RegExp.prototype[@@search]` method
+        // https://tc39.es/ecma262/#sec-regexp.prototype-@@search
+        function(string) {
+            var res = maybeCallNative(nativeSearch, this, string);
+            if (res.done) return res.value;
+            var rx = $b3768e3cc0294028336a7cfa0385366c$import$cad8ba314ee735d6(this);
+            var S = String(string);
+            var previousLastIndex = rx.lastIndex;
+            if (!$b3768e3cc0294028336a7cfa0385366c$import$ac932182e2d01d7b(previousLastIndex, 0)) rx.lastIndex = 0;
+            var result = $b3768e3cc0294028336a7cfa0385366c$import$e555634ae08e49a3(rx, S);
+            if (!$b3768e3cc0294028336a7cfa0385366c$import$ac932182e2d01d7b(rx.lastIndex, previousLastIndex)) rx.lastIndex = previousLastIndex;
+            return result === null ? -1 : result.index;
+        }
+    ];
+});

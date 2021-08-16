@@ -1,0 +1,10 @@
+import   "bd03c123621bccb052f2f86b451e621a:../internals/fails";
+import   "bd03c123621bccb052f2f86b451e621a:../internals/whitespaces";
+var $bd03c123621bccb052f2f86b451e621a$var$non = '\u200B\u0085\u180E';
+// check that a method works with the correct list
+// of whitespaces and has a correct name
+$bd03c123621bccb052f2f86b451e621a$exports = function(METHOD_NAME) {
+    return $bd03c123621bccb052f2f86b451e621a$import$9936d02511e757dc(function() {
+        return !!$bd03c123621bccb052f2f86b451e621a$import$5bbdc6f6aac05287[METHOD_NAME]() || $bd03c123621bccb052f2f86b451e621a$var$non[METHOD_NAME]() != $bd03c123621bccb052f2f86b451e621a$var$non || $bd03c123621bccb052f2f86b451e621a$import$5bbdc6f6aac05287[METHOD_NAME].name !== METHOD_NAME;
+    });
+};

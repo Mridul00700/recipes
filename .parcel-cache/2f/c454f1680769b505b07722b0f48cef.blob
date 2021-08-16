@@ -1,0 +1,6 @@
+import   "c15d21030d6c9bb1e44465430838224d:../internals/fails";
+$c15d21030d6c9bb1e44465430838224d$exports = !$c15d21030d6c9bb1e44465430838224d$import$9936d02511e757dc(function() {
+    // eslint-disable-next-line es/no-object-isextensible, es/no-object-preventextensions -- required for testing
+    return Object.isExtensible(Object.preventExtensions({
+    }));
+});

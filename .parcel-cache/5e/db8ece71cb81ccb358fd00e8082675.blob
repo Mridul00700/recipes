@@ -1,0 +1,8 @@
+import   "ceb04c3582751955b8726cfef601bd2c:../internals/typed-array-constructor";
+// `Float64Array` constructor
+// https://tc39.es/ecma262/#sec-typedarray-objects
+$ceb04c3582751955b8726cfef601bd2c$import$ded6ac75bba33aa8('Float64', function(init) {
+    return function Float64Array1(data, byteOffset, length) {
+        return init(this, data, byteOffset, length);
+    };
+});

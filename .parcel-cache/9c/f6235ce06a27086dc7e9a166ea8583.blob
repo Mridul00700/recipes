@@ -1,0 +1,18 @@
+class $df7046c04f597bc3ca70999db58035f3$var$SearchView {
+    #parentElement = document.querySelector('.search');
+    getQuery() {
+        const query = this.#parentElement.querySelector('.search__field').value;
+        this.#clearInput();
+        return query;
+    }
+     #clearInput() {
+        this.#parentElement.querySelector('.search__field').value = "";
+    }
+    addHandlerSearch(handler) {
+        this.#parentElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handler();
+        });
+    }
+}
+var $df7046c04f597bc3ca70999db58035f3$export$9099ad97b570f7c = new $df7046c04f597bc3ca70999db58035f3$var$SearchView;

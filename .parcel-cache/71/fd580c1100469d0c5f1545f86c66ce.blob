@@ -1,0 +1,11 @@
+import   "6ec33e07191fdc86ff3e35a7b44150f3:../internals/an-object";
+import   "6ec33e07191fdc86ff3e35a7b44150f3:../internals/is-object";
+import   "6ec33e07191fdc86ff3e35a7b44150f3:../internals/new-promise-capability";
+$6ec33e07191fdc86ff3e35a7b44150f3$exports = function(C, x) {
+    $6ec33e07191fdc86ff3e35a7b44150f3$import$cad8ba314ee735d6(C);
+    if ($6ec33e07191fdc86ff3e35a7b44150f3$import$9294ccec169e68b9(x) && x.constructor === C) return x;
+    var promiseCapability = $6ec33e07191fdc86ff3e35a7b44150f3$import$88cdf320d2dc9c28$ffb27d6bd8d1eb33(C);
+    var resolve = promiseCapability.resolve;
+    resolve(x);
+    return promiseCapability.promise;
+};

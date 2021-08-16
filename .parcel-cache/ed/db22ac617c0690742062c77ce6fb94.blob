@@ -1,0 +1,17 @@
+'use strict';
+import   "733f0d31aa27b4a0a81cb8bad8db746a:../internals/export";
+import   "733f0d31aa27b4a0a81cb8bad8db746a:../internals/array-iteration";
+var $733f0d31aa27b4a0a81cb8bad8db746a$require$$some = $733f0d31aa27b4a0a81cb8bad8db746a$import$9cfdd2c29910a22b$4312ca6f764dd33f;
+import   "733f0d31aa27b4a0a81cb8bad8db746a:../internals/array-method-is-strict";
+var $733f0d31aa27b4a0a81cb8bad8db746a$var$STRICT_METHOD = $733f0d31aa27b4a0a81cb8bad8db746a$import$f597927de08feb79('some');
+// `Array.prototype.some` method
+// https://tc39.es/ecma262/#sec-array.prototype.some
+$733f0d31aa27b4a0a81cb8bad8db746a$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true,
+    forced: !$733f0d31aa27b4a0a81cb8bad8db746a$var$STRICT_METHOD
+}, {
+    some: function some(callbackfn/* , thisArg */ ) {
+        return $733f0d31aa27b4a0a81cb8bad8db746a$require$$some(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});

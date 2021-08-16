@@ -1,0 +1,14 @@
+'use strict';
+import   "f07fc4d6d715e9f2093759b94e6517fd:../internals/export";
+import   "f07fc4d6d715e9f2093759b94e6517fd:../internals/string-multibyte";
+var $f07fc4d6d715e9f2093759b94e6517fd$require$codeAt = $f07fc4d6d715e9f2093759b94e6517fd$import$98a666e19560cc99$1a8edfccf784f1f6;
+// `String.prototype.codePointAt` method
+// https://tc39.es/ecma262/#sec-string.prototype.codepointat
+$f07fc4d6d715e9f2093759b94e6517fd$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true
+}, {
+    codePointAt: function codePointAt(pos) {
+        return $f07fc4d6d715e9f2093759b94e6517fd$require$codeAt(this, pos);
+    }
+});

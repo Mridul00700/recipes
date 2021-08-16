@@ -1,0 +1,56 @@
+'use strict';
+import   "a98d6b02f327a8ead58fab4a3fdd4ec2:../internals/export";
+import   "a98d6b02f327a8ead58fab4a3fdd4ec2:../internals/require-object-coercible";
+import   "a98d6b02f327a8ead58fab4a3fdd4ec2:../internals/is-regexp";
+import   "a98d6b02f327a8ead58fab4a3fdd4ec2:../internals/regexp-flags";
+import   "a98d6b02f327a8ead58fab4a3fdd4ec2:../internals/get-substitution";
+import   "a98d6b02f327a8ead58fab4a3fdd4ec2:../internals/well-known-symbol";
+import   "a98d6b02f327a8ead58fab4a3fdd4ec2:../internals/is-pure";
+var $a98d6b02f327a8ead58fab4a3fdd4ec2$var$REPLACE = $a98d6b02f327a8ead58fab4a3fdd4ec2$import$88242bc6a9673a44('replace');
+var $a98d6b02f327a8ead58fab4a3fdd4ec2$var$RegExpPrototype = RegExp.prototype;
+var $a98d6b02f327a8ead58fab4a3fdd4ec2$var$max = Math.max;
+var $a98d6b02f327a8ead58fab4a3fdd4ec2$var$stringIndexOf = function(string, searchValue, fromIndex) {
+    if (fromIndex > string.length) return -1;
+    if (searchValue === '') return fromIndex;
+    return string.indexOf(searchValue, fromIndex);
+};
+// `String.prototype.replaceAll` method
+// https://tc39.es/ecma262/#sec-string.prototype.replaceall
+$a98d6b02f327a8ead58fab4a3fdd4ec2$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true
+}, {
+    replaceAll: function replaceAll(searchValue, replaceValue) {
+        var O = $a98d6b02f327a8ead58fab4a3fdd4ec2$import$cb96119f17424999(this);
+        var IS_REG_EXP, flags, replacer, string, searchString, functionalReplace, searchLength, advanceBy, replacement;
+        var position = 0;
+        var endOfLastMatch = 0;
+        var result = '';
+        if (searchValue != null) {
+            IS_REG_EXP = $a98d6b02f327a8ead58fab4a3fdd4ec2$import$662e09ba9e21e14(searchValue);
+            if (IS_REG_EXP) {
+                flags = String($a98d6b02f327a8ead58fab4a3fdd4ec2$import$cb96119f17424999('flags' in $a98d6b02f327a8ead58fab4a3fdd4ec2$var$RegExpPrototype ? searchValue.flags : $a98d6b02f327a8ead58fab4a3fdd4ec2$import$55a1ee6edebd1d69$a4b4c796a132eb0a(searchValue)));
+                if (!~flags.indexOf('g')) throw TypeError('`.replaceAll` does not allow non-global regexes');
+            }
+            replacer = searchValue[$a98d6b02f327a8ead58fab4a3fdd4ec2$var$REPLACE];
+            if (replacer !== undefined) return replacer.call(searchValue, O, replaceValue);
+            else if ($a98d6b02f327a8ead58fab4a3fdd4ec2$import$1bdf0350b9a8d46c && IS_REG_EXP) return String(O).replace(searchValue, replaceValue);
+        }
+        string = String(O);
+        searchString = String(searchValue);
+        functionalReplace = typeof replaceValue === 'function';
+        if (!functionalReplace) replaceValue = String(replaceValue);
+        searchLength = searchString.length;
+        advanceBy = $a98d6b02f327a8ead58fab4a3fdd4ec2$var$max(1, searchLength);
+        position = $a98d6b02f327a8ead58fab4a3fdd4ec2$var$stringIndexOf(string, searchString, 0);
+        while(position !== -1){
+            if (functionalReplace) replacement = String(replaceValue(searchString, position, string));
+            else replacement = $a98d6b02f327a8ead58fab4a3fdd4ec2$import$d847893436cfb036(searchString, string, position, [], undefined, replaceValue);
+            result += string.slice(endOfLastMatch, position) + replacement;
+            endOfLastMatch = position + searchLength;
+            position = $a98d6b02f327a8ead58fab4a3fdd4ec2$var$stringIndexOf(string, searchString, position + advanceBy);
+        }
+        if (endOfLastMatch < string.length) result += string.slice(endOfLastMatch);
+        return result;
+    }
+});

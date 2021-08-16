@@ -1,0 +1,21 @@
+import   "1aab4d261981103949b6c6342d48c0a3:../internals/export";
+import   "1aab4d261981103949b6c6342d48c0a3:../internals/an-object";
+import   "1aab4d261981103949b6c6342d48c0a3:../internals/a-possible-prototype";
+import   "1aab4d261981103949b6c6342d48c0a3:../internals/object-set-prototype-of";
+// `Reflect.setPrototypeOf` method
+// https://tc39.es/ecma262/#sec-reflect.setprototypeof
+if ($1aab4d261981103949b6c6342d48c0a3$import$74d6517d4e0bb391) $1aab4d261981103949b6c6342d48c0a3$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true
+}, {
+    setPrototypeOf: function setPrototypeOf(target, proto) {
+        $1aab4d261981103949b6c6342d48c0a3$import$cad8ba314ee735d6(target);
+        $1aab4d261981103949b6c6342d48c0a3$import$a0a49a77d816e600(proto);
+        try {
+            $1aab4d261981103949b6c6342d48c0a3$import$74d6517d4e0bb391(target, proto);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+});

@@ -1,0 +1,16 @@
+import   "e81a95709f8e86e5ae788bb4272135e4:../internals/export";
+import   "e81a95709f8e86e5ae788bb4272135e4:../internals/array-from";
+import   "e81a95709f8e86e5ae788bb4272135e4:../internals/check-correctness-of-iteration";
+var $e81a95709f8e86e5ae788bb4272135e4$var$INCORRECT_ITERATION = !$e81a95709f8e86e5ae788bb4272135e4$import$1d6ae00f2363e8ff(function(iterable) {
+    // eslint-disable-next-line es/no-array-from -- required for testing
+    Array.from(iterable);
+});
+// `Array.from` method
+// https://tc39.es/ecma262/#sec-array.from
+$e81a95709f8e86e5ae788bb4272135e4$import$1bb3f1a3ac631152({
+    target: 'Array',
+    stat: true,
+    forced: $e81a95709f8e86e5ae788bb4272135e4$var$INCORRECT_ITERATION
+}, {
+    from: $e81a95709f8e86e5ae788bb4272135e4$import$a27e793652f6d51f
+});

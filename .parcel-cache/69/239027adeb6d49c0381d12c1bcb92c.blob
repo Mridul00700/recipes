@@ -1,0 +1,13 @@
+import   "9f9a7275fca76b2f907a06479feb87a2:../internals/export";
+var $9f9a7275fca76b2f907a06479feb87a2$var$log = Math.log;
+var $9f9a7275fca76b2f907a06479feb87a2$var$LOG10E = Math.LOG10E;
+// `Math.log10` method
+// https://tc39.es/ecma262/#sec-math.log10
+$9f9a7275fca76b2f907a06479feb87a2$import$1bb3f1a3ac631152({
+    target: 'Math',
+    stat: true
+}, {
+    log10: function log10(x) {
+        return $9f9a7275fca76b2f907a06479feb87a2$var$log(x) * $9f9a7275fca76b2f907a06479feb87a2$var$LOG10E;
+    }
+});

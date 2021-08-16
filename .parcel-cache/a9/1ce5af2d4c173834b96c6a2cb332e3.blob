@@ -1,0 +1,23 @@
+'use strict';
+import   "1707c1aa6d019b80494060fd9ff09d5e:../internals/export";
+import   "1707c1aa6d019b80494060fd9ff09d5e:../internals/flatten-into-array";
+import   "1707c1aa6d019b80494060fd9ff09d5e:../internals/to-object";
+import   "1707c1aa6d019b80494060fd9ff09d5e:../internals/to-length";
+import   "1707c1aa6d019b80494060fd9ff09d5e:../internals/a-function";
+import   "1707c1aa6d019b80494060fd9ff09d5e:../internals/array-species-create";
+// `Array.prototype.flatMap` method
+// https://tc39.es/ecma262/#sec-array.prototype.flatmap
+$1707c1aa6d019b80494060fd9ff09d5e$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true
+}, {
+    flatMap: function flatMap(callbackfn/* , thisArg */ ) {
+        var O = $1707c1aa6d019b80494060fd9ff09d5e$import$565dce0892f29b05(this);
+        var sourceLen = $1707c1aa6d019b80494060fd9ff09d5e$import$4102f61a7d1ec5ae(O.length);
+        var A;
+        $1707c1aa6d019b80494060fd9ff09d5e$import$feed022c18f6196b(callbackfn);
+        A = $1707c1aa6d019b80494060fd9ff09d5e$import$270ce3808f347882(O, 0);
+        A.length = $1707c1aa6d019b80494060fd9ff09d5e$import$ff7c31eb11c14a73(A, O, O, sourceLen, 0, 1, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+        return A;
+    }
+});

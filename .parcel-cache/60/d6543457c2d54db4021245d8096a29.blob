@@ -1,0 +1,24 @@
+'use strict';
+import   "0e7f90170f31b7d553c6ac02b362edb4:../internals/export";
+import   "0e7f90170f31b7d553c6ac02b362edb4:../internals/array-iteration";
+var $0e7f90170f31b7d553c6ac02b362edb4$require$$find = $0e7f90170f31b7d553c6ac02b362edb4$import$9cfdd2c29910a22b$7ad150f61db3b289;
+import   "0e7f90170f31b7d553c6ac02b362edb4:../internals/add-to-unscopables";
+var $0e7f90170f31b7d553c6ac02b362edb4$var$FIND = 'find';
+var $0e7f90170f31b7d553c6ac02b362edb4$var$SKIPS_HOLES = true;
+// Shouldn't skip holes
+if ($0e7f90170f31b7d553c6ac02b362edb4$var$FIND in []) Array(1)[$0e7f90170f31b7d553c6ac02b362edb4$var$FIND](function() {
+    $0e7f90170f31b7d553c6ac02b362edb4$var$SKIPS_HOLES = false;
+});
+// `Array.prototype.find` method
+// https://tc39.es/ecma262/#sec-array.prototype.find
+$0e7f90170f31b7d553c6ac02b362edb4$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true,
+    forced: $0e7f90170f31b7d553c6ac02b362edb4$var$SKIPS_HOLES
+}, {
+    find: function find(callbackfn/* , that = undefined */ ) {
+        return $0e7f90170f31b7d553c6ac02b362edb4$require$$find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});
+// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+$0e7f90170f31b7d553c6ac02b362edb4$import$5d18bfe1c15e4f32($0e7f90170f31b7d553c6ac02b362edb4$var$FIND);

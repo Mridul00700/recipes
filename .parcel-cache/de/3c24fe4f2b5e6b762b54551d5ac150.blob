@@ -1,0 +1,18 @@
+'use strict';
+import   "701cb4209a12a930a3693ae7571c5e26:../internals/export";
+import   "701cb4209a12a930a3693ae7571c5e26:../internals/array-iteration";
+var $701cb4209a12a930a3693ae7571c5e26$require$$map = $701cb4209a12a930a3693ae7571c5e26$import$9cfdd2c29910a22b$1b4d6c18dd597827;
+import   "701cb4209a12a930a3693ae7571c5e26:../internals/array-method-has-species-support";
+var $701cb4209a12a930a3693ae7571c5e26$var$HAS_SPECIES_SUPPORT = $701cb4209a12a930a3693ae7571c5e26$import$d71858cb7e8d3414('map');
+// `Array.prototype.map` method
+// https://tc39.es/ecma262/#sec-array.prototype.map
+// with adding support of @@species
+$701cb4209a12a930a3693ae7571c5e26$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true,
+    forced: !$701cb4209a12a930a3693ae7571c5e26$var$HAS_SPECIES_SUPPORT
+}, {
+    map: function map(callbackfn/* , thisArg */ ) {
+        return $701cb4209a12a930a3693ae7571c5e26$require$$map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});

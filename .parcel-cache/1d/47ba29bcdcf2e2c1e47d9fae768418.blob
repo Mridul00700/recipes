@@ -1,0 +1,18 @@
+'use strict';
+import   "f70f6d9e4abdc22f21ff0ab392fe4002:../internals/export";
+import   "f70f6d9e4abdc22f21ff0ab392fe4002:../internals/array-iteration";
+var $f70f6d9e4abdc22f21ff0ab392fe4002$require$$filter = $f70f6d9e4abdc22f21ff0ab392fe4002$import$9cfdd2c29910a22b$c40dadbd69639a45;
+import   "f70f6d9e4abdc22f21ff0ab392fe4002:../internals/array-method-has-species-support";
+var $f70f6d9e4abdc22f21ff0ab392fe4002$var$HAS_SPECIES_SUPPORT = $f70f6d9e4abdc22f21ff0ab392fe4002$import$d71858cb7e8d3414('filter');
+// `Array.prototype.filter` method
+// https://tc39.es/ecma262/#sec-array.prototype.filter
+// with adding support of @@species
+$f70f6d9e4abdc22f21ff0ab392fe4002$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true,
+    forced: !$f70f6d9e4abdc22f21ff0ab392fe4002$var$HAS_SPECIES_SUPPORT
+}, {
+    filter: function filter(callbackfn/* , thisArg */ ) {
+        return $f70f6d9e4abdc22f21ff0ab392fe4002$require$$filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});

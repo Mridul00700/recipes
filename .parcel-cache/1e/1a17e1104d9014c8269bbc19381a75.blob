@@ -1,0 +1,19 @@
+import   "8207cd97a5f3d7240b80634a5b5d70ad:../internals/descriptors";
+import   "8207cd97a5f3d7240b80634a5b5d70ad:../internals/object-define-property";
+var $8207cd97a5f3d7240b80634a5b5d70ad$require$defineProperty = $8207cd97a5f3d7240b80634a5b5d70ad$import$4276e2046cfaee3b$ffb27d6bd8d1eb33;
+var $8207cd97a5f3d7240b80634a5b5d70ad$var$FunctionPrototype = Function.prototype;
+var $8207cd97a5f3d7240b80634a5b5d70ad$var$FunctionPrototypeToString = $8207cd97a5f3d7240b80634a5b5d70ad$var$FunctionPrototype.toString;
+var $8207cd97a5f3d7240b80634a5b5d70ad$var$nameRE = /^\s*function ([^ (]*)/;
+var $8207cd97a5f3d7240b80634a5b5d70ad$var$NAME = 'name';
+// Function instances `.name` property
+// https://tc39.es/ecma262/#sec-function-instances-name
+if ($8207cd97a5f3d7240b80634a5b5d70ad$import$9e95520c426f46b4 && !($8207cd97a5f3d7240b80634a5b5d70ad$var$NAME in $8207cd97a5f3d7240b80634a5b5d70ad$var$FunctionPrototype)) $8207cd97a5f3d7240b80634a5b5d70ad$require$defineProperty($8207cd97a5f3d7240b80634a5b5d70ad$var$FunctionPrototype, $8207cd97a5f3d7240b80634a5b5d70ad$var$NAME, {
+    configurable: true,
+    get: function() {
+        try {
+            return $8207cd97a5f3d7240b80634a5b5d70ad$var$FunctionPrototypeToString.call(this).match($8207cd97a5f3d7240b80634a5b5d70ad$var$nameRE)[1];
+        } catch (error) {
+            return '';
+        }
+    }
+});

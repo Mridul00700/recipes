@@ -1,0 +1,26 @@
+import   "9738f96579f671b60f83e7ee34ccbe86:../internals/to-object";
+import   "9738f96579f671b60f83e7ee34ccbe86:../internals/to-length";
+import   "9738f96579f671b60f83e7ee34ccbe86:../internals/get-iterator-method";
+import   "9738f96579f671b60f83e7ee34ccbe86:../internals/is-array-iterator-method";
+import   "9738f96579f671b60f83e7ee34ccbe86:../internals/function-bind-context";
+import   "9738f96579f671b60f83e7ee34ccbe86:../internals/array-buffer-view-core";
+var $9738f96579f671b60f83e7ee34ccbe86$require$aTypedArrayConstructor = $9738f96579f671b60f83e7ee34ccbe86$import$646a64c4a95eead$cf8c7afb1bc64521;
+$9738f96579f671b60f83e7ee34ccbe86$exports = function from(source/* , mapfn, thisArg */ ) {
+    var O = $9738f96579f671b60f83e7ee34ccbe86$import$565dce0892f29b05(source);
+    var argumentsLength = arguments.length;
+    var mapfn = argumentsLength > 1 ? arguments[1] : undefined;
+    var mapping = mapfn !== undefined;
+    var iteratorMethod = $9738f96579f671b60f83e7ee34ccbe86$import$58c00865a7a01291(O);
+    var i, length, result, step, iterator, next;
+    if (iteratorMethod != undefined && !$9738f96579f671b60f83e7ee34ccbe86$import$6a6ec6f802014b0d(iteratorMethod)) {
+        iterator = iteratorMethod.call(O);
+        next = iterator.next;
+        O = [];
+        while(!(step = next.call(iterator)).done)O.push(step.value);
+    }
+    if (mapping && argumentsLength > 2) mapfn = $9738f96579f671b60f83e7ee34ccbe86$import$66177e0ceb63850c(mapfn, arguments[2], 2);
+    length = $9738f96579f671b60f83e7ee34ccbe86$import$4102f61a7d1ec5ae(O.length);
+    result = new ($9738f96579f671b60f83e7ee34ccbe86$require$aTypedArrayConstructor(this))(length);
+    for(i = 0; length > i; i++)result[i] = mapping ? mapfn(O[i], i) : O[i];
+    return result;
+};

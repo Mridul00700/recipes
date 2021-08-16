@@ -1,0 +1,28 @@
+import   "26d824f308b6b3023ccb98eec2dfa634:../internals/export";
+import   "26d824f308b6b3023ccb98eec2dfa634:../internals/descriptors";
+import   "26d824f308b6b3023ccb98eec2dfa634:../internals/own-keys";
+import   "26d824f308b6b3023ccb98eec2dfa634:../internals/to-indexed-object";
+import   "26d824f308b6b3023ccb98eec2dfa634:../internals/object-get-own-property-descriptor";
+import   "26d824f308b6b3023ccb98eec2dfa634:../internals/create-property";
+// `Object.getOwnPropertyDescriptors` method
+// https://tc39.es/ecma262/#sec-object.getownpropertydescriptors
+$26d824f308b6b3023ccb98eec2dfa634$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true,
+    sham: !$26d824f308b6b3023ccb98eec2dfa634$import$9e95520c426f46b4
+}, {
+    getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object) {
+        var O = $26d824f308b6b3023ccb98eec2dfa634$import$73e80bdb170d55b7(object);
+        var getOwnPropertyDescriptor = $26d824f308b6b3023ccb98eec2dfa634$import$671bedbe12b63e7d$ffb27d6bd8d1eb33;
+        var keys = $26d824f308b6b3023ccb98eec2dfa634$import$43813691b184ffcd(O);
+        var result = {
+        };
+        var index = 0;
+        var key, descriptor;
+        while(keys.length > index){
+            descriptor = getOwnPropertyDescriptor(O, key = keys[index++]);
+            if (descriptor !== undefined) $26d824f308b6b3023ccb98eec2dfa634$import$22a67bab19fa66bf(result, key, descriptor);
+        }
+        return result;
+    }
+});

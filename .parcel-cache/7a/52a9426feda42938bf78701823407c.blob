@@ -1,0 +1,8 @@
+'use strict';
+import   "c948e091678089b3080748d43cdbdbf5:../internals/string-multibyte";
+var $c948e091678089b3080748d43cdbdbf5$require$charAt = $c948e091678089b3080748d43cdbdbf5$import$98a666e19560cc99$d8fc1aff1f0514ba;
+// `AdvanceStringIndex` abstract operation
+// https://tc39.es/ecma262/#sec-advancestringindex
+$c948e091678089b3080748d43cdbdbf5$exports = function(S, index, unicode) {
+    return index + (unicode ? $c948e091678089b3080748d43cdbdbf5$require$charAt(S, index).length : 1);
+};

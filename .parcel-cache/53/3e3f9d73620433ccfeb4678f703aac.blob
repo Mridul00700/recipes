@@ -1,0 +1,26 @@
+'use strict';
+import   "b530539411471440d1e70205593a6a14:../internals/export";
+import   "b530539411471440d1e70205593a6a14:../internals/require-object-coercible";
+import   "b530539411471440d1e70205593a6a14:../internals/to-integer";
+var $b530539411471440d1e70205593a6a14$var$slice = ''.slice;
+var $b530539411471440d1e70205593a6a14$var$max = Math.max;
+var $b530539411471440d1e70205593a6a14$var$min = Math.min;
+// `String.prototype.substr` method
+// https://tc39.es/ecma262/#sec-string.prototype.substr
+$b530539411471440d1e70205593a6a14$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true
+}, {
+    substr: function substr(start, length) {
+        var that = String($b530539411471440d1e70205593a6a14$import$cb96119f17424999(this));
+        var size = that.length;
+        var intStart = $b530539411471440d1e70205593a6a14$import$3760fb9e29f29d49(start);
+        var intLength, intEnd;
+        if (intStart === Infinity) intStart = 0;
+        if (intStart < 0) intStart = $b530539411471440d1e70205593a6a14$var$max(size + intStart, 0);
+        intLength = length === undefined ? size : $b530539411471440d1e70205593a6a14$import$3760fb9e29f29d49(length);
+        if (intLength <= 0 || intLength === Infinity) return '';
+        intEnd = $b530539411471440d1e70205593a6a14$var$min(intStart + intLength, size);
+        return intStart >= intEnd ? '' : $b530539411471440d1e70205593a6a14$var$slice.call(that, intStart, intEnd);
+    }
+});

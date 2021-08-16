@@ -1,0 +1,15 @@
+'use strict';
+import   "e3e38609e3e6d0e9c2bd97133d7e9b63:../internals/export";
+import   "e3e38609e3e6d0e9c2bd97133d7e9b63:../internals/create-html";
+import   "e3e38609e3e6d0e9c2bd97133d7e9b63:../internals/string-html-forced";
+// `String.prototype.blink` method
+// https://tc39.es/ecma262/#sec-string.prototype.blink
+$e3e38609e3e6d0e9c2bd97133d7e9b63$import$1bb3f1a3ac631152({
+    target: 'String',
+    proto: true,
+    forced: $e3e38609e3e6d0e9c2bd97133d7e9b63$import$fe56c9129589f6f('blink')
+}, {
+    blink: function blink() {
+        return $e3e38609e3e6d0e9c2bd97133d7e9b63$import$754c0a633ad84ebd(this, 'blink', '', '');
+    }
+});

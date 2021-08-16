@@ -1,0 +1,7 @@
+import   "6c84a8ce9ed4af02a98b33a59f58cdcb:../internals/is-object";
+var $6c84a8ce9ed4af02a98b33a59f58cdcb$var$floor = Math.floor;
+// `Number.isInteger` method implementation
+// https://tc39.es/ecma262/#sec-number.isinteger
+$6c84a8ce9ed4af02a98b33a59f58cdcb$exports = function isInteger(it) {
+    return !$6c84a8ce9ed4af02a98b33a59f58cdcb$import$9294ccec169e68b9(it) && isFinite(it) && $6c84a8ce9ed4af02a98b33a59f58cdcb$var$floor(it) === it;
+};

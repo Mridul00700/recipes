@@ -1,0 +1,10 @@
+import   "44cca7cf8ffef74531299c8132a40887:../internals/export";
+import   "44cca7cf8ffef74531299c8132a40887:../internals/math-sign";
+// `Math.sign` method
+// https://tc39.es/ecma262/#sec-math.sign
+$44cca7cf8ffef74531299c8132a40887$import$1bb3f1a3ac631152({
+    target: 'Math',
+    stat: true
+}, {
+    sign: $44cca7cf8ffef74531299c8132a40887$import$50e9a973e401cb3d
+});

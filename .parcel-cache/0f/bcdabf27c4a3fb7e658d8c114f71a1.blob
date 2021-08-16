@@ -1,0 +1,18 @@
+import   "16f69a3f694b3e582047a2181de0b6a2:../internals/export";
+import   "16f69a3f694b3e582047a2181de0b6a2:../internals/global";
+import   "16f69a3f694b3e582047a2181de0b6a2:../internals/task";
+var $16f69a3f694b3e582047a2181de0b6a2$var$FORCED = !$16f69a3f694b3e582047a2181de0b6a2$import$da678c04728da253$4cc54d8e06a4a661 || !$16f69a3f694b3e582047a2181de0b6a2$import$da678c04728da253$b68b14f7e946c86e;
+// http://w3c.github.io/setImmediate/
+$16f69a3f694b3e582047a2181de0b6a2$import$1bb3f1a3ac631152({
+    global: true,
+    bind: true,
+    enumerable: true,
+    forced: $16f69a3f694b3e582047a2181de0b6a2$var$FORCED
+}, {
+    // `setImmediate` method
+    // http://w3c.github.io/setImmediate/#si-setImmediate
+    setImmediate: $16f69a3f694b3e582047a2181de0b6a2$import$dd7b7067bf215be7$77f8d2fc923b14e3,
+    // `clearImmediate` method
+    // http://w3c.github.io/setImmediate/#si-clearImmediate
+    clearImmediate: $16f69a3f694b3e582047a2181de0b6a2$import$dd7b7067bf215be7$97fff7491bd246bd
+});

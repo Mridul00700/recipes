@@ -1,0 +1,18 @@
+import   "e6475c79e0d55c37c0b01b3a0fccc54b:../internals/export";
+import   "e6475c79e0d55c37c0b01b3a0fccc54b:../internals/to-object";
+import   "e6475c79e0d55c37c0b01b3a0fccc54b:../internals/object-keys";
+import   "e6475c79e0d55c37c0b01b3a0fccc54b:../internals/fails";
+var $e6475c79e0d55c37c0b01b3a0fccc54b$var$FAILS_ON_PRIMITIVES = $e6475c79e0d55c37c0b01b3a0fccc54b$import$9936d02511e757dc(function() {
+    $e6475c79e0d55c37c0b01b3a0fccc54b$import$ca5d317697a1e62(1);
+});
+// `Object.keys` method
+// https://tc39.es/ecma262/#sec-object.keys
+$e6475c79e0d55c37c0b01b3a0fccc54b$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true,
+    forced: $e6475c79e0d55c37c0b01b3a0fccc54b$var$FAILS_ON_PRIMITIVES
+}, {
+    keys: function keys(it) {
+        return $e6475c79e0d55c37c0b01b3a0fccc54b$import$ca5d317697a1e62($e6475c79e0d55c37c0b01b3a0fccc54b$import$565dce0892f29b05(it));
+    }
+});

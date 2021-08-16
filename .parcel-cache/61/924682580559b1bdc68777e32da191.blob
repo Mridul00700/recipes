@@ -1,0 +1,6 @@
+import   "5a0e2961299a8292592b569c8ca6480e:../internals/to-integer";
+$5a0e2961299a8292592b569c8ca6480e$exports = function(it) {
+    var result = $5a0e2961299a8292592b569c8ca6480e$import$3760fb9e29f29d49(it);
+    if (result < 0) throw RangeError("The argument can't be less than 0");
+    return result;
+};

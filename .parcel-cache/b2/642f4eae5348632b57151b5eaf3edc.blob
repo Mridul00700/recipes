@@ -1,0 +1,12 @@
+import   "5eae5c10700b603c5abe998cbf88d4dd:../internals/export";
+import   "5eae5c10700b603c5abe998cbf88d4dd:../internals/global";
+import   "5eae5c10700b603c5abe998cbf88d4dd:../internals/set-to-string-tag";
+$5eae5c10700b603c5abe998cbf88d4dd$import$1bb3f1a3ac631152({
+    global: true
+}, {
+    Reflect: {
+    }
+});
+// Reflect[@@toStringTag] property
+// https://tc39.es/ecma262/#sec-reflect-@@tostringtag
+$5eae5c10700b603c5abe998cbf88d4dd$import$c84072deb0264877($5eae5c10700b603c5abe998cbf88d4dd$import$da678c04728da253$51de58f08efb1fda, 'Reflect', true);

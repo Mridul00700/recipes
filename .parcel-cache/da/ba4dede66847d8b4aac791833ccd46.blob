@@ -1,0 +1,16 @@
+'use strict';
+import   "944c511204a3775ce78923576d091f60:../internals/get-built-in";
+import   "944c511204a3775ce78923576d091f60:../internals/object-define-property";
+import   "944c511204a3775ce78923576d091f60:../internals/well-known-symbol";
+import   "944c511204a3775ce78923576d091f60:../internals/descriptors";
+var $944c511204a3775ce78923576d091f60$var$SPECIES = $944c511204a3775ce78923576d091f60$import$88242bc6a9673a44('species');
+$944c511204a3775ce78923576d091f60$exports = function(CONSTRUCTOR_NAME) {
+    var Constructor = $944c511204a3775ce78923576d091f60$import$acc15958b3da080(CONSTRUCTOR_NAME);
+    var defineProperty = $944c511204a3775ce78923576d091f60$import$4276e2046cfaee3b$ffb27d6bd8d1eb33;
+    if ($944c511204a3775ce78923576d091f60$import$9e95520c426f46b4 && Constructor && !Constructor[$944c511204a3775ce78923576d091f60$var$SPECIES]) defineProperty(Constructor, $944c511204a3775ce78923576d091f60$var$SPECIES, {
+        configurable: true,
+        get: function() {
+            return this;
+        }
+    });
+};

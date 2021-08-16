@@ -1,0 +1,11 @@
+'use strict';
+import   "a7417fd847b154fc9a4046095c6fcb39:../internals/array-iteration";
+var $a7417fd847b154fc9a4046095c6fcb39$require$$forEach = $a7417fd847b154fc9a4046095c6fcb39$import$9cfdd2c29910a22b$40f3d9558cf6e846;
+import   "a7417fd847b154fc9a4046095c6fcb39:../internals/array-method-is-strict";
+var $a7417fd847b154fc9a4046095c6fcb39$var$STRICT_METHOD = $a7417fd847b154fc9a4046095c6fcb39$import$f597927de08feb79('forEach');
+// `Array.prototype.forEach` method implementation
+// https://tc39.es/ecma262/#sec-array.prototype.foreach
+$a7417fd847b154fc9a4046095c6fcb39$exports = !$a7417fd847b154fc9a4046095c6fcb39$var$STRICT_METHOD ? function forEach(callbackfn/* , thisArg */ ) {
+    return $a7417fd847b154fc9a4046095c6fcb39$require$$forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+// eslint-disable-next-line es/no-array-prototype-foreach -- safe
+} : [].forEach;

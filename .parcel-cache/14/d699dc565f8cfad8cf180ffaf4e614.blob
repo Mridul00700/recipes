@@ -1,0 +1,20 @@
+import   "03d99bcb5a8450a4341ef260586735ea:../internals/export";
+import   "03d99bcb5a8450a4341ef260586735ea:../internals/iterate";
+import   "03d99bcb5a8450a4341ef260586735ea:../internals/create-property";
+// `Object.fromEntries` method
+// https://github.com/tc39/proposal-object-from-entries
+$03d99bcb5a8450a4341ef260586735ea$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true
+}, {
+    fromEntries: function fromEntries(iterable) {
+        var obj = {
+        };
+        $03d99bcb5a8450a4341ef260586735ea$import$1f57ebca7b213dbf(iterable, function(k, v) {
+            $03d99bcb5a8450a4341ef260586735ea$import$22a67bab19fa66bf(obj, k, v);
+        }, {
+            AS_ENTRIES: true
+        });
+        return obj;
+    }
+});

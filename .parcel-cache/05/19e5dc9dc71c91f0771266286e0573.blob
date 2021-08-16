@@ -1,0 +1,24 @@
+'use strict';
+import   "453f5f2ba54bf7d7c91cc081d6b28847:../internals/export";
+import   "453f5f2ba54bf7d7c91cc081d6b28847:../internals/fails";
+import   "453f5f2ba54bf7d7c91cc081d6b28847:../internals/this-number-value";
+var $453f5f2ba54bf7d7c91cc081d6b28847$var$nativeToPrecision = 1..toPrecision;
+var $453f5f2ba54bf7d7c91cc081d6b28847$var$FORCED = $453f5f2ba54bf7d7c91cc081d6b28847$import$9936d02511e757dc(function() {
+    // IE7-
+    return $453f5f2ba54bf7d7c91cc081d6b28847$var$nativeToPrecision.call(1, undefined) !== '1';
+}) || !$453f5f2ba54bf7d7c91cc081d6b28847$import$9936d02511e757dc(function() {
+    // V8 ~ Android 4.3-
+    $453f5f2ba54bf7d7c91cc081d6b28847$var$nativeToPrecision.call({
+    });
+});
+// `Number.prototype.toPrecision` method
+// https://tc39.es/ecma262/#sec-number.prototype.toprecision
+$453f5f2ba54bf7d7c91cc081d6b28847$import$1bb3f1a3ac631152({
+    target: 'Number',
+    proto: true,
+    forced: $453f5f2ba54bf7d7c91cc081d6b28847$var$FORCED
+}, {
+    toPrecision: function toPrecision(precision) {
+        return precision === undefined ? $453f5f2ba54bf7d7c91cc081d6b28847$var$nativeToPrecision.call($453f5f2ba54bf7d7c91cc081d6b28847$import$7405d10b37bec08(this)) : $453f5f2ba54bf7d7c91cc081d6b28847$var$nativeToPrecision.call($453f5f2ba54bf7d7c91cc081d6b28847$import$7405d10b37bec08(this), precision);
+    }
+});

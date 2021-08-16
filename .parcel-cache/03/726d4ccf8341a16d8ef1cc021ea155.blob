@@ -1,0 +1,81 @@
+'use strict';
+import   "aaaf33012883b09c92ea7004fd84705a:../internals/regexp-flags";
+import   "aaaf33012883b09c92ea7004fd84705a:../internals/regexp-sticky-helpers";
+import   "aaaf33012883b09c92ea7004fd84705a:../internals/shared";
+import   "aaaf33012883b09c92ea7004fd84705a:../internals/object-create";
+import   "aaaf33012883b09c92ea7004fd84705a:../internals/internal-state";
+var $aaaf33012883b09c92ea7004fd84705a$require$getInternalState = $aaaf33012883b09c92ea7004fd84705a$import$2c03d954288482bc$7eb84799c931fe91;
+import   "aaaf33012883b09c92ea7004fd84705a:../internals/regexp-unsupported-dot-all";
+import   "aaaf33012883b09c92ea7004fd84705a:../internals/regexp-unsupported-ncg";
+var $aaaf33012883b09c92ea7004fd84705a$var$nativeExec = RegExp.prototype.exec;
+var $aaaf33012883b09c92ea7004fd84705a$var$nativeReplace = $aaaf33012883b09c92ea7004fd84705a$import$814db69a6e0038df('native-string-replace', String.prototype.replace);
+var $aaaf33012883b09c92ea7004fd84705a$var$patchedExec = $aaaf33012883b09c92ea7004fd84705a$var$nativeExec;
+var $aaaf33012883b09c92ea7004fd84705a$var$UPDATES_LAST_INDEX_WRONG = function() {
+    var re1 = /a/;
+    var re2 = /b*/g;
+    $aaaf33012883b09c92ea7004fd84705a$var$nativeExec.call(re1, 'a');
+    $aaaf33012883b09c92ea7004fd84705a$var$nativeExec.call(re2, 'a');
+    return re1.lastIndex !== 0 || re2.lastIndex !== 0;
+}();
+var $aaaf33012883b09c92ea7004fd84705a$var$UNSUPPORTED_Y = $aaaf33012883b09c92ea7004fd84705a$import$e9ad70eb59d84ab$f1f96ea44d660c47 || $aaaf33012883b09c92ea7004fd84705a$import$e9ad70eb59d84ab$de93202062c2216d;
+// nonparticipating capturing group, copied from es5-shim's String#split patch.
+var $aaaf33012883b09c92ea7004fd84705a$var$NPCG_INCLUDED = /()??/.exec('')[1] !== undefined;
+var $aaaf33012883b09c92ea7004fd84705a$var$PATCH = $aaaf33012883b09c92ea7004fd84705a$var$UPDATES_LAST_INDEX_WRONG || $aaaf33012883b09c92ea7004fd84705a$var$NPCG_INCLUDED || $aaaf33012883b09c92ea7004fd84705a$var$UNSUPPORTED_Y || $aaaf33012883b09c92ea7004fd84705a$import$9aaabff79228d9d9 || $aaaf33012883b09c92ea7004fd84705a$import$a9f7382be1b35279;
+if ($aaaf33012883b09c92ea7004fd84705a$var$PATCH) // eslint-disable-next-line max-statements -- TODO
+$aaaf33012883b09c92ea7004fd84705a$var$patchedExec = function exec(str) {
+    var re = this;
+    var state = $aaaf33012883b09c92ea7004fd84705a$require$getInternalState(re);
+    var raw = state.raw;
+    var result, reCopy, lastIndex, match, i, object, group;
+    if (raw) {
+        raw.lastIndex = re.lastIndex;
+        result = $aaaf33012883b09c92ea7004fd84705a$var$patchedExec.call(raw, str);
+        re.lastIndex = raw.lastIndex;
+        return result;
+    }
+    var groups = state.groups;
+    var sticky = $aaaf33012883b09c92ea7004fd84705a$var$UNSUPPORTED_Y && re.sticky;
+    var flags = $aaaf33012883b09c92ea7004fd84705a$import$55a1ee6edebd1d69$a4b4c796a132eb0a(re);
+    var source = re.source;
+    var charsAdded = 0;
+    var strCopy = str;
+    if (sticky) {
+        flags = flags.replace('y', '');
+        if (flags.indexOf('g') === -1) flags += 'g';
+        strCopy = String(str).slice(re.lastIndex);
+        // Support anchored sticky behavior.
+        if (re.lastIndex > 0 && (!re.multiline || re.multiline && str[re.lastIndex - 1] !== '\n')) {
+            source = '(?: ' + source + ')';
+            strCopy = ' ' + strCopy;
+            charsAdded++;
+        }
+        // ^(? + rx + ) is needed, in combination with some str slicing, to
+        // simulate the 'y' flag.
+        reCopy = new RegExp('^(?:' + source + ')', flags);
+    }
+    if ($aaaf33012883b09c92ea7004fd84705a$var$NPCG_INCLUDED) reCopy = new RegExp('^' + source + '$(?!\\s)', flags);
+    if ($aaaf33012883b09c92ea7004fd84705a$var$UPDATES_LAST_INDEX_WRONG) lastIndex = re.lastIndex;
+    match = $aaaf33012883b09c92ea7004fd84705a$var$nativeExec.call(sticky ? reCopy : re, strCopy);
+    if (sticky) {
+        if (match) {
+            match.input = match.input.slice(charsAdded);
+            match[0] = match[0].slice(charsAdded);
+            match.index = re.lastIndex;
+            re.lastIndex += match[0].length;
+        } else re.lastIndex = 0;
+    } else if ($aaaf33012883b09c92ea7004fd84705a$var$UPDATES_LAST_INDEX_WRONG && match) re.lastIndex = re.global ? match.index + match[0].length : lastIndex;
+    if ($aaaf33012883b09c92ea7004fd84705a$var$NPCG_INCLUDED && match && match.length > 1) // Fix browsers whose `exec` methods don't consistently return `undefined`
+    // for NPCG, like IE8. NOTE: This doesn' work for /(.?)?/
+    $aaaf33012883b09c92ea7004fd84705a$var$nativeReplace.call(match[0], reCopy, function() {
+        for(i = 1; i < arguments.length - 2; i++)if (arguments[i] === undefined) match[i] = undefined;
+    });
+    if (match && groups) {
+        match.groups = object = $aaaf33012883b09c92ea7004fd84705a$import$d8db146559ed3979(null);
+        for(i = 0; i < groups.length; i++){
+            group = groups[i];
+            object[group[0]] = match[group[1]];
+        }
+    }
+    return match;
+};
+$aaaf33012883b09c92ea7004fd84705a$exports = $aaaf33012883b09c92ea7004fd84705a$var$patchedExec;

@@ -1,0 +1,15 @@
+'use strict';
+import   "8185779a8e2cc086cc9daa5d16c1fb3a:../internals/an-object";
+// `RegExp.prototype.flags` getter implementation
+// https://tc39.es/ecma262/#sec-get-regexp.prototype.flags
+$8185779a8e2cc086cc9daa5d16c1fb3a$exports = function() {
+    var that = $8185779a8e2cc086cc9daa5d16c1fb3a$import$cad8ba314ee735d6(this);
+    var result = '';
+    if (that.global) result += 'g';
+    if (that.ignoreCase) result += 'i';
+    if (that.multiline) result += 'm';
+    if (that.dotAll) result += 's';
+    if (that.unicode) result += 'u';
+    if (that.sticky) result += 'y';
+    return result;
+};

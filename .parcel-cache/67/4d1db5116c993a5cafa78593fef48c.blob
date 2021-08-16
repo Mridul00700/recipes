@@ -1,0 +1,10 @@
+import   "c8e0889d96c6d307b3f716fa80a555c4:../internals/export";
+import   "c8e0889d96c6d307b3f716fa80a555c4:../internals/math-fround";
+// `Math.fround` method
+// https://tc39.es/ecma262/#sec-math.fround
+$c8e0889d96c6d307b3f716fa80a555c4$import$1bb3f1a3ac631152({
+    target: 'Math',
+    stat: true
+}, {
+    fround: $c8e0889d96c6d307b3f716fa80a555c4$import$e85c246a5046fb83
+});

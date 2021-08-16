@@ -1,0 +1,54 @@
+import   "b12389ba2502cc7b41eddcd5056d9174:../internals/an-object";
+import   "b12389ba2502cc7b41eddcd5056d9174:../internals/is-array-iterator-method";
+import   "b12389ba2502cc7b41eddcd5056d9174:../internals/to-length";
+import   "b12389ba2502cc7b41eddcd5056d9174:../internals/function-bind-context";
+import   "b12389ba2502cc7b41eddcd5056d9174:../internals/get-iterator-method";
+import   "b12389ba2502cc7b41eddcd5056d9174:../internals/iterator-close";
+var $b12389ba2502cc7b41eddcd5056d9174$var$Result = function(stopped, result) {
+    this.stopped = stopped;
+    this.result = result;
+};
+$b12389ba2502cc7b41eddcd5056d9174$exports = function(iterable, unboundFunction, options) {
+    var that = options && options.that;
+    var AS_ENTRIES = !!(options && options.AS_ENTRIES);
+    var IS_ITERATOR = !!(options && options.IS_ITERATOR);
+    var INTERRUPTED = !!(options && options.INTERRUPTED);
+    var fn = $b12389ba2502cc7b41eddcd5056d9174$import$66177e0ceb63850c(unboundFunction, that, 1 + AS_ENTRIES + INTERRUPTED);
+    var iterator, iterFn, index, length, result, next, step;
+    var stop = function(condition) {
+        if (iterator) $b12389ba2502cc7b41eddcd5056d9174$import$adeb365b4fa1ffdb(iterator);
+        return new $b12389ba2502cc7b41eddcd5056d9174$var$Result(true, condition);
+    };
+    var callFn = function(value) {
+        if (AS_ENTRIES) {
+            $b12389ba2502cc7b41eddcd5056d9174$import$cad8ba314ee735d6(value);
+            return INTERRUPTED ? fn(value[0], value[1], stop) : fn(value[0], value[1]);
+        }
+        return INTERRUPTED ? fn(value, stop) : fn(value);
+    };
+    if (IS_ITERATOR) iterator = iterable;
+    else {
+        iterFn = $b12389ba2502cc7b41eddcd5056d9174$import$58c00865a7a01291(iterable);
+        if (typeof iterFn != 'function') throw TypeError('Target is not iterable');
+        // optimisation for array iterators
+        if ($b12389ba2502cc7b41eddcd5056d9174$import$6a6ec6f802014b0d(iterFn)) {
+            for(index = 0, length = $b12389ba2502cc7b41eddcd5056d9174$import$4102f61a7d1ec5ae(iterable.length); length > index; index++){
+                result = callFn(iterable[index]);
+                if (result && result instanceof $b12389ba2502cc7b41eddcd5056d9174$var$Result) return result;
+            }
+            return new $b12389ba2502cc7b41eddcd5056d9174$var$Result(false);
+        }
+        iterator = iterFn.call(iterable);
+    }
+    next = iterator.next;
+    while(!(step = next.call(iterator)).done){
+        try {
+            result = callFn(step.value);
+        } catch (error) {
+            $b12389ba2502cc7b41eddcd5056d9174$import$adeb365b4fa1ffdb(iterator);
+            throw error;
+        }
+        if (typeof result == 'object' && result && result instanceof $b12389ba2502cc7b41eddcd5056d9174$var$Result) return result;
+    }
+    return new $b12389ba2502cc7b41eddcd5056d9174$var$Result(false);
+};

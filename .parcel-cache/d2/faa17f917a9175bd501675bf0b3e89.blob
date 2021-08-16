@@ -1,0 +1,8 @@
+import   "52abd6bde27cb7876b0f8d56be1a6024:../internals/typed-array-constructor";
+// `Uint8Array` constructor
+// https://tc39.es/ecma262/#sec-typedarray-objects
+$52abd6bde27cb7876b0f8d56be1a6024$import$ded6ac75bba33aa8('Uint8', function(init) {
+    return function Uint8Array1(data, byteOffset, length) {
+        return init(this, data, byteOffset, length);
+    };
+});

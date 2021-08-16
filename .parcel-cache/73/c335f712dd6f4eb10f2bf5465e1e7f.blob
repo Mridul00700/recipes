@@ -1,0 +1,10 @@
+'use strict';
+import   "9d322e054c9506fd619cb06483fc61bc:../internals/collection";
+import   "9d322e054c9506fd619cb06483fc61bc:../internals/collection-strong";
+// `Map` constructor
+// https://tc39.es/ecma262/#sec-map-objects
+$9d322e054c9506fd619cb06483fc61bc$exports = $9d322e054c9506fd619cb06483fc61bc$import$c761240822dff030('Map', function(init) {
+    return function Map1() {
+        return init(this, arguments.length ? arguments[0] : undefined);
+    };
+}, $9d322e054c9506fd619cb06483fc61bc$import$35c00ff66ea9a031);

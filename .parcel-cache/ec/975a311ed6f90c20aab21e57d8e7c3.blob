@@ -1,0 +1,10 @@
+import   "93931330c4c53969f8183cbbc40ab7da:../internals/export";
+import   "93931330c4c53969f8183cbbc40ab7da:../internals/number-is-finite";
+// `Number.isFinite` method
+// https://tc39.es/ecma262/#sec-number.isfinite
+$93931330c4c53969f8183cbbc40ab7da$import$1bb3f1a3ac631152({
+    target: 'Number',
+    stat: true
+}, {
+    isFinite: $93931330c4c53969f8183cbbc40ab7da$import$908d84b727a6b4ec
+});

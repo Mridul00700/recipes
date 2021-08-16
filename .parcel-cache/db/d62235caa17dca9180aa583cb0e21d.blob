@@ -1,0 +1,7 @@
+import   "ff11d264af5043809fd370f9750aa4d8:../internals/classof-raw";
+// `IsArray` abstract operation
+// https://tc39.es/ecma262/#sec-isarray
+// eslint-disable-next-line es/no-array-isarray -- safe
+$ff11d264af5043809fd370f9750aa4d8$exports = Array.isArray || function isArray(arg) {
+    return $ff11d264af5043809fd370f9750aa4d8$import$7285d07a808c4129(arg) == 'Array';
+};

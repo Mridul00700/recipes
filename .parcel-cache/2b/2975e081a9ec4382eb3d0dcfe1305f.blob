@@ -1,0 +1,19 @@
+import   "b5b5e63952748120ad91f7ab4ee6979d:../internals/export";
+import   "b5b5e63952748120ad91f7ab4ee6979d:../internals/fails";
+import   "b5b5e63952748120ad91f7ab4ee6979d:../internals/is-object";
+// eslint-disable-next-line es/no-object-issealed -- safe
+var $b5b5e63952748120ad91f7ab4ee6979d$var$$isSealed = Object.isSealed;
+var $b5b5e63952748120ad91f7ab4ee6979d$var$FAILS_ON_PRIMITIVES = $b5b5e63952748120ad91f7ab4ee6979d$import$9936d02511e757dc(function() {
+    $b5b5e63952748120ad91f7ab4ee6979d$var$$isSealed(1);
+});
+// `Object.isSealed` method
+// https://tc39.es/ecma262/#sec-object.issealed
+$b5b5e63952748120ad91f7ab4ee6979d$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true,
+    forced: $b5b5e63952748120ad91f7ab4ee6979d$var$FAILS_ON_PRIMITIVES
+}, {
+    isSealed: function isSealed(it) {
+        return $b5b5e63952748120ad91f7ab4ee6979d$import$9294ccec169e68b9(it) ? $b5b5e63952748120ad91f7ab4ee6979d$var$$isSealed ? $b5b5e63952748120ad91f7ab4ee6979d$var$$isSealed(it) : false : true;
+    }
+});

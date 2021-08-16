@@ -1,0 +1,29 @@
+'use strict';
+import   "be18edc73afed828669be7b3b788e747:../internals/to-object";
+import   "be18edc73afed828669be7b3b788e747:../internals/to-absolute-index";
+import   "be18edc73afed828669be7b3b788e747:../internals/to-length";
+var $be18edc73afed828669be7b3b788e747$var$min = Math.min;
+// `Array.prototype.copyWithin` method implementation
+// https://tc39.es/ecma262/#sec-array.prototype.copywithin
+// eslint-disable-next-line es/no-array-prototype-copywithin -- safe
+$be18edc73afed828669be7b3b788e747$exports = [].copyWithin || function copyWithin(target/* = 0 */ , start/* = 0, end = @length */ ) {
+    var O = $be18edc73afed828669be7b3b788e747$import$565dce0892f29b05(this);
+    var len = $be18edc73afed828669be7b3b788e747$import$4102f61a7d1ec5ae(O.length);
+    var to = $be18edc73afed828669be7b3b788e747$import$bcb4abe55a109f79(target, len);
+    var from = $be18edc73afed828669be7b3b788e747$import$bcb4abe55a109f79(start, len);
+    var end = arguments.length > 2 ? arguments[2] : undefined;
+    var count = $be18edc73afed828669be7b3b788e747$var$min((end === undefined ? len : $be18edc73afed828669be7b3b788e747$import$bcb4abe55a109f79(end, len)) - from, len - to);
+    var inc = 1;
+    if (from < to && to < from + count) {
+        inc = -1;
+        from += count - 1;
+        to += count - 1;
+    }
+    while((count--) > 0){
+        if (from in O) O[to] = O[from];
+        else delete O[to];
+        to += inc;
+        from += inc;
+    }
+    return O;
+};

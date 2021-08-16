@@ -1,0 +1,69 @@
+'use strict';
+import   "889ffa3979dd9c49c0fdeb28f8aa1b8e:../internals/array-buffer-view-core";
+import   "889ffa3979dd9c49c0fdeb28f8aa1b8e:../internals/global";
+import   "889ffa3979dd9c49c0fdeb28f8aa1b8e:../internals/fails";
+import   "889ffa3979dd9c49c0fdeb28f8aa1b8e:../internals/a-function";
+import   "889ffa3979dd9c49c0fdeb28f8aa1b8e:../internals/to-length";
+import   "889ffa3979dd9c49c0fdeb28f8aa1b8e:../internals/array-sort";
+import   "889ffa3979dd9c49c0fdeb28f8aa1b8e:../internals/engine-ff-version";
+import   "889ffa3979dd9c49c0fdeb28f8aa1b8e:../internals/engine-is-ie-or-edge";
+import   "889ffa3979dd9c49c0fdeb28f8aa1b8e:../internals/engine-v8-version";
+import   "889ffa3979dd9c49c0fdeb28f8aa1b8e:../internals/engine-webkit-version";
+var $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$aTypedArray = $889ffa3979dd9c49c0fdeb28f8aa1b8e$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$exportTypedArrayMethod = $889ffa3979dd9c49c0fdeb28f8aa1b8e$import$646a64c4a95eead$499fcf5cda66e13c;
+var $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$Uint16Array = $889ffa3979dd9c49c0fdeb28f8aa1b8e$import$da678c04728da253$53051beee81f9966;
+var $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$nativeSort = $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$Uint16Array && $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$Uint16Array.prototype.sort;
+// WebKit
+var $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$ACCEPT_INCORRECT_ARGUMENTS = !!$889ffa3979dd9c49c0fdeb28f8aa1b8e$var$nativeSort && !$889ffa3979dd9c49c0fdeb28f8aa1b8e$import$9936d02511e757dc(function() {
+    var array = new $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$Uint16Array(2);
+    array.sort(null);
+    array.sort({
+    });
+});
+var $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$STABLE_SORT = !!$889ffa3979dd9c49c0fdeb28f8aa1b8e$var$nativeSort && !$889ffa3979dd9c49c0fdeb28f8aa1b8e$import$9936d02511e757dc(function() {
+    // feature detection can be too slow, so check engines versions
+    if ($889ffa3979dd9c49c0fdeb28f8aa1b8e$import$aa08777f3c690dd7) return $889ffa3979dd9c49c0fdeb28f8aa1b8e$import$aa08777f3c690dd7 < 74;
+    if ($889ffa3979dd9c49c0fdeb28f8aa1b8e$import$2eff4d17d400a701) return $889ffa3979dd9c49c0fdeb28f8aa1b8e$import$2eff4d17d400a701 < 67;
+    if ($889ffa3979dd9c49c0fdeb28f8aa1b8e$import$9817820b129c4cb7) return true;
+    if ($889ffa3979dd9c49c0fdeb28f8aa1b8e$import$b04d4b6e501858a8) return $889ffa3979dd9c49c0fdeb28f8aa1b8e$import$b04d4b6e501858a8 < 602;
+    var array = new $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$Uint16Array(516);
+    var expected = Array(516);
+    var index, mod;
+    for(index = 0; index < 516; index++){
+        mod = index % 4;
+        array[index] = 515 - index;
+        expected[index] = index - 2 * mod + 3;
+    }
+    array.sort(function(a, b) {
+        return (a / 4 | 0) - (b / 4 | 0);
+    });
+    for(index = 0; index < 516; index++){
+        if (array[index] !== expected[index]) return true;
+    }
+});
+var $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$getSortCompare = function(comparefn) {
+    return function(x, y) {
+        if (comparefn !== undefined) return +comparefn(x, y) || 0;
+        // eslint-disable-next-line no-self-compare -- NaN check
+        if (y !== y) return -1;
+        // eslint-disable-next-line no-self-compare -- NaN check
+        if (x !== x) return 1;
+        if (x === 0 && y === 0) return 1 / x > 0 && 1 / y < 0 ? 1 : -1;
+        return x > y;
+    };
+};
+// `%TypedArray%.prototype.sort` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.sort
+$889ffa3979dd9c49c0fdeb28f8aa1b8e$var$exportTypedArrayMethod('sort', function sort(comparefn) {
+    var array = this;
+    if (comparefn !== undefined) $889ffa3979dd9c49c0fdeb28f8aa1b8e$import$feed022c18f6196b(comparefn);
+    if ($889ffa3979dd9c49c0fdeb28f8aa1b8e$var$STABLE_SORT) return $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$nativeSort.call(array, comparefn);
+    $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$aTypedArray(array);
+    var arrayLength = $889ffa3979dd9c49c0fdeb28f8aa1b8e$import$4102f61a7d1ec5ae(array.length);
+    var items = Array(arrayLength);
+    var index;
+    for(index = 0; index < arrayLength; index++)items[index] = array[index];
+    items = $889ffa3979dd9c49c0fdeb28f8aa1b8e$import$b7bde77fbad56186(array, $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$getSortCompare(comparefn));
+    for(index = 0; index < arrayLength; index++)array[index] = items[index];
+    return array;
+}, !$889ffa3979dd9c49c0fdeb28f8aa1b8e$var$STABLE_SORT || $889ffa3979dd9c49c0fdeb28f8aa1b8e$var$ACCEPT_INCORRECT_ARGUMENTS);

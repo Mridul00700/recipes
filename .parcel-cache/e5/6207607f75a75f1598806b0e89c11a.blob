@@ -1,0 +1,12 @@
+import   "eef468f9f3c0ecd86f6827de220e5b3e:../internals/export";
+import   "eef468f9f3c0ecd86f6827de220e5b3e:../internals/array-last-index-of";
+// `Array.prototype.lastIndexOf` method
+// https://tc39.es/ecma262/#sec-array.prototype.lastindexof
+// eslint-disable-next-line es/no-array-prototype-lastindexof -- required for testing
+$eef468f9f3c0ecd86f6827de220e5b3e$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true,
+    forced: $eef468f9f3c0ecd86f6827de220e5b3e$import$9e117dab0662af72 !== [].lastIndexOf
+}, {
+    lastIndexOf: $eef468f9f3c0ecd86f6827de220e5b3e$import$9e117dab0662af72
+});

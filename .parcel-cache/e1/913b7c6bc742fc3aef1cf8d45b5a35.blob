@@ -1,0 +1,11 @@
+import   "83a7e0ccdad00dac948f6fd87ecf1fa6:../internals/export";
+// `Date.now` method
+// https://tc39.es/ecma262/#sec-date.now
+$83a7e0ccdad00dac948f6fd87ecf1fa6$import$1bb3f1a3ac631152({
+    target: 'Date',
+    stat: true
+}, {
+    now: function now() {
+        return new Date().getTime();
+    }
+});

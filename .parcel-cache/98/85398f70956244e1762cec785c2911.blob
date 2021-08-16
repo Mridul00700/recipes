@@ -1,0 +1,62 @@
+'use strict';
+import   "38c7fd79ad2338e9a329633475d6547f:../internals/export";
+import   "38c7fd79ad2338e9a329633475d6547f:../internals/to-absolute-index";
+import   "38c7fd79ad2338e9a329633475d6547f:../internals/to-integer";
+import   "38c7fd79ad2338e9a329633475d6547f:../internals/to-length";
+import   "38c7fd79ad2338e9a329633475d6547f:../internals/to-object";
+import   "38c7fd79ad2338e9a329633475d6547f:../internals/array-species-create";
+import   "38c7fd79ad2338e9a329633475d6547f:../internals/create-property";
+import   "38c7fd79ad2338e9a329633475d6547f:../internals/array-method-has-species-support";
+var $38c7fd79ad2338e9a329633475d6547f$var$HAS_SPECIES_SUPPORT = $38c7fd79ad2338e9a329633475d6547f$import$d71858cb7e8d3414('splice');
+var $38c7fd79ad2338e9a329633475d6547f$var$max = Math.max;
+var $38c7fd79ad2338e9a329633475d6547f$var$min = Math.min;
+var $38c7fd79ad2338e9a329633475d6547f$var$MAX_SAFE_INTEGER = 9007199254740991;
+var $38c7fd79ad2338e9a329633475d6547f$var$MAXIMUM_ALLOWED_LENGTH_EXCEEDED = 'Maximum allowed length exceeded';
+// `Array.prototype.splice` method
+// https://tc39.es/ecma262/#sec-array.prototype.splice
+// with adding support of @@species
+$38c7fd79ad2338e9a329633475d6547f$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true,
+    forced: !$38c7fd79ad2338e9a329633475d6547f$var$HAS_SPECIES_SUPPORT
+}, {
+    splice: function splice(start, deleteCount/* , ...items */ ) {
+        var O = $38c7fd79ad2338e9a329633475d6547f$import$565dce0892f29b05(this);
+        var len = $38c7fd79ad2338e9a329633475d6547f$import$4102f61a7d1ec5ae(O.length);
+        var actualStart = $38c7fd79ad2338e9a329633475d6547f$import$bcb4abe55a109f79(start, len);
+        var argumentsLength = arguments.length;
+        var insertCount, actualDeleteCount, A, k, from, to;
+        if (argumentsLength === 0) insertCount = actualDeleteCount = 0;
+        else if (argumentsLength === 1) {
+            insertCount = 0;
+            actualDeleteCount = len - actualStart;
+        } else {
+            insertCount = argumentsLength - 2;
+            actualDeleteCount = $38c7fd79ad2338e9a329633475d6547f$var$min($38c7fd79ad2338e9a329633475d6547f$var$max($38c7fd79ad2338e9a329633475d6547f$import$3760fb9e29f29d49(deleteCount), 0), len - actualStart);
+        }
+        if (len + insertCount - actualDeleteCount > $38c7fd79ad2338e9a329633475d6547f$var$MAX_SAFE_INTEGER) throw TypeError($38c7fd79ad2338e9a329633475d6547f$var$MAXIMUM_ALLOWED_LENGTH_EXCEEDED);
+        A = $38c7fd79ad2338e9a329633475d6547f$import$270ce3808f347882(O, actualDeleteCount);
+        for(k = 0; k < actualDeleteCount; k++){
+            from = actualStart + k;
+            if (from in O) $38c7fd79ad2338e9a329633475d6547f$import$22a67bab19fa66bf(A, k, O[from]);
+        }
+        A.length = actualDeleteCount;
+        if (insertCount < actualDeleteCount) {
+            for(k = actualStart; k < len - actualDeleteCount; k++){
+                from = k + actualDeleteCount;
+                to = k + insertCount;
+                if (from in O) O[to] = O[from];
+                else delete O[to];
+            }
+            for(k = len; k > len - actualDeleteCount + insertCount; k--)delete O[k - 1];
+        } else if (insertCount > actualDeleteCount) for(k = len - actualDeleteCount; k > actualStart; k--){
+            from = k + actualDeleteCount - 1;
+            to = k + insertCount - 1;
+            if (from in O) O[to] = O[from];
+            else delete O[to];
+        }
+        for(k = 0; k < insertCount; k++)O[k + actualStart] = arguments[k + 2];
+        O.length = len - actualDeleteCount + insertCount;
+        return A;
+    }
+});

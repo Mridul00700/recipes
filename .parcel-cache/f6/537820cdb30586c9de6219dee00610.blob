@@ -1,0 +1,23 @@
+'use strict';
+import   "fbe5b9c075f568897617e85b89416bf6:../internals/export";
+import   "fbe5b9c075f568897617e85b89416bf6:../internals/is-array";
+var $fbe5b9c075f568897617e85b89416bf6$var$nativeReverse = [].reverse;
+var $fbe5b9c075f568897617e85b89416bf6$var$test = [
+    1,
+    2
+];
+// `Array.prototype.reverse` method
+// https://tc39.es/ecma262/#sec-array.prototype.reverse
+// fix for Safari 12.0 bug
+// https://bugs.webkit.org/show_bug.cgi?id=188794
+$fbe5b9c075f568897617e85b89416bf6$import$1bb3f1a3ac631152({
+    target: 'Array',
+    proto: true,
+    forced: String($fbe5b9c075f568897617e85b89416bf6$var$test) === String($fbe5b9c075f568897617e85b89416bf6$var$test.reverse())
+}, {
+    reverse: function reverse() {
+        // eslint-disable-next-line no-self-assign -- dirty hack
+        if ($fbe5b9c075f568897617e85b89416bf6$import$a3ab90aad49ab6f8(this)) this.length = this.length;
+        return $fbe5b9c075f568897617e85b89416bf6$var$nativeReverse.call(this);
+    }
+});

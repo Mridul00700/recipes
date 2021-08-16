@@ -1,0 +1,17 @@
+import   "9ef5e6ae045ad1d01a5e472cd1a644d4:../internals/export";
+import   "9ef5e6ae045ad1d01a5e472cd1a644d4:../internals/fails";
+import   "9ef5e6ae045ad1d01a5e472cd1a644d4:../internals/object-get-own-property-names-external";
+var $9ef5e6ae045ad1d01a5e472cd1a644d4$require$getOwnPropertyNames = $9ef5e6ae045ad1d01a5e472cd1a644d4$import$9075e6b2dc51d0$ffb27d6bd8d1eb33;
+// eslint-disable-next-line es/no-object-getownpropertynames -- required for testing
+var $9ef5e6ae045ad1d01a5e472cd1a644d4$var$FAILS_ON_PRIMITIVES = $9ef5e6ae045ad1d01a5e472cd1a644d4$import$9936d02511e757dc(function() {
+    return !Object.getOwnPropertyNames(1);
+});
+// `Object.getOwnPropertyNames` method
+// https://tc39.es/ecma262/#sec-object.getownpropertynames
+$9ef5e6ae045ad1d01a5e472cd1a644d4$import$1bb3f1a3ac631152({
+    target: 'Object',
+    stat: true,
+    forced: $9ef5e6ae045ad1d01a5e472cd1a644d4$var$FAILS_ON_PRIMITIVES
+}, {
+    getOwnPropertyNames: $9ef5e6ae045ad1d01a5e472cd1a644d4$require$getOwnPropertyNames
+});

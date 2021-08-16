@@ -1,0 +1,11 @@
+'use strict';
+import   "6cad975cdfb7299fd11cc33b600bb45b:../internals/array-buffer-view-core";
+import   "6cad975cdfb7299fd11cc33b600bb45b:../internals/array-reduce";
+var $6cad975cdfb7299fd11cc33b600bb45b$require$$reduceRight = $6cad975cdfb7299fd11cc33b600bb45b$import$b9de931dec1275b0$2ea344c6f4e18f30;
+var $6cad975cdfb7299fd11cc33b600bb45b$var$aTypedArray = $6cad975cdfb7299fd11cc33b600bb45b$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $6cad975cdfb7299fd11cc33b600bb45b$var$exportTypedArrayMethod = $6cad975cdfb7299fd11cc33b600bb45b$import$646a64c4a95eead$499fcf5cda66e13c;
+// `%TypedArray%.prototype.reduceRicht` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.reduceright
+$6cad975cdfb7299fd11cc33b600bb45b$var$exportTypedArrayMethod('reduceRight', function reduceRight(callbackfn/* , initialValue */ ) {
+    return $6cad975cdfb7299fd11cc33b600bb45b$require$$reduceRight($6cad975cdfb7299fd11cc33b600bb45b$var$aTypedArray(this), callbackfn, arguments.length, arguments.length > 1 ? arguments[1] : undefined);
+});

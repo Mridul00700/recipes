@@ -1,0 +1,21 @@
+import   "d72567a51767b06451bf2a725063c8c6:../internals/export";
+import   "d72567a51767b06451bf2a725063c8c6:../internals/is-object";
+import   "d72567a51767b06451bf2a725063c8c6:../internals/an-object";
+import   "d72567a51767b06451bf2a725063c8c6:../internals/has";
+import   "d72567a51767b06451bf2a725063c8c6:../internals/object-get-own-property-descriptor";
+import   "d72567a51767b06451bf2a725063c8c6:../internals/object-get-prototype-of";
+// `Reflect.get` method
+// https://tc39.es/ecma262/#sec-reflect.get
+function $d72567a51767b06451bf2a725063c8c6$var$get(target, propertyKey/* , receiver */ ) {
+    var receiver = arguments.length < 3 ? target : arguments[2];
+    var descriptor, prototype;
+    if ($d72567a51767b06451bf2a725063c8c6$import$cad8ba314ee735d6(target) === receiver) return target[propertyKey];
+    if (descriptor = $d72567a51767b06451bf2a725063c8c6$import$671bedbe12b63e7d$ffb27d6bd8d1eb33(target, propertyKey)) return $d72567a51767b06451bf2a725063c8c6$import$7e2f6fc726b1debe(descriptor, 'value') ? descriptor.value : descriptor.get === undefined ? undefined : descriptor.get.call(receiver);
+    if ($d72567a51767b06451bf2a725063c8c6$import$9294ccec169e68b9(prototype = $d72567a51767b06451bf2a725063c8c6$import$40d0f453fdf3d35e(target))) return $d72567a51767b06451bf2a725063c8c6$var$get(prototype, propertyKey, receiver);
+}
+$d72567a51767b06451bf2a725063c8c6$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true
+}, {
+    get: $d72567a51767b06451bf2a725063c8c6$var$get
+});

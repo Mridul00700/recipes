@@ -1,0 +1,23 @@
+'use strict';
+import   "3599970936f1ce092dbd0e5b0e0341da:../internals/fails";
+import   "3599970936f1ce092dbd0e5b0e0341da:../internals/string-pad";
+var $3599970936f1ce092dbd0e5b0e0341da$require$padStart = $3599970936f1ce092dbd0e5b0e0341da$import$f1355ceab65529ac$42328a91b0e9c643;
+var $3599970936f1ce092dbd0e5b0e0341da$var$abs = Math.abs;
+var $3599970936f1ce092dbd0e5b0e0341da$var$DatePrototype = Date.prototype;
+var $3599970936f1ce092dbd0e5b0e0341da$var$getTime = $3599970936f1ce092dbd0e5b0e0341da$var$DatePrototype.getTime;
+var $3599970936f1ce092dbd0e5b0e0341da$var$nativeDateToISOString = $3599970936f1ce092dbd0e5b0e0341da$var$DatePrototype.toISOString;
+// `Date.prototype.toISOString` method implementation
+// https://tc39.es/ecma262/#sec-date.prototype.toisostring
+// PhantomJS / old WebKit fails here:
+$3599970936f1ce092dbd0e5b0e0341da$exports = $3599970936f1ce092dbd0e5b0e0341da$import$9936d02511e757dc(function() {
+    return $3599970936f1ce092dbd0e5b0e0341da$var$nativeDateToISOString.call(new Date(-50000000000000 - 1)) != '0385-07-25T07:06:39.999Z';
+}) || !$3599970936f1ce092dbd0e5b0e0341da$import$9936d02511e757dc(function() {
+    $3599970936f1ce092dbd0e5b0e0341da$var$nativeDateToISOString.call(new Date(NaN));
+}) ? function toISOString() {
+    if (!isFinite($3599970936f1ce092dbd0e5b0e0341da$var$getTime.call(this))) throw RangeError('Invalid time value');
+    var date = this;
+    var year = date.getUTCFullYear();
+    var milliseconds = date.getUTCMilliseconds();
+    var sign = year < 0 ? '-' : year > 9999 ? '+' : '';
+    return sign + $3599970936f1ce092dbd0e5b0e0341da$require$padStart($3599970936f1ce092dbd0e5b0e0341da$var$abs(year), sign ? 6 : 4, 0) + '-' + $3599970936f1ce092dbd0e5b0e0341da$require$padStart(date.getUTCMonth() + 1, 2, 0) + '-' + $3599970936f1ce092dbd0e5b0e0341da$require$padStart(date.getUTCDate(), 2, 0) + 'T' + $3599970936f1ce092dbd0e5b0e0341da$require$padStart(date.getUTCHours(), 2, 0) + ':' + $3599970936f1ce092dbd0e5b0e0341da$require$padStart(date.getUTCMinutes(), 2, 0) + ':' + $3599970936f1ce092dbd0e5b0e0341da$require$padStart(date.getUTCSeconds(), 2, 0) + '.' + $3599970936f1ce092dbd0e5b0e0341da$require$padStart(milliseconds, 3, 0) + 'Z';
+} : $3599970936f1ce092dbd0e5b0e0341da$var$nativeDateToISOString;

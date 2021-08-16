@@ -1,0 +1,12 @@
+import   "01f5843f9b068b11488323fe368ecc20:../internals/export";
+import   "01f5843f9b068b11488323fe368ecc20:../internals/array-buffer-view-core";
+var $01f5843f9b068b11488323fe368ecc20$var$NATIVE_ARRAY_BUFFER_VIEWS = $01f5843f9b068b11488323fe368ecc20$import$646a64c4a95eead$7c62120d99e028f;
+// `ArrayBuffer.isView` method
+// https://tc39.es/ecma262/#sec-arraybuffer.isview
+$01f5843f9b068b11488323fe368ecc20$import$1bb3f1a3ac631152({
+    target: 'ArrayBuffer',
+    stat: true,
+    forced: !$01f5843f9b068b11488323fe368ecc20$var$NATIVE_ARRAY_BUFFER_VIEWS
+}, {
+    isView: $01f5843f9b068b11488323fe368ecc20$import$646a64c4a95eead$8160fe675dea8bf4
+});

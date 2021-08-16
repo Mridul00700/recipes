@@ -1,0 +1,28 @@
+import   "38f42b2d6846681ac8d025e05fb19e4c:../internals/export";
+import   "38f42b2d6846681ac8d025e05fb19e4c:../internals/to-absolute-index";
+var $38f42b2d6846681ac8d025e05fb19e4c$var$fromCharCode = String.fromCharCode;
+// eslint-disable-next-line es/no-string-fromcodepoint -- required for testing
+var $38f42b2d6846681ac8d025e05fb19e4c$var$$fromCodePoint = String.fromCodePoint;
+// length should be 1, old FF problem
+var $38f42b2d6846681ac8d025e05fb19e4c$var$INCORRECT_LENGTH = !!$38f42b2d6846681ac8d025e05fb19e4c$var$$fromCodePoint && $38f42b2d6846681ac8d025e05fb19e4c$var$$fromCodePoint.length != 1;
+// `String.fromCodePoint` method
+// https://tc39.es/ecma262/#sec-string.fromcodepoint
+$38f42b2d6846681ac8d025e05fb19e4c$import$1bb3f1a3ac631152({
+    target: 'String',
+    stat: true,
+    forced: $38f42b2d6846681ac8d025e05fb19e4c$var$INCORRECT_LENGTH
+}, {
+    // eslint-disable-next-line no-unused-vars -- required for `.length`
+    fromCodePoint: function fromCodePoint(x) {
+        var elements = [];
+        var length = arguments.length;
+        var i = 0;
+        var code;
+        while(length > i){
+            code = +arguments[i++];
+            if ($38f42b2d6846681ac8d025e05fb19e4c$import$bcb4abe55a109f79(code, 1114111) !== code) throw RangeError(code + ' is not a valid code point');
+            elements.push(code < 65536 ? $38f42b2d6846681ac8d025e05fb19e4c$var$fromCharCode(code) : $38f42b2d6846681ac8d025e05fb19e4c$var$fromCharCode(((code -= 65536) >> 10) + 55296, code % 1024 + 56320));
+        }
+        return elements.join('');
+    }
+});

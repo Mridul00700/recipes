@@ -1,0 +1,11 @@
+'use strict';
+import   "a0057ff7c1f2b54daac2d7dfcc8cbd2e:../internals/array-buffer-view-core";
+import   "a0057ff7c1f2b54daac2d7dfcc8cbd2e:../internals/array-includes";
+var $a0057ff7c1f2b54daac2d7dfcc8cbd2e$require$$indexOf = $a0057ff7c1f2b54daac2d7dfcc8cbd2e$import$d824de73f032fddf$6afc34055cd595bd;
+var $a0057ff7c1f2b54daac2d7dfcc8cbd2e$var$aTypedArray = $a0057ff7c1f2b54daac2d7dfcc8cbd2e$import$646a64c4a95eead$3c5c2dd1e7d0241;
+var $a0057ff7c1f2b54daac2d7dfcc8cbd2e$var$exportTypedArrayMethod = $a0057ff7c1f2b54daac2d7dfcc8cbd2e$import$646a64c4a95eead$499fcf5cda66e13c;
+// `%TypedArray%.prototype.indexOf` method
+// https://tc39.es/ecma262/#sec-%typedarray%.prototype.indexof
+$a0057ff7c1f2b54daac2d7dfcc8cbd2e$var$exportTypedArrayMethod('indexOf', function indexOf(searchElement/* , fromIndex */ ) {
+    return $a0057ff7c1f2b54daac2d7dfcc8cbd2e$require$$indexOf($a0057ff7c1f2b54daac2d7dfcc8cbd2e$var$aTypedArray(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
+});

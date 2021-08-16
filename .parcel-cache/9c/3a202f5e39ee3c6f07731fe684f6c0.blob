@@ -1,0 +1,15 @@
+import   "0b2ede0b6fe8d3d4c58f2fa639cbc552:../internals/export";
+import   "0b2ede0b6fe8d3d4c58f2fa639cbc552:../internals/an-object";
+// eslint-disable-next-line es/no-object-isextensible -- safe
+var $0b2ede0b6fe8d3d4c58f2fa639cbc552$var$objectIsExtensible = Object.isExtensible;
+// `Reflect.isExtensible` method
+// https://tc39.es/ecma262/#sec-reflect.isextensible
+$0b2ede0b6fe8d3d4c58f2fa639cbc552$import$1bb3f1a3ac631152({
+    target: 'Reflect',
+    stat: true
+}, {
+    isExtensible: function isExtensible(target) {
+        $0b2ede0b6fe8d3d4c58f2fa639cbc552$import$cad8ba314ee735d6(target);
+        return $0b2ede0b6fe8d3d4c58f2fa639cbc552$var$objectIsExtensible ? $0b2ede0b6fe8d3d4c58f2fa639cbc552$var$objectIsExtensible(target) : true;
+    }
+});

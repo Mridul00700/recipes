@@ -1,0 +1,10 @@
+import   "0e95f50af372c88dc63bf89c2620ce77:../internals/is-object";
+import   "0e95f50af372c88dc63bf89c2620ce77:../internals/classof-raw";
+import   "0e95f50af372c88dc63bf89c2620ce77:../internals/well-known-symbol";
+var $0e95f50af372c88dc63bf89c2620ce77$var$MATCH = $0e95f50af372c88dc63bf89c2620ce77$import$88242bc6a9673a44('match');
+// `IsRegExp` abstract operation
+// https://tc39.es/ecma262/#sec-isregexp
+$0e95f50af372c88dc63bf89c2620ce77$exports = function(it) {
+    var isRegExp;
+    return $0e95f50af372c88dc63bf89c2620ce77$import$9294ccec169e68b9(it) && ((isRegExp = it[$0e95f50af372c88dc63bf89c2620ce77$var$MATCH]) !== undefined ? !!isRegExp : $0e95f50af372c88dc63bf89c2620ce77$import$7285d07a808c4129(it) == 'RegExp');
+};

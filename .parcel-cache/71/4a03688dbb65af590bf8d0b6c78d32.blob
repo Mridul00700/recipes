@@ -1,0 +1,33 @@
+'use strict';
+import   "8d55dc15cd45193473c5228430e789b8:../internals/export";
+import   "8d55dc15cd45193473c5228430e789b8:../internals/object-get-prototype-of";
+import   "8d55dc15cd45193473c5228430e789b8:../internals/object-set-prototype-of";
+import   "8d55dc15cd45193473c5228430e789b8:../internals/object-create";
+import   "8d55dc15cd45193473c5228430e789b8:../internals/create-non-enumerable-property";
+import   "8d55dc15cd45193473c5228430e789b8:../internals/create-property-descriptor";
+import   "8d55dc15cd45193473c5228430e789b8:../internals/iterate";
+var $8d55dc15cd45193473c5228430e789b8$var$$AggregateError = function AggregateError(errors, message) {
+    var that = this;
+    if (!(that instanceof $8d55dc15cd45193473c5228430e789b8$var$$AggregateError)) return new $8d55dc15cd45193473c5228430e789b8$var$$AggregateError(errors, message);
+    if ($8d55dc15cd45193473c5228430e789b8$import$74d6517d4e0bb391) // eslint-disable-next-line unicorn/error-message -- expected
+    that = $8d55dc15cd45193473c5228430e789b8$import$74d6517d4e0bb391(new Error(undefined), $8d55dc15cd45193473c5228430e789b8$import$40d0f453fdf3d35e(that));
+    if (message !== undefined) $8d55dc15cd45193473c5228430e789b8$import$ea4d2ea16a516be3(that, 'message', String(message));
+    var errorsArray = [];
+    $8d55dc15cd45193473c5228430e789b8$import$1f57ebca7b213dbf(errors, errorsArray.push, {
+        that: errorsArray
+    });
+    $8d55dc15cd45193473c5228430e789b8$import$ea4d2ea16a516be3(that, 'errors', errorsArray);
+    return that;
+};
+$8d55dc15cd45193473c5228430e789b8$var$$AggregateError.prototype = $8d55dc15cd45193473c5228430e789b8$import$d8db146559ed3979(Error.prototype, {
+    constructor: $8d55dc15cd45193473c5228430e789b8$import$ec93b3e5f64a8991(5, $8d55dc15cd45193473c5228430e789b8$var$$AggregateError),
+    message: $8d55dc15cd45193473c5228430e789b8$import$ec93b3e5f64a8991(5, ''),
+    name: $8d55dc15cd45193473c5228430e789b8$import$ec93b3e5f64a8991(5, 'AggregateError')
+});
+// `AggregateError` constructor
+// https://tc39.es/ecma262/#sec-aggregate-error-constructor
+$8d55dc15cd45193473c5228430e789b8$import$1bb3f1a3ac631152({
+    global: true
+}, {
+    AggregateError: $8d55dc15cd45193473c5228430e789b8$var$$AggregateError
+});

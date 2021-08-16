@@ -1,0 +1,3 @@
+import   "cd458a5618ed21805fd3f1323f8ccf49:../internals/engine-user-agent";
+// eslint-disable-next-line unicorn/no-unsafe-regex -- safe
+$cd458a5618ed21805fd3f1323f8ccf49$exports = /Version\/10(?:\.\d+){1,2}(?: [\w./]+)?(?: Mobile\/\w+)? Safari\//.test($cd458a5618ed21805fd3f1323f8ccf49$import$f29ee6c65de699c7);

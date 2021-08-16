@@ -1,0 +1,10 @@
+import   "00aa12b9169556c10ccda523682706a3:../internals/export";
+import   "00aa12b9169556c10ccda523682706a3:../internals/is-integer";
+// `Number.isInteger` method
+// https://tc39.es/ecma262/#sec-number.isinteger
+$00aa12b9169556c10ccda523682706a3$import$1bb3f1a3ac631152({
+    target: 'Number',
+    stat: true
+}, {
+    isInteger: $00aa12b9169556c10ccda523682706a3$import$ebacc5cc18859147
+});

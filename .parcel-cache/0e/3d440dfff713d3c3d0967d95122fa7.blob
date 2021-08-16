@@ -1,0 +1,11 @@
+import   "ab06df95b0dd6b6997c20fb0778311a1:../internals/an-object";
+import   "ab06df95b0dd6b6997c20fb0778311a1:../internals/a-function";
+import   "ab06df95b0dd6b6997c20fb0778311a1:../internals/well-known-symbol";
+var $ab06df95b0dd6b6997c20fb0778311a1$var$SPECIES = $ab06df95b0dd6b6997c20fb0778311a1$import$88242bc6a9673a44('species');
+// `SpeciesConstructor` abstract operation
+// https://tc39.es/ecma262/#sec-speciesconstructor
+$ab06df95b0dd6b6997c20fb0778311a1$exports = function(O, defaultConstructor) {
+    var C = $ab06df95b0dd6b6997c20fb0778311a1$import$cad8ba314ee735d6(O).constructor;
+    var S;
+    return C === undefined || (S = $ab06df95b0dd6b6997c20fb0778311a1$import$cad8ba314ee735d6(C)[$ab06df95b0dd6b6997c20fb0778311a1$var$SPECIES]) == undefined ? defaultConstructor : $ab06df95b0dd6b6997c20fb0778311a1$import$feed022c18f6196b(S);
+};
